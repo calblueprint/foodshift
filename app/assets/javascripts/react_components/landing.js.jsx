@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
 React.renderComponent(
-  <h1>This is a react component</h1>,
+  <h2 className="text-center">This is a react component</h2>,
   document.getElementById('example')
 );
