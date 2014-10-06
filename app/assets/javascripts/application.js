@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require underscore
 //= require react
 //= require_tree ./application
 
