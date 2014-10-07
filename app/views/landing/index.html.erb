@@ -1,10 +1,21 @@
-<div class="row">
-    <div class="small-2 columns">
-        <h1>Hallo</h1>
+<div class="splash-block">
+    <div class="splash-images">
+        <div class="splash-image" style="background-image: url(<%= asset_path 'landing_splash_farm.jpg' %>);"></div>
+        <div class="splash-image" style="background-image: url(<%= asset_path 'landing_splash_fruits.jpg' %>);"></div>
+        <div class="splash-image" style="background-image: url(<%= asset_path 'landing_splash_veggies.jpg' %>);"></div>
     </div>
-    <div class="small-10 columns">
-        <div id="example"></div>
+    <div class="splash-title row">
+        <div class="small-12 columns">
+            <h1 class="text-center">Food Shift</h1>
+            <h2 class="text-center">Be a part of the effort to reduce food waste.</h2>
+        </div>
     </div>
 </div>
+<div id="landing-form">
+</div>
 
+<%= javascript_include_tag "react_components/forms" %>
+<%= javascript_include_tag "react_components/buttons" %>
 <%= javascript_include_tag "react_components/landing" %>
+<%= javascript_include_tag "react_components/landing" %>
+<%= javascript_include_tag "application/landing" %>
