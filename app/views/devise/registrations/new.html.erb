@@ -4,7 +4,7 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label "I want to be a: " %><br />
-  <%= f.select :type, options_for_select(%w[Donor Recipient Shifter]) %></div>
+  <%= f.select :type, options_for_select(%w[Donor Recipient Coordinator]) %></div>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email, autofocus: true %></div>
