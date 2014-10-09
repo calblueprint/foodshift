@@ -1,0 +1,1 @@
+class Coordinator < User; end
