@@ -7,40 +7,55 @@
     border-bottom: 2px solid $border-color;
 }
 
-p {
-    color: $dark-green;
-}
+$splash-image-height: 600px;
 
 .splash-block {
     @include full-width-block($off-white);
-    @include border-block($dark-grey);
-    padding-top: 100px;
-    padding-bottom: 100px;
+    background-color: transparent;
 }
 
 .splash-images {
+    z-index: -20;
+    margin-top: $topbar-height + 1;
     position: absolute;
     width: 100%;
     top: 0;
     .splash-image {
         background-size: cover;
-        height: 550px;
+        height: $splash-image-height;
     }
 }
 
+.splash-overlay {
+    z-index: -10;
+    margin-top: $topbar-height + 1;
+    position: absolute;
+    width: 100%;
+    height: $splash-image-height;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+
+}
+
 .splash-title {
+    height: $splash-image-height;
     background-color: transparent;
     h1 {
+        padding-top: 17%;
         color: white;
         font-weight: 800;
-        font-size: 4.0em;
+        font-size: 5.0em;
     }
     h2 {
         color: white;
         font-weight: 600;
         font-size: 1.5em;
     }
+    .button-row {
+        padding-top: 50px;
+    }
 }
+
 
 .user-select-block {
     @include full-width-block($light-grey);
@@ -54,17 +69,25 @@ p {
     @include border-block($dark-grey);
     padding-top: 100px;
     padding-bottom: 100px;
-    h3 {
-        color: $charcoal;
-        padding-bottom: 40px;
-        strong {
-            color: $medium-green;
-        }
-    }
 }
 
-.donor-form-pickup-block {
+
+.donor-form-time-block {
+    @include full-width-block($off-white);
+    @include border-block($dark-grey);
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.donor-form-location-block {
     @include full-width-block($light-grey);
+    @include border-block($dark-grey);
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.donor-form-submit-block {
+    @include full-width-block($off-white);
     @include border-block($dark-grey);
     padding-top: 100px;
     padding-bottom: 100px;
@@ -73,5 +96,11 @@ p {
 .add-form-padding {
     padding-top: 30px;
     padding-bottom: 30px;
+}
+
+.contact-padding {
+    @media #{$medium-up} {
+        padding-top: 30px;
+    }
 }
 

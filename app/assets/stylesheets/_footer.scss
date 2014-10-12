@@ -1,0 +1,38 @@
+.footer-contain-to-grid {
+    @extend .contain-to-grid;
+    background-color: $light-grey;
+    border-top: 1px solid $dark-grey;
+    height: 100px;
+    padding-top: 35px;
+    .title {
+        font-weight: 600;
+    }
+    #bp-wrapper {
+        vertical-align: top;
+        .powered-by {
+            vertical-align: middle;
+            font-size: 0.8em;
+            color: $charcoal;
+            margin-right: 5px;
+        }
+
+        #bp-logo {
+            width: 30px;
+            cursor: pointer;
+        }
+        .spinner {
+            -webkit-transition: -webkit-transform 0.5s ease-in-out;
+               -moz-transition:    -moz-transform 0.5s ease-in-out;
+                 -o-transition:      -o-transform 0.5s ease-in-out;
+                    transition:         transform 0.5s ease-in-out;
+        }
+
+        .spinner:hover {
+            -webkit-transform: rotate(360deg);
+               -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                 -o-transform: rotate(360deg);
+                    transform: rotate(360deg);
+        }
+    }
+}

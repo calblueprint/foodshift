@@ -53,6 +53,18 @@ a.button {
     }
 }
 
+a.transparent-button {
+    @extend .button;
+    border-radius: $global-radius;
+    border: 1px solid $white;
+    background-color: transparent;
+    color: $white;
+    &:hover {
+        color: $white;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+}
+
 .tabs {
     position: relative;
     overflow: hidden;
@@ -218,7 +230,7 @@ a.button {
     a {
         overflow: visible;
         color: $charcoal;
-        font-weight: 700;
+        font-weight: 400;
         font-size: 0.9em;
         line-height: 1.1;
         @include cubic-bezier-color();

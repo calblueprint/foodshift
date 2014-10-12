@@ -6,26 +6,47 @@
     background-color: $background-color;
 }
 
+@mixin block-padding() {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.bottom-margin {
+    margin-bottom: 15px;
+}
+
+
 .full-width-dark-green {
     @include full-width-block($dark-green);
+    @include block-padding();
 }
 
 .full-width-medium-green {
     @include full-width-block($medium-green);
+    @include block-padding();
 }
 
 .full-width-light-green {
     @include full-width-block($light-green);
+    @include block-padding();
 }
 
 .full-width-light-tan {
     @include full-width-block($light-tan);
+    @include block-padding();
 }
 
 .full-width-off-white {
     @include full-width-block($off-white);
+    @include block-padding();
 }
 
 .full-width-medium-grey {
     @include full-width-block($medium-grey);
+    @include block-padding();
+}
+
+.full-width-light-grey {
+    @include full-width-block($light-grey);
+    @include block-padding();
 }

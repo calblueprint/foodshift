@@ -129,6 +129,32 @@ var NumberField = React.createClass({
     }
 });
 
+var TextField = React.createClass({
+    getDefaultProps: function() {
+        return {
+            error: null,
+            label: "",
+            handleChange: undefined,
+            rows: 5
+        }
+    },
+    render: function() {
+        var hasError = !(_.isNull(this.props.error))
+        classes = React.addons.classSet({
+           'error': hasError
+        });
+        var errorElement = hasError ? <InputFieldError errorText={this.props.error}/> : null ;
+        return (
+            <div>
+                <label>{this.props.label}
+                    <textarea className={classes} rows={this.props.rows} value={this.props.value} onChange={this.props.handleChange} />
+                </label>
+                {errorElement}
+            </div>
+        );
+    }
+});
+
 var InputFieldError = React.createClass({
     getDefaultProps: function() {
         return {
