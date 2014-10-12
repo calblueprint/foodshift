@@ -4,7 +4,3 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 end
-
-class Donor < User; end
-class Recipient < User; end
-class Coordinator < User; end
