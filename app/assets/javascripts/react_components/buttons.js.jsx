@@ -75,10 +75,33 @@ var ToggleButtonAnchor = React.createClass({
         this.props.onButtonClick({value: this.props.name});
     },
     render: function() {
-        classes = React.addons.classSet({
-        });
         return (
-            <a className={classes} onClick={this.handleClick}><span>{this.props.name}</span></a>
+            <a className={this.props.className} onClick={this.handleClick}><span>{this.props.name}</span></a>
+        );
+    }
+});
+
+var ToggleButtonAnchorIcon = React.createClass({
+    getDefaultProps: function() {
+        return {
+            is_active: false,
+            classes: {
+                'transparent-button': true,
+            },
+            iconClass: null
+        };
+    },
+    handleClick: function(event) {
+        this.props.onButtonClick({value: this.props.name});
+    },
+    render: function() {
+        classes = React.addons.classSet(
+            _.extend({
+                'button-pressed': this.props.is_active
+            }, this.props.classes)
+        );
+        return (
+            <a className={classes} onClick={this.handleClick}><i className={this.props.iconClass}></i><span>{this.props.name}</span></a>
         );
     }
 });

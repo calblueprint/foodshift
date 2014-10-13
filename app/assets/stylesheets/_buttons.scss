@@ -65,6 +65,19 @@ a.transparent-button {
     }
 }
 
+a.success-button {
+    @extend .button;
+    border-radius: $global-radius;
+    border: 1px solid $white;
+    color: $white;
+    background-color: $medium-green;
+    &:hover {
+        color: $white;
+        background-color: scale-color($medium-green, $lightness: 10%);
+    }
+
+}
+
 .tabs {
     position: relative;
     overflow: hidden;
@@ -256,4 +269,21 @@ a.transparent-button {
 		width: 80px;
 		height: 80px;
 	}
+}
+
+@mixin icon($path) {
+    width: 20px;
+    height: 20px;
+    background-size: 100%;
+    background-image: url($path);
+    position: relative;
+    display: block;
+}
+
+.icon-produce {
+    @include icon("produce.png");
+}
+
+.icon-produce {
+    @include icon("produce.png");
 }

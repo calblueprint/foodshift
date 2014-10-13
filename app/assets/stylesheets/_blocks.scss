@@ -11,6 +11,17 @@
     padding-bottom: 50px;
 }
 
+@mixin form-block-padding() {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+@mixin border-block($border-color){
+    border-top: 2px solid $border-color;
+    border-bottom: 2px solid $border-color;
+}
+
+
 .bottom-margin {
     margin-bottom: 15px;
 }

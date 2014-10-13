@@ -1,27 +1,27 @@
-$donor-image-height: 500px;
+$recipient-image-height: 500px;
 
-#donor-form-image-block {
-    .donor-form-image {
+#recipient-form-image-block {
+    .recipient-form-image {
         z-index: -20;
         background-size: cover;
-        background-image: url("landing_splash_strawberries.jpg");
-        height: $donor-image-height;
+        background-image: url("landing_splash_berries.jpg");
+        height: $recipient-image-height;
         width: 100%;
         top: 0;
         position: absolute;
         margin-top: $topbar-height + 1;
     }
-    .donor-form-image-overlay {
+    .recipient-form-image-overlay {
         z-index: -10;
-        height: $donor-image-height;
+        height: $recipient-image-height;
         width: 100%;
         top: 0;
         position: absolute;
         margin-top: $topbar-height + 1;
         background-color: rgba(0, 0, 0, 0.2);
     }
-    .donor-form-content {
-        height: $donor-image-height;
+    .recipient-form-content {
+        height: $recipient-image-height;
         background-color: transparent;
         padding-top: 10%;
     }
@@ -38,39 +38,18 @@ $donor-image-height: 500px;
     }
 }
 
-#donor-form-food-block {
+#recipient-form-info-block {
     @include full-width-block($light-grey);
     border-bottom: 2px solid $dark-grey;
     @include form-block-padding();
 }
 
-
-#donor-form-pickup-block {
-    @include full-width-block($off-white);
-    @include border-block($dark-grey);
-    @include form-block-padding();
-}
-
-#donor-form-detail-block {
-    @include full-width-block($light-grey);
-    @include border-block($dark-grey);
-    @include form-block-padding();
-}
-
-#donor-form-submit-block {
+#recipient-form-org-block {
     @include full-width-block($off-white);
     border-top: 2px solid $dark-grey;
     @include form-block-padding();
 }
 
-.add-form-padding {
-    padding-top: 30px;
-    padding-bottom: 30px;
+.form-padding-top {
+    padding-top: 50px;
 }
-
-.contact-padding {
-    @media #{$medium-up} {
-        padding-top: 30px;
-    }
-}
-
