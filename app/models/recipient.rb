@@ -1,0 +1,1 @@
+class Recipient < User; end
