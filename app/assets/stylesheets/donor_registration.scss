@@ -1,0 +1,47 @@
+@mixin form-block-padding() {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+}
+
+@mixin border-block($border-color){
+    border-top: 2px solid $border-color;
+    border-bottom: 2px solid $border-color;
+}
+
+.donor-form-food-block {
+    @include full-width-block($light-grey);
+    @include border-block($dark-grey);
+    @include form-block-padding();
+}
+
+
+.donor-form-pickup-block {
+    @include full-width-block($off-white);
+    @include border-block($dark-grey);
+    @include form-block-padding();
+}
+
+.donor-form-detail-block {
+    @include full-width-block($light-grey);
+    @include border-block($dark-grey);
+    @include form-block-padding();
+}
+
+.donor-form-submit-block {
+    @include full-width-block($off-white);
+    @include border-block($dark-grey);
+    @include form-block-padding();
+}
+
+.add-form-padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.contact-padding {
+    @media #{$medium-up} {
+        padding-top: 30px;
+    }
+}
+

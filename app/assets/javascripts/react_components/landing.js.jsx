@@ -72,9 +72,3 @@ var UserTypeSelect = React.createClass({
         );
     }
 });
-
-
-React.renderComponent(
-  <LandingForm />,
-  document.getElementById('landing-form')
-);

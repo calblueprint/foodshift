@@ -1,0 +1,104 @@
+<div class="donor-form-food-block">
+    <div id="donor-form">
+    </div>
+</div>
+<div class="donor-form-pickup-block">
+    <div class="row">
+        <div class="small-12 medium-8 medium-centered columns">
+            <h3 class="text-center block-title">Pickup Information</h3>
+            <div class="row collapse">
+                <div class="small-3 columns">
+                    <span class="prefix">Address</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="text" placeholder="Enter your address" id="donor-address" />
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="small-3 columns">
+                    <span class="prefix">Date</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="date" />
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="small-2 columns">
+                    <span class="prefix">From</span>
+                </div>
+                <div class="small-4 columns">
+                    <input type="time" />
+                </div>
+                <div class="small-2 columns">
+                    <span class="prefix">To</span>
+                </div>
+                <div class="small-4 columns">
+                    <input type="time" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="donor-form-detail-block">
+    <div class="row">
+        <div class="small-12  medium-8 medium-centered columns">
+            <h3 class="text-center block-title">About You</h3>
+            <div class="row collapse">
+                <div class="small-3 columns">
+                    <span class="prefix">Name</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="text" />
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="small-3 columns">
+                    <span class="prefix">Organization</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="text" />
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="small-3 columns">
+                    <span class="prefix">Email</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="email" />
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="small-3 columns">
+                    <span class="prefix">Phone</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="tel" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="donor-form-submit-block">
+    <div class="row">
+        <div class="small-12 columns">
+            <h3 class="text-center block-title">Anything else we should know about your donation?</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-8 medium-centered columns">
+            <textarea rows=5 ></textarea>
+        </div>
+    </div>
+    <div class="row add-form-padding">
+        <div class="small-12 columns">
+            <div class="text-center">
+                <a class="button">Donate!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%= javascript_include_tag "react_components/forms" %>
+<%= javascript_include_tag "react_components/buttons" %>
+<%= javascript_include_tag "react_components/donor_form" %>
+<%= javascript_include_tag "application/donor_form" %>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+
   root 'landing#index'
+
+  get 'donate' => 'registration#donor'
+  get 'receive' => 'registration#recipient'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

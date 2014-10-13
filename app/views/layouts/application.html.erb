@@ -13,6 +13,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places" %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -24,7 +25,6 @@
           <h1><a href="#">Food Shift</a></h1>
         </li>
         <li class="divider"></li>
-         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
       </ul>
 
@@ -48,7 +48,7 @@
     </div>
 
     <%= yield %>
-    <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.3.6/slick.min.js" %>
+
     <div class="footer-contain-to-grid">
         <div class="row">
           <div class="small-6 columns">
@@ -64,5 +64,7 @@
           </div>
         </div>
     </div>
+
+    <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.3.6/slick.min.js" %>
   </body>
 </html>
