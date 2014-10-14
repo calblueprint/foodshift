@@ -15,6 +15,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
         </div>
     </div>
 </div>
+
+<form data-abide>
+
 <div id="donor-form-food-block">
     <div id="donor-form">
     </div>
@@ -28,7 +31,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Address</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" placeholder="" id="donor-address" />
+                    <input type="text" placeholder="" required id="donor-address" />
+                    <small class="error">Address is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -36,7 +40,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Date</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="date" />
+                    <input type="date" required />
+                    <small class="error">Valid date is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -45,12 +50,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                 </div>
                 <div class="small-4 columns">
                     <input type="time" />
+                    <small class="error">Valid time is required.</small>
                 </div>
                 <div class="small-2 columns">
                     <span class="prefix">To</span>
                 </div>
                 <div class="small-4 columns">
                     <input type="time" />
+                    <small class="error">Valid time is required.</small>
                 </div>
             </div>
         </div>
@@ -65,7 +72,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Name</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" />
+                    <input type="text" required/>
+                    <small class="error">Name is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -73,7 +81,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Organization</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" />
+                    <input type="text" required/>
+                    <small class="error">Organization is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -81,7 +90,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Email</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="email" />
+                    <input type="email" required/>
+                    <small class="error">Valid email is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -89,7 +99,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Phone</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="tel" />
+                    <input type="tel" pattern="phone" required/>
+                    <small class="error">Valid phone number is required.</small>
                 </div>
             </div>
         </div>
@@ -108,12 +119,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
     </div>
     <div class="row form-padding">
         <div class="small-12 columns">
-            <div class="text-center">
+            <div class="text-center donate-block">
                 <a id="submit" class="success-button">Donate!</a>
             </div>
         </div>
     </div>
 </div>
+
+</form>
 
 <%= javascript_include_tag "react_components/forms" %>
 <%= javascript_include_tag "react_components/buttons" %>

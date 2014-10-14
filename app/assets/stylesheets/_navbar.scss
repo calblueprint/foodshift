@@ -3,6 +3,12 @@
     background-color: $white;
     border-bottom: 1px solid $dark-grey;
     z-index: 10;
+    .title-area {
+        background-color: $medium-green;
+        .name h1 a {
+            color: $white;
+        }
+    }
 }
 
 nav.top-bar {

@@ -15,6 +15,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
         </div>
     </div>
 </div>
+
+<form data-abide>
+
 <div id="recipient-form-info-block">
     <div class="row">
         <div class="small-12 medium-8 medium-centered columns">
@@ -24,13 +27,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">First name</span>
                 </div>
                 <div class="small-9 medium-4 columns">
-                    <input type="text" />
+                    <input type="text" required />
+                    <small class="error">First name is required.</small>
                 </div>
                 <div class="small-3 medium-2 columns">
                     <span class="prefix">Last name</span>
                 </div>
                 <div class="small-9 medium-4 columns">
-                    <input type="text" />
+                    <input type="text" required/>
+                    <small class="error">Last name is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -38,7 +43,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Email</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="email" />
+                    <input type="email" required/>
+                    <small class="error">Valid email is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -46,7 +52,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Phone</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="tel" />
+                    <input type="tel" pattern="phone" required/>
+                    <small class="error">Valid phone number is required.</small>
                 </div>
             </div>
         </div>
@@ -61,7 +68,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Name</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" />
+                    <input type="text" required/>
+                    <small class="error">Organization name is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -69,7 +77,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Address</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" placeholder="" id="recipient-address" />
+                    <input type="text" placeholder="" required id="recipient-address" />
+                    <small class="error">Valid address is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -77,7 +86,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">501(c)(3) Number</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" />
+                    <input type="text" required/>
+                    <small class="error">501(c)(3) number is required.</small>
                 </div>
             </div>
             <div class="row">
@@ -90,7 +100,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
             </div>
             <div class="row form-padding-top">
                 <div class="small-12 columns">
-                    <div class="text-center">
+                    <div class="text-center signup-block">
                         <a id="submit" class="success-button">Sign up</a>
                     </div>
                 </div>
@@ -98,5 +108,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
         </div>
     </div>
 </div>
+
+</form>
 
 <%= javascript_include_tag "application/recipient_form" %>
