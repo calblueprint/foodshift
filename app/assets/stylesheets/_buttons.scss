@@ -1,0 +1,289 @@
+@mixin box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
+    -webkit-box-shadow: $horizontal $vertical $blur $color;
+    -moz-box-shadow: $horizontal $vertical $blur $color;
+    box-shadow: $horizontal $vertical $blur $color;
+}
+@mixin inset-box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
+    -webkit-box-shadow: inset $horizontal $vertical $blur $color;
+    -moz-box-shadow: inset $horizontal $vertical $blur $color;
+    box-shadow: inset $horizontal $vertical $blur $color;
+}
+
+@mixin gradient($color-from, $color-to) {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($color-from),to($color-to));
+    background-image: -webkit-linear-gradient($color-from, $color-to);
+    background-image: -moz-linear-gradient(top, $color-from, $color-to);
+    background-image: -ms-linear-gradient($color-from, $color-to);
+    background-image: -o-linear-gradient($color-from, $color-to);
+    background-image: linear-gradient($color-from, $color-to);
+    background-repeat: no-repeat
+}
+
+@mixin display-flex() {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+}
+@mixin flex-flow($flex-dir: row, $flex-wrap: nowrap) {
+    -webkit-flex-flow: $flex-dir $flex-wrap;
+    -moz-flex-flow: $flex-dir $flex-wrap;
+    -ms-flex-flow: $flex-dir $flex-wrap;
+    flex-flow: $flex-dir $flex-wrap;
+}
+
+@mixin justify-content($arg: flex-start) {
+    -webkit-justify-content: $arg;
+    -moz-justify-content: $arg;
+    -ms-justify-content: $arg;
+    justify-content: $arg;
+}
+
+@mixin flex($arg: 1) {
+    -webkit-flex: $arg;
+    -moz-flex: $arg;
+    -ms-flex: $arg;
+    flex: $arg;
+}
+
+a.button {
+    &:hover {
+       color: $medium-green;
+    }
+}
+
+a.transparent-button {
+    @extend .button;
+    border-radius: $global-radius;
+    border: 1px solid $white;
+    background-color: transparent;
+    color: $white;
+    &:hover {
+        color: $white;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+}
+
+a.success-button {
+    @extend .button;
+    border-radius: $global-radius;
+    border: 1px solid $white;
+    color: $white;
+    background-color: $medium-green;
+    &:hover {
+        color: $white;
+        background-color: scale-color($medium-green, $lightness: 10%);
+    }
+
+}
+
+.tabs {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    font-weight: 300;
+    font-size: 1.25em;
+        ul {
+            text-align: center;
+            @include display-flex();
+            @include flex-flow();
+            position: relative;
+            margin: 0 auto;
+            padding: 0;
+            max-width: 1200px;
+            list-style: none;
+            -ms-box-orient: horizontal;
+            -ms-box-pack: center;
+            li {
+                @include flex();
+                position: relative;
+                z-index: 1;
+                display: block;
+                margin: 0;
+                text-align: center;
+                a {
+                    position: relative;
+                    display: block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    line-height: 2.5;
+                }
+            }
+        }
+}
+
+.tabs-style-iconbox {
+	background-color: rgba(255, 255, 255, 0.5);
+    ul li {
+        &.tab-current {
+            z-index: 100;
+            a {
+                background: $white;
+                box-shadow: -1px 0 0 $white;
+                color: $medium-green;
+                &::after {
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    margin-left: -10px;
+                    width: 0;
+                    height: 0;
+                    border: solid transparent;
+                    border-width: 10px;
+                    border-top-color: $white;
+                    content: '';
+                    pointer-events: none;
+                }
+            }
+        }
+        a {
+            overflow: visible;
+            padding: 2em 0;
+            color: $white;
+            line-height: 1;
+            -webkit-transition: color 0.2s;
+            transition: color 0.2s;
+            span {
+                //font-weight: 700;
+                //font-size: 0.7em;
+            }
+            &:hover, &:focus {
+                color: $medium-green;
+            }
+        }
+        &:first-child::before, &::after {
+            position: absolute;
+            top: 20%;
+            right: 0;
+            z-index: -1;
+            width: 1px;
+            height: 60%;
+            background: $dark-grey;
+            content: '';
+        }
+        &:first-child::before {
+            right: auto;
+            left: 0;
+        }
+    }
+    .icon::before {
+        display: block;
+        margin: 0 0 0.25em 0;
+    }
+}
+
+@mixin cubic-bezier-color() {
+	-webkit-transition: color 0.3s cubic-bezier(0.7,0,0.3,1);
+	transition: color 0.3s cubic-bezier(0.7,0,0.3,1);
+}
+
+@mixin cubic-bezier-transform() {
+	-webkit-transition: transform 0.3s cubic-bezier(0.7,0,0.3,1);
+	transition: transform 0.3s cubic-bezier(0.7,0,0.3,1);
+}
+
+@mixin circle-transition() {
+    -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
+    -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    -webkit-transform: scale3d(0,0,1);
+    transform: scale3d(0,0,1);
+}
+
+@mixin translate-vertical($pixels) {
+    -webkit-transform: translate3d(0, $pixels ,0);
+    transform: translate3d(0, $pixels ,0);
+}
+
+
+.tabs-style-circle {
+    .tabs-row {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+	overflow: visible;
+    li::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -60px 0 0 -60px;
+        width: 120px;
+        height: 120px;
+        border: 1px solid $medium-green;
+        border-radius: 50%;
+        content: '';
+        opacity: 0;
+        @include circle-transition();
+    }
+    li {
+        a {
+            color: $charcoal;
+        }
+    }
+    li.tab-current {
+        a {
+            color: $medium-green;
+            span {
+                @include translate-vertical(4px);
+            }
+        }
+        &::before {
+            opacity: 1;
+            -webkit-transform: scale3d(1,1,1);
+            transform: scale3d(1,1,1);
+        }
+        .icon::before {
+            @include translate-vertical(-4px);
+        }
+    }
+    a {
+        overflow: visible;
+        color: $charcoal;
+        font-weight: 400;
+        font-size: 0.9em;
+        line-height: 1.1;
+        @include cubic-bezier-color();
+        span {
+            display: inline-block;
+            @include cubic-bezier-transform();
+        }
+    }
+    .icon::before {
+        @include cubic-bezier-transform();
+        display: block;
+        margin: 0;
+        pointer-events: none;
+    }
+    a:hover, a:focus {
+        color: $medium-green;
+    }
+}
+
+@media #{$small-only}  {
+	.tabs-style-circle li::before {
+		margin: -40px 0 0 -40px;
+		width: 80px;
+		height: 80px;
+	}
+}
+
+@mixin icon($path) {
+    width: 20px;
+    height: 20px;
+    background-size: 100%;
+    background-image: url($path);
+    position: relative;
+    display: block;
+}
+
+.icon-produce {
+    @include icon("produce.png");
+}
+
+.icon-produce {
+    @include icon("produce.png");
+}

@@ -1,0 +1,28 @@
+.block-title {
+    color: $dark-green;
+    padding-bottom: 30px;
+}
+
+.dark-green {
+    color: $dark-green;
+}
+
+strong {
+    color: $dark-green;
+}
+
+.circle-border {
+    width: 60px;
+    height: 60px;
+    border: 2px solid $dark-green;
+    border-radius: 50%;
+    padding-top: 8px;
+    color: $dark-green;
+}
+
+@media #{$small-only}  {
+    .circle-border {
+        width: 50px;
+        height: 50px;
+    }
+}
