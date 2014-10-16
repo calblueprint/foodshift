@@ -1,0 +1,14 @@
+// Place all the styles related to the Coordinator controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.coordinator-dashboard-header-block {
+    @include full-width-block($off-white);
+    @include block-padding();
+
+}
+
+.coordinator-dashboard-content-block {
+    @include full-width-block($light-grey);
+    @include block-padding();
+}

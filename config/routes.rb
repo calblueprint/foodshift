@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'coordinator/dashboard'
+
   root 'landing#index'
 
   get 'donate' => 'registration#donor'
