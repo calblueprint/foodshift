@@ -11,4 +11,22 @@
 .coordinator-dashboard-content-block {
     @include full-width-block($light-grey);
     @include block-padding();
+    .donation-info {
+        h1.donation-info-title {
+            font-size: rem-calc(24);
+        }
+        h2.donation-info-datetime {
+            font-size: rem-calc(18);
+        }
+        i.fa-li {
+            padding-top: 2px;
+        }
+        ul.inline-list-food {
+            @extend .inline-list;
+            padding-top: 0px;
+        }
+        .additional-info-list {
+            margin-top: -20px;
+        }
+    }
 }

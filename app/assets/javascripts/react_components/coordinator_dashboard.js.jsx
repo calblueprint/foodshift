@@ -14,9 +14,9 @@ var Dashboard = React.createClass({
         return [
             {
                 id: 555,
-                address: '2535 Chilton Way',
+                address: '620 3rd Street, San Francisco, CA, United States',
                 foodTypes: ['Bread', 'Dairy'],
-                quantity: '3 Boxes',
+                quantity: '3 boxes',
                 date: '1/1/2014',
                 startTime: '1:00PM',
                 endTime: '2:00PM',
@@ -24,13 +24,13 @@ var Dashboard = React.createClass({
                 organization: 'Blueprint',
                 email: 'joe@bloggs.com',
                 phone: '123-456-7890',
-                additionalInfo: 'yo'
+                additionalInfo: '  '
             },
             {
                 id: 999,
-                address: '123 Hello St.',
+                address: '420 4rd Street, San Francisco, CA, United States',
                 foodTypes: ['Meat'],
-                quantity: '1 Tray',
+                quantity: '1 tray',
                 date: '10/10/2014',
                 startTime: '10:00AM',
                 endTime: '11:00AM',
@@ -38,7 +38,7 @@ var Dashboard = React.createClass({
                 organization: 'Greenprint',
                 email: '2@jun.com',
                 phone: '444-444-4444',
-                additionalInfo: 'boooooooooooooop'
+                additionalInfo: 'Here is some additional information about this donation.'
             }
         ]
     },
@@ -96,7 +96,7 @@ var Dashboard = React.createClass({
                 <div className="row">
                     <div className="small-1 columns">
                         <div className="text-centered">
-                            <a onClick={this.getNextDonation}><i className="fa fa-chevron-circle-left"></i></a>
+                            <a onClick={this.getNextDonation}><i className="fa fa-chevron-circle-left fa-3x"></i></a>
                         </div>
                     </div>
                     <div className="small-10 columns">
@@ -104,7 +104,7 @@ var Dashboard = React.createClass({
                     </div>
                     <div className="small-1 columns">
                         <div className="text-centered">
-                            <a onClick={this.getNextDonation}><i className="fa fa-chevron-circle-right"></i></a>
+                            <a onClick={this.getNextDonation}><i className="fa fa-chevron-circle-right fa-3x"></i></a>
                         </div>
                     </div>
                 </div>
@@ -141,23 +141,69 @@ var DonationInfo = React.createClass({
         return (
             <div className="donation-info">
                 <div className="row">
-                    <div className="small-12 columns">
-                        <h1 className="donation-info-title">{this.props.donation.address}</h1>
-                        <h2 className="donation-info-date">{this.props.donation.date}: {this.props.donation.startTime} - {this.props.donation.endTime}</h2>
-                        <div className="donation-info-conent">
-                            <h3>Donation</h3>
-                            <p>{this.props.donation.quantity} of {this.props.donation.foodTypes}</p>
-                            <h3>Contact</h3>
-                            <p>{this.props.donation.name}</p>
-                            <p>{this.props.donation.phone}</p>
-                            <p>{this.props.donation.email}</p>
-                            <h3>Additional Info</h3>
-                            <p>{this.props.donation.additionalInfo}</p>
-                        </div>
+                    <div className="medium-4 columns">
+                        <h1 className="donation-info-title">{this.props.donation.organization}</h1>
+                    </div>
+                    <div className="medium-4 columns">
+                        <ul className="fa-ul">
+                          <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.date}</li>
+                          <li><i className="fa-li fa "></i>{this.props.donation.startTime} - {this.props.donation.endTime}</li>
+                          <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
+                        </ul>
+                    </div>
+                    <div className="medium-4 columns">
+                        <ul className="fa-ul">
+                          <li><i className="fa-li fa fa-user"></i>{this.props.donation.name}</li>
+                          <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email}</li>
+                          <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="medium-6 columns">
+                        <ul className="fa-ul">
+                            <li>
+                                <i className="fa-li fa fa-cutlery"></i>
+                                {this.props.donation.quantity} of:
+                                {this.renderFoodTypes()}
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="medium-6 columns">
+                        <ul className="fa-ul additional-info-list">
+                            <li>
+                                <i className="fa-li fa fa-info-circle"></i>
+                                <p>{this.renderAdditionalInfo()}</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         );
+    },
+    renderFoodTypes: function() {
+        var foodListItems = _.map(this.props.donation.foodTypes, function(foodType) {
+            return (
+                <li>{foodType}</li>
+            );
+        });
+        return (
+            <ul className="inline-list-food">
+                {foodListItems}
+            </ul>
+        );
+    },
+    renderAdditionalInfo: function() {
+        var info = this.props.donation.additionalInfo;
+        if (_(info).isBlank()) {
+            info = "No additional info about this donation."
+        }
+        return (
+            <p className="additional-info">
+                {info}
+            </p>
+        );
+
     }
 });
 

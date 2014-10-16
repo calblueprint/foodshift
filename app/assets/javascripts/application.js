@@ -15,7 +15,12 @@
 //= require foundation
 //= require turbolinks
 //= require underscore
+//= require underscore.string
 //= require react
 //= require_tree ./application
 
-$(function(){ $(document).foundation(); });
+_.mixin(_.string.exports());
+
+$(function(){
+    $(document).foundation();
+});
