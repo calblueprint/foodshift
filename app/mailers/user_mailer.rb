@@ -1,9 +1,7 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "foodshift.testing.email@gmail.com"
 
-  def welcome_email(user)
-  	@user = user
-  	@url = 'http://fakeurl.com'
-  	mail(to: @user.email, subject: 'Welcome')
+  def welcome_email(emails)
+  	mail(to: "ericayin@berkeley.edu", subject: 'Welcome')
   end
  end

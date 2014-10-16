@@ -1,0 +1,6 @@
+<h2>send emails to</h2>
+<% @emails.each do |email| %>
+<li> <%= email %>
+<% end %>
+
+<%= button_to 'Send', action: :create %>
