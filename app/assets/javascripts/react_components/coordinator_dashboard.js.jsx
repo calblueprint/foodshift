@@ -1,5 +1,7 @@
 /** @jsx React.DOM */
 
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 var Dashboard = React.createClass({
     getInitialState: function() {
         var donations = this.getDonationsList()
@@ -44,32 +46,44 @@ var Dashboard = React.createClass({
     },
     getRecipientsList: function(donationId) {
         // TODO: Write an AJAX version for this
-        return [
+        var recipients = [
             {
                 id: 1,
-                donationId: 0,
-                firstName: 'Joe',
-                lastName: 'Bloggs',
-                email: 'joe@bloggs.com',
-                phone: '123-456-7890',
-                organization: 'Blueprint',
-                address: '2535 Chilton Way',
+                donationId: 555,
+                firstName: '1Jun',
+                lastName: 'the Receiver',
+                email: '1jun@receiver.com',
+                phone: '555-555-1111',
+                organization: 'Blackprint',
+                address: '1015 Folsom Street, San Francisco, CA, United States',
                 orgNumber: '9000',
-                callerId: donationId
             },
             {
                 id: 2,
-                donationId: 0,
-                firstName: 'Moe',
+                donationId: 555,
+                firstName: 'Joe',
                 lastName: 'Recipient',
-                email: 'moe@recipient.com',
+                email: 'joe@recipient.com',
                 phone: '555-555-5555',
                 organization: 'Redprint',
-                address: '1235 Food St.',
+                address: '555 Center St., Berkeley, CA, United States',
                 orgNumber: '5000',
-                callerId: donationId
+            },
+            {
+                id: 3,
+                donationId: 999,
+                firstName: 'Food',
+                lastName: ' Recipient',
+                email: 'food@recipient.com',
+                phone: '999-999-9999',
+                organization: 'FF',
+                address: '100 FF Street, Berkeley, CA, United States',
+                orgNumber: '6000',
             }
         ]
+        return _.filter(recipients, function(recipient) {
+            return recipient.donationId === donationId;
+        });
     },
     getNextDonation: function() {
         var index = (this.state.currDonationIndex + 1) % _.size(this.state.donations)
@@ -92,26 +106,35 @@ var Dashboard = React.createClass({
     },
     render: function() {
         return (
-            <div className="dashboard">
-                <div className="row">
-                    <div className="small-1 columns">
-                        <div className="text-centered">
-                            <a onClick={this.getNextDonation}><i className="fa fa-chevron-circle-left fa-3x"></i></a>
+            <div className="row">
+                <div className="small-12 columns">
+                    <div className="dashboard">
+                        <div className="row">
+                            <div className="small-12 columns">
+                                <div className="card-header">
+                                    <span className="card-header-arrow-left">
+                                        <a onClick={this.getNextDonation}><i className="fa fa-chevron-left fa-lg"></i></a>
+                                    </span>
+                                    <span className="card-header-title">
+                                        Donation {this.state.currDonationIndex + 1} of {_.size(this.state.donations)}
+                                    </span>
+                                    <span className="card-header-arrow-right">
+                                        <a onClick={this.getNextDonation}><i className="fa fa-chevron-right fa-lg"></i></a>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="small-10 columns">
-                        <DonationInfo donation={this.state.donations[this.state.currDonationIndex]} />
-                    </div>
-                    <div className="small-1 columns">
-                        <div className="text-centered">
-                            <a onClick={this.getNextDonation}><i className="fa fa-chevron-circle-right fa-3x"></i></a>
+                        <div className="card-donation">
+                            <div className="row">
+                                <div className="small-12 columns">
+                                    <DonationInfo donation={this.state.donations[this.state.currDonationIndex]} key={this.state.currDonationIndex} />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="small-12 columns">
                         <DonationRecipients recipients={this.state.recipients} />
                     </div>
+
+
                 </div>
             </div>
         );
@@ -160,7 +183,7 @@ var DonationInfo = React.createClass({
                     </div>
                 </div>
                 <div className="row">
-                    <div className="medium-6 columns">
+                    <div className="medium-3 medium-offset-1 columns">
                         <ul className="fa-ul">
                             <li>
                                 <i className="fa-li fa fa-cutlery"></i>
@@ -169,7 +192,7 @@ var DonationInfo = React.createClass({
                             </li>
                         </ul>
                     </div>
-                    <div className="medium-6 columns">
+                    <div className="medium-8 columns">
                         <ul className="fa-ul additional-info-list">
                             <li>
                                 <i className="fa-li fa fa-info-circle"></i>
@@ -184,7 +207,7 @@ var DonationInfo = React.createClass({
     renderFoodTypes: function() {
         var foodListItems = _.map(this.props.donation.foodTypes, function(foodType) {
             return (
-                <li>{foodType}</li>
+                <li key={foodType}>{foodType}</li>
             );
         });
         return (
@@ -230,14 +253,22 @@ var DonationRecipients = React.createClass({
         recipients =  _.map(this.props.recipients, function (recipient) {
             var isOpen = (recipient.id === this.state.openRecipientId);
             return (
-                <Recipient recipient={recipient} isOpen={isOpen} handleClick={this.handleRecipientOpen} />
+                <Recipient key={recipient.id} recipient={recipient} isOpen={isOpen} handleClick={this.handleRecipientOpen} />
             );
         }.bind(this));
         return (
             <div className="donation-recipients">
                 <div className="row">
-                    <div className="small-12 columns">
-                        {recipients}
+                    <div className="medium-6 columns no-right-pad">
+                        <div className="recipients-list-title">
+                            Recipient Requests
+                        </div>
+                        <div className="recipients-list">
+                            {recipients}
+                        </div>
+                    </div>
+                    <div className="medium-6 columns no-left-pad">
+                        <div id="map-canvas"></div>
                     </div>
                 </div>
             </div>
@@ -271,6 +302,10 @@ var Recipient = React.createClass({
     },
     render: function() {
         var content;
+        var titleClasses = React.addons.classSet({
+           'recipient-title': true,
+           'active': this.props.isOpen
+        });
         if (this.props.isOpen) {
             content = this.renderOpen();
         } else {
@@ -278,8 +313,18 @@ var Recipient = React.createClass({
         }
         return (
             <div className="recipient" >
-                <div className="recipient-title" onClick={this.handleClick}>
-                    {this.props.recipient.organization} at {this.props.recipient.address}
+                <div className={titleClasses} onClick={this.handleClick}>
+                    <div className="row">
+                        <div className="medium-8 columns">
+                            {this.props.recipient.address}
+                        </div>
+                        <div className="small-11 medium-3 columns">
+                            15 min
+                        </div>
+                        <div className="small-1 end columns">
+                            <a className="expand-icon"><i className="fa fa-chevron-down"></i></a>
+                        </div>
+                    </div>
                 </div>
                 <div className="recipient-content">
                     {content}
@@ -291,9 +336,20 @@ var Recipient = React.createClass({
         return (
             <div className="recipient-open">
                 <div className="row">
-                    <div className="small-12 columns">
-                        <p>I am {this.props.recipient.id} from caller id {this.props.recipient.callerId} and open</p>
-                        <a className="button" onClick={this.handleSubmit}>Match</a>
+                    <div className="medium-8 columns">
+                        <div className="recipient-details">
+                            <h1>{this.props.recipient.organization}</h1>
+                            <ul className="fa-ul">
+                              <li><i className="fa-li fa fa-user"></i>{this.props.recipient.firstName} {this.props.recipient.lastName}</li>
+                              <li><i className="fa-li fa fa-envelope-o"></i>{this.props.recipient.email}</li>
+                              <li><i className="fa-li fa fa-phone"></i>{this.props.recipient.phone}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="medium-3 end columns">
+                        <div className="recipient-confirm">
+                            <a className="confirm-button" onClick={this.handleSubmit}>Match</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -301,12 +357,7 @@ var Recipient = React.createClass({
     },
     renderClosed: function() {
         return (
-            <div className="recipient">
-                <div className="row">
-                    <div className="small-12 columns">
-                        <p>I am {this.props.recipient.id} {this.props.recipient.callerId} closed</p>
-                    </div>
-                </div>
+            <div className="recipient-closed">
             </div>
         );
     }

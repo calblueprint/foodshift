@@ -1,7 +1,10 @@
-<div class="coordinator-dashboard-header-block">
+<div class="coordinator-dashboard-nav-block">
     <div class="row">
         <div class="small-12 columns">
-            <h1>Coordinator Dashboard</h1>
+            <ul class="subnav-list">
+                <li class="active"><a href="#">Coordinate Donations</a></li>
+                <li><a href="#">View Data</a></li>
+            </ul>
         </div>
     </div>
 </div>
@@ -9,5 +12,6 @@
     <div id="dashboard-content"></div>
 </div>
 
-<%= javascript_include_tag "application/coordinator" %>
 <%= javascript_include_tag "react_components/coordinator_dashboard" %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?v=3.exp" %>
+<%= javascript_include_tag "application/coordinator" %>

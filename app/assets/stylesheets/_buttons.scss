@@ -65,6 +65,20 @@ a.transparent-button {
     }
 }
 
+a.transparent-black-button {
+    @extend .button;
+    border-radius: $global-radius;
+    border: 1px solid $charcoal;
+    background-color: transparent;
+    color: $charcoal;
+    &:hover {
+        color: $medium-green;
+        border: 1px solid $medium-green;
+        -webkit-transition: color 0.2s, border 0.2s;
+        transition: color 0.2s, border 0.2s;
+    }
+}
+
 a.success-button {
     @extend .button;
     border-radius: $global-radius;
