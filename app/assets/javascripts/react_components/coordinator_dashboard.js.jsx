@@ -2,13 +2,16 @@
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
+Number.prototype.mod = function(n) { return ((this % n) + n) % n; }
+
 var Dashboard = React.createClass({
     getInitialState: function() {
         var donations = this.getDonationsList()
         return {
             donations: donations,
             recipients: this.getRecipientsList(donations[0].id),
-            currDonationIndex: 0
+            currDonationIndex: 0,
+            transitionClass: null,
         };
     },
     getDonationsList: function() {
@@ -86,19 +89,21 @@ var Dashboard = React.createClass({
         });
     },
     getNextDonation: function() {
-        var index = (this.state.currDonationIndex + 1) % _.size(this.state.donations)
+        var index = (this.state.currDonationIndex + 1).mod( _.size(this.state.donations))
         var recipients = this.getRecipientsList(this.state.donations[index].id);
         this.setState({
             currDonationIndex: index,
-            recipients: recipients
+            recipients: recipients,
+            transitionClass: "slide-right"
         })
     },
     getPrevDonation: function() {
-        var index = (this.state.currDonationIndex - 1) % _.size(this.state.donations)
+        var index = (this.state.currDonationIndex - 1).mod(_.size(this.state.donations))
         var recipients = this.getRecipientsList(this.state.donations[index].id);
         this.setState({
             currDonationIndex: index,
-            recipients: recipients
+            recipients: recipients,
+            transitionClass: "slide-left"
         })
     },
     getDefaultProps: function() {
@@ -108,33 +113,38 @@ var Dashboard = React.createClass({
         return (
             <div className="row">
                 <div className="small-12 columns">
-                    <div className="dashboard">
-                        <div className="row">
-                            <div className="small-12 columns">
+                    <div className="dashboard-wrap">
+
+                    <ReactCSSTransitionGroup transitionName={this.state.transitionClass}>
+
+                            <div key={this.state.currDonationIndex} className="dashboard">
                                 <div className="card-header">
-                                    <span className="card-header-arrow-left">
-                                        <a onClick={this.getNextDonation}><i className="fa fa-chevron-left fa-lg"></i></a>
-                                    </span>
-                                    <span className="card-header-title">
-                                        Donation {this.state.currDonationIndex + 1} of {_.size(this.state.donations)}
-                                    </span>
-                                    <span className="card-header-arrow-right">
-                                        <a onClick={this.getNextDonation}><i className="fa fa-chevron-right fa-lg"></i></a>
-                                    </span>
+                                    <div className="row">
+                                        <div className="small-12 columns">
+                                            <span className="card-header-arrow-left">
+                                                <a onClick={this.getPrevDonation}><i className="fa fa-chevron-left fa-lg"></i></a>
+                                            </span>
+                                            <span className="card-header-title">
+                                                Donation {this.state.currDonationIndex + 1} of {_.size(this.state.donations)}
+                                            </span>
+                                            <span className="card-header-arrow-right">
+                                                <a onClick={this.getNextDonation}><i className="fa fa-chevron-right fa-lg"></i></a>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="card-donation">
-                            <div className="row">
-                                <div className="small-12 columns">
-                                    <DonationInfo donation={this.state.donations[this.state.currDonationIndex]} key={this.state.currDonationIndex} />
+                                <div className="card-donation">
+                                    <div className="row">
+                                        <div className="small-12 columns">
+                                            <DonationInfo donation={this.state.donations[this.state.currDonationIndex]} />
+                                        </div>
+                                    </div>
                                 </div>
+                                <DonationRecipients recipients={this.state.recipients} />
                             </div>
-                        </div>
-                        <DonationRecipients recipients={this.state.recipients} />
+
+                        </ReactCSSTransitionGroup>
                     </div>
-
-
                 </div>
             </div>
         );
@@ -326,15 +336,15 @@ var Recipient = React.createClass({
                         </div>
                     </div>
                 </div>
-                <div className="recipient-content">
+                <ReactCSSTransitionGroup transitionName="recipient-slide">
                     {content}
-                </div>
+                </ReactCSSTransitionGroup>
             </div>
         )
     },
     renderOpen: function() {
         return (
-            <div className="recipient-open">
+            <div key={_.join("-", this.props.recipient.id, "open")} className="recipient-open">
                 <div className="row">
                     <div className="medium-8 columns">
                         <div className="recipient-details">
@@ -357,7 +367,7 @@ var Recipient = React.createClass({
     },
     renderClosed: function() {
         return (
-            <div className="recipient-closed">
+            <div key={_.join("-", this.props.recipient.id, "closed")} className="recipient-closed">
             </div>
         );
     }

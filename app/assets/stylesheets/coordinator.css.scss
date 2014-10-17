@@ -15,6 +15,7 @@
             padding-top: 8px;
             padding-bottom: 4px;
             font-size: rem-calc(14);
+            font-weight: 400;
             a {
                 color: $dark-grey;
             }
@@ -35,23 +36,61 @@
 .coordinator-dashboard-content-block {
     @include full-width-block($off-white);
     @include block-padding();
+    position: relative;
 
-    .example-enter {
-      opacity: 0.01;
-      transition: opacity .5s ease-in;
+    .slide-right-enter {
+        position: absolute;
+        width: 100%;
+        left: -300%;
+
+        transition: left 0.5s ease;
+        transition-delay: 0.25s;
+
+        &.slide-right-enter-active {
+            left: 0;
+        }
     }
 
-    .example-enter.example-enter-active {
-      opacity: 1;
+    .slide-right-leave {
+        position: absolute;
+        width: 100%;
+        right: 0;
+
+        transition: right 0.5s ease-in;
+
+        &.slide-right-leave-active {
+            right: -300%;
+        }
     }
 
-    .example-leave {
-      opacity: 1;
-      transition: opacity .5s ease-in;
+    .slide-left-enter {
+        position: absolute;
+        width: 100%;
+        right: -300%;
+
+        transition: right 0.5s ease;
+        transition-delay: 0.25s;
+
+        &.slide-left-enter-active {
+            right: 0;
+        }
     }
 
-    .example-leave.example-leave-active {
-      opacity: 0.01;
+    .slide-left-leave {
+        position: absolute;
+        width: 100%;
+        left: 0;
+
+        transition: left 0.5s ease-in;
+
+        &.slide-left-leave-active {
+            left: -300%;
+        }
+    }
+
+    .dashboard-wrap {
+        position: relative;
+        height: 100%;
     }
 
     .dashboard {
@@ -141,35 +180,34 @@
 
             }
             .recipients-list {
-                .recipient-title {
-                    color: $charcoal;
-                    font-weight: 400;
-                    font-size: rem-calc(16);
-                    padding-left: 30px;
-                    padding-right: 30px;
-                    padding-top: 10px;
-                    padding-bottom: 10px;
+                .recipient {
                     border-bottom: 1px solid $dark-grey;
-                    background-color: $light-grey;
-                    &:hover, &.active {
-                        background-color: scale-color($white, $lightness: 14%);
-                        cursor: pointer;
+
+                    .recipient-title {
+                        color: $charcoal;
+                        font-weight: 400;
+                        font-size: rem-calc(16);
+                        padding-left: 30px;
+                        padding-right: 30px;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        background-color: $light-grey;
+                        &:hover, &.active {
+                            background-color: scale-color($white, $lightness: 14%);
+                            cursor: pointer;
+                            a.expand-icon {
+                                color: scale-color($medium-green, $lightness: 14%);
+                            }
+                        }
+                        &.active {
+                            border-bottom: none;
+                        }
                         a.expand-icon {
-                            color: scale-color($medium-green, $lightness: 14%);
+                            color: $medium-green;
                         }
                     }
-                    &.active {
-                        border-bottom: none;
-                    }
-                    a.expand-icon {
-                        color: $medium-green;
-                    }
-                }
-                .recipient-content {
-                    color: $charcoal;
                     .recipient-open {
-                        padding-top: 10px;
-                        border-bottom: 1px solid $dark-grey;
+                        color: $charcoal;
                         h1 {
                             color: $charcoal;
                             font-size: rem-calc(16);
@@ -189,12 +227,27 @@
                                 margin-bottom: 30px;
                             }
                         }
+                        i.fa-li {
+                            padding-top: 2px;
+                        }
+                        background-color: $white;
                     }
-                    i.fa-li {
-                        padding-top: 2px;
+                    .recipient-slide-enter {
+                        overflow: hidden;
+                        max-height: 0;
+                        transition: max-height .5s ease;
                     }
-                    background-color: $white;
-
+                    .recipient-slide-enter.recipient-slide-enter-active {
+                        max-height: 1000px;
+                    }
+                    .recipient-slide-leave {
+                        overflow: hidden;
+                        max-height: 1000px;
+                        transition: max-height .25s ease;
+                    }
+                    .recipient-slide-leave.recipient-slide-leave-active {
+                        max-height: 0;
+                    }
                 }
             }
             #map-canvas {
