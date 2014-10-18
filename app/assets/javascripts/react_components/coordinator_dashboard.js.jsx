@@ -4,6 +4,13 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 Number.prototype.mod = function(n) { return ((this % n) + n) % n; }
 
+/*
+TODO: Having this global variable is really gross... but we don't want to re-render the map each time we change donations...
+Need to figure out a clean way to do callbacks on this map variable that should (probably) be held as a state object
+in the Dashboard component
+*/
+var map;
+
 var Dashboard = React.createClass({
     getInitialState: function() {
         var donations = this.getDonationsList()
@@ -11,7 +18,7 @@ var Dashboard = React.createClass({
             donations: donations,
             recipients: this.getRecipientsList(donations[0].id),
             currDonationIndex: 0,
-            transitionClass: null,
+            transitionClass: "slide-right",
         };
     },
     getDonationsList: function() {
@@ -19,7 +26,9 @@ var Dashboard = React.createClass({
         return [
             {
                 id: 555,
-                address: '620 3rd Street, San Francisco, CA, United States',
+                address: 'Sutardja Dai Hall, University of California, Berkeley, Berkeley, CA, United States',
+                latitude: 37.8747924,
+                longitude: -122.2583104,
                 foodTypes: ['Bread', 'Dairy'],
                 quantity: '3 boxes',
                 date: '1/1/2014',
@@ -33,7 +42,9 @@ var Dashboard = React.createClass({
             },
             {
                 id: 999,
-                address: '420 4rd Street, San Francisco, CA, United States',
+                address: 'West Oakland BART Station 1451 7th St Oakland, CA 94607',
+                latitude: 37.804872,
+                longitude: -122.295139,
                 foodTypes: ['Meat'],
                 quantity: '1 tray',
                 date: '10/10/2014',
@@ -110,6 +121,7 @@ var Dashboard = React.createClass({
         return {};
     },
     render: function() {
+        var currDonation = this.state.donations[this.state.currDonationIndex];
         return (
             <div className="row">
                 <div className="small-12 columns">
@@ -136,11 +148,20 @@ var Dashboard = React.createClass({
                                 <div className="card-donation">
                                     <div className="row">
                                         <div className="small-12 columns">
-                                            <DonationInfo donation={this.state.donations[this.state.currDonationIndex]} />
+                                            <DonationInfo donation={currDonation} />
                                         </div>
                                     </div>
                                 </div>
-                                <DonationRecipients recipients={this.state.recipients} />
+                                <div className="donation-recipients">
+                                    <div className="row">
+                                        <div className="medium-6 columns no-right-pad">
+                                            <DonationRecipients recipients={this.state.recipients} donation={currDonation} />
+                                        </div>
+                                        <div className="medium-6 columns no-left-pad">
+                                            <RequestMap longitude={currDonation.longitude} latitude={currDonation.latitude} />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </ReactCSSTransitionGroup>
@@ -248,7 +269,8 @@ var DonationRecipients = React.createClass({
     },
     getDefaultProps: function() {
         return {
-            recipients: []
+            recipients: [],
+            donation: null
         }
     },
     handleRecipientOpen: function(event) {
@@ -267,22 +289,55 @@ var DonationRecipients = React.createClass({
             );
         }.bind(this));
         return (
-            <div className="donation-recipients">
-                <div className="row">
-                    <div className="medium-6 columns no-right-pad">
-                        <div className="recipients-list-title">
-                            Recipient Requests
-                        </div>
-                        <div className="recipients-list">
-                            {recipients}
-                        </div>
-                    </div>
-                    <div className="medium-6 columns no-left-pad">
-                        <div id="map-canvas"></div>
-                    </div>
+            <div>
+                <div className="recipients-list-title">
+                    Recipient Requests
+                </div>
+                <div className="recipients-list">
+                    {recipients}
                 </div>
             </div>
         );
+    }
+});
+
+var RequestMap = React.createClass({
+    getInitialState: function() {
+        return {
+            map : null,
+            markers : [],
+        };
+    },
+    getDefaultProps: function() {
+        return {
+            zoom: 13,
+            latitude: 37.8747924,
+            longitude: -122.2583104,
+            address: "",
+            width: 500,
+            height: 500,
+            points: [],
+            gmapsApiKey: "AIzaSyCmcTV-yBS4SnL3AqBlSXcYv5j-WaGdenA",
+            gmapsSensor: false
+        }
+    },
+    render: function() {
+        return (
+            <div id="map-canvas"></div>
+        );
+    },
+    componentDidMount : function() {
+        window.mapLoaded = (function() {
+            var mapOptions = {
+                zoom: this.props.zoom,
+                center: new google.maps.LatLng(this.props.latitude, this.props.longitude),
+            };
+            map = new google.maps.Map(this.getDOMNode(), mapOptions);
+        }).bind(this);
+        window.mapLoaded();
+    },
+    getApiUrl: function() {
+        return 'https://maps.googleapis.com/maps/api/js?key=' + this.props.gmapsApiKey + '&sensor=' + this.props.gmapsSensor + '&callback=mapLoaded';
     }
 });
 
