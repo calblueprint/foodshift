@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  donation_id: 
+  recipient_id: 
+  coordinator_id: 
+  completed: false
+  completed_time: 2014-10-15 22:09:53
+
+two:
+  donation_id: 
+  recipient_id: 
+  coordinator_id: 
+  completed: false
+  completed_time: 2014-10-15 22:09:53

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :donations
+
   devise_for :users
 
   root 'landing#index'
