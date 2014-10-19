@@ -9,6 +9,10 @@ TODO: Having this global variable is really gross... but we don't want to re-ren
 Need to figure out a clean way to do callbacks on this map variable that should (probably) be held as a state object
 in the Dashboard component
 */
+var s = document.createElement('script');
+s.src = 'https://maps.googleapis.com/maps/api/js?key=' + "AIzaSyCmcTV-yBS4SnL3AqBlSXcYv5j-WaGdenA" + '&sensor=false&callback=mapLoaded';
+document.head.appendChild(s);
+
 var map;
 
 var Dashboard = React.createClass({
@@ -340,7 +344,7 @@ var RequestMap = React.createClass({
         map.panTo(this.mapCenterLatLng());
     },
     getApiUrl: function() {
-        return 'https://maps.googleapis.com/maps/api/js?key=' + this.props.gmapsApiKey + '&sensor=' + this.props.gmapsSensor + '&callback=mapLoaded';
+        //return 'https://maps.googleapis.com/maps/api/js?key=' + this.props.gmapsApiKey + '&sensor=' + this.props.gmapsSensor + '&callback=mapLoaded';
     }
 });
 
@@ -421,18 +425,13 @@ var Recipient = React.createClass({
                     </div>
                     <div className="medium-3 end columns">
                         <div className="recipient-confirm">
-                            <a className="confirm-button" data-reveal-id="myModal" onClick={this.handleSubmit}>Match</a>
-
-                            <div id="myModal" className="reveal-modal">
-                                <h2>Awesome. I have it.</h2>
-                                <p className="lead">Your couch.  It is mine.</p>
-                                <p>I'm a cool paragraph that lives inside of an even cooler modal {this.props.recipient.email} </p>
-                                <a className="close-reveal-modal">&#215;</a>
-                            </div>
-
+                            <a className="confirm-button" data-reveal-id="myModal" onClick={this.handleShowModal}>Match</a>
                         </div>
                     </div>
                 </div>
+                <Modal ref="modal" show={false} header="Confirm Match">
+                    <p>boop boop boop i am {this.props.recipient.firstName}</p>
+                </Modal>
             </div>
         );
     },
@@ -441,7 +440,13 @@ var Recipient = React.createClass({
             <div key={_.join("-", this.props.recipient.id, "closed")} className="recipient-closed">
             </div>
         );
-    }
+    },
+    handleShowModal: function() {
+        this.refs.modal.show()
+    },
+    handleExternalHide: function() {
+        this.refs.modal.hide()
+    },
 });
 
 React.renderComponent(

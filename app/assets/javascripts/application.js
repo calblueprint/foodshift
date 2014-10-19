@@ -17,7 +17,7 @@
 //= require underscore
 //= require underscore.string
 //= require react
-//= require_tree ./application
+//= require ./application/bootstrap-modal.js
 
 _.mixin(_.string.exports());
 
