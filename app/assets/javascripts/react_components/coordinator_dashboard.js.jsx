@@ -105,7 +105,7 @@ var Dashboard = React.createClass({
         this.setState({
             currDonationIndex: index,
             recipients: recipients,
-            transitionClass: "slide-right"
+            transitionClass: "slide-left"
         })
     },
     getPrevDonation: function() {
@@ -114,7 +114,7 @@ var Dashboard = React.createClass({
         this.setState({
             currDonationIndex: index,
             recipients: recipients,
-            transitionClass: "slide-left"
+            transitionClass: "slide-right"
         })
     },
     getDefaultProps: function() {
@@ -336,6 +336,9 @@ var RequestMap = React.createClass({
         }).bind(this);
         window.mapLoaded();
     },
+    componentDidUpdate : function() {
+        map.panTo(this.mapCenterLatLng());
+    },
     getApiUrl: function() {
         return 'https://maps.googleapis.com/maps/api/js?key=' + this.props.gmapsApiKey + '&sensor=' + this.props.gmapsSensor + '&callback=mapLoaded';
     }
@@ -371,6 +374,11 @@ var Recipient = React.createClass({
            'recipient-title': true,
            'active': this.props.isOpen
         });
+        var iconClasses = React.addons.classSet({
+            'fa': true,
+            'fa-chevron-down': true,
+            'active': this.props.isOpen,
+        });
         if (this.props.isOpen) {
             content = this.renderOpen();
         } else {
@@ -386,8 +394,8 @@ var Recipient = React.createClass({
                         <div className="small-11 medium-3 columns">
                             15 min
                         </div>
-                        <div className="small-1 end columns">
-                            <a className="expand-icon"><i className="fa fa-chevron-down"></i></a>
+                        <div className="small-1 medium-1 end columns">
+                            <a className="expand-icon" ><i className={iconClasses}></i></a>
                         </div>
                     </div>
                 </div>
@@ -413,7 +421,15 @@ var Recipient = React.createClass({
                     </div>
                     <div className="medium-3 end columns">
                         <div className="recipient-confirm">
-                            <a className="confirm-button" onClick={this.handleSubmit}>Match</a>
+                            <a className="confirm-button" data-reveal-id="myModal" onClick={this.handleSubmit}>Match</a>
+
+                            <div id="myModal" className="reveal-modal">
+                                <h2>Awesome. I have it.</h2>
+                                <p className="lead">Your couch.  It is mine.</p>
+                                <p>I'm a cool paragraph that lives inside of an even cooler modal {this.props.recipient.email} </p>
+                                <a className="close-reveal-modal">&#215;</a>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -44,7 +44,10 @@
         left: -300%;
 
         transition: left 0.5s ease;
-        transition-delay: 0.25s;
+        transition-delay: 0.1s;
+        @media #{$small-only} {
+            transition-delay: 0.25s;
+        }
 
         &.slide-right-enter-active {
             left: 0;
@@ -69,7 +72,11 @@
         right: -300%;
 
         transition: right 0.5s ease;
-        transition-delay: 0.25s;
+        transition-delay: 0.1s;
+
+        @media #{$small-only} {
+            transition-delay: 0.25s;
+        }
 
         &.slide-left-enter-active {
             right: 0;
@@ -195,15 +202,22 @@
                         &:hover, &.active {
                             background-color: scale-color($white, $lightness: 14%);
                             cursor: pointer;
-                            a.expand-icon {
-                                color: scale-color($medium-green, $lightness: 14%);
-                            }
-                        }
-                        &.active {
-                            border-bottom: none;
                         }
                         a.expand-icon {
                             color: $medium-green;
+                            i {
+                                -webkit-transition: -webkit-transform 0.5s ease;
+                                -moz-transition: -moz-transform 0.5s ease;
+                                -o-transition: o-transform 0.5s ease;
+                                transition:  transform 0.5s ease;
+                                &.active {
+                                    -webkit-transform: rotateX(180deg);
+                                       -moz-transform: rotateX(180deg);
+                                        -ms-transform: rotateX(180deg);
+                                         -o-transform: rotateX(180deg);
+                                            transform: rotateX(180deg);
+                                }
+                            }
                         }
                     }
                     .recipient-open {
@@ -221,8 +235,7 @@
                                 @media #{$medium-up} {
                                     margin-top: 30px;
                                 }
-                                @extend .button;
-                                @extend .radius;
+                                @extend .success-button;
                                 @extend .small;
                                 margin-bottom: 30px;
                             }

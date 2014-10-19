@@ -47,6 +47,14 @@
     flex: $arg;
 }
 
+@mixin transition-all($time) {
+    -webkit-transition: all $time ease;
+    -moz-transition: all $time ease;
+    o-transition: all $time ease;
+    transition: all $time ease;
+
+}
+
 a.button {
     &:hover {
        color: $medium-green;
@@ -65,7 +73,7 @@ a.transparent-button {
     }
 }
 
-a.transparent-black-button {
+a.transparent-success-button {
     @extend .button;
     border-radius: $global-radius;
     border: 1px solid $charcoal;
@@ -74,8 +82,6 @@ a.transparent-black-button {
     &:hover {
         color: $medium-green;
         border: 1px solid $medium-green;
-        -webkit-transition: color 0.2s, border 0.2s;
-        transition: color 0.2s, border 0.2s;
     }
 }
 
@@ -127,66 +133,6 @@ a.success-button {
                 }
             }
         }
-}
-
-.tabs-style-iconbox {
-	background-color: rgba(255, 255, 255, 0.5);
-    ul li {
-        &.tab-current {
-            z-index: 100;
-            a {
-                background: $white;
-                box-shadow: -1px 0 0 $white;
-                color: $medium-green;
-                &::after {
-                    position: absolute;
-                    top: 100%;
-                    left: 50%;
-                    margin-left: -10px;
-                    width: 0;
-                    height: 0;
-                    border: solid transparent;
-                    border-width: 10px;
-                    border-top-color: $white;
-                    content: '';
-                    pointer-events: none;
-                }
-            }
-        }
-        a {
-            overflow: visible;
-            padding: 2em 0;
-            color: $white;
-            line-height: 1;
-            -webkit-transition: color 0.2s;
-            transition: color 0.2s;
-            span {
-                //font-weight: 700;
-                //font-size: 0.7em;
-            }
-            &:hover, &:focus {
-                color: $medium-green;
-            }
-        }
-        &:first-child::before, &::after {
-            position: absolute;
-            top: 20%;
-            right: 0;
-            z-index: -1;
-            width: 1px;
-            height: 60%;
-            background: $dark-grey;
-            content: '';
-        }
-        &:first-child::before {
-            right: auto;
-            left: 0;
-        }
-    }
-    .icon::before {
-        display: block;
-        margin: 0 0 0.25em 0;
-    }
 }
 
 @mixin cubic-bezier-color() {
