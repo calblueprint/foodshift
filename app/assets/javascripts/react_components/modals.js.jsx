@@ -94,8 +94,6 @@ var Modal = React.createClass({
                         <div className="modal-body">
                             {this.props.children}
                         </div>
-                        <div className="modal-footer">
-                        </div>
                     </div>
                 </div>
             </div>

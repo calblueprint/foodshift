@@ -33,7 +33,7 @@ var Dashboard = React.createClass({
                 address: 'Sutardja Dai Hall, University of California, Berkeley, Berkeley, CA, United States',
                 latitude: 37.8747924,
                 longitude: -122.2583104,
-                foodTypes: ['Bread', 'Dairy'],
+                foodTypes: ['Bread', 'Dairy', 'Meat', 'Produce', 'Mixed'],
                 quantity: '3 boxes',
                 date: '1/1/2014',
                 startTime: '1:00PM',
@@ -94,8 +94,8 @@ var Dashboard = React.createClass({
                 lastName: ' Recipient',
                 email: 'food@recipient.com',
                 phone: '999-999-9999',
-                organization: 'FF',
-                address: '100 FF Street, Berkeley, CA, United States',
+                organization: 'Adult Food Finder',
+                address: '100 AFF Street, Berkeley, CA, United States',
                 orgNumber: '6000',
             }
         ]
@@ -121,56 +121,87 @@ var Dashboard = React.createClass({
             transitionClass: "slide-right"
         })
     },
+    handleSubmit: function(event) {
+        var submittedDonationId = event.donationId;
+        var donations = _.reject(this.state.donations, function(donation) {
+            return donation.id === submittedDonationId;
+        });
+        var index = 0;
+        var recipients = []
+        if (!(_.isEmpty(donations))) {
+            recipients = this.getRecipientsList(donations[index].id);
+        }
+        this.setState({
+            donations: donations,
+            currDonationIndex: index,
+            recipients: recipients,
+            transitionClass: "slide-right",
+        })
+    },
     getDefaultProps: function() {
         return {};
     },
     render: function() {
-        var currDonation = this.state.donations[this.state.currDonationIndex];
+        var content = _.isEmpty(this.state.donations) ? this.renderEmpty() : this.renderHasDonations();
         return (
             <div className="row">
                 <div className="small-12 columns">
                     <div className="dashboard-wrap">
-
-                    <ReactCSSTransitionGroup transitionName={this.state.transitionClass}>
-
-                            <div key={this.state.currDonationIndex} className="dashboard">
-                                <div className="card-header">
-                                    <div className="row">
-                                        <div className="small-12 columns">
-                                            <span className="card-header-arrow-left">
-                                                <a onClick={this.getPrevDonation}><i className="fa fa-chevron-left fa-lg"></i></a>
-                                            </span>
-                                            <span className="card-header-title">
-                                                Donation {this.state.currDonationIndex + 1} of {_.size(this.state.donations)}
-                                            </span>
-                                            <span className="card-header-arrow-right">
-                                                <a onClick={this.getNextDonation}><i className="fa fa-chevron-right fa-lg"></i></a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card-donation">
-                                    <div className="row">
-                                        <div className="small-12 columns">
-                                            <DonationInfo donation={currDonation} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="donation-recipients">
-                                    <div className="row">
-                                        <div className="medium-6 columns no-right-pad">
-                                            <DonationRecipients recipients={this.state.recipients} donation={currDonation} />
-                                        </div>
-                                        <div className="medium-6 columns no-left-pad">
-                                            <RequestMap longitude={currDonation.longitude} latitude={currDonation.latitude} />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <ReactCSSTransitionGroup transitionName={this.state.transitionClass}>
+                            {content}
                         </ReactCSSTransitionGroup>
                     </div>
                 </div>
+            </div>
+        );
+    },
+    renderHasDonations: function() {
+        var currDonation = this.state.donations[this.state.currDonationIndex];
+        return (
+            <div key={currDonation.id} className="dashboard">
+                <div className="card-header">
+                    <div className="row">
+                        <div className="small-12 columns">
+                            <span className="card-header-arrow-left">
+                                <a onClick={this.getPrevDonation}><i className="fa fa-chevron-left fa-lg"></i></a>
+                            </span>
+                            <span className="card-header-title">
+                                Donation {this.state.currDonationIndex + 1} of {_.size(this.state.donations)}
+                            </span>
+                            <span className="card-header-arrow-right">
+                                <a onClick={this.getNextDonation}><i className="fa fa-chevron-right fa-lg"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className="card-donation">
+                    <div className="row">
+                        <div className="small-12 columns">
+                            <DonationInfo donation={currDonation} />
+                        </div>
+                    </div>
+                </div>
+                <div className="donation-recipients">
+                    <div className="row">
+                        <div className="medium-6 columns no-right-pad">
+                            <DonationRecipients recipients={this.state.recipients} donation={currDonation} handleSubmit={this.handleSubmit} />
+                        </div>
+                        <div className="medium-6 columns no-left-pad">
+                            <RequestMap donation={currDonation} longitude={currDonation.longitude} latitude={currDonation.latitude} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    },
+    renderEmpty: function() {
+        return (
+            <div className="dashboard-empty">
+                <div className="fa-stack fa-3x">
+                    <i className="fa fa-spin fa-sun-o fa-stack-1x fa-thin"></i>
+                    <i className="fa fa-spin fa-smile-o fa-stack-1x fa-thin"></i>
+                </div>
+                <p>No pending donations! Please enjoy your day.</p>
             </div>
         );
     }
@@ -274,7 +305,8 @@ var DonationRecipients = React.createClass({
     getDefaultProps: function() {
         return {
             recipients: [],
-            donation: null
+            donation: null,
+            handleSubmit: undefined
         }
     },
     handleRecipientOpen: function(event) {
@@ -289,7 +321,14 @@ var DonationRecipients = React.createClass({
         recipients =  _.map(this.props.recipients, function (recipient) {
             var isOpen = (recipient.id === this.state.openRecipientId);
             return (
-                <Recipient key={recipient.id} recipient={recipient} isOpen={isOpen} handleClick={this.handleRecipientOpen} />
+                <Recipient
+                    key={recipient.id}
+                    donation={this.props.donation}
+                    recipient={recipient}
+                    isOpen={isOpen}
+                    handleClick={this.handleRecipientOpen}
+                    handleSubmit={this.props.handleSubmit}
+                />
             );
         }.bind(this));
         return (
@@ -340,8 +379,11 @@ var RequestMap = React.createClass({
         }).bind(this);
         window.mapLoaded();
     },
-    componentDidUpdate : function() {
-        map.panTo(this.mapCenterLatLng());
+    componentDidUpdate: function(prevProps, prevState) {
+        map.panTo(new google.maps.LatLng(this.props.latitude, this.props.longitude));
+    },
+    componentWillUnmount : function() {
+        $(this.getDOMNode()).remove();
     },
     getApiUrl: function() {
         //return 'https://maps.googleapis.com/maps/api/js?key=' + this.props.gmapsApiKey + '&sensor=' + this.props.gmapsSensor + '&callback=mapLoaded';
@@ -363,6 +405,8 @@ var Recipient = React.createClass({
             },
             isOpen: false,
             handleClick: undefined,
+            handleSubmit: undefined,
+            donation: null
         }
     },
     handleClick: function() {
@@ -423,16 +467,82 @@ var Recipient = React.createClass({
                             </ul>
                         </div>
                     </div>
-                    <div className="medium-3 end columns">
+                    <div className="medium-4 end columns">
                         <div className="recipient-confirm">
-                            <a className="confirm-button" data-reveal-id="myModal" onClick={this.handleShowModal}>Match</a>
+                            <a className="match-button" data-reveal-id="myModal" onClick={this.handleShowModal}>Match</a>
                         </div>
                     </div>
                 </div>
-                <Modal ref="modal" show={false} header="Confirm Match">
-                    <p>boop boop boop i am {this.props.recipient.firstName}</p>
+
+                <Modal ref="modal"  show={false} header="Confirm Match">
+                    <div className="confirm-modal">
+                        <div className="donation-row">
+                            <div className="medium-5 columns">
+                                <ul className="fa-ul">
+                                  <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization}</li>
+                                  <li><i className="fa-li fa fa-user"></i>{this.props.donation.name}</li>
+                                </ul>
+                            </div>
+                            <div className="medium-7 columns">
+                                <ul className="fa-ul">
+                                  <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="delivery-row">
+                            <div className="small-2 medium-1 columns">
+                                <i className="fa fa-long-arrow-down fa-5x delivery-arrow"></i>
+                            </div>
+                            <div className="small-10 medium-4 columns">
+                                <ul className="fa-ul">
+                                  <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.date}</li>
+                                  <li><i className="fa-li fa "></i>{this.props.donation.startTime} - {this.props.donation.endTime}</li>
+                                </ul>
+                            </div>
+                            <div className="small-10 small-offset-2 medium-7 medium-offset-0 columns">
+                                <ul className="fa-ul">
+                                    <li>
+                                        <i className="fa-li fa fa-cutlery"></i>
+                                        {this.props.donation.quantity} of:
+                                        {this.renderFoodTypes()}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="recipient-row">
+                            <div className="medium-5 columns">
+                                <ul className="fa-ul">
+                                  <li><i className="fa-li fa fa-users"></i>{this.props.recipient.organization}</li>
+                                  <li><i className="fa-li fa fa-user"></i>{this.props.recipient.firstName} {this.props.recipient.lastName}</li>
+                                </ul>
+                            </div>
+                            <div className="medium-7 columns">
+                                <ul className="fa-ul">
+                                  <li><i className="fa-li fa fa-map-marker"></i>{this.props.recipient.address}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="button-row">
+                            <div className="small-12 columns">
+                                <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
+                            </div>
+                        </div>
+                    </div>
                 </Modal>
+
             </div>
+        );
+    },
+    renderFoodTypes: function() {
+        var foodListItems = _.map(this.props.donation.foodTypes, function(foodType) {
+            return (
+                <li key={foodType}>{foodType}</li>
+            );
+        });
+        return (
+            <ul className="inline-list">
+                {foodListItems}
+            </ul>
         );
     },
     renderClosed: function() {
@@ -445,6 +555,12 @@ var Recipient = React.createClass({
         this.refs.modal.show()
     },
     handleExternalHide: function() {
+        this.refs.modal.hide()
+    },
+    handleSubmit: function() {
+        // TODO: Implement logic to post to backend
+        console.log("Match submitted");
+        this.props.handleSubmit({donationId: this.props.donation.id});
         this.refs.modal.hide()
     },
 });
