@@ -1,10 +1,79 @@
-<div class="row">
-    <div class="small-2 columns">
-        <h1>Hallo</h1>
+<div class="splash-block">
+    <div class="splash-images">
+        <div class="splash-image" style="background-image: url(<%= asset_path 'landing_splash_farm.jpg' %>);"></div>
+        <div class="splash-image" style="background-image: url(<%= asset_path 'landing_splash_fruits.jpg' %>);"></div>
+        <div class="splash-image" style="background-image: url(<%= asset_path 'landing_splash_veggies.jpg' %>);"></div>
     </div>
-    <div class="small-10 columns">
-        <div id="example"></div>
+    <div class="splash-overlay"></div>
+    <div class="splash-title">
+        <div class="row">
+            <div class="small-12 columns">
+                <h1 class="text-center">Food Shift</h1>
+                <h2 class="text-center">Be a part of the movement to reduce food waste.</h2>
+                <div class="row button-row">
+                    <div class="small-1 small-offset-4 columns">
+                        <a href="<%= donate_url %>" class="right transparent-button">Donate</a>
+                    </div>
+                    <div class="small-1 small-offset-2 end columns">
+                        <a href="<%= receive_url %>" class="left transparent-button">Receive</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="full-width-off-white">
+    <div class="row">
+        <div class="small-12 columns">
+            <h2 class="block-title text-center">How It Works</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-2 small-offset-1 medium-1 medium-offset-2 columns">
+            <h3 class="circle-border text-center"><i class="fa fa-heart-o"></i></h3>
+        </div>
+        <div class="small-8 medium-7 end columns">
+            <h3 class="dark-green">Donate</h3>
+            <p>
+            If you're an organization that has extra food, use our platform to post information about it.
+            Tell us when and where it should be picked up, and other organizations interested in receiving donations will be notified.
+            </p>
+        </div>
+    </div>
+    <div class="row bottom-margin">
+        <div class="small-12 columns text-center">
+            <a href="<%= donate_url %>">Donate food today &raquo;</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-2 small-offset-1 medium-1 medium-offset-2 columns">
+            <h3 class="circle-border text-center"><i class="fa fa-thumbs-o-up"></i></h3>
+        </div>
+        <div class="small-8 medium-7 end columns">
+            <h3 class="dark-green">Request</h3>
+            <p>
+            If you're an organization that needs extra food, sign up to be notified via email when food donations are posted.
+            When you see a donation you're interested in, click the link in the email to request the donation.
+            </p>
+        </div>
+    </div>
+    <div class="row bottom-margin">
+        <div class="small-12 columns text-center">
+            <a href="<%= receive_url %>">Become a recipient &raquo;</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-2 small-offset-1 medium-1 medium-offset-2 columns">
+            <h3 class="circle-border text-center"><i class="fa fa-truck"></i></h3>
+        </div>
+        <div class="small-8 medium-7 end columns">
+            <h3 class="dark-green">Deliver</h3>
+            <p>
+            Food Shift's coordinators will see the food donations and all the organizations interested in receiving each of these donations.
+            Based on factors like location and availability, our coordinators will try to find the best match between donor and recipient and contact you if you've been matched.
+            </p>
+        </div>
     </div>
 </div>
 
-<%= javascript_include_tag "react_components/landing" %>
+<%= javascript_include_tag "application/landing" %>
