@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   get 'dashboard/show'
 
-  devise_for :users
+  get 'coordinator/dashboard'
 
   root 'landing#index'
+
+  get 'donate' => 'registration#donor'
+  get 'receive' => 'registration#recipient'
+
+  devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -22,5 +22,6 @@ module Foodshift
 
     config.assets.precompile += %w( react_components/* )
     config.assets.precompile += %w( application/* )
+    config.react.addons = true
   end
 end
