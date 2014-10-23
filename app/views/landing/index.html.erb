@@ -7,4 +7,10 @@
     </div>
 </div>
 
+<% if user_signed_in? %>
+  <%= link_to 'sign out', destroy_user_session_path, :method => :delete %>
+<% else %>
+  <%= link_to 'sign in', new_user_session_path %>
+<% end %>
+
 <%= javascript_include_tag "react_components/landing" %>
