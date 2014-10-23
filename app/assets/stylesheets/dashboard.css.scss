@@ -1,0 +1,303 @@
+/*// Place all the styles related to the Dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/*/
+
+@import url(http://fonts.googleapis.com/css?family=Lato:300);
+* {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+*:focus {
+    outline: none;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+.clear {
+    clear: both;
+}
+.filler {
+    height: 20px;
+}
+.align-right {
+    padding: 5px 10px;
+    float: right;
+}
+.nav-bar {
+    position: fixed;
+    height: 100%;
+    background: #eee;
+    width: 270px;
+}
+.notification {
+    color: #fff;
+    border-radius: 5px;
+    margin-top: -5px;
+    float: right;
+    background: #000;
+    padding: 5px 10px;
+}
+.nav-bar h2 {
+    margin-top: 12px;
+    padding: 20px;
+}
+.nav-links {
+    background: #eee;
+}
+.nav-links li {
+    border-top: 1px solid #ddd;
+    padding: 15px 20px;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    -transition: all 0.5s linear;
+}
+.nav-links li:last-child {
+    border-bottom: 1px solid #ddd;
+}
+.nav-links li:hover {
+    background: #ddd;
+}
+.container {
+    font-size: 0.9em;
+    padding: 30px;
+    margin-left: 270px;
+    display: block;
+}
+h1 {
+    margin-bottom: 15px;
+}
+.map-preview {
+    float: left;
+    width: 600px;
+    height: 500px;
+    border: 0;
+}
+#map-container {
+    height: 400px;
+    max-width: 800px;
+    border-radius: 16px 16px;
+    border-color: #fff;
+    border-style: solid;
+    box-shadow: 2px 2px 10px #B1B1B1;
+    margin-top: 25px;
+    border-width: 7px;
+}
+#map-canvas {
+    height: 384px;
+    width: 100%;
+}
+/* Bootstrap Css Map Fix*/
+
+#map-container #map-canvas img {
+    max-width: none;
+}
+/* Bootstrap Css Map Fix*/
+
+#map-container #map-canvas label {
+    width: auto;
+    display: inline;
+}
+.list-preview {
+    overflow: scroll;
+    height: 500px;
+    width: 375px;
+    margin-left: 30px;
+    float: left;
+}
+h3 {
+    font-size: 1.2em;
+    border-radius: 10px;
+    background: #666;
+    color: #fff;
+    padding: 10px;
+}
+.accepted-header {
+    background: green;
+    color: white;
+}
+.event-list {
+    max-height: 0;
+    overflow: hidden;
+    list-style-type: none;
+    -webkit-transition-delay: 150ms;
+    -moz-transition-delay: 150ms;
+    -o-transition-delay: 150ms;
+    -ms-transition-delay: 150ms;
+    transition-delay: 150ms;
+    -webkit-transition: max-height 0.5s;
+    -moz-transition: max-height 0.5s;
+    transition: max-height 0.5s;
+}
+h4 {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.event-list li {
+    padding: 10px 25px;
+    border-bottom: 1px solid #ddd;
+}
+.event-list li:last-child {
+    border-bottom: 0px;
+    margin-bottom: 20px;
+}
+.event-list-time {
+    color: #fff;
+    border-radius: 5px;
+    margin-top: -5px;
+    float: right;
+    background: #000;
+    padding: 5px 10px;
+}
+.event-list-preview {
+    padding: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    max-height: 200px;
+}
+.event-list-open {
+    max-height: 1000px;
+}
+.event-list-accept {
+    background: transparent;
+    font-size: 0.9em;
+    border-radius: 5px;
+    border: 1px solid;
+    margin-top: 12px;
+    float: right;
+    padding: 5px 10px;
+    -webkit-transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    -ms-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    -transition: all 0.25s linear;
+}
+.event-list-accept:hover {
+    color: #12c712;
+    border: 1px solid #12c712;
+}
+.accepted {
+    color: #12c712;
+    border: 1px solid #12c712;
+}
+input:focus, select:focus, textarea:focus, .filter-button:active {
+    box-shadow: 0 0 5px rgba(0, 125, 221, 0.8);
+    border: 1px solid rgba(0, 125, 221, 0.75);
+}
+input, .filter-button {
+    height: 20px;
+    padding: 0 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    -webkit-transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    -ms-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    -transition: all 0.25s linear;
+}
+.filter-button {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.75em;
+    height: 20px;
+    padding: 0 10px;
+}
+.filter-button:hover {
+    border-color: #888;
+    background: #888;
+    color: #fff;
+}
+.select-location, .select-time {
+    height: 20px;
+    padding: 0 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    -webkit-transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    -ms-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    -transition: all 0.25s linear;
+}
+.notify {
+    width: 400px;
+}
+.notify-submit {
+    font-size: 1em;
+    color: #777;
+    border: 1px solid #777;
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    -webkit-transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    -ms-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    -transition: all 0.25s linear;
+}
+.notify-submit:hover {
+    background: #777;
+    color: #fff;
+}
+.notify-input, .notify-textarea {
+    float: right;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 200px;
+}
+.notify-textarea {
+    height: 50px;
+    resize: none;
+    -webkit-transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    -ms-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    -transition: all 0.25s linear;
+}
+.notify-form {
+    margin-bottom: 10px;
+}
+/* LIGHTBOX */
+
+.black_overlay {
+    background-color: #000;
+    display: none;
+    height: 100%;
+    left: 0%;
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    z-index: 1001;
+    opacity: 0.75;
+    -moz-opacity: 0.75;
+    filter: alpha(opacity=75);
+    -webkit-overflow-scrolling: touch;
+}
+.white_content {
+    border-radius: 12px;
+    -webkit-overflow-scrolling: touch;
+    background-color: #fff;
+    border: 10px solid #fff;
+    box-shadow: 0px 0px 40px #000;
+    display: none;
+    height: 300px;
+    overflow: scroll;
+    padding: 10px;
+    position: absolute;
+    text-align: left;
+    width: 500px;
+    z-index: 1002;
+}
+#content {
+    text-align: left;
+    font-size: 0.9em;
+}

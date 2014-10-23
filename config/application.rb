@@ -21,5 +21,6 @@ module Foodshift
     # config.i18n.default_locale = :de
 
     config.assets.precompile += %w( react_components/* )
+    config.assets.precompile += %w( application/* )
   end
 end

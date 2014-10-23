@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" src= "assets/stylesheets/dashboard.css.sccs">
+	<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBRB0dyvlNWDLNLyrn4waQRI2aAgpkfeWE" %>
+	<%= javascript_include_tag "application/dashboard" %>
+</head>
+<body>
+	
+	<div id="map-container">
+		<div id="map-canvas"></div>
+	</div>
+
+	<div class="list-preview">
+		<h3 id="event-a-head" onclick="toggleEvent('event-a')">Event A
+			<span class="align-right">
+				<b><i class="fa fa-angle-down"></i></b>
+			</span>
+		</h3>
+		<div class="event-list-preview">
+			<b>Food Shift</b> 
+			<span class="event-list-time">4:30PM - 8PM</span> <br>
+				620 3rd St.<br>
+				Oakland, CA 94607
+				<!-- lat: 37.798866, lng: -122.280327 -->
+		</div>
+		<ul id="event-a" class="event-list">
+		<h4>Recipient Requests</h4> 
+			<li>
+				<!-- <button class="event-list-accept" onclick="accept(this, 'event-a-head')">Accept</button> -->
+				<b>United States Postal Service</b> <br>
+				1675 7th St <br>
+				Oakland, CA 94615
+				<!-- lat: 37.806677, lng: -122.300380 -->
+			</li>
+			<li>
+				<!-- <button class="event-list-accept" onclick="accept(this, 'event-a-head')">Accept</button> -->
+				<b>Catholic Youth Organization</b> <br>
+				3014 Lakeshore Ave <br>
+				Oakland, CA 94610
+				<!-- lat: 37.808970, lng: -122.249409 -->
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>
