@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true %></div>
+
+  <div><%= f.label :type %><br />
+  <%= f.select :type, options_for_select(%w[Donor Recipient Coordinator]) %></div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
