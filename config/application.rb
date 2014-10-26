@@ -23,5 +23,9 @@ module Foodshift
     config.assets.precompile += %w( react_components/* )
     config.assets.precompile += %w( application/* )
     config.react.addons = true
-  end
+
+    config.generators do |g|
+        g.factory_girl false
+    end
+end
 end
