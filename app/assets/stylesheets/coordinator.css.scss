@@ -1,0 +1,312 @@
+// Place all the styles related to the Coordinator controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.coordinator-dashboard-nav-block {
+    @include full-width-block($charcoal);
+    border-bottom: 1px solid $dark-grey;
+    .subnav-list {
+        @extend .inline-list;
+        margin: 0;
+        height: 100%;
+        li {
+            margin-left: 0px;
+            margin-right: 50px;
+            padding-top: 8px;
+            padding-bottom: 4px;
+            font-size: rem-calc(14);
+            font-weight: 400;
+            a {
+                color: $dark-grey;
+            }
+            &.active, &:hover {
+                a {
+                    color: $white;
+                }
+            }
+            @media #{$medium-up} {
+                &.active {
+                    border-bottom: 4px solid $white;
+                }
+            }
+        }
+    }
+}
+
+.coordinator-dashboard-content-block {
+    @include full-width-block($off-white);
+    @include block-padding();
+    min-height: 900px;
+
+    .slide-right-enter {
+        position: absolute;
+        width: 100%;
+        left: -300%;
+
+        transition: left 0.5s ease;
+        transition-delay: 0.1s;
+        @media #{$small-only} {
+            transition-delay: 0.25s;
+        }
+
+        &.slide-right-enter-active {
+            left: 0;
+        }
+    }
+
+    .slide-right-leave {
+        position: absolute;
+        width: 100%;
+        right: 0;
+
+        transition: right 0.5s ease-in;
+
+        &.slide-right-leave-active {
+            right: -300%;
+        }
+    }
+
+    .slide-left-enter {
+        position: absolute;
+        width: 100%;
+        right: -300%;
+
+        transition: right 0.5s ease;
+        transition-delay: 0.1s;
+
+        @media #{$small-only} {
+            transition-delay: 0.25s;
+        }
+
+        &.slide-left-enter-active {
+            right: 0;
+        }
+    }
+
+    .slide-left-leave {
+        position: absolute;
+        width: 100%;
+        left: 0;
+
+        transition: left 0.5s ease-in;
+
+        &.slide-left-leave-active {
+            left: -300%;
+        }
+    }
+
+    .dashboard-wrap {
+        position: relative;
+        height: 100%;
+        .dashboard-empty {
+            @extend .text-center;
+            i.fa {
+                color: rgb(240, 180, 60);
+                &.fa-smile-o {
+                    font-size: 39px;
+                }
+            }
+        }
+        .dashboard {
+            border: 1px solid $dark-grey;
+            .card-header {
+                @extend .text-center;
+                border-bottom: 1px solid $dark-grey;
+                background-color: $medium-green;
+                .card-header-title {
+                    display: inline-block;
+                    font-size: rem-calc(18);
+                    font-weight: 300;
+                    color: $white;
+                    margin-top: 8px;
+                    margin-bottom: 8px;
+                }
+                @mixin card-header-arrow() {
+                    display: inline-block;
+                    i.fa {
+                        padding-top: 12px;
+                    }
+                    a {
+                        color: $dark-grey;
+                        &:hover {
+                            color: $white;
+                        }
+                    }
+                }
+                .card-header-arrow-left {
+                    @include card-header-arrow();
+                    margin-right: 30px;
+                }
+                .card-header-arrow-right {
+                    @include card-header-arrow();
+                    margin-left: 30px;
+                }
+            }
+            .card-donation {
+                padding-top: 30px;
+                background-color: $white;
+                border-bottom: 1px solid $dark-grey;
+                color: $charcoal;
+                .donation-info {
+                    h1.donation-info-title {
+                        @extend .text-center;
+                        color: $charcoal;
+                        padding-top: 20px;
+                        padding-bottom: 20px;
+                        font-size: rem-calc(24);
+                    }
+                    h2.donation-info-datetime {
+                        font-size: rem-calc(18);
+                    }
+                    i.fa-li {
+                        padding-top: 2px;
+                    }
+                    ul.inline-list-food {
+                        @extend .inline-list;
+                        padding-top: 0px;
+                    }
+                    .additional-info-list {
+                        margin-top: -20px;
+                    }
+                }
+            }
+            .donation-recipients {
+                background-color: $medium-grey;
+                .no-right-pad {
+                    @media #{$medium-up} {
+                        padding-right: 0;
+                    }
+                }
+                .no-left-pad {
+                    @media #{$medium-up} {
+                        padding-left: 0;
+                    }
+                }
+                .recipients-list-title {
+                    @extend .text-center;
+                    color: $white;
+                    font-weight: 300;
+                    font-size: rem-calc(18);
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid $dark-grey;
+                    background-color: $medium-green;
+
+                }
+                .recipients-list {
+                    .recipient {
+                        border-bottom: 1px solid $dark-grey;
+
+                        .recipient-title {
+                            color: $charcoal;
+                            font-weight: 400;
+                            font-size: rem-calc(16);
+                            padding-left: 30px;
+                            padding-right: 30px;
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                            background-color: $light-grey;
+                            &:hover, &.active {
+                                background-color: scale-color($white, $lightness: 14%);
+                                cursor: pointer;
+                            }
+                            a.expand-icon {
+                                color: $medium-green;
+                                i {
+                                    -webkit-transition: -webkit-transform 0.5s ease;
+                                    -moz-transition: -moz-transform 0.5s ease;
+                                    -o-transition: o-transform 0.5s ease;
+                                    transition:  transform 0.5s ease;
+                                    &.active {
+                                        -webkit-transform: rotateX(180deg);
+                                           -moz-transform: rotateX(180deg);
+                                            -ms-transform: rotateX(180deg);
+                                             -o-transform: rotateX(180deg);
+                                                transform: rotateX(180deg);
+                                    }
+                                }
+                            }
+                        }
+                        .recipient-open {
+                            background-color: $white;
+                            color: $charcoal;
+                            h1 {
+                                color: $charcoal;
+                                font-size: rem-calc(16);
+                            }
+                            .recipient-details {
+                                padding-left: 20px;
+                            }
+                            .recipient-confirm {
+                                @extend .text-center;
+                                a.match-button {
+                                    @media #{$medium-up} {
+                                        margin-top: 30px;
+                                    }
+                                    @extend .success-button;
+                                    @extend .small;
+                                    margin-bottom: 30px;
+                                }
+                            }
+                            i.fa-li {
+                                padding-top: 2px;
+                            }
+                            .confirm-modal {
+                                .donation-row {
+                                    @extend .row;
+                                }
+                                .delivery-row {
+                                    @extend .row;
+                                    .delivery-arrow {
+                                        color: $medium-green;
+                                        @media #{$small-only} {
+                                        }
+                                    }
+                                }
+                                .recipient-row {
+                                    @extend .row;
+                                    margin-top: 20px;
+                                }
+                                .button-row {
+                                    @extend .row;
+                                    @extend .text-center;
+                                    a.confirm-button {
+                                        @extend .success-button;
+                                        margin-top: 5px;
+                                    }
+                                }
+                            }
+
+                        }
+                        .recipient-slide-enter {
+                            overflow: hidden;
+                            max-height: 0;
+                            transition: max-height .5s ease;
+                        }
+                        .recipient-slide-enter.recipient-slide-enter-active {
+                            max-height: 1000px;
+                        }
+                        .recipient-slide-leave {
+                            overflow: hidden;
+                            max-height: 1000px;
+                            transition: max-height .25s ease;
+                        }
+                        .recipient-slide-leave.recipient-slide-leave-active {
+                            max-height: 0;
+                        }
+                    }
+                }
+                #map-canvas {
+                    width: 100%;
+                    height: 100%;
+                    min-height: 550px;
+                    margin: 0;
+                    padding: 1;
+                    @media #{$medium-up} {
+                        border-left: 1px solid $dark-grey;
+                    }
+                }
+            }
+        }
+    }
+}

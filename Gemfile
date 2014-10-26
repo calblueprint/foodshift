@@ -28,6 +28,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'foundation-rails'
 # React JS plugin
 gem 'react-rails', '~> 0.11.1.0'
+# Underscore.js
+gem 'underscore-rails'
+# Underscore.js string plugin
+gem 'underscore-string-rails'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
@@ -45,3 +49,4 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
+gem 'factory_girl_rails'
