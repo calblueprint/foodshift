@@ -10,11 +10,11 @@
 <li> <%= r.email %>
 <% end %>
 
-<%= button_to 'Notify Coordinators', action: :notify_recipient %>
+<%= button_to 'Notify Coordinators', action: :notify_coordinator %>
 
 <h2>Notify Donors</h2>
 <% @donors.each do |r| %>
 <li> <%= r.email %>
 <% end %>
 
-<%= button_to 'Notify Donors', action: :notify_recipient %>
+<%= button_to 'Notify Donors', action: :notify_donor %>

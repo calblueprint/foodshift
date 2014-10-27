@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root 'landing#index'
   get '/action_mailer', to: 'action_mailer#index'
   post '/notify_recipient', to: 'action_mailer#notify_recipient'
+  post '/notify_donor', to: 'action_mailer#notify_donor'
+  post '/notify_coordinator', to: 'action_mailer#notify_coordinator'
 
 
   get 'donate' => 'registration#donor'

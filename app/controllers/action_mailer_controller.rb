@@ -8,7 +8,17 @@ class ActionMailerController < ApplicationController
 
 	def notify_recipient
 		@recipients = Recipient.pluck(:email)
-		UserMailer.welcome_email(@recipients).deliver
+		UserMailer.donation_available(@recipients).deliver
+	end
+
+	def notify_donor
+		@donors = Donor.pluck(:email)
+		UserMailer.recipient_match(@donors).deliver
+	end
+
+	def notify_coordinator
+		@coordinators = Coordinator.pluck(:email)
+		UserMailer.coordinator_email(@coordinators).deliver
 	end
 
 end
