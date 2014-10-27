@@ -1,6 +1,20 @@
-<h2>send emails to</h2>
-<% @emails.each do |email| %>
-<li> <%= email %>
+<h2>Notify Recipients</h2>
+<% @recipients.each do |r| %>
+<li> <%= r.email %>
 <% end %>
 
-<%= button_to 'Send', action: :create %>
+<%= button_to 'Notify Recipients', action: :notify_recipient %>
+
+<h2>Notify Coordinators</h2>
+<% @coordinators.each do |r| %>
+<li> <%= r.email %>
+<% end %>
+
+<%= button_to 'Notify Coordinators', action: :notify_recipient %>
+
+<h2>Notify Donors</h2>
+<% @donors.each do |r| %>
+<li> <%= r.email %>
+<% end %>
+
+<%= button_to 'Notify Donors', action: :notify_recipient %>

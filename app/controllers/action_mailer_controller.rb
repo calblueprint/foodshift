@@ -1,12 +1,14 @@
 class ActionMailerController < ApplicationController
 
 	def index
-		@emails = ["ericayin@berkeley.edu", "ericayin831@gmail.com"]
+		@recipients = Recipient.all
+		@coordinators = Coordinator.all
+		@donors = Donor.all
 	end
 
-	def create
-		@emails = ["ericayin@berkeley.edu", "ericayin831@gmail.com"]
-		UserMailer.welcome_email(@emails).deliver
+	def notify_recipient
+		@recipients = Recipient.pluck(:email)
+		UserMailer.welcome_email(@recipients).deliver
 	end
 
 end

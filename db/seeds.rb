@@ -25,6 +25,13 @@ def create_users
                   type: 'Recipient'
   end
 
+  1.upto(5) do |n|
+    Coordinator.create! email: "coordinator#{n}@foodshift.net",
+                  password: 'password',
+                  subscribed: 'true',
+                  type: 'Coordinator'
+  end
+
   Donor.create! email: 'ericayin@berkeley.edu',
   				  password: 'password',
                   subscribed: 'true',
@@ -35,6 +42,10 @@ def create_users
                   subscribed: 'true',
                   type: 'Recipient'
 
+  Coordinator.create! email: "eriicaericaerica@gmail.com",
+                  password: 'password',
+                  subscribed: 'true',
+                  type: 'Coordinator'
 end
 
 create_users
