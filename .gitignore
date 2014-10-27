@@ -7,6 +7,13 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore database.yml
+config/database.yml
+
+# Ignore rvm config files
+.ruby-gemset
+.ruby-version
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
