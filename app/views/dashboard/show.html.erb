@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" type="text/css" src= "assets/stylesheets/dashboard.css.sccs">
-	<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBRB0dyvlNWDLNLyrn4waQRI2aAgpkfeWE" %>
-	<%= javascript_include_tag "application/dashboard" %>
-</head>
-<body>
-	
+
+
+
 	<div id="map-container">
 		<div id="map-canvas"></div>
 	</div>
 
 	<div class="list-preview">
-		<h3 id="event-a-head" onclick="toggleEvent('event-a')">Event A
+		<h3 id="event-a-head">Event A
 			<span class="align-right">
 				<b><i class="fa fa-angle-down"></i></b>
 			</span>
@@ -45,5 +37,8 @@
 		</ul>
 	</div>
 
-</body>
-</html>
+
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRB0dyvlNWDLNLyrn4waQRI2aAgpkfeWE">
+    </script>
+<%= javascript_include_tag "application/dashboard" %>
