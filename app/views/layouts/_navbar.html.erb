@@ -14,7 +14,13 @@
           <li class="divider"></li>
           <li class=""><a href="#">Help</a></li>
           <li class="divider"></li>
-          <li><a href="#">Sign In</a></li>
+          <li>
+            <% if user_signed_in? %>
+              <%= link_to 'sign out', destroy_user_session_path, :method => :delete %>
+            <% else %>
+              <%= link_to 'sign in', new_user_session_path %>
+            <% end %>
+          </li>
         </ul>
       </section>
     </nav>

@@ -11,7 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006215235) do
+ActiveRecord::Schema.define(version: 20141016050953) do
+
+  create_table "donations", force: true do |t|
+    t.integer  "donor_id"
+    t.string   "company"
+    t.string   "address"
+    t.string   "person"
+    t.string   "phone"
+    t.string   "email"
+    t.integer  "pickup_time_window"
+    t.boolean  "refrigeration"
+    t.string   "food_type"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "donations", ["donor_id"], name: "index_donations_on_donor_id"
+
+  create_table "interests", force: true do |t|
+    t.integer  "donation_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "interests", ["donation_id"], name: "index_interests_on_donation_id"
+  add_index "interests", ["recipient_id"], name: "index_interests_on_recipient_id"
+
+  create_table "transactions", force: true do |t|
+    t.integer  "donation_id"
+    t.integer  "recipient_id"
+    t.integer  "coordinator_id"
+    t.boolean  "completed"
+    t.datetime "completed_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transactions", ["coordinator_id"], name: "index_transactions_on_coordinator_id"
+  add_index "transactions", ["donation_id"], name: "index_transactions_on_donation_id"
+  add_index "transactions", ["recipient_id"], name: "index_transactions_on_recipient_id"
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -29,7 +73,7 @@ ActiveRecord::Schema.define(version: 20141006215235) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
