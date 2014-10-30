@@ -15,7 +15,7 @@ document.head.appendChild(s);
 
 var map;
 
-var Dashboard = React.createClass({
+var ScheduleDashboard = React.createClass({
     getInitialState: function() {
         var donations = this.getDonationsList()
         return {
@@ -469,7 +469,7 @@ var Recipient = React.createClass({
                     </div>
                     <div className="medium-4 end columns">
                         <div className="recipient-confirm">
-                            <a className="match-button" data-reveal-id="myModal" onClick={this.handleShowModal}>Match</a>
+                            <a className="match-button" onClick={this.handleShowModal}>Schedule</a>
                         </div>
                     </div>
                 </div>
@@ -566,6 +566,6 @@ var Recipient = React.createClass({
 });
 
 React.renderComponent(
-    <Dashboard />,
-    document.getElementById('dashboard-content')
+    <ScheduleDashboard />,
+    document.getElementById('schedule-content')
 );

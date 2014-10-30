@@ -1,0 +1,11 @@
+<div class="coordinator-dashboard-nav-block">
+    <div class="row">
+        <div class="small-12 columns">
+            <ul class="subnav-list">
+                <li class="<%= is_active?(coordinator_deliver_path) %>"><%= link_to "Current Deliveries", coordinator_deliver_path %></li>
+                <li class="<%= is_active?(coordinator_schedule_path) %>"><%= link_to "Schedule Deliveries", coordinator_schedule_path %></li>
+                <li class="<%= is_active?(coordinator_data_path) %>"><%= link_to "View Data", coordinator_data_path %></li>
+            </ul>
+        </div>
+    </div>
+</div>
