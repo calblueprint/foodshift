@@ -68,35 +68,24 @@ $(document).ready(function() {
         };
 
 
-        markersA.push(createMarker({
-            lat: donorA1.lat,
-            lng: donorA1.lng
-        }, null, donorA1.title, donorA1.type, donorA1.address));
-        markersA.push(createMarker({
-            lat: recipA1.lat,
-            lng: recipA1.lng
-        }, null, recipA1.title, recipA1.type, recipA1.address));
-        markersA.push(createMarker({
-            lat: recipA2.lat,
-            lng: recipA2.lng
-        }, null, recipA2.title, recipA2.type, recipA2.address));
+        markersA.push(createMarker(donorA1));
+        markersA.push(createMarker(recipA1));
+        markersA.push(createMarker(recipA2));
 
-
-        markersB.push(createMarker({
-            lat: donorB1.lat,
-            lng: donorB1.lng
-        }, null, donorB1.title, donorB1.type, donorB1.address));
-        markersB.push(createMarker({
-            lat: recipB1.lat,
-            lng: recipB1.lng
-        }, null, recipB1.title, recipB1.type, recipB1.address));
-        markersB.push(createMarker({
-            lat: recipB2.lat,
-            lng: recipB2.lng
-        }, null, recipB2.title, recipB2.type, recipB2.address));
+        markersB.push(createMarker(donorB1));
+        markersB.push(createMarker(recipB1));
+        markersB.push(createMarker(recipB2));
 
     }
     google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    
+
+    function toggleEvent(element) {
+        e = document.getElementById(element);
+        e.classList.toggle('event-list-open');
+    }
 
     $('#event-a-head').click(function() {
         toggleEvent("event-a");
@@ -117,21 +106,25 @@ $(document).ready(function() {
         }
     });
 
-    function createMarker(coords, map, title, iconType, address) {
+    function createMarker(newMarker) {
+        //new markers require: lat, lng, address, title, and type
         icon = null;
-        if (iconType === "donor"){
-            icon = 'http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-55bd5c/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/grocery.png';
+        if (newMarker.type === "donor"){
+            icon = "<%= asset_path('donor.png') %>";
         } else {
-            icon = 'http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f34648/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/daycare.png';
+            icon = "<%= asset_path('recipient.png') %>";
         }
         var marker = new google.maps.Marker({
-            position: coords,
-            lat: coords.lat,
-            lng: coords.lng,
-            address: address,
-            map: map,
-            title: title,
-            type: iconType,
+            position: {
+            lat: newMarker.lat,
+            lng: newMarker.lng
+        },
+            lat: newMarker.lat,
+            lng: newMarker.lng,
+            address: newMarker.address,
+            map: null,
+            title: newMarker.title,
+            type: newMarker.type,
             icon: createImage(icon),
             animation: google.maps.Animation.DROP
         });
@@ -144,7 +137,7 @@ $(document).ready(function() {
         } else {
             marker.setMap(map);
             if (marker.type === "donor"){
-                map.panTo({lat:marker.lat,lng:marker.lng});
+                map.panTo({lat:marker.lat,lng:marker.lng}); //center on donor
             }
         }
     }
@@ -166,13 +159,7 @@ $(document).ready(function() {
         google.maps.event.addListener(marker, 'click', function() {
             infoWindow.setContent("<u>" + marker.title + "</u><br>" + marker.address);
             infoWindow.open(map, marker);
-            // console.log(infoWindow);
         });
-    }
-
-    function toggleEvent(element) {
-        e = document.getElementById(element);
-        e.classList.toggle('event-list-open');
     }
 
 });
