@@ -4,17 +4,6 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 Number.prototype.mod = function(n) { return ((this % n) + n) % n; }
 
-/*
-TODO: Having this global variable is really gross... but we don't want to re-render the map each time we change donations...
-Need to figure out a clean way to do callbacks on this map variable that should (probably) be held as a state object
-in the Dashboard component
-*/
-var s = document.createElement('script');
-s.src = 'https://maps.googleapis.com/maps/api/js?key=' + "AIzaSyCmcTV-yBS4SnL3AqBlSXcYv5j-WaGdenA" + '&sensor=false&callback=mapLoaded';
-document.head.appendChild(s);
-
-var map;
-
 var ScheduleDashboard = React.createClass({
     getInitialState: function() {
         var donations = this.getDonationsList()
@@ -187,7 +176,7 @@ var ScheduleDashboard = React.createClass({
                             <DonationRecipients recipients={this.state.recipients} donation={currDonation} handleSubmit={this.handleSubmit} />
                         </div>
                         <div className="medium-6 columns no-left-pad">
-                            <RequestMap donation={currDonation} longitude={currDonation.longitude} latitude={currDonation.latitude} />
+                            <GoogleMap donation={currDonation} longitude={currDonation.longitude} latitude={currDonation.latitude} />
                         </div>
                     </div>
                 </div>
@@ -344,51 +333,6 @@ var DonationRecipients = React.createClass({
     }
 });
 
-var RequestMap = React.createClass({
-    getInitialState: function() {
-        return {
-            map : null,
-            markers : [],
-        };
-    },
-    getDefaultProps: function() {
-        return {
-            zoom: 13,
-            latitude: 37.8747924,
-            longitude: -122.2583104,
-            address: "",
-            width: 500,
-            height: 500,
-            points: [],
-            gmapsApiKey: "AIzaSyCmcTV-yBS4SnL3AqBlSXcYv5j-WaGdenA",
-            gmapsSensor: false
-        }
-    },
-    render: function() {
-        return (
-            <div id="map-canvas"></div>
-        );
-    },
-    componentDidMount : function() {
-        window.mapLoaded = (function() {
-            var mapOptions = {
-                zoom: this.props.zoom,
-                center: new google.maps.LatLng(this.props.latitude, this.props.longitude),
-            };
-            map = new google.maps.Map(this.getDOMNode(), mapOptions);
-        }).bind(this);
-        window.mapLoaded();
-    },
-    componentDidUpdate: function(prevProps, prevState) {
-        map.panTo(new google.maps.LatLng(this.props.latitude, this.props.longitude));
-    },
-    componentWillUnmount : function() {
-        $(this.getDOMNode()).remove();
-    },
-    getApiUrl: function() {
-        //return 'https://maps.googleapis.com/maps/api/js?key=' + this.props.gmapsApiKey + '&sensor=' + this.props.gmapsSensor + '&callback=mapLoaded';
-    }
-});
 
 var Recipient = React.createClass({
     getDefaultProps: function() {
