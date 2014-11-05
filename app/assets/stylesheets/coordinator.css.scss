@@ -231,6 +231,7 @@
                         .recipient-open {
                             background-color: $white;
                             color: $charcoal;
+
                             p.organization {
                                 color: $charcoal;
                                 font-size: rem-calc(16);
@@ -329,6 +330,7 @@
     .dashboard-wrap {
         border: 1px solid $dark-grey;
         @include drop-shadow(1);
+        background-color: $medium-grey;
 
         .delivery-header {
             @extend .text-center;
@@ -353,88 +355,107 @@
         }
         .delivery-list {
             .delivery-entry {
-                .delivery-title {
-                    padding-left: 30px;
-                    padding-right: 30px;
-                    padding-top: 10px;
-                    padding-bottom: 10px;
-                    background-color: $light-grey;
-                    border-top: 1px solid $dark-grey;
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                background-color: $light-grey;
+                border-top: 1px solid $dark-grey;
+                @include button-transition();
 
-                    .delivery-addresses {
+                &:hover, &.active {
+                    background-color: $white;
+                    cursor: pointer;
+                    position: relative;
+                    z-index: 5;
+                }
+
+                &.active {
+                    z-index: 10;
+                    padding-top: 25px;
+                    padding-bottom: 25px;
+                }
+
+                .delivery-addresses {
+                    margin-left: 10px;
+                    .donation-address, .recipient-address {
+                        color: $charcoal;
+                        font-size: rem-calc(16);
                         margin-left: 10px;
-                        .donation-address, .recipient-address {
-                            color: $charcoal;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                    }
+
+                    .donation-address {
+                    }
+
+                    .recipient-address {
+                    }
+
+                    .delivery-arrow {
+                        position: absolute;
+                        margin-left: -15px;
+                        margin-top: -18px;
+                    }
+
+                    .delivery-info {
+                        p.delivery-time {
+                            display: inline-block;
+                            margin: 0;
+                            margin-right: 10px;
+                        }
+                        a.delivery-link {
+                            display:inline-block;
+                        }
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        margin-left: 10px;
+                        @media #{$small-only} {
+                            margin-bottom: 0px;
+                        }
+                    }
+                }
+
+                .action-button-list {
+                    @extend .text-center;
+                    width: 100%;
+                    padding-top: 10px;
+                    .action-container {
+                        @extend .text-center;
+                        display: inline-block;
+                        width: 150px;
+                        .success-item, .action-button, .disabled-button {
+                            display: inline-block;
+                            color: $medium-green;
+                            font-weight: 300;
                             font-size: rem-calc(16);
-                            margin-left: 10px;
+                            text-transform: uppercase;
+
                             margin-top: 10px;
                             margin-bottom: 10px;
                         }
 
-                        .donation-address {
-                            margin-top: 20px;
-                        }
-
-                        .recipient-address {
-                        }
-
-                        .delivery-arrow {
-                            position: absolute;
-                            margin-left: -15px;
-                            margin-top: -18px;
-                        }
-
-                        .delivery-directions-link {
-                            margin-top: 20px;
-                            margin-bottom: 20px;
-                            margin-left: 10px;
-                            @media #{$small-only} {
-                                margin-bottom: 0px;
+                        .success-item, .disabled-button {
+                            padding-top: 0.625rem;
+                            padding-right: 1.25rem;
+                            padding-bottom: 0.6875rem;
+                            padding-left: 1.25rem;
+                            border: 1px solid transparent;
+                            i {
+                                margin-left: 5px;
                             }
                         }
-                    }
 
-                    .action-button-list {
-                        @extend .text-center;
-                        width: 100%;
-                        padding-top: 10px;
-                        .action-container {
-                            @extend .text-center;
-                            display: inline-block;
-                            width: 150px;
-                            .success-item, .action-button, .disabled-button {
-                                display: inline-block;
-                                color: $medium-green;
-                                font-weight: 300;
-                                font-size: rem-calc(16);
-                                text-transform: uppercase;
+                        .disabled-button {
+                            border-radius: $global-radius;
+                            background-color: $dark-grey;
+                            color: $charcoal;
+                            opacity: 0.7;
+                        }
 
-                                margin-top: 10px;
-                                margin-bottom: 10px;
-                            }
-
-                            .success-item, .disabled-button {
-                                padding-top: 0.625rem;
-                                padding-right: 1.25rem;
-                                padding-bottom: 0.6875rem;
-                                padding-left: 1.25rem;
-                                border: 1px solid transparent;
-                                i {
-                                    margin-left: 5px;
-                                }
-                            }
-
-                            .disabled-button {
-                                border-radius: $global-radius;
-                                background-color: $dark-grey;
-                                color: $charcoal;
-                                opacity: 0.7;
-                            }
-
-                            .action-button {
-                                @extend .material-success-button;
-                                @extend .tiny;
-                            }
+                        .action-button {
+                            @extend .material-success-button;
+                            @extend .tiny;
                         }
                     }
                 }

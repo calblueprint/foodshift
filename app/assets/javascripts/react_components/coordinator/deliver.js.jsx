@@ -83,10 +83,55 @@ var DeliverDashboard = React.createClass({
                 pickupTimestamp: null,
                 deliveryTimestamp: null,
             },
+            {
+                id: 2,
+                donation: {
+                    id: 111,
+                    address: 'Berkeley Bowl, 2020 Oregon St, Berkeley, CA 94703',
+                    latitude: 37.857843,
+                    longitude: -122.2613269,
+                    foodTypes: ['Bread'],
+                    quantity: '3 boxes',
+                    date: '1/1/2014',
+                    startTime: '4:00PM',
+                    endTime: '8:00PM',
+                    name: 'Mr. Bowl',
+                    organization: 'Berkeley Bowl',
+                    email: 'mrbowl@berkeleybowl.com',
+                    phone: '122-333-4444',
+                    additionalInfo: ''
+                },
+                recipient: {
+                    id: 2,
+                    donationId: 111,
+                    firstName: 'Food',
+                    lastName: ' Recipient',
+                    email: 'food@recipient.com',
+                    phone: '999-999-9999',
+                    organization: 'Adult Food Finder',
+                    address: 'People\'s Park 2556 Haste St Berkeley, CA 94704',
+                    latitude: 37.865813,
+                    longitude: -122.257058,
+                    orgNumber: '6000',
+                },
+                pickupTimestamp: null,
+                deliveryTimestamp: null,
+            },
         ]
     },
     render: function() {
         var numDeliveries = _.size(this.state.deliveries);
+        var currentDelivery = _.findWhere(this.state.deliveries, {id: this.state.openDeliveryId});
+        var googleMapContent;
+        if (_.isUndefined(currentDelivery)) {
+            googleMapContent = (
+                <GoogleMap />
+            );
+        } else {
+            googleMapContent = (
+                <GoogleMap latitude={currentDelivery.donation.latitude} longitude={currentDelivery.donation.longitude} />
+            );
+        }
         return (
             <div className="row">
                 <div className="small-12 columns">
@@ -95,7 +140,7 @@ var DeliverDashboard = React.createClass({
                             {numDeliveries} Deliveries Scheduled
                         </div>
                         <div className="delivery-map">
-                            <GoogleMap />
+                            {googleMapContent}
                         </div>
                         <DeliveryList
                             openDeliveryId={this.state.openDeliveryId}
@@ -116,6 +161,7 @@ var DeliverDashboard = React.createClass({
             deliveryId = null;
         }
         this.setState({openDeliveryId: deliveryId});
+        console.log("Open deliveryId: " + deliveryId);
     },
     handlePickupSubmit: function(event){
         // TODO: Submit pickups to backend
@@ -162,6 +208,7 @@ var DeliveryList = React.createClass({
                     isOpen={isOpen}
                     handlePickupSubmit={this.props.handlePickupSubmit}
                     handleDeliverySubmit={this.props.handleDeliverySubmit}
+                    handleSelectDelivery={this.props.handleSelectDelivery}
                 />
             );
         }.bind(this));
@@ -186,8 +233,8 @@ var Delivery = React.createClass({
         var isDelivered = !(_.isNull(this.props.delivery.deliveryTimestamp));
         var actionButtons = this.renderActionButtons(isPickedUp, isDelivered);
 
-        var titleClasses = React.addons.classSet({
-           'delivery-title': true,
+        var entryClasses = React.addons.classSet({
+           'delivery-entry': true,
            'active': this.props.isOpen
         });
         var iconClasses = React.addons.classSet({
@@ -196,28 +243,32 @@ var Delivery = React.createClass({
             'active': this.props.isOpen,
         });
         return (
-            <div className="delivery-entry">
-                <div className={titleClasses}>
-                    <div className="row">
-                        <div className="medium-6 columns">
-                            <div className="delivery-addresses">
-                                <div className="donation-address">
-                                    {this.props.delivery.donation.address}
-                                </div>
-                                <div className="delivery-arrow">
-                                    <i className="fa fa-long-arrow-down fa-2x"></i>
-                                </div>
-                                <div className="recipient-address">
-                                    {this.props.delivery.recipient.address}
-                                </div>
-                                <div className="delivery-directions-link">
-                                    <a><i className="fa fa-map-marker"></i> Get directions</a>
-                                </div>
+            <div className={entryClasses} onClick={this.handleSelectDelivery}>
+                <div className="row">
+                    <div className="medium-7 columns">
+                        <div className="delivery-addresses">
+                            <div className="donation-address">
+                                {this.props.delivery.donation.address}
+                            </div>
+                            <div className="delivery-arrow">
+                                <i className="fa fa-long-arrow-down fa-2x"></i>
+                            </div>
+                            <div className="recipient-address">
+                                {this.props.delivery.recipient.address}
+                            </div>
+                            <div className="delivery-info">
+                                <p className="delivery-time">
+                                  <i className="fa fa-clock-o fa-fw"></i>
+                                  {this.props.delivery.donation.date} {this.props.delivery.donation.startTime} - {this.props.delivery.donation.endTime}
+                                </p>
+                                <a className="delivery-link" onClick={this.handleGetDirections} href={this.getDirectionsLink()} target="_blank">
+                                    <i className="fa fa-map-marker fa-fw"></i> Get directions
+                                </a>
                             </div>
                         </div>
-                        <div className="medium-6 columns">
-                            {actionButtons}
-                        </div>
+                    </div>
+                    <div className="medium-5 columns">
+                        {actionButtons}
                     </div>
                 </div>
             </div>
@@ -266,11 +317,24 @@ var Delivery = React.createClass({
             );
         }
     },
-    handlePickupSubmit: function() {
+    handleSelectDelivery: function(e) {
+        this.props.handleSelectDelivery({deliveryId: this.props.delivery.id});
+    },
+    handlePickupSubmit: function(e) {
+        e.stopPropagation();
         this.props.handlePickupSubmit({deliveryId: this.props.delivery.id});
     },
-    handleDeliverySubmit: function() {
+    handleDeliverySubmit: function(e) {
+        e.stopPropagation();
         this.props.handleDeliverySubmit({deliveryId: this.props.delivery.id});
+    },
+    handleGetDirections: function(e) {
+        e.stopPropagation();
+    },
+    getDirectionsLink: function() {
+        var srcAddr = this.props.delivery.donation.address
+        var destAddr = this.props.delivery.recipient.address
+        return  _.sprintf("https://maps.google.com/maps?saddr=%s&daddr=%s", srcAddr, destAddr)
     }
 });
 
