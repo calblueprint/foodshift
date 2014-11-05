@@ -107,7 +107,7 @@ $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
 // We use these to define default font weights
-$font-weight-normal: normal !default;
+$font-weight-normal: 300 !default;
 $font-weight-bold: bold !default;
 
 // We use these as default colors throughout
@@ -141,12 +141,12 @@ $info-color: $blue;
 // We use these to control various global styles
 $body-bg: $off-white;
 $body-font-color: $charcoal;
-// $body-font-family: $font-family-sans-serif;
-// $body-font-weight: $font-weight-normal;
-// $body-font-style: normal;
+$body-font-family: $font-family-sans-serif;
+$body-font-weight: $font-weight-normal;
+$body-font-style: normal;
 
 // We use this to control font-smoothing
-// $font-smoothing: antialiased;
+$font-smoothing: antialiased;
 
 // We use these to control text direction settings
 // $text-direction: ltr;
@@ -211,7 +211,7 @@ $global-rounded: 1000px;
 
 // We use these to control header font styles
 // $header-font-family: $body-font-family;
-$header-font-weight: 600;
+$header-font-weight: 400;
 // $header-font-style: normal;
 // $header-font-color: $jet;
 // $header-line-height: 1.4;

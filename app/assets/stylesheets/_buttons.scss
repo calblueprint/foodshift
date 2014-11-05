@@ -247,3 +247,27 @@ a.success-button {
 .icon-produce {
     @include icon("produce.png");
 }
+
+@mixin button-transition {
+    -webkit-transition: -webkit-transform 0.5s ease;
+    -moz-transition: -moz-transform 0.5s ease;
+    -o-transition: o-transform 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.material-success-button {
+    @extend .button;
+    @include button-transition();
+    @include drop-shadow(1);
+
+    text-transform: uppercase;
+    border-radius: $global-radius;
+    background-color: transparent;
+    border: 1px solid transparent;
+
+    &:hover {
+        @include drop-shadow(2);
+        background-color: transparent;
+        border: 1px solid transparent;
+    }
+}

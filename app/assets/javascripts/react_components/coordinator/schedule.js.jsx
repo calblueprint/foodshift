@@ -307,7 +307,7 @@ var DonationRecipients = React.createClass({
         this.setState({openRecipientId: recipientId});
     },
     render: function() {
-        recipients =  _.map(this.props.recipients, function (recipient) {
+        var recipients =  _.map(this.props.recipients, function(recipient) {
             var isOpen = (recipient.id === this.state.openRecipientId);
             return (
                 <Recipient
@@ -401,9 +401,9 @@ var Recipient = React.createClass({
         return (
             <div key={_.join("-", this.props.recipient.id, "open")} className="recipient-open">
                 <div className="row">
-                    <div className="medium-8 columns">
+                    <div className="medium-6 columns">
                         <div className="recipient-details">
-                            <h1>{this.props.recipient.organization}</h1>
+                            <p className="organization">{this.props.recipient.organization}</p>
                             <ul className="fa-ul">
                               <li><i className="fa-li fa fa-user"></i>{this.props.recipient.firstName} {this.props.recipient.lastName}</li>
                               <li><i className="fa-li fa fa-envelope-o"></i>{this.props.recipient.email}</li>
@@ -411,7 +411,7 @@ var Recipient = React.createClass({
                             </ul>
                         </div>
                     </div>
-                    <div className="medium-4 end columns">
+                    <div className="medium-6 columns">
                         <div className="recipient-confirm">
                             <a className="match-button" onClick={this.handleShowModal}>Schedule</a>
                         </div>
