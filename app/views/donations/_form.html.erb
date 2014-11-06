@@ -16,8 +16,8 @@
     <%= f.text_field :donor_id %>
   </div>
   <div class="field">
-    <%= f.label :company %><br>
-    <%= f.text_field :company %>
+    <%= f.label :organization %><br>
+    <%= f.text_field :organization %>
   </div>
   <div class="field">
     <%= f.label :address %><br>
@@ -36,8 +36,12 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :pickup_time_window %><br>
-    <%= f.number_field :pickup_time_window %>
+    <%= f.label :pickup_window_start %><br>
+    <%= f.datetime_local_field :window_start %>
+  </div>
+  <div class="field">
+    <%= f.label :pickup_window_end %><br>
+    <%= f.datetime_local_field :window_end %>
   </div>
   <div class="field">
     <%= f.label :refrigeration %><br>
@@ -50,6 +54,10 @@
   <div class="field">
     <%= f.label :quantity %><br>
     <%= f.number_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :additional_information %><br>
+    <%= f.text_area :additional_info %>
   </div>
   <div class="actions">
     <%= f.submit %>
