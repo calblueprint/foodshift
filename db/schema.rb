@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106043330) do
+ActiveRecord::Schema.define(version: 20141106050344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20141106043330) do
     t.float    "latitude"
     t.float    "longitude"
     t.text     "additional_info"
-    t.datetime "completed"
   end
 
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
@@ -54,8 +53,8 @@ ActiveRecord::Schema.define(version: 20141106043330) do
     t.integer  "donation_id"
     t.integer  "recipient_id"
     t.integer  "coordinator_id"
-    t.boolean  "completed"
     t.datetime "completed_time"
+    t.datetime "completed"
   end
 
   add_index "transactions", ["coordinator_id"], name: "index_transactions_on_coordinator_id", using: :btree

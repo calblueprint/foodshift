@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Company:</strong>
-  <%= @donation.company %>
+  <strong>Organization:</strong>
+  <%= @donation.organization %>
 </p>
 
 <p>
@@ -31,8 +31,13 @@
 </p>
 
 <p>
-  <strong>Pickup time window:</strong>
-  <%= @donation.pickup_time_window %>
+  <strong>Pickup time window start:</strong>
+  <%= @donation.window_start %>
+</p>
+
+<p>
+  <strong>Pickup time window end:</strong>
+  <%= @donation.window_end %>
 </p>
 
 <p>
@@ -50,5 +55,9 @@
   <%= @donation.quantity %>
 </p>
 
+<p>
+  <strong>Additional Information:</strong>
+  <%= @donation.additional_info %>
+</p>
 <%= link_to 'Edit', edit_donation_path(@donation) %> |
 <%= link_to 'Back', donations_path %>

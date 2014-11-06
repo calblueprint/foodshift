@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :donor_id %><br>
-    <%= f.text_field :donor_id %>
-  </div>
-  <div class="field">
     <%= f.label :organization %><br>
     <%= f.text_field :organization %>
   </div>
@@ -29,11 +25,11 @@
   </div>
   <div class="field">
     <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+    <%= f.telephone_field :phone %>
   </div>
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
   </div>
   <div class="field">
     <%= f.label :pickup_window_start %><br>
@@ -53,7 +49,7 @@
   </div>
   <div class="field">
     <%= f.label :quantity %><br>
-    <%= f.number_field :quantity %>
+    <%= f.text_field :quantity %>
   </div>
   <div class="field">
     <%= f.label :additional_information %><br>
