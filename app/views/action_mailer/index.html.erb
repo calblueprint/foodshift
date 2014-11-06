@@ -3,7 +3,10 @@
 <li> <%= r.email %>
 <% end %>
 
-<%= button_to 'Notify Recipients', action: :notify_recipient %>
+<% @donations.each do |d| %>
+<li> <%= d.quantity %> of <%= d.food_type %> 
+<%= button_to 'Notify of this donation!', action: :notify_recipient, method: :post, params: { id: "#{d.id}" } %>
+<% end %>
 
 <h2>Notify Coordinators</h2>
 <% @coordinators.each do |r| %>
