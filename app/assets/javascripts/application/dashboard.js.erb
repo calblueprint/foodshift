@@ -155,7 +155,7 @@ $(document).ready(function() {
         return image;
     }
 
-    function bindInfoWindow(marker, map, infoWindow) {
+    function bindInfoWindow(marker, map, infoWindow) { //Adds information to markers
         google.maps.event.addListener(marker, 'click', function() {
             infoWindow.setContent("<u>" + marker.title + "</u><br>" + marker.address);
             infoWindow.open(map, marker);
