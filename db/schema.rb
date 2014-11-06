@@ -11,53 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016050953) do
+ActiveRecord::Schema.define(version: 20141106022944) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "donations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "donor_id"
-    t.string   "company"
+    t.string   "organization"
     t.string   "address"
     t.string   "person"
     t.string   "phone"
     t.string   "email"
-    t.integer  "pickup_time_window"
     t.boolean  "refrigeration"
     t.string   "food_type"
-    t.integer  "quantity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "quantity"
+    t.datetime "window_start"
+    t.datetime "window_end"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.text     "additional_info"
   end
 
-  add_index "donations", ["donor_id"], name: "index_donations_on_donor_id"
+  add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
 
   create_table "interests", force: true do |t|
-    t.integer  "donation_id"
-    t.integer  "recipient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "donation_id"
+    t.integer  "recipient_id"
   end
 
-  add_index "interests", ["donation_id"], name: "index_interests_on_donation_id"
-  add_index "interests", ["recipient_id"], name: "index_interests_on_recipient_id"
+  add_index "interests", ["donation_id"], name: "index_interests_on_donation_id", using: :btree
+  add_index "interests", ["recipient_id"], name: "index_interests_on_recipient_id", using: :btree
 
   create_table "transactions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "donation_id"
     t.integer  "recipient_id"
     t.integer  "coordinator_id"
     t.boolean  "completed"
     t.datetime "completed_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
-  add_index "transactions", ["coordinator_id"], name: "index_transactions_on_coordinator_id"
-  add_index "transactions", ["donation_id"], name: "index_transactions_on_donation_id"
-  add_index "transactions", ["recipient_id"], name: "index_transactions_on_recipient_id"
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  add_index "transactions", ["coordinator_id"], name: "index_transactions_on_coordinator_id", using: :btree
+  add_index "transactions", ["donation_id"], name: "index_transactions_on_donation_id", using: :btree
+  add_index "transactions", ["recipient_id"], name: "index_transactions_on_recipient_id", using: :btree
 
   create_table "users", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -69,8 +75,6 @@ ActiveRecord::Schema.define(version: 20141016050953) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
