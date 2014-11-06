@@ -129,7 +129,7 @@ var DeliverDashboard = React.createClass({
             );
         } else {
             googleMapContent = (
-                <GoogleMap latitude={currentDelivery.donation.latitude} longitude={currentDelivery.donation.longitude} />
+                <GoogleMap donation={currentDelivery.donation} recipients={[currentDelivery.recipient]} latitude={currentDelivery.donation.latitude} longitude={currentDelivery.donation.longitude} />
             );
         }
         return (

@@ -63,6 +63,8 @@ var ScheduleDashboard = React.createClass({
                 phone: '555-555-1111',
                 organization: 'Blackprint',
                 address: '1015 Folsom Street, San Francisco, CA, United States',
+                latitude: 37.7781009,
+                longitude: -122.4057628,
                 orgNumber: '9000',
             },
             {
@@ -73,7 +75,9 @@ var ScheduleDashboard = React.createClass({
                 email: 'joe@recipient.com',
                 phone: '555-555-5555',
                 organization: 'Redprint',
-                address: '555 Center St., Berkeley, CA, United States',
+                address: 'People\'s Park 2556 Haste St Berkeley, CA 94704',
+                latitude: 37.865813,
+                longitude: -122.257058,
                 orgNumber: '5000',
             },
             {
@@ -84,7 +88,9 @@ var ScheduleDashboard = React.createClass({
                 email: 'food@recipient.com',
                 phone: '999-999-9999',
                 organization: 'Adult Food Finder',
-                address: '100 AFF Street, Berkeley, CA, United States',
+                address: 'Berkeley Bowl, 2020 Oregon St, Berkeley, CA 94703',
+                latitude: 37.857843,
+                longitude: -122.2613269,
                 orgNumber: '6000',
             }
         ]
@@ -176,7 +182,7 @@ var ScheduleDashboard = React.createClass({
                             <DonationRecipients recipients={this.state.recipients} donation={currDonation} handleSubmit={this.handleSubmit} />
                         </div>
                         <div className="medium-6 columns no-left-pad">
-                            <GoogleMap donation={currDonation} longitude={currDonation.longitude} latitude={currDonation.latitude} />
+                            <GoogleMap donation={currDonation} recipients={this.state.recipients} longitude={currDonation.longitude} latitude={currDonation.latitude} />
                         </div>
                     </div>
                 </div>
