@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+@mixin map-fix() {
+    img {
+        max-width: none;
+    }
+    label {
+        width: auto;
+        display: inline;
+    }
+}
+
 .coordinator-dashboard-nav-block {
     @include full-width-block($charcoal);
     border-bottom: 1px solid $dark-grey;
@@ -15,7 +26,7 @@
             padding-top: 8px;
             padding-bottom: 4px;
             font-size: rem-calc(14);
-            font-weight: 400;
+            font-weight: 300;
             a {
                 color: $dark-grey;
             }
@@ -33,7 +44,7 @@
     }
 }
 
-.coordinator-dashboard-content-block {
+.coordinator-dashboard-schedule-block {
     @include full-width-block($off-white);
     @include block-padding();
     min-height: 900px;
@@ -109,6 +120,7 @@
         }
         .dashboard {
             border: 1px solid $dark-grey;
+            @include drop-shadow(1);
             .card-header {
                 @extend .text-center;
                 border-bottom: 1px solid $dark-grey;
@@ -116,7 +128,7 @@
                 .card-header-title {
                     display: inline-block;
                     font-size: rem-calc(18);
-                    font-weight: 300;
+                    font-weight: 400;
                     color: $white;
                     margin-top: 8px;
                     margin-bottom: 8px;
@@ -185,7 +197,7 @@
                 .recipients-list-title {
                     @extend .text-center;
                     color: $white;
-                    font-weight: 300;
+                    font-weight: 400;
                     font-size: rem-calc(18);
                     padding-top: 10px;
                     padding-bottom: 10px;
@@ -230,9 +242,12 @@
                         .recipient-open {
                             background-color: $white;
                             color: $charcoal;
-                            h1 {
+
+                            p.organization {
                                 color: $charcoal;
                                 font-size: rem-calc(16);
+                                font-weight: 300;
+                                margin-bottom: 5px;
                             }
                             .recipient-details {
                                 padding-left: 20px;
@@ -243,9 +258,11 @@
                                     @media #{$medium-up} {
                                         margin-top: 30px;
                                     }
-                                    @extend .success-button;
                                     @extend .small;
+                                    @extend .material-success-button;
+                                    color: $medium-green;
                                     margin-bottom: 30px;
+                                    font-size: rem-calc(14);
                                 }
                             }
                             i.fa-li {
@@ -271,8 +288,14 @@
                                     @extend .row;
                                     @extend .text-center;
                                     a.confirm-button {
-                                        @extend .success-button;
+                                        @extend .material-success-button;
                                         margin-top: 5px;
+                                        color: $white;
+                                        background-color: $medium-green;
+                                        &:hover {
+                                            color: $white;
+                                            background-color: scale-color($medium-green, $lightness: 14%);
+                                        }
                                     }
                                 }
                             }
@@ -297,6 +320,7 @@
                     }
                 }
                 #map-canvas {
+                    @include map-fix;
                     width: 100%;
                     height: 100%;
                     min-height: 550px;
@@ -304,6 +328,148 @@
                     padding: 1;
                     @media #{$medium-up} {
                         border-left: 1px solid $dark-grey;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.coordinator-dashboard-deliver-block {
+    @include full-width-block($off-white);
+    @include block-padding();
+    min-height: 600px;
+    .dashboard-wrap {
+        border: 1px solid $dark-grey;
+        @include drop-shadow(1);
+        background-color: $medium-grey;
+
+        .delivery-header {
+            @extend .text-center;
+            border-bottom: 1px solid $dark-grey;
+            background-color: $medium-green;
+            width: 100%;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            font-size: rem-calc(18);
+            font-weight: 400;
+            color: $white;
+        }
+        .delivery-map {
+            min-height: 400px;
+            #map-canvas {
+                @include map-fix;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 1;
+                min-height: 400px;
+            }
+        }
+        .delivery-list {
+            .delivery-entry {
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                background-color: $light-grey;
+                border-top: 1px solid $dark-grey;
+                @include button-transition();
+
+                &:hover, &.active {
+                    background-color: $white;
+                    cursor: pointer;
+                    position: relative;
+                    z-index: 5;
+                }
+
+                &.active {
+                    z-index: 10;
+                    padding-top: 25px;
+                    padding-bottom: 25px;
+                }
+
+                .delivery-addresses {
+                    margin-left: 10px;
+                    .donation-address, .recipient-address {
+                        color: $charcoal;
+                        font-size: rem-calc(16);
+                        margin-left: 10px;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                    }
+
+                    .donation-address {
+                    }
+
+                    .recipient-address {
+                    }
+
+                    .delivery-arrow {
+                        position: absolute;
+                        margin-left: -15px;
+                        margin-top: -18px;
+                    }
+
+                    .delivery-info {
+                        p.delivery-time {
+                            display: inline-block;
+                            margin: 0;
+                            margin-right: 10px;
+                        }
+                        a.delivery-link {
+                            display:inline-block;
+                        }
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        margin-left: 10px;
+                        @media #{$small-only} {
+                            margin-bottom: 0px;
+                        }
+                    }
+                }
+
+                .action-button-list {
+                    @extend .text-center;
+                    width: 100%;
+                    padding-top: 10px;
+                    .action-container {
+                        @extend .text-center;
+                        display: inline-block;
+                        width: 150px;
+                        .success-item, .action-button, .disabled-button {
+                            display: inline-block;
+                            color: $medium-green;
+                            font-weight: 300;
+                            font-size: rem-calc(16);
+                            text-transform: uppercase;
+
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                        }
+
+                        .success-item, .disabled-button {
+                            padding-top: 0.625rem;
+                            padding-right: 1.25rem;
+                            padding-bottom: 0.6875rem;
+                            padding-left: 1.25rem;
+                            border: 1px solid transparent;
+                            i {
+                                margin-left: 5px;
+                            }
+                        }
+
+                        .disabled-button {
+                            border-radius: $global-radius;
+                            background-color: $dark-grey;
+                            color: $charcoal;
+                            opacity: 0.7;
+                        }
+
+                        .action-button {
+                            @extend .material-success-button;
+                            @extend .tiny;
+                        }
                     }
                 }
             }
