@@ -43,9 +43,11 @@
     <%= f.label :refrigeration %><br>
     <%= f.check_box :refrigeration %>
   </div>
-  <div class="field">
+  <div>
     <%= f.label :food_type %><br>
-    <%= f.text_field :food_type %>
+    <input type="textbox" name="donation[food_type][]" />
+    <input type="textbox" name="donation[food_type][]" />
+    <input type="textbox" name="donation[food_type][]" />
   </div>
   <div class="field">
     <%= f.label :quantity %><br>
