@@ -268,8 +268,8 @@ $header-font-weight: 400;
 // $code-padding: rem-calc(2) rem-calc(5) rem-calc(1);
 
 // We use these to style anchors
-// $anchor-text-decoration: none;
-// $anchor-text-decoration-hover: none;
+$anchor-text-decoration: none;
+$anchor-text-decoration-hover: none;
 $anchor-font-color: $medium-green;
 $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: 14%);
 

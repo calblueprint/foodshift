@@ -399,16 +399,15 @@
                         margin-bottom: 10px;
                     }
 
-                    .donation-address {
-                    }
-
-                    .recipient-address {
-                    }
-
-                    .delivery-arrow {
-                        position: absolute;
-                        margin-left: -15px;
-                        margin-top: -18px;
+                    .donation-address, .recipient-address {
+                        font-weight: 400;
+                        .address-prefix {
+                            margin-right: 5px;
+                            color: scale-color($charcoal, $lightness: 25%);
+                            text-transform: uppercase;
+                            font-size: rem-calc(14);
+                            font-weight: 300;
+                        }
                     }
 
                     .delivery-info {
@@ -416,6 +415,7 @@
                             display: inline-block;
                             margin: 0;
                             margin-right: 10px;
+                            font-weight: 400;
                         }
                         a.delivery-link {
                             display:inline-block;

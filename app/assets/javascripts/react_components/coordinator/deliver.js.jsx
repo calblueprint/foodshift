@@ -248,13 +248,10 @@ var Delivery = React.createClass({
                     <div className="medium-7 columns">
                         <div className="delivery-addresses">
                             <div className="donation-address">
-                                {this.props.delivery.donation.address}
-                            </div>
-                            <div className="delivery-arrow">
-                                <i className="fa fa-long-arrow-down fa-2x"></i>
+                                <span className="address-prefix">From</span>{this.props.delivery.donation.address}
                             </div>
                             <div className="recipient-address">
-                                {this.props.delivery.recipient.address}
+                                <span className="address-prefix">To</span>{this.props.delivery.recipient.address}
                             </div>
                             <div className="delivery-info">
                                 <p className="delivery-time">
