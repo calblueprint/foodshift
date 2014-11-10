@@ -51,8 +51,12 @@
   border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+
+    -webkit-box-shadow: 0 4px 7px rgba(black, 0.23),
+                0 8px 25px rgba(black, 0.05);
+    box-shadow: 0 4px 7px rgba(black, 0.23),
+                0 8px 25px rgba(black, 0.05);
+
   background-clip: padding-box;
   outline: 0;
 }
@@ -77,6 +81,7 @@
   padding: 15px;
   border-bottom: 1px solid $dark-grey;
   min-height: 16.42857143px;
+  font-weight: 400;
 }
 .modal-header .close {
   margin-top: -2px;
@@ -106,8 +111,10 @@
     margin: 30px auto;
   }
   .modal-content {
-    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 4px 7px rgba(black, 0.23),
+                0 8px 25px rgba(black, 0.05);
+    box-shadow: 0 4px 7px rgba(black, 0.23),
+                0 8px 25px rgba(black, 0.05);
   }
   .modal-sm {
     width: 300px;

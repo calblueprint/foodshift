@@ -4,18 +4,7 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 Number.prototype.mod = function(n) { return ((this % n) + n) % n; }
 
-/*
-TODO: Having this global variable is really gross... but we don't want to re-render the map each time we change donations...
-Need to figure out a clean way to do callbacks on this map variable that should (probably) be held as a state object
-in the Dashboard component
-*/
-var s = document.createElement('script');
-s.src = 'https://maps.googleapis.com/maps/api/js?key=' + "AIzaSyCmcTV-yBS4SnL3AqBlSXcYv5j-WaGdenA" + '&sensor=false&callback=mapLoaded';
-document.head.appendChild(s);
-
-var map;
-
-var Dashboard = React.createClass({
+var ScheduleDashboard = React.createClass({
     getInitialState: function() {
         var donations = this.getDonationsList()
         return {
@@ -74,6 +63,8 @@ var Dashboard = React.createClass({
                 phone: '555-555-1111',
                 organization: 'Blackprint',
                 address: '1015 Folsom Street, San Francisco, CA, United States',
+                latitude: 37.7781009,
+                longitude: -122.4057628,
                 orgNumber: '9000',
             },
             {
@@ -84,7 +75,9 @@ var Dashboard = React.createClass({
                 email: 'joe@recipient.com',
                 phone: '555-555-5555',
                 organization: 'Redprint',
-                address: '555 Center St., Berkeley, CA, United States',
+                address: 'People\'s Park 2556 Haste St Berkeley, CA 94704',
+                latitude: 37.865813,
+                longitude: -122.257058,
                 orgNumber: '5000',
             },
             {
@@ -95,7 +88,9 @@ var Dashboard = React.createClass({
                 email: 'food@recipient.com',
                 phone: '999-999-9999',
                 organization: 'Adult Food Finder',
-                address: '100 AFF Street, Berkeley, CA, United States',
+                address: 'Berkeley Bowl, 2020 Oregon St, Berkeley, CA 94703',
+                latitude: 37.857843,
+                longitude: -122.2613269,
                 orgNumber: '6000',
             }
         ]
@@ -187,7 +182,7 @@ var Dashboard = React.createClass({
                             <DonationRecipients recipients={this.state.recipients} donation={currDonation} handleSubmit={this.handleSubmit} />
                         </div>
                         <div className="medium-6 columns no-left-pad">
-                            <RequestMap donation={currDonation} longitude={currDonation.longitude} latitude={currDonation.latitude} />
+                            <GoogleMap donation={currDonation} recipients={this.state.recipients} longitude={currDonation.longitude} latitude={currDonation.latitude} />
                         </div>
                     </div>
                 </div>
@@ -318,7 +313,7 @@ var DonationRecipients = React.createClass({
         this.setState({openRecipientId: recipientId});
     },
     render: function() {
-        recipients =  _.map(this.props.recipients, function (recipient) {
+        var recipients =  _.map(this.props.recipients, function(recipient) {
             var isOpen = (recipient.id === this.state.openRecipientId);
             return (
                 <Recipient
@@ -344,51 +339,6 @@ var DonationRecipients = React.createClass({
     }
 });
 
-var RequestMap = React.createClass({
-    getInitialState: function() {
-        return {
-            map : null,
-            markers : [],
-        };
-    },
-    getDefaultProps: function() {
-        return {
-            zoom: 13,
-            latitude: 37.8747924,
-            longitude: -122.2583104,
-            address: "",
-            width: 500,
-            height: 500,
-            points: [],
-            gmapsApiKey: "AIzaSyCmcTV-yBS4SnL3AqBlSXcYv5j-WaGdenA",
-            gmapsSensor: false
-        }
-    },
-    render: function() {
-        return (
-            <div id="map-canvas"></div>
-        );
-    },
-    componentDidMount : function() {
-        window.mapLoaded = (function() {
-            var mapOptions = {
-                zoom: this.props.zoom,
-                center: new google.maps.LatLng(this.props.latitude, this.props.longitude),
-            };
-            map = new google.maps.Map(this.getDOMNode(), mapOptions);
-        }).bind(this);
-        window.mapLoaded();
-    },
-    componentDidUpdate: function(prevProps, prevState) {
-        map.panTo(new google.maps.LatLng(this.props.latitude, this.props.longitude));
-    },
-    componentWillUnmount : function() {
-        $(this.getDOMNode()).remove();
-    },
-    getApiUrl: function() {
-        //return 'https://maps.googleapis.com/maps/api/js?key=' + this.props.gmapsApiKey + '&sensor=' + this.props.gmapsSensor + '&callback=mapLoaded';
-    }
-});
 
 var Recipient = React.createClass({
     getDefaultProps: function() {
@@ -457,9 +407,9 @@ var Recipient = React.createClass({
         return (
             <div key={_.join("-", this.props.recipient.id, "open")} className="recipient-open">
                 <div className="row">
-                    <div className="medium-8 columns">
+                    <div className="medium-6 columns">
                         <div className="recipient-details">
-                            <h1>{this.props.recipient.organization}</h1>
+                            <p className="organization">{this.props.recipient.organization}</p>
                             <ul className="fa-ul">
                               <li><i className="fa-li fa fa-user"></i>{this.props.recipient.firstName} {this.props.recipient.lastName}</li>
                               <li><i className="fa-li fa fa-envelope-o"></i>{this.props.recipient.email}</li>
@@ -467,9 +417,9 @@ var Recipient = React.createClass({
                             </ul>
                         </div>
                     </div>
-                    <div className="medium-4 end columns">
+                    <div className="medium-6 columns">
                         <div className="recipient-confirm">
-                            <a className="match-button" data-reveal-id="myModal" onClick={this.handleShowModal}>Match</a>
+                            <a className="match-button" onClick={this.handleShowModal}>Schedule</a>
                         </div>
                     </div>
                 </div>
@@ -566,6 +516,6 @@ var Recipient = React.createClass({
 });
 
 React.renderComponent(
-    <Dashboard />,
-    document.getElementById('dashboard-content')
+    <ScheduleDashboard />,
+    document.getElementById('schedule-content')
 );

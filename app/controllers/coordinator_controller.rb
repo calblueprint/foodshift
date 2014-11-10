@@ -1,4 +1,10 @@
 class CoordinatorController < ApplicationController
-  def dashboard
+  def deliver
+  end
+
+  def schedule
+  end
+
+  def data
   end
 end
