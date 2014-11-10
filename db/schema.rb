@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016050953) do
+ActiveRecord::Schema.define(version: 20141109232241) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,15 +23,19 @@ ActiveRecord::Schema.define(version: 20141016050953) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "donor_id"
-    t.string   "company"
-    t.string   "address"
-    t.string   "person"
-    t.string   "phone"
-    t.string   "email"
-    t.integer  "pickup_time_window"
-    t.boolean  "refrigeration"
-    t.string   "food_type"
-    t.integer  "quantity"
+    t.string   "organization",                    null: false
+    t.string   "address",                         null: false
+    t.string   "person",                          null: false
+    t.string   "phone",                           null: false
+    t.string   "email",                           null: false
+    t.boolean  "refrigeration",   default: false
+    t.string   "quantity",                        null: false
+    t.datetime "window_start",                    null: false
+    t.datetime "window_end",                      null: false
+    t.text     "additional_info"
+    t.string   "food_type",       default: [],    null: false, array: true
+    t.decimal  "latitude"
+    t.decimal  "longitude"
   end
 
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
@@ -49,8 +56,8 @@ ActiveRecord::Schema.define(version: 20141016050953) do
     t.integer  "donation_id"
     t.integer  "recipient_id"
     t.integer  "coordinator_id"
-    t.boolean  "completed"
-    t.datetime "completed_time"
+    t.datetime "delivered_at"
+    t.datetime "picked_up_at"
   end
 
   add_index "transactions", ["coordinator_id"], name: "index_transactions_on_coordinator_id", using: :btree
