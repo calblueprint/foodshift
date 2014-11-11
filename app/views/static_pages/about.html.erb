@@ -1,2 +1,62 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<div id="about-image-block">
+    <div class="about-image"></div>
+    <div class="about-image-overlay"></div>
+    <div class="about-content">
+        <div class="row">
+            <div class="small-8 small-centered columns">
+                <h1 class="title">About Us</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="about-mission-block">
+    <div class="row">
+        <div class="small-10 small-centered columns">
+            <p class="mission">
+    Food Shift works collaboratively with communities, businesses and governments to develop long-term sustainable solutions to reduce food waste and build more resilient communities.
+            </p>
+            <p class="about">
+This disturbing reality is destructive to the environment and to the health of our communities. Each time food goes uneaten, all the resources that went into producing, processing, packaging, and transporting that food are wasted too. This means huge amounts of land, water, energy, money, and other materials are depleted unnecessarily. Wasting all this food is costly to individuals, businesses, municipalities and the environment. Given the resources demanded for food production, the increasing realities of climate change, and the fact that 1 in 6 Americans are hungry, it is critical that we shift our behaviors towards a more sustainable and efficient use of food.
+            </p>
+            <p class="about">
+At Food Shift, we know that food isn’t waste— it’s valuable nutrition that uses precious environmental resources and should be used to feed people in our communities. Through our events, online resources, and collaborative programs we provide guidance and promote opportunities for individuals, organizations, and businesses to use food waste reduction as a strategy that saves money, benefits the community, and alleviates strain on the environment. By trimming waste and diverting food loss we can alleviate hunger, create jobs, combat climate change, conserve natural resources, and cultivate more sustainable communities.
+            </p>
+        </div>
+    </div>
+</div>
+
+<% description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tortor ligula, sollicitudin id dapibus ac, viverra id metus. Etiam ultricies, felis fringilla sollicitudin vehicula, nisi erat aliquet nunc, nec lobortis nulla arcu id lectus. Vestibulum egestas, tortor quis tincidunt lobortis, erat ipsum varius libero, ac finibus augue nisl quis est. Curabitur ullamcorper, elit nec tempus molestie, ex purus pellentesque nunc, et elementum lacus magna ut purus. Curabitur lobortis non ante ut aliquam. Vestibulum bibendum leo quis diam mollis imperdiet" %>
+
+<div class="about-participants-block">
+    <div class="row">
+        <div class="small-12 small-centered columns">
+            <div class="donors">
+                <h2>Donor Organizations</h2>
+                 <ul class="org-list">
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo1.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo2.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo3.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo4.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo5.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo6.png", description: description} %>
+                </ul>
+          </div>
+
+            <div class="recipients">
+                <h2>Recipient Organizations</h2>
+                 <ul class="org-list">
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo7.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo8.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo1.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo2.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo3.png", description: description} %>
+                     <%= render partial: "org_tile", locals: {image_path: "org_logos/logo4.png", description: description} %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%= javascript_include_tag "application/about" %>

@@ -1419,13 +1419,13 @@ $topbar-link-bg-active-hover: scale-color($medium-green, $lightness: 15%);
 // $topbar-button-top: 7px;
 
 $topbar-dropdown-label-color: $medium-green;
-$topbar-dropdown-label-text-transform: uppercase;
+$topbar-dropdown-label-text-transform: none;
 $topbar-dropdown-label-font-weight: $font-weight-bold;
 $topbar-dropdown-label-font-size: rem-calc(10);
 $topbar-dropdown-label-bg: $medium-green;
 
 // Top menu icon styles
-$topbar-menu-link-transform: uppercase;
+$topbar-menu-link-transform: none;
 $topbar-menu-link-font-size: rem-calc(13);
 $topbar-menu-link-weight: $font-weight-bold;
 $topbar-menu-link-color: $white;
