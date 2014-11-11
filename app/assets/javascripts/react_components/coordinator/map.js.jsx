@@ -129,7 +129,7 @@ var GoogleMap = React.createClass({
             address: address,
             type: type,
             //icon: this.typeImage(type),
-            animation: google.maps.Animation.DROP,
+            //animation: google.maps.Animation.DROP,
             map: null,
         });
         return marker;
