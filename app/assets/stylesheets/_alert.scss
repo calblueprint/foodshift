@@ -1,0 +1,4 @@
+.react-alert-box {
+    @include alert();
+    @extend .radius;
+}

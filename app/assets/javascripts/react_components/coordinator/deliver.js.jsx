@@ -10,6 +10,7 @@ var DeliverDashboard = React.createClass({
         return {
             openDeliveryId: null,
             deliveries: deliveries,
+            alert: null,
         };
     },
     getCurrentDeliveries: function() {
@@ -147,7 +148,9 @@ var DeliverDashboard = React.createClass({
                             deliveries={this.state.deliveries}
                             handleSelectDelivery={this.handleSelectDelivery}
                             handlePickupSubmit={this.handlePickupSubmit}
+                            handlePickupUndo={this.handlePickupUndo}
                             handleDeliverySubmit={this.handleDeliverySubmit}
+                            handleDeliveryUndo={this.handleDeliveryUndo}
                         />
                     </div>
                 </div>
@@ -176,6 +179,18 @@ var DeliverDashboard = React.createClass({
 
         console.log("Transaction " + deliveryId + " successfully picked up");
     },
+    handlePickupUndo: function(event){
+        var deliveryId = event.deliveryId;
+        var currentDeliveries = this.state.deliveries;
+        var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
+        var index = _.indexOf(currentDeliveries, currentDelivery);
+
+        currentDelivery.pickupTimestamp = null;
+        currentDeliveries[index] = currentDelivery;
+        this.setState({deliveries: currentDeliveries});
+
+        console.log("Transaction " + deliveryId + " pickup UNDO");
+    },
     handleDeliverySubmit: function(event){
         // TODO: Submit deliveries to backend
         var deliveryId = event.deliveryId;
@@ -188,6 +203,18 @@ var DeliverDashboard = React.createClass({
         this.setState({deliveries: currentDeliveries});
 
         console.log("Transaction " + deliveryId + " successfully delivered");
+    },
+    handleDeliveryUndo: function(event){
+        var deliveryId = event.deliveryId;
+        var currentDeliveries = this.state.deliveries;
+        var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
+        var index = _.indexOf(currentDeliveries, currentDelivery);
+
+        currentDelivery.deliveryTimestamp = null;
+        currentDeliveries[index] = currentDelivery;
+        this.setState({deliveries: currentDeliveries});
+
+        console.log("Transaction " + deliveryId + " delivery UNDO");
     },
 });
 
@@ -207,7 +234,9 @@ var DeliveryList = React.createClass({
                     delivery={delivery}
                     isOpen={isOpen}
                     handlePickupSubmit={this.props.handlePickupSubmit}
+                    handlePickupUndo={this.props.handlePickupUndo}
                     handleDeliverySubmit={this.props.handleDeliverySubmit}
+                    handleDeliveryUndo={this.props.handleDeliveryUndo}
                     handleSelectDelivery={this.props.handleSelectDelivery}
                 />
             );
@@ -221,6 +250,11 @@ var DeliveryList = React.createClass({
 });
 
 var Delivery = React.createClass({
+    getInitialState: function() {
+        return {
+            alertStatus: null,
+        };
+    },
     getDefaultProps: function() {
         return {
             delivery: null,
@@ -242,6 +276,7 @@ var Delivery = React.createClass({
             'fa-chevron-down': true,
             'active': this.props.isOpen,
         });
+        var alertContent = null;
         return (
             <div className={entryClasses} onClick={this.handleSelectDelivery}>
                 <div className="row">
@@ -321,9 +356,17 @@ var Delivery = React.createClass({
         e.stopPropagation();
         this.props.handlePickupSubmit({deliveryId: this.props.delivery.id});
     },
+    handlePickupUndo: function(e) {
+        e.stopPropagation();
+        this.props.handlePickupUndo({deliveryId: this.props.delivery.id});
+    },
     handleDeliverySubmit: function(e) {
         e.stopPropagation();
         this.props.handleDeliverySubmit({deliveryId: this.props.delivery.id});
+    },
+    handleDeliveryUndo: function(e) {
+        e.stopPropagation();
+        this.props. handleDeliveryUndo({deliveryId: this.props.delivery.id});
     },
     handleGetDirections: function(e) {
         e.stopPropagation();
