@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root 'landing#index'
+  root 'static_pages#home'
 
-  devise_for :users
+  get 'about' => 'static_pages#about'
 
   get 'donate' => 'registration#donor'
   get 'receive' => 'registration#recipient'
@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'coordinator/deliver'
   get 'coordinator/schedule'
   get 'coordinator/data'
+
+  devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
