@@ -13,7 +13,8 @@ $(function() {
     $(document).foundation({
         abide : {
             patterns: {
-                phone: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
+                phone: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
+                time: /^([1-9]|1[0-2]):([0-5]\d)\s?(AM|PM)?$/i,
                 }
             }
       });

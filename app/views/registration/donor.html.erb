@@ -16,7 +16,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
     </div>
 </div>
 
-<form data-abide>
+<form data-abide method="POST" accept-charset="UTF-8" action="/donations">
 
 <div id="donor-form-food-block">
     <div id="donor-form">
@@ -31,7 +31,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Address</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" placeholder="" required id="donor-address" />
+                    <input type="text" placeholder="" required id="donor-address" name="donation[address]"/>
                     <small class="error">Address is required.</small>
                 </div>
             </div>
@@ -40,7 +40,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Date</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="date" required />
+                    <input type="date" required name="donation[date]"/>
                     <small class="error">Valid date is required.</small>
                 </div>
             </div>
@@ -49,14 +49,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">From</span>
                 </div>
                 <div class="small-4 columns">
-                    <input type="time" />
+                    <input type="text" pattern="time" required name="donation[start_time]"/>
                     <small class="error">Valid time is required.</small>
                 </div>
                 <div class="small-2 columns">
                     <span class="prefix">To</span>
                 </div>
                 <div class="small-4 columns">
-                    <input type="time" />
+                    <input type="text" pattern="time" required name="donation[end_time]"/>
                     <small class="error">Valid time is required.</small>
                 </div>
             </div>
@@ -72,7 +72,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Name</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" required/>
+                    <input type="text" required  name="donation[person]"/>
                     <small class="error">Name is required.</small>
                 </div>
             </div>
@@ -81,7 +81,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Organization</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" required/>
+                    <input type="text" required  name="donation[organization]"/>
                     <small class="error">Organization is required.</small>
                 </div>
             </div>
@@ -90,7 +90,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Email</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="email" required/>
+                    <input type="email" required  name="donation[email]"/>
                     <small class="error">Valid email is required.</small>
                 </div>
             </div>
@@ -99,7 +99,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Phone</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="tel" pattern="phone" required/>
+                    <input type="tel" pattern="phone" required name="donation[phone]"/>
                     <small class="error">Valid phone number is required.</small>
                 </div>
             </div>
@@ -114,13 +114,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
     </div>
     <div class="row">
         <div class="small-12 medium-8 medium-centered columns">
-            <textarea rows=5 ></textarea>
+            <textarea rows=5 name="donation[additional_info]"></textarea>
         </div>
     </div>
     <div class="row form-padding">
         <div class="small-12 columns">
             <div class="text-center donate-block">
-                <a id="submit" class="success-button">Donate!</a>
+                <input class="success-button" name="commit" type="submit" value="Donate!">
             </div>
         </div>
     </div>

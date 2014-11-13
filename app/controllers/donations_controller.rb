@@ -24,6 +24,7 @@ class DonationsController < ApplicationController
   # POST /donations
   # POST /donations.json
   def create
+    puts donation_params
     @donation = Donation.new(donation_params)
 
     @donation.donor = current_user if user_signed_in?
@@ -71,6 +72,20 @@ class DonationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def donation_params
-    params.require(:donation).permit(:donor_id, :organization, :address, :person, :phone, :email, :window_start, :window_end, :refrigeration, {food_type: []}, :quantity, :additional_info)
+      params.require(:donation).permit(
+          :donor_id,
+          {food_type: []},
+          :quantity,
+          :address,
+          :date,
+          :start_time,
+          :end_time,
+          :person,
+          :organization,
+          :email,
+          :phone,
+          :refrigeration,
+          :additional_info
+      )
   end
 end
