@@ -10,7 +10,8 @@ class UserMailer < ActionMailer::Base
   	mail(to: recipients, subject: 'Your donation has found a recipient!')
   end
 
-  def coordinator_email(recipients)
+  def coordinator_email(recipients, donation)
+    @donation = donation
   	mail(to: recipients, subject: 'Donation Posted!')
   end
  end

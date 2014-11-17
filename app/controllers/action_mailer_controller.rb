@@ -19,8 +19,9 @@ class ActionMailerController < ApplicationController
 	end
 
 	def notify_coordinator
+		@donation = Donation.find(params[:id])
 		@coordinators = Coordinator.pluck(:email)
-		UserMailer.coordinator_email(@coordinators).deliver
+		UserMailer.coordinator_email(@coordinators, @donation).deliver
 	end
 
 end
