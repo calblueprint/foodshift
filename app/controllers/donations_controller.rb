@@ -24,19 +24,16 @@ class DonationsController < ApplicationController
   # POST /donations
   # POST /donations.json
   def create
-    puts donation_params
-    @donation = Donation.new(donation_params)
-
-    @donation.donor = current_user if user_signed_in?
-
+    donationForm = DonationForm.new(donation_params)
+    donationForm.donor_id = current_user if user_signed_in?
     respond_to do |format|
-      if @donation.save
-        format.html { redirect_to @donation, notice: "Donation was successfully created." }
-        format.json { render :show, status: :created, location: @donation }
-      else
-        format.html { render :new }
-        format.json { render json: @donation.errors, status: :unprocessable_entity }
-      end
+        if donationForm.create_objects
+            format.html { redirect_to donationForm.donation, notice: "Donation was successfully created." }
+            format.json { render :show, status: :created, location: donationForm.donation }
+        else
+            format.html { render donate_path }
+            format.json { render json: donationForm.donation.errors, status: :unprocessable_entity }
+        end
     end
   end
 
