@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   get 'about' => 'static_pages#about'
 
-  get 'donate' => 'registration#donor'
+  get 'donate', to: 'donations#new', as: :donation_new
+  post 'donate', to: 'donations#create', as: :donation_create
+
   get 'receive' => 'registration#recipient'
 
   get 'coordinator/deliver'
@@ -27,7 +29,6 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :users
-  resources :donations
 
   # Example resource route with options:
   #   resources :products do
