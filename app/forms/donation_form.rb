@@ -34,7 +34,7 @@ class DonationForm < Form
       donation.save!
     end
     rescue ActiveRecord::RecordInvalid => err
-      logger.error("#{err.to_s}")
+      logger.error(err.to_s)
       false
   end
 
