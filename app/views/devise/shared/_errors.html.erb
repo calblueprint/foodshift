@@ -1,7 +1,7 @@
 <% if !devise_error_messages!.empty? %>
+    <script>
     <% devise_error_messages!.each do |error_msg| %>
-        <script>
             toastr.error('<%= error_msg %>');
-        </script>
     <% end %>
+    </script>
 <% end %>

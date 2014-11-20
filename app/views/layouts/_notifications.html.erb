@@ -1,10 +1,7 @@
-<% if flash[:notice] %>
-    <script>
-        toastr.info('<%= flash[:notice] %>');
-    </script>
-<% end %>
-<% if flash[:alert] %>
-    <script>
-        toastr.error('<%= flash[:alert] %>');
-    </script>
+<% if !flash_toastr_msgs.empty? %>
+<script>
+    <% flash_toastr_msgs.each do |type, msg| %>
+    toastr.<%= type %>('<%= msg %>');
+    <% end %>
+</script>
 <% end %>
