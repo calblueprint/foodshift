@@ -51,3 +51,5 @@ gem 'spring',        group: :development
 gem 'devise'
 
 gem 'nilify_blanks'
+
+gem 'cancan'
