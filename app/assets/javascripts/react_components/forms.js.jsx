@@ -14,11 +14,11 @@ var SelectBox = React.createClass({
     render: function() {
         var choices = _.map(this.props.choices, function (choice) {
             return (
-                <option value={choice.value}>{choice.name}</option>
+                <option key={choice.value} value={choice.value}>{choice.name}</option>
             );
         });
         return (
-            <select value={this.props.value} onChange={this.handleChange}>
+            <select value={this.props.value} onChange={this.handleChange} name={this.props.name}>
                 {choices}
             </select>
         );
@@ -42,7 +42,7 @@ var InputField = React.createClass({
         return (
             <div>
                 <label>{this.props.label}
-                    <input type="text" className={classes} value={this.props.value} onChange={this.props.handleChange} />
+                    <input type="text" className={classes} value={this.props.value} onChange={this.props.handleChange} name={this.props.name}/>
                 </label>
                 {errorElement}
             </div>
@@ -68,7 +68,7 @@ var DateField = React.createClass({
         return (
             <div>
                 <label>{this.props.label}
-                    <input type="date" className={classes} value={this.props.value} min={this.props.minDate} onChange={this.props.handleChange} />
+                    <input type="date" className={classes} value={this.props.value} min={this.props.minDate} onChange={this.props.handleChange} name={this.props.name}/>
                 </label>
                 {errorElement}
             </div>
@@ -92,7 +92,7 @@ var TimeField = React.createClass({
         return (
             <div>
                 <label>{this.props.label}
-                    <input type="time" className={classes} value={this.props.value} onChange={this.props.handleChange} />
+                    <input type="time" className={classes} value={this.props.value} onChange={this.props.handleChange} name={this.props.name}/>
                 </label>
                 {errorElement}
             </div>
@@ -121,7 +121,7 @@ var NumberField = React.createClass({
             <div>
                 <label>{this.props.label}
                     <input type="number" min={this.props.min} max={this.props.max} step={this.props.step}
-                        className={classes} value={this.props.value} onChange={this.props.handleChange} />
+                        className={classes} value={this.props.value} onChange={this.props.handleChange} name={this.props.name}/>
                 </label>
                 {errorElement}
             </div>
@@ -147,7 +147,7 @@ var TextField = React.createClass({
         return (
             <div>
                 <label>{this.props.label}
-                    <textarea className={classes} rows={this.props.rows} value={this.props.value} onChange={this.props.handleChange} />
+                    <textarea className={classes} rows={this.props.rows} value={this.props.value} onChange={this.props.handleChange} name={this.props.name}/>
                 </label>
                 {errorElement}
             </div>

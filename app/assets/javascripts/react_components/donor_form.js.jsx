@@ -69,6 +69,7 @@ var DonorForm = React.createClass({
                     <div className="small-3 columns">
                         <SelectBox choices={this.props.quantityChoices} value={this.state.quantityType} onSelect={this.onQuantityTypeChange}/>
                     </div>
+                    <input type="hidden" name="donation[quantity]" value={_.join(" ", this.state.quantity, this.state.quantityType)} />
                     <div className="small-3 columns">
                     </div>
                 </div>
@@ -87,15 +88,18 @@ var FoodTypeMultiSelect = React.createClass({
     },
     render: function() {
         var buttons = _.map(this.props.choices, function (name) {
-            classes = React.addons.classSet({
-                'tab-current': _.contains(this.props.values, name)
+            var isActive = _.contains(this.props.values, name);
+            var classes = React.addons.classSet({
+                'tab-current': isActive
             });
+            var inputElement = isActive ? <input type="hidden" name="donation[food_type][]" value={name} /> : null;
             return (
-                <li className={classes}>
-                <ToggleButtonAnchor
-                    name={name}
-                    is_active={this.props.value === name}
-                    onButtonClick={this.props.onButtonClick} />
+                <li className={classes} key={name}>
+                    <ToggleButtonAnchor
+                        name={name}
+                        isActive={isActive}
+                        onButtonClick={this.props.onButtonClick} />
+                    {inputElement}
                 </li>
             );
         }.bind(this));
