@@ -16,10 +16,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
     </div>
 </div>
 
-<form data-abide method="POST" accept-charset="UTF-8" action="/donations">
+<form data-abide method="POST" accept-charset="UTF-8" action="<%= donations_new_path %>">
 
 <div id="donor-form-food-block">
     <div id="donor-form">
+    </div>
+    <div class="row">
+        <div class="small-12 columns text-center">
+            <input id="checkbox-refrigeration" type="checkbox" name="donation[refrigeration]"/><label for="checkbox-refrigeration">Do you have refrigeration?</label>
+        </div>
     </div>
 </div>
 <div id="donor-form-pickup-block">

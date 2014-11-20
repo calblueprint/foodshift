@@ -188,7 +188,7 @@ a.success-button, input.success-button {
         a {
             color: $medium-green;
             span {
-                @include translate-vertical(4px);
+                //@include translate-vertical(4px);
             }
         }
         &::before {
