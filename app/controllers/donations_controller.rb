@@ -12,7 +12,7 @@ class DonationsController < ApplicationController
         if donationForm.create_objects
             format.html { redirect_to root_path, notice: "Donation was successfully created." }
         else
-            format.html { render donation_new_path }
+            format.html { render donations_new_path }
         end
     end
   end

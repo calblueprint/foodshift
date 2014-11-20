@@ -3,14 +3,17 @@ Rails.application.routes.draw do
 
   get 'about' => 'static_pages#about'
 
-  get 'donate', to: 'donations#new', as: :donation_new
-  post 'donate', to: 'donations#create', as: :donation_create
+  get 'donate', to: 'donations#new', as: :donations_new
+  post 'donate', to: 'donations#create', as: :donations_create
 
-  get 'receive' => 'registration#recipient'
+  get 'receive', to: 'recipients#new', as: :recipients_new
+  post 'receive', to: 'recipients#create', as: :recipients_create
 
-  get 'coordinator/deliver'
-  get 'coordinator/schedule'
-  get 'coordinator/data'
+  scope '/coordinator' do
+    get '/deliver', to: 'coordinator#deliver', as: :coordinator_deliver
+    get '/schedule', to: 'coordinator#schedule', as: :coordinator_schedule
+    get '/data', to: 'coordinator#data', as: :coordinator_data
+  end
 
   devise_for :users
 
