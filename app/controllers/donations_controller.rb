@@ -1,4 +1,6 @@
 class DonationsController < ApplicationController
+  load_and_authorize_resource
+  before_action :set_donation, only: [:show, :edit, :update, :destroy]
 
   # GET /donate
   def new
