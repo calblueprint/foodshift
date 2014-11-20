@@ -6,6 +6,8 @@ class DonationForm < Form
         :food_type,
         :quantity,
         :address,
+        :latitude,
+        :longitude,
         :date,
         :start_time,
         :end_time,
@@ -50,8 +52,8 @@ class DonationForm < Form
             window_end: window_end,
             additional_info: additional_info,
             food_type: food_type,
-            latitude: -35,
-            longitude: -35,
+            latitude:  latitude,
+            longitude: longitude,
         )
     end
 

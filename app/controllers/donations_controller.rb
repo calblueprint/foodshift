@@ -25,6 +25,8 @@ class DonationsController < ApplicationController
           {food_type: []},
           :quantity,
           :address,
+          :latitude,
+          :longitude,
           :date,
           :start_time,
           :end_time,
@@ -33,7 +35,7 @@ class DonationsController < ApplicationController
           :email,
           :phone,
           :refrigeration,
-          :additional_info
+          :additional_info,
       )
   end
 end
