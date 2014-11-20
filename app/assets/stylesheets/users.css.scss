@@ -1,12 +1,56 @@
-.sign-in-block {
+#error_explanation {
+    background-color: $light-red;
+    border: 1px solid $red;
+    border-radius: $global-radius;
+    padding: 10px;
+    margin-bottom: 50px;
+    h2 {
+        font-weight: 300;
+        font-size: rem-calc(16);
+        color: $charcoal;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            padding-left: 10px;
+            color: $charcoal;
+            font-weight: 300;
+            font-size: rem-calc(14);
+        }
+    }
+
+}
+
+.sign-in-block, .forgot-password-block {
+    label, h1, span.prefix {
+        color: $charcoal;
+    }
+    h1 {
+        font-weight: 600;
+        font-size: rem-calc(37);
+    }
+
     @include full-width-block($off-white);
     @include block-padding;
     min-height: 100%;
+}
+.sign-in-block {
     .remember-me-checkbox {
         @extend .right;
         display: inline-block;
     }
     input.sign-in-button {
+        @extend .success-button;
+        @extend .right;
+        display: inline-block;
+    }
+
+}
+
+.forgot-password-block {
+    input.pw-reset-button {
         @extend .success-button;
         @extend .right;
         display: inline-block;
