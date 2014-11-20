@@ -1,8 +1,8 @@
 class Form
-    extend ActiveModel::Naming
-    include ActiveModel::Model
+  extend ActiveModel::Naming
+  include ActiveModel::Model
 
-    def persisted?
-        false
-    end
+  def persisted?
+    false
+  end
 end
