@@ -1,0 +1,14 @@
+.sign-in-block {
+    @include full-width-block($off-white);
+    @include block-padding;
+    min-height: 100%;
+    .remember-me-checkbox {
+        @extend .right;
+        display: inline-block;
+    }
+    input.sign-in-button {
+        @extend .success-button;
+        @extend .right;
+        display: inline-block;
+    }
+}
