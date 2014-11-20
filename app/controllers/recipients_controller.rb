@@ -1,5 +1,4 @@
 class RecipientsController < ApplicationController
-
   # GET /receive
   def new
   end

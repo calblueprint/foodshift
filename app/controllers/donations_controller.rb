@@ -6,10 +6,10 @@ class DonationsController < ApplicationController
 
   # POST /donations
   def create
-    donationForm = DonationForm.new(donation_params)
-    donationForm.donor_id = current_user if user_signed_in?
+    donation_form = DonationForm.new(donation_params)
+    donation_form.donor_id = current_user if user_signed_in?
     respond_to do |format|
-      if donationForm.create_objects
+      if donation_form.create_objects
         format.html { redirect_to root_path, notice: "Donation was successfully created." }
       else
         format.html { render donations_new_path }
@@ -22,7 +22,7 @@ class DonationsController < ApplicationController
   def donation_params
     params.require(:donation).permit(
       :donor_id,
-      {food_type: []},
+      { food_type: [] },
       :quantity,
       :address,
       :latitude,

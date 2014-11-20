@@ -30,13 +30,12 @@ class DonationForm < Form
   end
 
   def create_objects
-    begin
-      ActiveRecord::Base.transaction do
-        donation.save!
-      end
-    rescue ActiveRecord::RecordInvalid => invalid
-      false
+    ActiveRecord::Base.transaction do
+      donation.save!
     end
+    rescue ActiveRecord::RecordInvalid => err
+      logger.error("#{err.to_s}")
+      false
   end
 
   def donation
