@@ -1,6 +1,10 @@
-<div class="notification-notice">
-    <%= notice %>
-</div>
-<div class="notification-alert">
-    <%= alert %>
-</div>
+<% if flash[:notice] %>
+    <script>
+        toastr.info('<%= flash[:notice] %>');
+    </script>
+<% end %>
+<% if flash[:alert] %>
+    <script>
+        toastr.error('<%= flash[:alert] %>');
+    </script>
+<% end %>
