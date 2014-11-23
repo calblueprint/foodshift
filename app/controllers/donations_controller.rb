@@ -21,7 +21,6 @@ class DonationsController < ApplicationController
 
   def donation_params
     params.require(:donation).permit(
-      :donor_id,
       { food_type: [] },
       :quantity,
       :address,

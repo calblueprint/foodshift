@@ -27,4 +27,8 @@ $(function() {
                 }
             }
       });
+
+    $('#donor-form-fields').on('invalid.fndtn.abide', function () {
+        toastr.error('There was an error with your submission');
+    });
 });
