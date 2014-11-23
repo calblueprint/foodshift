@@ -32,7 +32,7 @@ class RecipientForm < Form
     ActiveRecord::Base.transaction do
       recipient_user.save!
       # TODO: Add when schema gets updated for this
-      #recipient_profile.save!
+      # recipient_profile.save!
     end
     rescue ActiveRecord::RecordInvalid => err
       logger.error(err.to_s)
@@ -44,7 +44,7 @@ class RecipientForm < Form
         email: email,
         password: password,
         # TODO: Fix when schema gets updated for this
-        #type: User::TYPE_RECIPIENT
+        # type: User::TYPE_RECIPIENT
     )
   end
 

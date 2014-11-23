@@ -9,7 +9,10 @@ class RecipientsController < ApplicationController
     recipient_form.donor_id = current_user if user_signed_in?
     respond_to do |format|
       if recipient_form.create_objects
-        format.html { redirect_to root_path, notice: "You have been successfully registered." }
+        format.html {
+          redirect_to root_path,
+          notice: "You have been successfully registered."
+        }
       else
         format.html { render recipients_new_path }
       end
