@@ -26,6 +26,7 @@ var GoogleMap = React.createClass({
         var map = this.drawMap();
         this.setState({map: map});
         this.placeMarkers(this.props.donation, this.props.recipients, map);
+        // this.props.directionsDisplay.setMap(this.state.map);
         console.log("Script Loaded");
     },
     onScriptError: function() {
@@ -49,7 +50,8 @@ var GoogleMap = React.createClass({
             gmapsApiKey: "AIzaSyCmcTV-yBS4SnL3AqBlSXcYv5j-WaGdenA",
             gmapsSensor: false,
             donation: null,
-            recipients: []
+            recipients: [],
+            directionsDisplay: null
         }
     },
     componentWillMount: function() {
@@ -57,6 +59,12 @@ var GoogleMap = React.createClass({
     },
     componentWillReceiveProps: function(nextProps) {
         this.placeMarkers(nextProps.donation, nextProps.recipients, this.state.map);
+        if (!(_.isNull(this.props.directionsDisplay))) {
+            this.props.directionsDisplay.setMap(null);
+        }
+        if (!(_.isNull(nextProps.directionsDisplay))) {
+            nextProps.directionsDisplay.setMap(this.state.map);
+        }
         console.log("Component Will Rcv Props");
     },
     placeMarkers: function(donation, recipients, map) {
@@ -100,6 +108,7 @@ var GoogleMap = React.createClass({
         var map = this.drawMap();
         this.setState({map: map});
         this.placeMarkers(this.props.donation, this.props.recipients, map);
+        // this.props.directionsDisplay.setMap(this.state.map);
         console.log("Component Did Mount");
     },
     componentDidUpdate: function(prevProps, prevState) {

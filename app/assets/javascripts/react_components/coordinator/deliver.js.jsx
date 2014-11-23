@@ -119,6 +119,24 @@ var DeliverDashboard = React.createClass({
             },
         ]
     },
+    getDirectionsDisplay: function(donation, recipient) {
+        var directionsService = new google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        var request = {
+            origin: new google.maps.LatLng(donation.latitude, donation.longitude),
+            destination: new google.maps.LatLng(recipient.latitude, recipient.longitude),
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function(result, status){
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(result);
+                console.log(result.routes[0].legs[0].distance.text)
+                console.log(result.routes[0].legs[0].duration.text)
+
+            }
+        });
+        return directionsDisplay;
+    },
     render: function() {
         var numDeliveries = _.size(this.state.deliveries);
         var currentDelivery = _.findWhere(this.state.deliveries, {id: this.state.openDeliveryId});
@@ -129,7 +147,7 @@ var DeliverDashboard = React.createClass({
             );
         } else {
             googleMapContent = (
-                <GoogleMap donation={currentDelivery.donation} recipients={[currentDelivery.recipient]} latitude={currentDelivery.donation.latitude} longitude={currentDelivery.donation.longitude} />
+                <GoogleMap directionsDisplay={this.getDirectionsDisplay(currentDelivery.donation, currentDelivery.recipient)} latitude={currentDelivery.donation.latitude} longitude={currentDelivery.donation.longitude} />
             );
         }
         return (
