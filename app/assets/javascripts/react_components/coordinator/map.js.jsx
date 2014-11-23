@@ -26,7 +26,6 @@ var GoogleMap = React.createClass({
         var map = this.drawMap();
         this.setState({map: map});
         this.placeMarkers(this.props.donation, this.props.recipients, map);
-        // this.props.directionsDisplay.setMap(this.state.map);
         console.log("Script Loaded");
     },
     onScriptError: function() {
@@ -109,6 +108,7 @@ var GoogleMap = React.createClass({
         this.setState({map: map});
         this.placeMarkers(this.props.donation, this.props.recipients, map);
         // this.props.directionsDisplay.setMap(this.state.map);
+        // This line of code causes a bug with the schedule page's transitions between donations, so it is commented out.
         console.log("Component Did Mount");
     },
     componentDidUpdate: function(prevProps, prevState) {
