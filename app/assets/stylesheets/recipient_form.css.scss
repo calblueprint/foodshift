@@ -38,15 +38,20 @@ $recipient-image-height: 500px;
     }
 }
 
-#recipient-form-info-block {
+#recipient-form-account-block {
     @include full-width-block($light-grey);
     border-bottom: 2px solid $dark-grey;
     @include form-block-padding();
 }
 
-#recipient-form-org-block {
+#recipient-form-info-block {
     @include full-width-block($off-white);
-    border-top: 2px solid $dark-grey;
+    border-bottom: 2px solid $dark-grey;
+    @include form-block-padding();
+}
+
+#recipient-form-org-block {
+    @include full-width-block($light-grey);
     @include form-block-padding();
 }
 

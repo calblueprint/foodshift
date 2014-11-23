@@ -15,7 +15,7 @@ $(function() {
 
     $("#scroll-arrow").click(function() {
         $('html, body').animate({
-            scrollTop: $("#recipient-form-info-block").offset().top
+            scrollTop: $("#recipient-form-account-block").offset().top
         }, 300);
     });
 
