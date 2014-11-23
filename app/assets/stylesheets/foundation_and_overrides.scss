@@ -99,6 +99,7 @@ $medium-grey: #edefed;
 $dark-grey: #dce0e0;
 $white: #FFFFFF;
 $red: #CA5E5E;
+$light-red: scale-color($red, $lightness: 45%);
 $blue: #7caadd;
 
 // We use these to define default font stacks
