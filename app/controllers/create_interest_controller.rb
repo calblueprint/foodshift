@@ -16,7 +16,7 @@ class CreateInterestController < ApplicationController
 					end
 				end
 			else
-				@result = "Unathorized User"
+				@result = "Unauthorized User"
 			end
 		else
 			@result = "Invalid recipient/donation IDs"

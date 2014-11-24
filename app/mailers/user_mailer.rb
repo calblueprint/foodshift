@@ -6,16 +6,16 @@ class UserMailer < ActionMailer::Base
     recipient_ids.each do |r|
       @recipient = Recipient.find(r)
       @email = @recipient.email
-      mail(to: @email, subject: 'Donation Available!')
+      mail(to: @email, subject: "Donation Available!")
     end
   end
 
   def recipient_match(recipients)
-  	mail(to: recipients, subject: 'Your donation has found a recipient!')
+    mail(to: recipients, subject: "Your donation has found a recipient!")
   end
 
   def coordinator_email(recipients, donation)
     @donation = donation
-  	mail(to: recipients, subject: 'Donation Posted!')
+    mail(to: recipients, subject: "Donation Posted!")
   end
- end
+end
