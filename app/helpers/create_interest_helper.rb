@@ -1,0 +1,2 @@
+module CreateInterestHelper
+end
