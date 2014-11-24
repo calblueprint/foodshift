@@ -12,8 +12,8 @@ class DonationsController < ApplicationController
       if donation_form.create_objects
         format.html { redirect_to root_path, notice: "Donation was successfully created." }
         @donation = donation_form.donation
-        @recipients = Recipient.pluck(:email)
-        UserMailer.donation_available(@recipients, @donation).deliver
+        @recipient_ids = Recipient.pluck(:id)
+        UserMailer.donation_available(@recipient_ids, @donation).deliver
         @coordinators = Coordinator.pluck(:email)
         UserMailer.coordinator_email(@coordinators, @donation).deliver
       else

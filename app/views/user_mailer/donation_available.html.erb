@@ -1,1 +1,9 @@
-Hello!
+<h1>Hello <%= @recipient.email %></h1> 
+
+<b>Type:</b> <%= @donation.food_type %> <br>
+<b>Quantity:</b> <%= @donation.quantity %> <br>
+<b>Refrigeration?</b> <%= @donation.refrigeration %> <br>
+<b>Availability:</b> <%= @donation.window_start.to_formatted_s(:long_ordinal) %> <br>
+<b>Donated by:</b> <%= @donation.organization %> 
+<br> <br>
+Click here if you're interested: http://localhost:3000/interest/create/<%= @recipient.encrypted_password.tr('/.', '') %>/<%= @recipient.id %>/<%= @donation.id %>
