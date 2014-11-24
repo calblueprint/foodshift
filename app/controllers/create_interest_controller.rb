@@ -1,5 +1,4 @@
 class CreateInterestController < ApplicationController
-
   def create
     @recipient_id = params[:recipient_id]
     @donation_id = params[:donation_id]
@@ -22,5 +21,4 @@ class CreateInterestController < ApplicationController
       @result = "Invalid recipient/donation IDs"
     end
   end
-
 end
