@@ -1,12 +1,21 @@
 $(function() {
-    new google.maps.places.Autocomplete(
+    var autocomplete = new google.maps.places.Autocomplete(
         (document.getElementById('recipient-address')), {
             types: ['geocode']
         });
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        getAddressCoordinates();
+    });
+
+    function getAddressCoordinates() {
+        var place = autocomplete.getPlace();
+        $('#recipient-address-lat').val(place.geometry.location.lat());
+        $('#recipient-address-lng').val(place.geometry.location.lng());
+    }
 
     $("#scroll-arrow").click(function() {
         $('html, body').animate({
-            scrollTop: $("#recipient-form-info-block").offset().top
+            scrollTop: $("#recipient-form-account-block").offset().top
         }, 300);
     });
 
@@ -17,4 +26,8 @@ $(function() {
                 }
             }
       });
+
+    $('#recipient-form-fields').on('invalid.fndtn.abide', function () {
+        toastr.error('There was an error with your submission');
+    });
 });

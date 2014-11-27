@@ -47,19 +47,18 @@ $donor-image-height: 500px;
 
 #donor-form-pickup-block {
     @include full-width-block($off-white);
-    @include border-block($dark-grey);
+    border-bottom: 2px solid $dark-grey;
     @include form-block-padding();
 }
 
 #donor-form-detail-block {
     @include full-width-block($light-grey);
-    @include border-block($dark-grey);
+    border-bottom: 2px solid $dark-grey;
     @include form-block-padding();
 }
 
 #donor-form-submit-block {
     @include full-width-block($off-white);
-    border-top: 2px solid $dark-grey;
     @include form-block-padding();
 }
 

@@ -3,12 +3,17 @@ Rails.application.routes.draw do
 
   get 'about' => 'static_pages#about'
 
-  get 'donate' => 'registration#donor'
-  get 'receive' => 'registration#recipient'
+  get 'donate', to: 'donations#new', as: :donations_new
+  post 'donate', to: 'donations#create', as: :donations_create
 
-  get 'coordinator/deliver'
-  get 'coordinator/schedule'
-  get 'coordinator/data'
+  get 'receive', to: 'recipients#new', as: :recipients_new
+  post 'receive', to: 'recipients#create', as: :recipients_create
+
+  scope '/coordinator' do
+    get '/deliver', to: 'coordinator#deliver', as: :coordinator_deliver
+    get '/schedule', to: 'coordinator#schedule', as: :coordinator_schedule
+    get '/data', to: 'coordinator#data', as: :coordinator_data
+  end
 
   devise_for :users
 
@@ -27,7 +32,6 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :users
-  resources :donations
 
   # Example resource route with options:
   #   resources :products do

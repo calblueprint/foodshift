@@ -1,0 +1,33 @@
+.sign-in-block, .forgot-password-block {
+    label, h1, span.prefix {
+        color: $charcoal;
+    }
+    h1 {
+        font-weight: 600;
+        font-size: rem-calc(37);
+    }
+
+    @include full-width-block($off-white);
+    @include block-padding;
+    min-height: 100%;
+}
+.sign-in-block {
+    .remember-me-checkbox {
+        @extend .right;
+        display: inline-block;
+    }
+    input.sign-in-button {
+        @extend .success-button;
+        @extend .right;
+        display: inline-block;
+    }
+
+}
+
+.forgot-password-block {
+    input.pw-reset-button {
+        @extend .success-button;
+        @extend .right;
+        display: inline-block;
+    }
+}

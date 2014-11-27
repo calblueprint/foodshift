@@ -16,7 +16,42 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
     </div>
 </div>
 
-<form data-abide>
+<form id="recipient-form-fields" data-abide method="POST" accept-charset="UTF-8" action="<%= recipients_create_path %>">
+
+<div id="recipient-form-account-block">
+    <div class="row">
+        <div class="small-12 medium-8 medium-centered columns">
+            <h3 class="text-center block-title">Account Information</h3>
+            <div class="row collapse">
+                <div class="small-3 columns">
+                    <span class="prefix">Email</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="email" required name="recipient[email]"/>
+                    <small class="error">Valid email is required.</small>
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="small-3 columns">
+                    <span class="prefix">Password</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="password" id="password" required name="recipient[password]"/>
+                    <small class="error">Password is required.</small>
+                </div>
+            </div>
+            <div class="row collapse">
+                <div class="small-3 columns">
+                    <span class="prefix">Confirm Password</span>
+                </div>
+                <div class="small-9 columns">
+                    <input type="password" required data-equalto="password" name="recipient[password_confirm]"/>
+                    <small class="error">Passwords must match.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="recipient-form-info-block">
     <div class="row">
@@ -27,24 +62,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">First name</span>
                 </div>
                 <div class="small-9 medium-4 columns">
-                    <input type="text" required />
+                    <input type="text" required name="recipient[first_name]"/>
                     <small class="error">First name is required.</small>
                 </div>
                 <div class="small-3 medium-2 columns">
                     <span class="prefix">Last name</span>
                 </div>
                 <div class="small-9 medium-4 columns">
-                    <input type="text" required/>
+                    <input type="text" required name="recipient[last_name]"/>
                     <small class="error">Last name is required.</small>
-                </div>
-            </div>
-            <div class="row collapse">
-                <div class="small-3 columns">
-                    <span class="prefix">Email</span>
-                </div>
-                <div class="small-9 columns">
-                    <input type="email" required/>
-                    <small class="error">Valid email is required.</small>
                 </div>
             </div>
             <div class="row collapse">
@@ -52,7 +78,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Phone</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="tel" pattern="phone" required/>
+                    <input type="tel" pattern="phone" required name="recipient[phone]"/>
                     <small class="error">Valid phone number is required.</small>
                 </div>
             </div>
@@ -68,7 +94,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Name</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" required/>
+                    <input type="text" required name="recipient[organization_name]"/>
                     <small class="error">Organization name is required.</small>
                 </div>
             </div>
@@ -77,8 +103,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Address</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" placeholder="" required id="recipient-address" />
+                    <input type="text" placeholder="" required id="recipient-address" name="recipient[address]"/>
+
                     <small class="error">Valid address is required.</small>
+                    <input type="hidden" id="recipient-address-lat" name="recipient[latitude]"/>
+                    <input type="hidden" id="recipient-address-lng" name="recipient[longitude]"/>
                 </div>
             </div>
             <div class="row collapse">
@@ -86,22 +115,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">501(c)(3) Number</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="text" required/>
+                    <input type="text" required name="recipient[organization_number]"/>
                     <small class="error">501(c)(3) number is required.</small>
                 </div>
             </div>
             <div class="row">
                 <div class="small-12 medium-6 columns">
-                    <input id="checkbox-kitchen" type="checkbox"/><label for="checkbox-kitchen">Do you have a kitchen?</label>
+                    <input id="checkbox-kitchen" type="checkbox" name="recipient[kitchen]"/><label for="checkbox-kitchen">Do you have a kitchen?</label>
                 </div>
                 <div class="small-12 medium-6 columns">
-                    <input id="checkbox-refrigeration" type="checkbox"/><label for="checkbox-refrigeration">Do you have refrigeration?</label>
+                    <input id="checkbox-refrigeration" type="checkbox" name="recipient[refrigeration]"/><label for="checkbox-refrigeration">Do you have refrigeration?</label>
                 </div>
             </div>
             <div class="row form-padding-top">
                 <div class="small-12 columns">
                     <div class="text-center signup-block">
-                        <a id="submit" class="success-button">Sign up</a>
+                        <input class="success-button" name="commit" type="submit" value="Sign Up">
                     </div>
                 </div>
             </div>
@@ -111,5 +140,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
 
 </form>
 
-<%= javascript_include_tag "application/recipient_form" %>
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places" %>
+
+<%= javascript_include_tag "application/recipient_form" %>

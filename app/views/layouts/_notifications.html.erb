@@ -1,2 +1,7 @@
-<div class="notice"><%= notice %></div>
-<div class="alert"><%= alert %></div>
+<% if !flash_toastr_msgs.empty? %>
+<script>
+    <% flash_toastr_msgs.each do |type, msg| %>
+    toastr.<%= type %>('<%= msg %>');
+    <% end %>
+</script>
+<% end %>

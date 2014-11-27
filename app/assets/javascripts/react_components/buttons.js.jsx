@@ -55,7 +55,7 @@ var ButtonGroupSingleSelect = React.createClass({
             return (
                 <li><ToggleButton
                     name={name}
-                    is_active={this.props.value === name}
+                    isActive={this.props.value === name}
                     onButtonClick={this.props.onButtonClick} /></li>
             );
         }.bind(this));
@@ -69,7 +69,7 @@ var ButtonGroupSingleSelect = React.createClass({
 
 var ToggleButtonAnchor = React.createClass({
     getDefaultProps: function() {
-        return {is_active: false};
+        return {isActive: false};
     },
     handleClick: function(event) {
         this.props.onButtonClick({value: this.props.name});
@@ -84,7 +84,7 @@ var ToggleButtonAnchor = React.createClass({
 var ToggleButtonAnchorIcon = React.createClass({
     getDefaultProps: function() {
         return {
-            is_active: false,
+            isActive: false,
             classes: {
                 'transparent-button': true,
             },
@@ -97,7 +97,7 @@ var ToggleButtonAnchorIcon = React.createClass({
     render: function() {
         classes = React.addons.classSet(
             _.extend({
-                'button-pressed': this.props.is_active
+                'button-pressed': this.props.isActive
             }, this.props.classes)
         );
         return (
