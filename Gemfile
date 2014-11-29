@@ -52,4 +52,4 @@ gem 'devise'
 
 gem 'nilify_blanks'
 
-gem 'cancan'
+gem 'cancancan', '~> 1.9'
