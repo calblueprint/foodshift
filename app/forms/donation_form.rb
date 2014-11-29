@@ -2,7 +2,7 @@ class DonationForm < Form
   DATETIME_FORMAT = '%Y-%m-%d %I:%M %p'
 
   attr_accessor(
-    :donor_id,
+    :donor,
     :food_type,
     :quantity,
     :address,
@@ -40,6 +40,7 @@ class DonationForm < Form
 
   def donation
     @donation ||= Donation.new(
+      donor: donor,
       organization: organization,
       address: address,
       person: person,

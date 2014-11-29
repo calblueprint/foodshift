@@ -1,5 +1,4 @@
 class DonationsController < ApplicationController
-  load_and_authorize_resource
   before_action :set_donation, only: [:show, :edit, :update, :destroy]
 
   # GET /donate
@@ -9,7 +8,7 @@ class DonationsController < ApplicationController
   # POST /donations
   def create
     donation_form = DonationForm.new(donation_params)
-    donation_form.donor_id = current_user if user_signed_in?
+    donation_form.donor = current_user if user_signed_in?
     respond_to do |format|
       if donation_form.create_objects
         format.html { redirect_to root_path, notice: "Donation was successfully created." }
@@ -36,7 +35,7 @@ class DonationsController < ApplicationController
       :email,
       :phone,
       :refrigeration,
-      :additional_info,
+      :additional_info
     )
   end
 end
