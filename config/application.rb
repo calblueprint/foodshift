@@ -15,7 +15,7 @@ module Foodshift
       generate.request_specs false
       generate.routing_specs false
       generate.stylesheets false
-      generate.test_framework :rspec
+      # generate.test_framework :rspec
       generate.view_specs false
       generate.controller_specs false
     end
