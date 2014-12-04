@@ -6,11 +6,6 @@
 #   cities = City.create([{ name: "Chicago" }, { name: "Copenhagen" }])
 #   Mayor.create(name: "Emanuel", city: cities.first)
 
-# def seeds
-#   YAML.load(File.read(File.expand_path("../seeds.yml", __FILE__)))
-# end
-
-
 def create_donations
   1.upto(5) do |n|
     Donation.create! (
