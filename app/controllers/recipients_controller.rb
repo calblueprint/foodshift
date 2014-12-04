@@ -5,7 +5,7 @@ class RecipientsController < ApplicationController
 
   # POST /receive
   def create
-    authorize! :create, @interest, :message => 'Not authorized to receive'
+    authorize! :create, @interest, message: "Not authorized to receive"
     recipient_form = RecipientForm.new(recipient_params)
     recipient_form.recipient = current_user if user_signed_in?
     respond_to do |format|
