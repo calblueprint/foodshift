@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   end
 
   get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'
-  post 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'
 
   devise_for :users
 
