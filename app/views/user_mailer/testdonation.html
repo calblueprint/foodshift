@@ -254,7 +254,7 @@
                                                                         <td valign="top" class="textContent">
                                                                           <h3 style="color:#f9f8f5;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:10px;text-align:left;">Hi Quinton,</h3>
                                                                           <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#f9f8f5;line-height:135%;">
-                                                                            Thanks again for signing up to be a coordinator! An eloquent way of saying that a new donation has been posted in your area. I like food. Mushrooms suck.</div>
+                                                                            You've signed up to receive notifications about new donations! So here is one. Sorry for the spam. Spam musubi.</div>
                                                                           </td>
                                                                         </tr>
                                                                       </table>
@@ -304,23 +304,8 @@
                                                               <b>Quantity:</b> <%= @donation.quantity %> <br>
                                                               <b>Refrigeration?</b> <%= @donation.refrigeration %> <br>
                                                               <b>Availability:</b> <%= @donation.window_start.to_formatted_s(:long_ordinal) %> <br>
-                                                              <b>Donated by:</b> <%= @donation.organization %> 
-
-                                                            </div>
-                                                          </td>
-                                                        </tr>
-                                                      </table>
-                                                    </td>
-                                                    <td align="right" valign="middle" class="flexibleContainerBox">
-                                                      <table class="flexibleContainerBoxNext" border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
-                                                        <tr>
-                                                          <td align="left" class="textContent">
-                                                            <h3 style="color:#92bf20;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;">Contact</h3>
-                                                            <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                              <b>Name:</b> <%= @donation.person %> <br>
-                                                              <b>Address:</b> <%= @donation.address %> <br>
-                                                              <b>Phone:</b> <%= @donation.phone %> <br>
-                                                              <b>Email:</b> <span style="color: #5c5c5c"><%= @donation.email %></span> <br>
+                                                              <b>Donated by:</b> <%= @donation.organization %>  <br>
+                                                              <b>Query String URL:</b> http://localhost:3000/interest/create/<%= @recipient.encrypted_password.tr('/.', '') %>/<%= @recipient.id %>/<%= @donation.id %>
 
                                                             </div>
                                                           </td>
@@ -359,8 +344,8 @@
                                                 <!-- CONTENT TABLE // -->
                                                 <table border="0" cellpadding="0" cellspacing="0" width="50%" class="emailButton" style="background-color: #3aaf39;border-radius: 10px">
                                                   <tr>
-                                                    <td align="center" valign="middle" class="buttonContent" style="padding-top:15px;padding-bottom:15px;padding-right:15px;padding-left:15px;">
-                                                      <a style="color:#FFFFFF;text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-size:20px;line-height:135%;" href="#" target="_blank">Open in Dashboard</a>
+                                                    <td align="center" valign="middle" class="buttonContent" style="padding-top:15px;padding-bottom:15px;padding-right:5px;padding-left:5px;">
+                                                      <a style="color:#FFFFFF;text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:135%;" href="#" target="_blank">Request This Donation</a>
                                                     </td>
                                                   </tr>
                                                 </table>
@@ -379,40 +364,6 @@
                                 <!-- // MODULE ROW -->
 
 
-
-                                <!-- MODULE ROW // -->
-                                <tr>
-                                  <td align="center" valign="top">
-                                    <!-- CENTERING TABLE // -->
-                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                      <tr>
-                                        <td align="center" valign="top">
-                                          <!-- FLEXIBLE CONTAINER // -->
-                                          <table border="0" cellpadding="0" cellspacing="0" width="500" class="flexibleContainer">
-                                            <tr>
-                                              <td align="center" valign="top" width="500" class="flexibleContainerCell">
-
-                                                <!-- CONTENT TABLE // -->
-                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                                  <tr>
-                                                    <td valign="top" class="imageContent">
-                                                      <img src="http://s22.postimg.org/68qzwle5d/email_img.jpg" width="500" class="flexibleImage" style="max-width:500px;width:100%;display:block;" alt="Text" title="Text" />
-                                                    </td>
-                                                  </tr>
-                                                </table>
-                                                <!-- // CONTENT TABLE -->
-
-                                              </td>
-                                            </tr>
-                                          </table>
-                                          <!-- // FLEXIBLE CONTAINER -->
-                                        </td>
-                                      </tr>
-                                    </table>
-                                    <!-- // CENTERING TABLE -->
-                                  </td>
-                                </tr>
-                                <!-- // MODULE ROW -->
 
                                 <!-- EMAIL FOOTER // -->
                         <!--
