@@ -1,7 +1,7 @@
 class CreateRecipientProfiles < ActiveRecord::Migration
   def change
     create_table :recipient_profiles do |t|
-    	t.timestamps
+      t.timestamps
       t.belongs_to :recipient, index: true
       t.string :organization
       t.string :address
