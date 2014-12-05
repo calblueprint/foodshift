@@ -1,13 +1,16 @@
 class CoordinatorController < ApplicationController
+  before_action :auth
+
   def deliver
-    authorize! :read, Donation
   end
 
   def schedule
-    authorize! :read, Donation
   end
 
   def data
+  end
+
+  def auth
     authorize! :read, Donation
   end
 end
