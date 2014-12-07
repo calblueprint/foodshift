@@ -51,3 +51,7 @@ gem 'spring',        group: :development
 gem 'devise'
 
 gem 'nilify_blanks'
+
+gem 'carrierwave'
+
+gem 'carrierwave-postgresql'
