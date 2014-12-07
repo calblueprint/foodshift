@@ -36,31 +36,31 @@ class RecipientForm < Form
       recipient_user.save!
       recipient_profile(recipient_user).save!
     end
-    rescue ActiveRecord::RecordInvalid => err
-      Rails.logger.error(err.to_s)
-      false
+  rescue ActiveRecord::RecordInvalid => err
+    Rails.logger.error(err.to_s)
+    false
   end
 
   def recipient_user
     @recipient_user ||= Recipient.new(
-        email: email,
-        password: password,
+      email: email,
+      password: password,
     )
   end
 
   def recipient_profile(recipient_user)
+    # TODO: Add more of the fields listed in the client doc
     @recipient_profile ||= RecipientProfile.new(
-        recipient: recipient_user,
-        organization: organization_name,
-        address: address,
-        org501c3: organization_number,
-        person: name_to_person,
-        phone: phone,
-        latitude: latitude,
-        longitude: longitude,
-        kitchen: kitchen,
-        refrigeration: refrigeration
-        # TODO: Add more of the fields listed in the client doc
+      recipient: recipient_user,
+      organization: organization_name,
+      address: address,
+      org501c3: organization_number,
+      person: name_to_person,
+      phone: phone,
+      latitude: latitude,
+      longitude: longitude,
+      kitchen: kitchen,
+      refrigeration: refrigeration
     )
   end
 
@@ -70,7 +70,7 @@ class RecipientForm < Form
 
   def email_is_unique
     unless RecipientUser.where(email: email).count == 0
-      errors.add(:error, 'User with this email already exists.')
+      errors.add(:error, "User with this email already exists.")
     end
   end
 end
