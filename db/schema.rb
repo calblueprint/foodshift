@@ -11,8 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124075411) do
-
+ActiveRecord::Schema.define(version: 20141123231852) do
+  
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,22 @@ ActiveRecord::Schema.define(version: 20141124075411) do
 
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
 
+  create_table "donor_profiles", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "donor_id"
+    t.string   "reason"
+    t.boolean  "organic"
+    t.string   "frequency_of_surplus"
+    t.string   "food_types"
+    t.string   "quantity"
+    t.string   "donated_in_past"
+    t.integer  "pounds_per_week"
+    t.boolean  "good_samaritan"
+  end
+
+  add_index "donor_profiles", ["donor_id"], name: "index_donor_profiles_on_donor_id", using: :btree
+
   create_table "interests", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -46,6 +62,30 @@ ActiveRecord::Schema.define(version: 20141124075411) do
 
   add_index "interests", ["donation_id"], name: "index_interests_on_donation_id", using: :btree
   add_index "interests", ["recipient_id"], name: "index_interests_on_recipient_id", using: :btree
+
+  create_table "recipient_profiles", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "recipient_id"
+    t.string   "organization"
+    t.string   "address"
+    t.integer  "org501c3"
+    t.string   "person"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "operation"
+    t.string   "num_people_serve"
+    t.boolean  "kitchen"
+    t.boolean  "refrigeration"
+    t.boolean  "notfications"
+    t.text     "population"
+    t.string   "days_serve"
+    t.string   "food_types_wanted"
+    t.string   "food_types_unwanted"
+    t.text     "challenges"
+  end
+
+  add_index "recipient_profiles", ["recipient_id"], name: "index_recipient_profiles_on_recipient_id", using: :btree
 
   create_table "transactions", force: true do |t|
     t.datetime "created_at"
