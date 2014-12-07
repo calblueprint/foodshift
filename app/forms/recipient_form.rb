@@ -18,6 +18,9 @@ class RecipientForm < Form
     :refrigeration
   )
 
+  validate :email_is_unique
+  validates :password, length: { minimum: 8 }
+
   def save
     return false unless valid?
     if create_objects
@@ -31,25 +34,43 @@ class RecipientForm < Form
   def create_objects
     ActiveRecord::Base.transaction do
       recipient_user.save!
-      # TODO: Add when schema gets updated for this
-      # recipient_profile.save!
+      recipient_profile(recipient_user).save!
     end
-    rescue ActiveRecord::RecordInvalid => err
-      logger.error(err.to_s)
-      false
+  rescue ActiveRecord::RecordInvalid => err
+    Rails.logger.error(err.to_s)
+    false
   end
 
   def recipient_user
-    @recipient_user ||= User.new(
-        email: email,
-        password: password,
-        # TODO: Fix when schema gets updated for this
-        # type: User::TYPE_RECIPIENT
+    @recipient_user ||= Recipient.new(
+      email: email,
+      password: password,
     )
   end
 
-  def recipient_profile
-    # TODO: Add when schema gets updated for this
-    # @recipient_profile ||= RecipientProfile.new()
+  def recipient_profile(recipient_user)
+    # TODO: Add more of the fields listed in the client doc
+    @recipient_profile ||= RecipientProfile.new(
+      recipient: recipient_user,
+      organization: organization_name,
+      address: address,
+      org501c3: organization_number,
+      person: name_to_person,
+      phone: phone,
+      latitude: latitude,
+      longitude: longitude,
+      kitchen: kitchen,
+      refrigeration: refrigeration
+    )
+  end
+
+  def name_to_person
+    "#{first_name} #{last_name}"
+  end
+
+  def email_is_unique
+    unless RecipientUser.where(email: email).count == 0
+      errors.add(:error, "User with this email already exists.")
+    end
   end
 end
