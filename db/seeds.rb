@@ -8,8 +8,7 @@
 
 def create_donations
   1.upto(5) do |n|
-    Donation.create! (
-    organization: "Blueprint",
+    Donation.create!(organization: "Blueprint",
     address: "Sutardja Dai Hall, Berkeley, CA 94709",
     person: ["Alli", "Atsu", "Harrison", "Erica", "Quinton"].sample,
     phone: "408-283-6923",
@@ -20,59 +19,49 @@ def create_donations
     window_end: DateTime.new(2014, 8, 21, 11, 0),
     food_type: ["Bread", "Bulk", "Dairy", "Juice", "Mixed", "Meat", "Prepared", "Produce"].sample,
     longitude: "37.8747924",
-    latitude: "-122.2583104"
-    )
+    latitude: "-122.2583104")
   end
 end
 
 def create_users
   1.upto(5) do |n|
-    Donor.create! (
-    email: "donor#{n}@foodshift.net",
+    Donor.create!(email: "donor#{n}@foodshift.net",
     password: "password",
     subscribed: "true",
-    type: "Donor"
-    )
+    type: "Donor")
   end
 
   1.upto(5) do |n|
-    Recipient.create! (
-    email: "recipient#{n}@foodshift.net",
+    Recipient.create!(email: "recipient#{n}@foodshift.net",
     password: "password",
     subscribed: "true",
-    type: "Recipient"
-    )
+    type: "Recipient")
   end
 
   1.upto(5) do |n|
-    Coordinator.create! (
+    Coordinator.create!(
     email: "coordinator#{n}@foodshift.net",
     password: "password",
     subscribed: "true",
-    type: "Coordinator"
-    )
+    type: "Coordinator")
   end
 
-  Donor.create! (
+  Donor.create!(
     email: "ericayin@berkeley.edu",
     password: "password",
     subscribed: "true",
-    type: "Donor"
-    )
+    type: "Donor")
 
-  Recipient.create! (
-    email: "ericayin831@gmail.com",
+  Recipient.create!(email: "ericayin831@gmail.com",
     password: "password",
     subscribed: "true",
-    type: "Recipient"
-    )
+    type: "Recipient")
 
-  Coordinator.create! (
+  Coordinator.create!(
     email: "eriicaericaerica@gmail.com",
     password: "password",
     subscribed: "true",
-    type: "Coordinator"
-    )
+    type: "Coordinator")
 end
 
 create_donations
