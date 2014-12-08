@@ -2,7 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 def create_donations
-  1.upto(5) do |n|
+  1.upto(5) do
     Donation.create!(
     organization: "Blueprint",
     address: "Sutardja Dai Hall, Berkeley, CA 94709",
