@@ -62,4 +62,3 @@ end
 
 create_donations
 create_users
->>>>>>> 2496d4d4ed127ac80d96ae1d50edff5a11c77cee
