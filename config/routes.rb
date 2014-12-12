@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get '/data', to: 'coordinator#data', as: :coordinator_data
   end
 
+  get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'
+
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.

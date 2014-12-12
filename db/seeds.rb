@@ -24,6 +24,7 @@ def create_users
     Donor.create!(
     email: "donor#{n}@foodshift.net",
     password: "password",
+    subscribed: "true",
     type: "Donor")
   end
 
@@ -31,6 +32,7 @@ def create_users
     Recipient.create!(
     email: "recipient#{n}@foodshift.net",
     password: "password",
+    subscribed: "true",
     type: "Recipient")
   end
 
@@ -38,8 +40,28 @@ def create_users
     Coordinator.create!(
     email: "coordinator#{n}@foodshift.net",
     password: "password",
+    subscribed: "true",
     type: "Coordinator")
   end
+
+  Donor.create!(
+    email: "foodshiftdonor@gmail.com",
+    password: "password",
+    subscribed: "true",
+    type: "Donor")
+
+  Recipient.create!(
+    email: "fsrecipient@gmail.com",
+    password: "password",
+    subscribed: "true",
+    type: "Recipient")
+
+  Coordinator.create!(
+    email: "foodshiftcoordinator@gmail.com",
+    password: "password",
+    subscribed: "true",
+    type: "Coordinator")
+
 end
 
 create_donations
