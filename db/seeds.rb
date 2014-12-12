@@ -61,7 +61,6 @@ def create_users
     password: "password",
     subscribed: "true",
     type: "Coordinator")
-
 end
 
 create_donations
