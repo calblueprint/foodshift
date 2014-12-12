@@ -254,7 +254,7 @@
                                                                         <td valign="top" class="textContent">
                                                                           <h3 style="color:#f9f8f5;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:10px;text-align:left;">Hi,</h3>
                                                                           <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#f9f8f5;line-height:135%;">
-                                                                            Thanks again for signing up to be a coordinator! An eloquent way of saying that a new donation has been posted in your area. I like food. Mushrooms suck.</div>
+                                                                            A new food donation has been posted.</div>
                                                                           </td>
                                                                         </tr>
                                                                       </table>
@@ -300,10 +300,11 @@
                                                           <td align="left" class="textContent">
                                                             <h3 style="color:#92bf20;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left">Information</h3>
                                                             <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                              <b>Type:</b> <%= @donation.food_type %> <br>
+                                                              <b>Food Type:</b> <%= @donation.food_type %> <br>
                                                               <b>Quantity:</b> <%= @donation.quantity %> <br>
                                                               <b>Refrigeration?</b> <%= @donation.refrigeration.to_s %> <br>
-                                                              <b>Availability:</b> <%= @donation.window_start.to_formatted_s(:long_ordinal) %> <br>
+                                                              <b>Available starting:</b><br><%= @donation.window_start.to_formatted_s(:long_ordinal) %> <br>
+                                                              <b>Available until:</b><br><%= @donation.window_end.to_formatted_s(:long_ordinal) %> <br>
                                                               <b>Donated by:</b> <%= @donation.organization %> 
 
                                                             </div>
