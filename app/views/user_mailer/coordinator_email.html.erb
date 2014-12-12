@@ -302,7 +302,7 @@
                                                             <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
                                                               <b>Type:</b> <%= @donation.food_type %> <br>
                                                               <b>Quantity:</b> <%= @donation.quantity %> <br>
-                                                              <b>Refrigeration?</b> <%= @donation.refrigeration %> <br>
+                                                              <b>Refrigeration?</b> <%= @donation.refrigeration.to_s %> <br>
                                                               <b>Availability:</b> <%= @donation.window_start.to_formatted_s(:long_ordinal) %> <br>
                                                               <b>Donated by:</b> <%= @donation.organization %> 
 

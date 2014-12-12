@@ -1,12 +1,12 @@
 class UserMailer < ActionMailer::Base
-  default from: "Foodshift <foodshift.testing.2@gmail.com>"
+  default from: "Foodshift <foodshift.testing.3@gmail.com>"
 
   def donation_available(recipient_ids, donation)
     @donation = donation
     recipient_ids.each do |r|
       @recipient = Recipient.find(r)
       @email = @recipient.email
-      mail(to: @email, subject: "Donation Available!")
+      mail(to: @email, subject: "(Recipient) Donation Available!")
     end
   end
 
@@ -16,6 +16,6 @@ class UserMailer < ActionMailer::Base
 
   def coordinator_email(recipients, donation)
     @donation = donation
-    mail(to: recipients, subject: "Donation Posted!")
+    mail(to: recipients, subject: "(Coordinator) Donation Posted!")
   end
 end
