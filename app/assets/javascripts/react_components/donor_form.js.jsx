@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
-var FOOD_BREAD = 'Bread', FOOD_BULK = 'Bulk', FOOD_DAIRY = 'Dairy', FOOD_JUICE = 'Juice', FOOD_MEAT = 'Meat',
-FOOD_MIXED = 'Mixed', FOOD_PREPARED = 'Prepared', FOOD_PRODUCE = 'Produce';
+var DRY_FOOD = 'Dry Food', NON_FOOD = 'Non-Food', FOOD_MEAT = 'Meat - Frozen', FOOD_NON_MEAT = 'Food - Frozen (non-meat)', FOOD_BREAD = 'Bakery - Bread',
+FOOD_PRODUCE = 'Produce', FOOD_DAIRY = "Dairy";
 
 var TYPE_BOX = 'box', TYPE_PACK = 'pack', TYPE_POUND = 'pound', TYPE_TRAY = 'tray';
 
@@ -17,14 +17,13 @@ var DonorForm = React.createClass({
     getDefaultProps: function() {
         return {
             foodTypes: [
-                FOOD_BREAD,
-                FOOD_BULK,
-                FOOD_DAIRY,
-                FOOD_JUICE,
+                DRY_FOOD,
+                NON_FOOD,
                 FOOD_MEAT,
-                FOOD_MIXED,
-                FOOD_PREPARED,
-                FOOD_PRODUCE
+                FOOD_NON_MEAT,
+                FOOD_BREAD,
+                FOOD_PRODUCE,
+                FOOD_DAIRY
             ],
             quantityChoices: [
                 {name: TYPE_BOX, value: TYPE_BOX},
@@ -58,7 +57,7 @@ var DonorForm = React.createClass({
                 <div className="row">
                     <div className="small-12 columns">
                         <h3 className="text-center block-title">What can you donate?</h3>
-                        <FoodTypeMultiSelect choices={_.initial(this.props.foodTypes, 4)} values={this.state.selectedFood} onButtonClick={this.onFoodButtonClick}/>
+                        <FoodTypeMultiSelect choices={_.initial(this.props.foodTypes, 3)} values={this.state.selectedFood} onButtonClick={this.onFoodButtonClick}/>
                         <FoodTypeMultiSelect choices={_.rest(this.props.foodTypes, 4)} values={this.state.selectedFood} onButtonClick={this.onFoodButtonClick}/>
                     </div>
                 </div>
