@@ -10,7 +10,7 @@ var DonorForm = React.createClass({
         return {
             selectedFood: [],
             quantity: 1,
-            quantityType: "box",
+            quantityType: "pound",
             hasDefaultPickupInfo: true
         };
     },
@@ -26,10 +26,10 @@ var DonorForm = React.createClass({
                 FOOD_DAIRY
             ],
             quantityChoices: [
-                {name: TYPE_BOX, value: TYPE_BOX},
-                {name: TYPE_PACK, value: TYPE_PACK},
                 {name: TYPE_POUND, value: TYPE_POUND},
                 {name: TYPE_TRAY, value:TYPE_TRAY},
+                {name: TYPE_BOX, value: TYPE_BOX},
+                {name: TYPE_PACK, value: TYPE_PACK},
             ]
         };
     },
