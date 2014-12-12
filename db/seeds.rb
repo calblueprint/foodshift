@@ -1,5 +1,5 @@
 def create_donations
-  1.upto(5) do |n|
+  1.upto(5) do
     Donation.create!(
     organization: "Blueprint",
     address: "Sutardja Dai Hall, Berkeley, CA 94709",
@@ -42,19 +42,19 @@ def create_users
   end
 
   Donor.create!(
-    email: "ericayin@berkeley.edu",
+    email: "foodshiftdonor@gmail.com",
     password: "password",
     subscribed: "true",
     type: "Donor")
 
   Recipient.create!(
-    email: "ericayin831@gmail.com",
+    email: "fsrecipient@gmail.com",
     password: "password",
     subscribed: "true",
     type: "Recipient")
 
   Coordinator.create!(
-    email: "eriicaericaerica@gmail.com",
+    email: "foodshiftcoordinator@gmail.com",
     password: "password",
     subscribed: "true",
     type: "Coordinator")

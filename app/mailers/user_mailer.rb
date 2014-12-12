@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "Foodshift <foodshift.testing.3@gmail.com>"
+  default from: "Foodshift <fstesting0@gmail.com>"
 
   def donation_available(recipient_ids, donation)
     @donation = donation
