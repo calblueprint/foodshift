@@ -36,8 +36,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra elit ut q
                     <span class="prefix">Password</span>
                 </div>
                 <div class="small-9 columns">
-                    <input type="password" id="password" required name="recipient[password]"/>
-                    <small class="error">Password is required.</small>
+                    <input type="password" id="password" pattern="password" required name="recipient[password]"/>
+                    <small class="error">Password is required and must be at least 8 characters.</small>
                 </div>
             </div>
             <div class="row collapse">

@@ -1,3 +1,6 @@
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+
 def create_donations
   1.upto(5) do
     Donation.create!(
@@ -58,6 +61,7 @@ def create_users
     password: "password",
     subscribed: "true",
     type: "Coordinator")
+
 end
 
 create_donations

@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 20141124075411) do
     t.string   "address"
     t.integer  "org501c3"
     t.string   "person"
-    t.string   "email"
     t.string   "phone"
     t.string   "operation"
     t.string   "num_people_serve"
@@ -83,6 +82,8 @@ ActiveRecord::Schema.define(version: 20141124075411) do
     t.string   "food_types_wanted"
     t.string   "food_types_unwanted"
     t.text     "challenges"
+    t.decimal  "longitude"
+    t.decimal  "latitude"
   end
 
   add_index "recipient_profiles", ["recipient_id"], name: "index_recipient_profiles_on_recipient_id", using: :btree
