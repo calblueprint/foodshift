@@ -1,4 +1,5 @@
 class DonationsController < ApplicationController
+  before_action :set_donation, only: [:show, :edit, :update, :destroy]
 
   # GET /donate
   def new
@@ -6,8 +7,9 @@ class DonationsController < ApplicationController
 
   # POST /donations
   def create
+    authorize! :create, Donation, message: "Not authorized to donate"
     donation_form = DonationForm.new(donation_params)
-    donation_form.donor_id = current_user if user_signed_in?
+    donation_form.donor = current_user if user_signed_in?
     respond_to do |format|
       if donation_form.create_objects
         @donation = donation_form.donation
@@ -39,7 +41,7 @@ class DonationsController < ApplicationController
       :email,
       :phone,
       :refrigeration,
-      :additional_info,
+      :additional_info
     )
   end
 end
