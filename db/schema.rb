@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150220061610) do
     t.string   "donated_in_past"
     t.integer  "pounds_per_week"
     t.boolean  "good_samaritan"
+    t.integer  "logo"
   end
 
   add_index "donor_profiles", ["donor_id"], name: "index_donor_profiles_on_donor_id", using: :btree
