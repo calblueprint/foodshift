@@ -6,6 +6,7 @@ gem 'thin', '~>1.6.3'
 gem 'pg'
 gem 'devise'
 gem 'cancancan', '~> 1.9'
+gem 'nilify_blanks'
 
 # Frontend
 gem 'sass-rails', '~> 4.0.3'
@@ -15,20 +16,6 @@ gem 'react-rails', '~> 0.11.1.0'
 gem 'underscore-rails'
 gem 'underscore-string-rails'
 gem 'uglifier', '>= 1.3.0'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-gem 'nilify_blanks'
 
 group :development do
   gem "annotate"
