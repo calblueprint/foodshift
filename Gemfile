@@ -49,7 +49,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
-
+gem 'annotate', '~> 2.6.5'
 gem 'nilify_blanks'
 
 gem 'cancancan', '~> 1.9'
