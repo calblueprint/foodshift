@@ -8,7 +8,7 @@ What is Food Shift?
 
 What We Are Doing
 ----
-Blueprint is creating a web application to help coordinate the food recovery efforts.  The application will allow potential food donors to easily and efficiently set up one-time or recurring food donations, recipients to find food donations, and food shifters to help move food from donors to recipients.
+Blueprint is creating a web application to help coordinate the food recovery efforts.  The application will allow potential food donors to easily and efficiently set up one-time or recurring food donations, potential food recipients to find out and sign up for food donations, and food shifters to help move food from donors to recipients.
 
 Who We Are
 ----
