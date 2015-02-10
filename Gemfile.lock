@@ -96,6 +96,11 @@ GEM
     foundation-rails (5.4.5.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
+    gon (5.2.3)
+      actionpack (>= 2.3.0)
+      json
+      multi_json
+      request_store (>= 1.0.5)
     guard (2.11.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -213,6 +218,7 @@ GEM
       rails (>= 3.1)
       react-source (= 0.11.1)
     react-source (0.11.1)
+    request_store (1.1.0)
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
     rspec (3.1.0)
@@ -316,6 +322,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   foundation-rails
+  gon
   guard-livereload
   guard-rspec
   guard-rubocop
