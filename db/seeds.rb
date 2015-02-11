@@ -1,8 +1,10 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
+NUM_ROWS_PER_TABLE = 5
+
 def create_donors
-  1.upto(5) do |n|
+  1.upto(NUM_ROWS_PER_TABLE) do |n|
     donor = Donor.find_or_initialize_by(email: "donor#{n}@foodshift.net")
     donor.password = "password"
     donor.subscribed = "true"
@@ -29,7 +31,7 @@ def create_donors
 end
 
 def create_recipients
-  1.upto(5) do |n|
+  1.upto(NUM_ROWS_PER_TABLE) do |n|
     recipient = Recipient.find_or_initialize_by(email: "recipient#{n}@foodshift.net")
     recipient.password = "password"
     recipient.subscribed = "true"
@@ -65,7 +67,7 @@ def create_recipients
 end
 
 def create_coordinators
-  1.upto(5) do |n|
+  1.upto(NUM_ROWS_PER_TABLE) do |n|
     coordinator = Coordinator.find_or_initialize_by(email: "coordinator#{n}@foodshift.net")
     coordinator.password = "password"
     coordinator.subscribed = "true"
@@ -80,25 +82,43 @@ def create_coordinators
   coordinator.save!
 end
 
-def create_donations
-  1.upto(5) do
-    Donation.create!(
-    organization: Faker::Company.name,
-    address: Faker::Address.street_address,
-    person: Faker::Name.name,
-    phone: Faker::PhoneNumber.phone_number,
-    email: Faker::Internet.email,
-    refrigeration: [true, false].sample,
-    quantity: Faker::Number.number(2),
-    window_start: Faker::Date.between(2.days.ago, 1.days.ago),
-    window_end: Faker::Date.between(1.days.ago, Date.today),
-    food_type: ["Bread", "Bulk", "Dairy", "Juice", "Mixed", "Meat", "Prepared", "Produce"].sample,
-    longitude: Faker::Address.longitude,
-    latitude: Faker::Address.latitude)
+def create_donations_and_interests
+  1.upto(NUM_ROWS_PER_TABLE) do |n|
+    donation = Donation.create!(
+      organization: Faker::Company.name,
+      address: Faker::Address.street_address,
+      person: Faker::Name.name,
+      phone: Faker::PhoneNumber.phone_number,
+      email: Faker::Internet.email,
+      refrigeration: [true, false].sample,
+      quantity: Faker::Number.number(2),
+      window_start: Faker::Date.between(2.days.ago, 1.days.ago),
+      window_end: Faker::Date.between(1.days.ago, Date.today),
+      food_type: ["Bread", "Bulk", "Dairy", "Juice", "Mixed", "Meat", "Prepared", "Produce"].sample,
+      longitude: Faker::Address.longitude,
+      latitude: Faker::Address.latitude
+    )
+    1.upto(rand(NUM_ROWS_PER_TABLE)) do
+      Interest.create!(
+        donation_id: donation.id,
+        recipient_id: Recipient.offset(rand(Recipient.count)).first.id
+      )
+    end
+  end
+end
+
+def create_transactions
+  1.upto(NUM_ROWS_PER_TABLE) do
+    Transaction.create!(
+      donation_id: Donation.offset(rand(Donation.count)).first.id,
+      recipient_id: Recipient.offset(rand(Recipient.count)).first.id,
+      coordinator_id: Coordinator.offset(rand(Coordinator.count)).first.id
+    )
   end
 end
 
 create_donors
 create_recipients
 create_coordinators
-create_donations
+create_donations_and_interests
+create_transactions
