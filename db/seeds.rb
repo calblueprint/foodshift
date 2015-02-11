@@ -4,63 +4,63 @@
 def create_donations
   1.upto(5) do
     Donation.create!(
-    organization: "Blueprint",
-    address: "Sutardja Dai Hall, Berkeley, CA 94709",
-    person: ["Alli", "Atsu", "Harrison", "Erica", "Quinton"].sample,
-    phone: "408-283-6923",
-    email: "foodshift@shiftfood.org",
+    organization: Faker::Company.name,
+    address: Faker::Address.street_address,
+    person: Faker::Name.name,
+    phone: Faker::PhoneNumber.phone_number,
+    email: Faker::Internet.email,
     refrigeration: [true, false].sample,
-    quantity: "10",
-    window_start: DateTime.new(2014, 8, 21, 8, 0),
-    window_end: DateTime.new(2014, 8, 21, 11, 0),
+    quantity: Faker::Number.number(2),
+    window_start: Faker::Date.between(2.days.ago, 1.days.ago),
+    window_end: Faker::Date.between(1.days.ago, Date.today),
     food_type: ["Bread", "Bulk", "Dairy", "Juice", "Mixed", "Meat", "Prepared", "Produce"].sample,
-    longitude: "37.8747924",
-    latitude: "-122.2583104")
+    longitude: Faker::Address.longitude,
+    latitude: Faker::Address.latitude)
   end
 end
 
 def create_users
   1.upto(5) do |n|
-    Donor.create!(
-    email: "donor#{n}@foodshift.net",
-    password: "password",
-    subscribed: "true",
-    type: "Donor")
+    donor = Donor.find_or_initialize_by(email: "donor#{n}@foodshift.net")
+    donor.password = "password"
+    donor.subscribed = "true"
+    donor.type = "Donor"
+    donor.save!
   end
 
   1.upto(5) do |n|
-    Recipient.create!(
-    email: "recipient#{n}@foodshift.net",
-    password: "password",
-    subscribed: "true",
-    type: "Recipient")
+    recipient = Recipient.find_or_initialize_by(email: "recipient#{n}@foodshift.net")
+    recipient.password = "password"
+    recipient.subscribed = "true"
+    recipient.type = "Recipient"
+    recipient.save!
   end
 
   1.upto(5) do |n|
-    Coordinator.create!(
-    email: "coordinator#{n}@foodshift.net",
-    password: "password",
-    subscribed: "true",
-    type: "Coordinator")
+    coordinator = Coordinator.find_or_initialize_by(email: "coordinator#{n}@foodshift.net")
+    coordinator.password = "password"
+    coordinator.subscribed = "true"
+    coordinator.type = "Coordinator"
+    coordinator.save!
   end
 
-  Donor.create!(
-    email: "foodshiftdonor@gmail.com",
-    password: "password",
-    subscribed: "true",
-    type: "Donor")
+  donor = Donor.find_or_initialize_by(email: "donor@donor.com")
+  donor.password = "password"
+  donor.subscribed = "true"
+  donor.type = "Donor"
+  donor.save!
 
-  Recipient.create!(
-    email: "fsrecipient@gmail.com",
-    password: "password",
-    subscribed: "true",
-    type: "Recipient")
+  recipient = Recipient.find_or_initialize_by(email: "recipient@recipient.com")
+  recipient.password = "password"
+  recipient.subscribed = "true"
+  recipient.type = "Recipient"
+  recipient.save!
 
-  Coordinator.create!(
-    email: "foodshiftcoordinator@gmail.com",
-    password: "password",
-    subscribed: "true",
-    type: "Coordinator")
+  coordinator = Coordinator.find_or_initialize_by(email: "coordinator@coordinator.com")
+  coordinator.password = "password"
+  coordinator.subscribed = "true"
+  coordinator.type = "Coordinator"
+  coordinator.save!
 end
 
 create_donations
