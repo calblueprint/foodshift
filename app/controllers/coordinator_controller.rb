@@ -2,16 +2,20 @@ class CoordinatorController < ApplicationController
   before_action :auth
 
   def deliver
-    current_deliveries = Transaction.where(delivered_at: nil).joins(:donation, :recipient )
-    gon.deliveries = current_deliveries
+    current_deliveries = Transaction.includes({recipient: [:recipient_profile]}, :donation).where(delivered_at: nil)
+    gon.deliveries = current_deliveries.as_json({include: [{recipient: {include: [:recipient_profile]}}, :donation]})
   end
 
   def schedule
-    unique_interests = Interest.select(:donation_id).distinct
-    donations = Donation.where(id: unique_interests.pluck(:donation_id))
-    recipients = Recipient.where(id: unique_interests.pluck(:recipient_id))
-    gon.donations = donations
-    gon.recipients = recipients
+    gon.donations = []
+    gon.recipients = []
+    Interest.includes({recipient: [:recipient_profile]}, :donation).group_by(&:donation).each do |donation, interests|
+        gon.donations << donation
+        interests.each do |interest|
+            puts interest.recipient.recipient_profile
+            gon.recipients << interest.as_json({include: {recipient: {include: [:recipient_profile]}}})
+        end
+    end
   end
 
   def data
