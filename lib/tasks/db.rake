@@ -78,6 +78,26 @@ def create_recipients(num_rows)
   recipient.subscribed = "true"
   recipient.type = "Recipient"
   recipient.save!
+
+  recipient_profile = RecipientProfile.find_or_initialize_by(recipient_id: recipient.id)
+  recipient_profile.organization = Faker::Company.name
+  recipient_profile.address = Faker::Address.street_address
+  recipient_profile.org501c3 = Faker::Number.number(5)
+  recipient_profile.person = Faker::Name.name
+  recipient_profile.phone = Faker::PhoneNumber.phone_number
+  recipient_profile.operation = Faker::Lorem.word
+  recipient_profile.num_people_serve = Faker::Number.number(3)
+  recipient_profile.kitchen = [true, false].sample
+  recipient_profile.refrigeration = [true, false].sample
+  recipient_profile.notfications = [true, false].sample
+  recipient_profile.population = Faker::Lorem.paragraph
+  recipient_profile.days_serve = Faker::Lorem.word
+  recipient_profile.food_types_wanted = Faker::Lorem.sentence(3)
+  recipient_profile.food_types_unwanted = Faker::Lorem.sentence(3)
+  recipient_profile.challenges = Faker::Lorem.paragraph
+  recipient_profile.longitude = Faker::Address.longitude
+  recipient_profile.latitude = Faker::Address.latitude
+  recipient_profile.save!
 end
 
 def create_coordinators(num_rows)

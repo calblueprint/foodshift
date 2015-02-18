@@ -16,6 +16,8 @@ gem 'react-rails', '~> 0.11.1.0'
 gem 'underscore-rails'
 gem 'underscore-string-rails'
 gem 'uglifier', '>= 1.3.0'
+# Rails objects -> JS objects
+gem 'gon'
 
 group :development do
   gem "annotate"
