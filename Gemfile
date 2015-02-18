@@ -1,21 +1,24 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 # Core components
-gem 'rails', '4.1.0'
-gem 'thin', '~>1.6.3'
-gem 'pg'
-gem 'devise'
-gem 'cancancan', '~> 1.9'
-gem 'nilify_blanks'
+gem "rails", "4.1.0"
+gem "thin", "~>1.6.3"
+gem "pg"
+gem "devise"
+gem "cancancan", "~> 1.9"
+gem "nilify_blanks"
+gem "carrierwave"
+gem "mini_magick"
+gem "fog"
 
 # Frontend
-gem 'sass-rails', '~> 4.0.3'
-gem 'jquery-rails'
-gem 'foundation-rails'
-gem 'react-rails', '~> 0.11.1.0'
-gem 'underscore-rails'
-gem 'underscore-string-rails'
-gem 'uglifier', '>= 1.3.0'
+gem "sass-rails", "~> 4.0.3"
+gem "jquery-rails"
+gem "foundation-rails"
+gem "react-rails", "~> 0.11.1.0"
+gem "underscore-rails"
+gem "underscore-string-rails"
+gem "uglifier", ">= 1.3.0"
 
 group :development do
   gem "annotate"
