@@ -12,7 +12,6 @@ class CoordinatorController < ApplicationController
     Interest.includes({recipient: [:recipient_profile]}, :donation).group_by(&:donation).each do |donation, interests|
         gon.donations << donation
         interests.each do |interest|
-            puts interest.recipient.recipient_profile
             gon.recipients << interest.as_json({include: {recipient: {include: [:recipient_profile]}}})
         end
     end
