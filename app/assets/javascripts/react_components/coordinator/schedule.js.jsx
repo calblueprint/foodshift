@@ -62,7 +62,6 @@ var ScheduleDashboard = React.createClass({
     },
     render: function() {
         var content = _.isEmpty(this.state.donations) ? this.renderEmpty() : this.renderHasDonations();
-        console.log(this.state.recipients)
         return (
             <div className="row">
                 <div className="small-12 columns">
