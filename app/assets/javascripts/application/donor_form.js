@@ -1,6 +1,6 @@
 $(function() {
     var autocomplete = new google.maps.places.Autocomplete(
-        (document.getElementById('donor-address')), {
+        (document.getElementById('donation_address')), {
             types: ['geocode']
     });
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
