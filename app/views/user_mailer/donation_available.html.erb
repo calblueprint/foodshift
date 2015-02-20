@@ -300,8 +300,7 @@
                                                           <td align="left" class="textContent">
                                                             <h3 style="color:#92bf20;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left">Information</h3>
                                                             <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                              <b>Food Type:</b> <%= @donation.food_type %> <br>
-                                                              <b>Quantity:</b> <%= @donation.quantity %> <br>
+                                                              <b>Food Description:</b> <%= @donation.description %> <br>
                                                               <b>Refrigeration?</b> <%= @donation.refrigeration.to_s %> <br>
                                                               <b>Available starting:</b><br><%= @donation.window_start.to_formatted_s(:long_ordinal) %> <br>
                                                               <b>Availabile until:</b><br><%= @donation.window_end.to_formatted_s(:long_ordinal) %> <br>
