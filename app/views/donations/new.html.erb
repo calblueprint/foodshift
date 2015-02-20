@@ -24,6 +24,7 @@
     <div class="row">
       <div class="small-12 medium-8 medium-centered columns">
         <%= f.text_area :description, required: "", placeholder: "try to estimate the weight and amount of space that the food items will take up!", rows: "5" %>
+        <small class="error">Description is required.</small>
       </div>
     </div>
     <div class="row">
@@ -65,7 +66,7 @@
           </div>
           <div class="small-9 columns">
             <%= f.datetime_local_field :date, required: "" %>
-            <small class="error">Valid date is required.</small>
+            <small class="error">Valid date is required (MM-DD-YY).</small>
           </div>
         </div>
         <div class="row collapse">
@@ -74,14 +75,14 @@
           </div>
           <div class="small-4 columns">
             <%= f.time_field :start_time, required: "" %>
-            <small class="error">Valid time is required.</small>
+            <small class="error">Valid time is required (HH:MMam/pm).</small>
           </div>
           <div class="small-2 columns">
               <span class="prefix">To</span>
           </div>
           <div class="small-4 columns">
             <%= f.time_field :end_time, required: "" %>
-            <small class="error">Valid time is required.</small>
+            <small class="error">Valid time is required (HH:MMam/pm).</small>
           </div>
         </div>
       </div>
@@ -116,7 +117,7 @@
           </div>
           <div class="small-9 columns">
             <%= f.text_field :email, required: "" %>
-            <small class="error">Valid email is required.</small>
+            <small class="error">Valid email addess is required.</small>
           </div>
         </div>
         <div class="row collapse">
@@ -124,7 +125,7 @@
             <span class="prefix">Phone</span>
           </div>
           <div class="small-9 columns">
-            <%= f.telephone_field :phone, required: "" %>
+            <%= f.telephone_field :phone, pattern: "phone", required: "" %>
             <small class="error">Valid phone number is required.</small>
           </div>
         </div>
@@ -154,8 +155,5 @@
 
 <% end %>
 
-<%= javascript_include_tag "react_components/forms" %>
-<%= javascript_include_tag "react_components/buttons" %>
-<%= javascript_include_tag "react_components/donor_form" %>
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places" %>
 <%= javascript_include_tag "application/donor_form" %>
