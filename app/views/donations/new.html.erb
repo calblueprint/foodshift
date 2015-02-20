@@ -15,18 +15,64 @@
 </div>
 
 <%= simple_form_for :donation, :html => { :"data-abide" => "", :multipart => true } do |f| %>
-  <%= f.hidden_field :gallery_id %>
+
   <p>
-  <%= f.label :name %><br />
-  <%= f.text_field :name %>
+  <%= f.label :"Description" %><br />
+  <%= f.text_area :description %>
   </p>
+
   <p>
-  <%= f.file_field :image %>
+  <%= f.label :"Does the food need to be refrigerated?" %><br />
+  <%= f.check_box :refrigeration %>
   </p>
+
+  <h3>Pickup Information</h3>
+
   <p>
-  <%= f.label :remote_image_url, "or image URL" %><br />
-  <%= f.text_field :remote_image_url %>
+  <%= f.label :Address %>
+  <%= f.text_field :address %>
   </p>
+
+  <p>
+  <%= f.label :Date %>
+  <%= f.datetime_local_field :date %>
+  </p>
+
+  <p>
+  <%= f.label :From %>
+  <%= f.time_field :start_time %>
+  </p>
+
+  <p>
+  <%= f.label :To %>
+  <%= f.time_field :end_time %>
+  </p>
+
+  <p>
+  <%= f.label :Name %>
+  <%= f.text_field :person %>
+  </p>
+
+  <p>
+  <%= f.label :Organization %>
+  <%= f.text_field :organization %>
+  </p>
+
+  <p>
+  <%= f.label :Email %>
+  <%= f.text_field :email %>
+  </p>
+
+  <p>
+  <%= f.label :Phone %>
+  <%= f.telephone_field :phone %>
+  </p>
+
+  <p>
+  <%= f.label :"Anything else we should know about your donation?" %>
+  <%= f.text_area :additional_info %>
+  </p>
+
   <p><%= f.submit %></p>
 <% end %>
 

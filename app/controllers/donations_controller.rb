@@ -27,8 +27,6 @@ class DonationsController < ApplicationController
   private
   def donation_params
     params.require(:donation).permit(
-      { food_type: [] },
-      :quantity,
       :address,
       :latitude,
       :longitude,
@@ -40,7 +38,8 @@ class DonationsController < ApplicationController
       :email,
       :phone,
       :refrigeration,
-      :additional_info
+      :additional_info,
+      :description
     )
   end
 end
