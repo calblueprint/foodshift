@@ -15,82 +15,130 @@
 </div>
 
 <%= simple_form_for :donation, :html => { :"data-abide" => "", :multipart => true } do |f| %>
+  <div id="donor-form-food-block">
+    <div class="row">
+      <div class="small-12 columns text-center">
+        <%= f.label :description, "Write a short description of your donation!" %><br /><%= f.text_area :description, required: "" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-6 columns text-center">
+        <%= f.label :picture, "Upload a picture of your donation!" %><%= f.file_field :picture, required: "" %>
+      </div>
+      <div class="small-6 columns text-center">
+        <%= f.label :refrigeration, "Does your donation require refrigeration?" %><%= f.check_box :refrigeration %>
+      </div>
+    </div>
+  </div>
 
-  <p>
-  <%= f.label :"Upload a picture of the food!" %>
-  <%= f.file_field :picture, required: "" %>
-  </p>
+  <div id="donor-form-pickup-block">
+    <div class="row">
+      <div class="small-12 medium-8 medium-centered columns">
+        <h3 class="text-center block-title">Pickup Information</h3>
+        <div class="row collapse">
+          <div class="small-3 columns">
+            <span class="prefix">Address</span>
+          </div>
+          <div class="small-9 columns">
+            <%= f.text_field :address, required: "", placeholder: "" %>
+            <small class="error">Address is required.</small>
+            <%= f.hidden_field :latitude, id: "donor-address-lat" %>
+            <%= f.hidden_field :longitude, id: "donor-address-lng" %>
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-3 columns">
+            <span class="prefix">Date</span>
+          </div>
+          <div class="small-9 columns">
+            <%= f.datetime_local_field :date, required: "" %>
+            <small class="error">Valid date is required.</small>
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-2 columns">
+            <span class="prefix">From</span>
+          </div>
+          <div class="small-4 columns">
+            <%= f.time_field :start_time, required: "" %>
+            <small class="error">Valid time is required.</small>
+          </div>
+          <div class="small-2 columns">
+              <span class="prefix">To</span>
+          </div>
+          <div class="small-4 columns">
+            <%= f.time_field :end_time, required: "" %>
+            <small class="error">Valid time is required.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <p>
-  <%= f.label :"Description" %><br />
-  <%= f.text_area :description, required: "" %>
-  </p>
+  <div id="donor-form-detail-block">
+    <div class="row">
+      <div class="small-12  medium-8 medium-centered columns">
+        <h3 class="text-center block-title">About You</h3>
+        <div class="row collapse">
+          <div class="small-3 columns">
+            <span class="prefix">Name</span>
+          </div>
+          <div class="small-9 columns">
+            <%= f.text_field :person, required: "" %>
+            <small class="error">Name is required.</small>
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-3 columns">
+            <span class="prefix">Organization/Company Name</span>
+          </div>
+          <div class="small-9 columns">
+            <%= f.text_field :organization, required: "" %>
+            <small class="error">Organization is required.</small>
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-3 columns">
+            <span class="prefix">Email</span>
+          </div>
+          <div class="small-9 columns">
+            <%= f.text_field :email, required: "" %>
+            <small class="error">Valid email is required.</small>
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-3 columns">
+            <span class="prefix">Phone</span>
+          </div>
+          <div class="small-9 columns">
+            <%= f.telephone_field :phone, required: "" %>
+            <small class="error">Valid phone number is required.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <p>
-  <%= f.label :"Does the food need to be refrigerated?" %><br />
-  <%= f.check_box :refrigeration %>
-  </p>
+  <div id="donor-form-submit-block">
+    <div class="row">
+      <div class="small-12 columns">
+        <h3 class="text-center block-title">Anything else we should know about your donation?</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 medium-8 medium-centered columns">
+        <%= f.text_area :additional_info, rows: "5" %>
+      </div>
+    </div>
+    <div class="row form-padding">
+      <div class="small-12 columns">
+        <div class="text-center donate-block">
+          <%= f.submit :value => "Donate!", :class => "success-button" %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <h3 class="text-center block-title">Pickup Information</h3>
-
-  <p>
-  <%= f.label :Address %>
-  <small class="error">Address is required.</small>
-  <%= f.text_field :address, required: "", placeholder: "" %>
-  <%= f.hidden_field :latitude, id: "donor-address-lat" %>
-  <%= f.hidden_field :longitude, id: "donor-address-lng" %>
-  </p>
-
-  <p>
-  <%= f.label :Date %>
-  <small class="error">Valid date is required.</small>
-  <%= f.datetime_local_field :date, required: "" %>
-  </p>
-
-  <p>
-  <%= f.label :From %>
-  <small class="error">Valid time is required.</small>
-  <%= f.time_field :start_time, required: "" %>
-  </p>
-
-  <p>
-  <%= f.label :To %>
-  <small class="error">Valid time is required.</small>
-  <%= f.time_field :end_time, required: "" %>
-  </p>
-
-  <h3 class="text-center block-title">About You</h3>
-
-  <p>
-  <%= f.label :Name %>
-  <small class="error">Name is required.</small>
-  <%= f.text_field :person, required: "" %>
-  </p>
-
-  <p>
-  <%= f.label :Organization %>
-  <small class="error">Organization is required.</small>
-  <%= f.text_field :organization, required: "" %>
-  </p>
-
-  <p>
-  <%= f.label :Email %>
-  <small class="error">Valid email is required.</small>
-  <%= f.text_field :email, required: "" %>
-  </p>
-
-  <p>
-  <%= f.label :Phone %>
-  <small class="error">Valid phone number is required.</small>
-  <%= f.telephone_field :phone, required: "" %>
-  </p>
-
-  <p>
-  <%= f.label :"Anything else we should know about your donation?" %>
-  <%= f.text_area :additional_info %>
-  </p>
-
-  <p><%= f.submit %></p>
 <% end %>
 
 <%= javascript_include_tag "react_components/forms" %>
