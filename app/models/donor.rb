@@ -17,6 +17,7 @@
 #  last_sign_in_ip        :string(255)
 #  type                   :string(255)
 #  subscribed             :boolean
+#  admin                  :boolean          default(FALSE)
 #
 
 class Donor < User

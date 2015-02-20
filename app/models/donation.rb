@@ -17,7 +17,7 @@
 #  additional_info :text
 #  latitude        :decimal(, )
 #  longitude       :decimal(, )
-#  picture_url     :string(255)
+#  picture         :string(255)
 #  description     :text
 #
 
@@ -26,5 +26,5 @@ class Donation < ActiveRecord::Base
   nilify_blanks
 
   # Image uploader using carrierwave
-  mount_uploader :picture_url, DonationUploader
+  mount_uploader :picture, DonationUploader
 end
