@@ -10,6 +10,7 @@ gem "nilify_blanks"
 gem "carrierwave"
 gem "mini_magick"
 gem "fog"
+gem "simple_form"
 
 # Frontend
 gem "sass-rails", "~> 4.0.3"

@@ -1,136 +1,132 @@
 <div id="donor-form-image-block">
-    <div class="donor-form-image"></div>
-    <div class="donor-form-image-overlay"></div>
-    <div class="donor-form-content">
-        <div class="row">
-            <div class="small-8 small-centered columns">
-                <h1 class="text-center">Donate</h1>
-                <p>
-Are you a food service business with extra food? Fill in details below about food type, quantity, and pick up location, and we will connect you with an organization in need of your food! 
-                </p>
-                <div class="text-center">
-                     <a id="scroll-arrow"><i class="fa fa-chevron-circle-down fa-3x"></i></a>
-                </div>
-            </div>
+  <div class="donor-form-image"></div>
+  <div class="donor-form-image-overlay"></div>
+  <div class="donor-form-content">
+    <div class="row">
+      <div class="small-8 small-centered columns">
+        <h1 class="text-center">Donate</h1>
+        <p>Are you a food service business with extra food? Fill in details below about food type, quantity, and pick up location, and we will connect you with an organization in need of your food!</p>
+        <div class="text-center">
+          <a id="scroll-arrow"><i class="fa fa-chevron-circle-down fa-3x"></i></a>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <form id="donor-form-fields" data-abide method="POST" accept-charset="UTF-8" action="<%= donations_create_path %>">
 
 <div id="donor-form-food-block">
-    <div id="donor-form">
+  <div class="row">
+    <div class="small-12 columns text-center">
+        <input id="checkbox-refrigeration" type="checkbox" name="donation[refrigeration]"/><label for="checkbox-refrigeration">Do you have refrigeration?</label>
     </div>
-    <div class="row">
-        <div class="small-12 columns text-center">
-            <input id="checkbox-refrigeration" type="checkbox" name="donation[refrigeration]"/><label for="checkbox-refrigeration">Do you have refrigeration?</label>
-        </div>
-    </div>
+  </div>
 </div>
 <div id="donor-form-pickup-block">
-    <div class="row">
-        <div class="small-12 medium-8 medium-centered columns">
-            <h3 class="text-center block-title">Pickup Information</h3>
-            <div class="row collapse">
-                <div class="small-3 columns">
-                    <span class="prefix">Address</span>
-                </div>
-                <div class="small-9 columns">
-                    <input type="text" placeholder="" required id="donor-address" name="donation[address]"/>
-                    <small class="error">Address is required.</small>
-                    <input type="hidden" id="donor-address-lat" name="donation[latitude]"/>
-                    <input type="hidden" id="donor-address-lng" name="donation[longitude]"/>
-                </div>
-            </div>
-            <div class="row collapse">
-                <div class="small-3 columns">
-                    <span class="prefix">Date</span>
-                </div>
-                <div class="small-9 columns">
-                    <input type="date" required name="donation[date]"/>
-                    <small class="error">Valid date is required.</small>
-                </div>
-            </div>
-            <div class="row collapse">
-                <div class="small-2 columns">
-                    <span class="prefix">From</span>
-                </div>
-                <div class="small-4 columns">
-                    <input type="text" pattern="time" required name="donation[start_time]"/>
-                    <small class="error">Valid time is required.</small>
-                </div>
-                <div class="small-2 columns">
-                    <span class="prefix">To</span>
-                </div>
-                <div class="small-4 columns">
-                    <input type="text" pattern="time" required name="donation[end_time]"/>
-                    <small class="error">Valid time is required.</small>
-                </div>
-            </div>
+  <div class="row">
+    <div class="small-12 medium-8 medium-centered columns">
+      <h3 class="text-center block-title">Pickup Information</h3>
+      <div class="row collapse">
+        <div class="small-3 columns">
+          <span class="prefix">Address</span>
         </div>
+        <div class="small-9 columns">
+          <input type="text" placeholder="" required id="donor-address" name="donation[address]"/>
+          <small class="error">Address is required.</small>
+          <input type="hidden" id="donor-address-lat" name="donation[latitude]"/>
+          <input type="hidden" id="donor-address-lng" name="donation[longitude]"/>
+        </div>
+      </div>
+      <div class="row collapse">
+        <div class="small-3 columns">
+          <span class="prefix">Date</span>
+        </div>
+        <div class="small-9 columns">
+          <input type="date" required name="donation[date]"/>
+          <small class="error">Valid date is required.</small>
+        </div>
+      </div>
+      <div class="row collapse">
+        <div class="small-2 columns">
+          <span class="prefix">From</span>
+        </div>
+        <div class="small-4 columns">
+          <input type="text" pattern="time" required name="donation[start_time]"/>
+          <small class="error">Valid time is required.</small>
+        </div>
+        <div class="small-2 columns">
+          <span class="prefix">To</span>
+        </div>
+        <div class="small-4 columns">
+          <input type="text" pattern="time" required name="donation[end_time]"/>
+          <small class="error">Valid time is required.</small>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <div id="donor-form-detail-block">
-    <div class="row">
-        <div class="small-12  medium-8 medium-centered columns">
-            <h3 class="text-center block-title">About You</h3>
-            <div class="row collapse">
-                <div class="small-3 columns">
-                    <span class="prefix">Name</span>
-                </div>
-                <div class="small-9 columns">
-                    <input type="text" required  name="donation[person]"/>
-                    <small class="error">Name is required.</small>
-                </div>
-            </div>
-            <div class="row collapse">
-                <div class="small-3 columns">
-                    <span class="prefix">Organization/Company Name</span>
-                </div>
-                <div class="small-9 columns">
-                    <input type="text" required  name="donation[organization]"/>
-                    <small class="error">Organization is required.</small>
-                </div>
-            </div>
-            <div class="row collapse">
-                <div class="small-3 columns">
-                    <span class="prefix">Email</span>
-                </div>
-                <div class="small-9 columns">
-                    <input type="email" required  name="donation[email]"/>
-                    <small class="error">Valid email is required.</small>
-                </div>
-            </div>
-            <div class="row collapse">
-                <div class="small-3 columns">
-                    <span class="prefix">Phone</span>
-                </div>
-                <div class="small-9 columns">
-                    <input type="tel" pattern="phone" required name="donation[phone]"/>
-                    <small class="error">Valid phone number is required.</small>
-                </div>
-            </div>
+  <div class="row">
+    <div class="small-12  medium-8 medium-centered columns">
+      <h3 class="text-center block-title">About You</h3>
+      <div class="row collapse">
+        <div class="small-3 columns">
+          <span class="prefix">Name</span>
         </div>
+        <div class="small-9 columns">
+          <input type="text" required  name="donation[person]"/>
+          <small class="error">Name is required.</small>
+        </div>
+      </div>
+      <div class="row collapse">
+        <div class="small-3 columns">
+          <span class="prefix">Organization/Company Name</span>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" required  name="donation[organization]"/>
+          <small class="error">Organization is required.</small>
+        </div>
+      </div>
+      <div class="row collapse">
+        <div class="small-3 columns">
+          <span class="prefix">Email</span>
+        </div>
+        <div class="small-9 columns">
+          <input type="email" required  name="donation[email]"/>
+          <small class="error">Valid email is required.</small>
+        </div>
+      </div>
+      <div class="row collapse">
+        <div class="small-3 columns">
+          <span class="prefix">Phone</span>
+        </div>
+        <div class="small-9 columns">
+          <input type="tel" pattern="phone" required name="donation[phone]"/>
+          <small class="error">Valid phone number is required.</small>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <div id="donor-form-submit-block">
-    <div class="row">
-        <div class="small-12 columns">
-            <h3 class="text-center block-title">Anything else we should know about your donation?</h3>
-        </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <h3 class="text-center block-title">Anything else we should know about your donation?</h3>
     </div>
-    <div class="row">
-        <div class="small-12 medium-8 medium-centered columns">
-            <textarea rows=5 name="donation[additional_info]"></textarea>
-        </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-8 medium-centered columns">
+      <textarea rows=5 name="donation[additional_info]"></textarea>
     </div>
-    <div class="row form-padding">
-        <div class="small-12 columns">
-            <div class="text-center donate-block">
-                <input class="success-button" name="commit" type="submit" value="Donate!">
-            </div>
-        </div>
+  </div>
+  <div class="row form-padding">
+    <div class="small-12 columns">
+      <div class="text-center donate-block">
+        <input class="success-button" name="commit" type="submit" value="Donate!">
+      </div>
     </div>
+  </div>
 </div>
 
 </form>
@@ -138,7 +134,5 @@ Are you a food service business with extra food? Fill in details below about foo
 <%= javascript_include_tag "react_components/forms" %>
 <%= javascript_include_tag "react_components/buttons" %>
 <%= javascript_include_tag "react_components/donor_form" %>
-
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places" %>
-
 <%= javascript_include_tag "application/donor_form" %>
