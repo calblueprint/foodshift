@@ -23,21 +23,22 @@
     </div>
     <div class="row">
       <div class="small-12 medium-8 medium-centered columns">
-        <%= f.text_area :description, required: "", placeholder: "try to estimate the weight and amount of space that the food items will take up!", rows: "5" %>
+        <%= f.text_area :description, required: "", placeholder: "Please estimate the weight and amount of space that the food items will take up!", rows: "5" %>
         <small class="error">Description is required.</small>
       </div>
     </div>
     <div class="row">
       <div class="small-6 text-center columns">
-        <%= f.label :picture, "Upload a picture of your donation!" %>
+        <span>Upload a picture of your donation!</span>
       </div>
       <div class="small-6 text-center columns">
-        <%= f.label :refrigeration, "Does your donation require refrigeration?" %>
+        <span>Does your donation require refrigeration?</span>
       </div>
     </div>
     <div class="row">
       <div class="small-6 text-center columns">
         <%= f.file_field :picture, required: "" %>
+        <small class="error">Picture is required.</small>
       </div>
       <div class="small-6 text-center columns">
         <%= f.check_box :refrigeration %>
@@ -141,7 +142,7 @@
     </div>
     <div class="row">
       <div class="small-12 medium-8 medium-centered columns">
-        <%= f.text_area :additional_info, placeholder: "specific instructions for pickup, types of containers needed, etc...", rows: "5" %>
+        <%= f.text_area :additional_info, placeholder: "Include specific instructions for pickup, types of containers needed, etc...", rows: "5" %>
       </div>
     </div>
     <div class="row form-padding">
