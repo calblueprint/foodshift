@@ -15,87 +15,11 @@ var ScheduleDashboard = React.createClass({
         };
     },
     getDonationsList: function() {
-        // TODO: Write an AJAX version for this
-        return [
-            {
-                id: 555,
-                address: 'Sutardja Dai Hall, University of California, Berkeley, Berkeley, CA, United States',
-                latitude: 37.8747924,
-                longitude: -122.2583104,
-                foodTypes: ['Bread', 'Dairy', 'Meat', 'Produce', 'Mixed'],
-                quantity: '3 boxes',
-                date: '1/1/2014',
-                startTime: '1:00PM',
-                endTime: '2:00PM',
-                name: 'Joe Bloggs',
-                organization: 'Blueprint',
-                email: 'joe@bloggs.com',
-                phone: '123-456-7890',
-                additionalInfo: '  '
-            },
-            {
-                id: 999,
-                address: 'West Oakland BART Station 1451 7th St Oakland, CA 94607',
-                latitude: 37.804872,
-                longitude: -122.295139,
-                foodTypes: ['Meat'],
-                quantity: '1 tray',
-                date: '10/10/2014',
-                startTime: '10:00AM',
-                endTime: '11:00AM',
-                name: '2jun Jeong',
-                organization: 'Greenprint',
-                email: '2@jun.com',
-                phone: '444-444-4444',
-                additionalInfo: 'Here is some additional information about this donation.'
-            }
-        ]
+        return gon.donations
     },
     getRecipientsList: function(donationId) {
-        // TODO: Write an AJAX version for this
-        var recipients = [
-            {
-                id: 1,
-                donationId: 555,
-                firstName: '1Jun',
-                lastName: 'the Receiver',
-                email: '1jun@receiver.com',
-                phone: '555-555-1111',
-                organization: 'Blackprint',
-                address: '1015 Folsom Street, San Francisco, CA, United States',
-                latitude: 37.7781009,
-                longitude: -122.4057628,
-                orgNumber: '9000',
-            },
-            {
-                id: 2,
-                donationId: 555,
-                firstName: 'Joe',
-                lastName: 'Recipient',
-                email: 'joe@recipient.com',
-                phone: '555-555-5555',
-                organization: 'Redprint',
-                address: 'People\'s Park 2556 Haste St Berkeley, CA 94704',
-                latitude: 37.865813,
-                longitude: -122.257058,
-                orgNumber: '5000',
-            },
-            {
-                id: 3,
-                donationId: 999,
-                firstName: 'Food',
-                lastName: ' Recipient',
-                email: 'food@recipient.com',
-                phone: '999-999-9999',
-                organization: 'Adult Food Finder',
-                address: 'Berkeley Bowl, 2020 Oregon St, Berkeley, CA 94703',
-                latitude: 37.857843,
-                longitude: -122.2613269,
-                orgNumber: '6000',
-            }
-        ]
-        return _.filter(recipients, function(recipient) {
-            return recipient.donationId === donationId;
+        return _.filter(gon.recipients, function(recipient) {
+            return recipient.donation_id === donationId;
         });
     },
     getNextDonation: function() {
@@ -152,6 +76,12 @@ var ScheduleDashboard = React.createClass({
     },
     renderHasDonations: function() {
         var currDonation = this.state.donations[this.state.currDonationIndex];
+        var flattenedRecipients = _.map(this.state.recipients, function(interest) {
+            return interest.recipient;
+        });
+        var flattenedRecipientProfiles = _.map(flattenedRecipients, function(recipient) {
+            return recipient.recipient_profile;
+        });
         return (
             <div key={currDonation.id} className="dashboard">
                 <div className="card-header">
@@ -179,10 +109,10 @@ var ScheduleDashboard = React.createClass({
                 <div className="donation-recipients">
                     <div className="row">
                         <div className="medium-6 columns no-right-pad">
-                            <DonationRecipients recipients={this.state.recipients} donation={currDonation} handleSubmit={this.handleSubmit} />
+                            <DonationRecipients recipients={flattenedRecipients} donation={currDonation} handleSubmit={this.handleSubmit} />
                         </div>
                         <div className="medium-6 columns no-left-pad">
-                            <GoogleMap donation={currDonation} recipients={this.state.recipients} longitude={currDonation.longitude} latitude={currDonation.latitude} />
+                            <GoogleMap donation={currDonation} recipients={flattenedRecipientProfiles} longitude={Number(currDonation.longitude)} latitude={Number(currDonation.latitude)} />
                         </div>
                     </div>
                 </div>
@@ -211,8 +141,8 @@ var DonationInfo = React.createClass({
                 foodTypes: ['TestFood1', 'TestFood2'],
                 quantity: '1 Tray',
                 date: '1/1/2014',
-                startTime: '10:00AM',
-                endTime: '11:00AM',
+                window_start: '10:00AM',
+                window_end: '11:00AM',
                 name: 'Foodshift User',
                 organization: 'Food Shift',
                 email: 'food@shift.com',
@@ -230,8 +160,8 @@ var DonationInfo = React.createClass({
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul">
-                          <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.date}</li>
-                          <li><i className="fa-li fa "></i>{this.props.donation.startTime} - {this.props.donation.endTime}</li>
+                          <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.window_start}</li>
+                          <li><i className="fa-li fa "></i>{this.props.donation.window_start} - {this.props.donation.window_end}</li>
                           <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
                         </ul>
                     </div>
@@ -387,7 +317,7 @@ var Recipient = React.createClass({
                 <div className={titleClasses} onClick={this.handleClick}>
                     <div className="row">
                         <div className="medium-8 columns">
-                            {this.props.recipient.address}
+                            {this.props.recipient.recipient_profile.address}
                         </div>
                         <div className="small-11 medium-3 columns">
                             15 min
@@ -409,11 +339,11 @@ var Recipient = React.createClass({
                 <div className="row">
                     <div className="medium-6 columns">
                         <div className="recipient-details">
-                            <p className="organization">{this.props.recipient.organization}</p>
+                            <p className="organization">{this.props.recipient.recipient_profile.organization}</p>
                             <ul className="fa-ul">
-                              <li><i className="fa-li fa fa-user"></i>{this.props.recipient.firstName} {this.props.recipient.lastName}</li>
+                              <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.person}</li>
                               <li><i className="fa-li fa fa-envelope-o"></i>{this.props.recipient.email}</li>
-                              <li><i className="fa-li fa fa-phone"></i>{this.props.recipient.phone}</li>
+                              <li><i className="fa-li fa fa-phone"></i>{this.props.recipient.recipient_profile.phone}</li>
                             </ul>
                         </div>
                     </div>
@@ -430,7 +360,7 @@ var Recipient = React.createClass({
                             <div className="medium-5 columns">
                                 <ul className="fa-ul">
                                   <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization}</li>
-                                  <li><i className="fa-li fa fa-user"></i>{this.props.donation.name}</li>
+                                  <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
@@ -445,8 +375,8 @@ var Recipient = React.createClass({
                             </div>
                             <div className="small-10 medium-4 columns">
                                 <ul className="fa-ul">
-                                  <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.date}</li>
-                                  <li><i className="fa-li fa "></i>{this.props.donation.startTime} - {this.props.donation.endTime}</li>
+                                  <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.window_start}</li>
+                                  <li><i className="fa-li fa "></i>{this.props.donation.window_start}- {this.props.donation.window_end}</li>
                                 </ul>
                             </div>
                             <div className="small-10 small-offset-2 medium-7 medium-offset-0 columns">
@@ -462,13 +392,13 @@ var Recipient = React.createClass({
                         <div className="recipient-row">
                             <div className="medium-5 columns">
                                 <ul className="fa-ul">
-                                  <li><i className="fa-li fa fa-users"></i>{this.props.recipient.organization}</li>
-                                  <li><i className="fa-li fa fa-user"></i>{this.props.recipient.firstName} {this.props.recipient.lastName}</li>
+                                  <li><i className="fa-li fa fa-users"></i>{this.props.recipient.recipient_profile.organization}</li>
+                                  <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.person}</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
                                 <ul className="fa-ul">
-                                  <li><i className="fa-li fa fa-map-marker"></i>{this.props.recipient.address}</li>
+                                  <li><i className="fa-li fa fa-map-marker"></i>{this.props.recipient.recipient_profile.address}</li>
                                 </ul>
                             </div>
                         </div>
