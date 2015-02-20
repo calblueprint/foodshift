@@ -18,7 +18,7 @@
 
   <p>
   <%= f.label :"Upload a picture of the food!" %>
-  <%= f.file_field :picture %>
+  <%= f.file_field :picture, required: "" %>
   </p>
 
   <p>
@@ -35,42 +35,50 @@
 
   <p>
   <%= f.label :Address %>
-  <%= f.text_field :address %>
+  <small class="error">Address is required.</small>
+  <%= f.text_field :address, required: "" %>
   </p>
 
   <p>
   <%= f.label :Date %>
-  <%= f.datetime_local_field :date %>
+  <small class="error">Valid date is required.</small>
+  <%= f.datetime_local_field :date, required: "" %>
   </p>
 
   <p>
   <%= f.label :From %>
-  <%= f.time_field :start_time %>
+  <small class="error">Valid time is required.</small>
+  <%= f.time_field :start_time, required: "" %>
   </p>
 
   <p>
   <%= f.label :To %>
-  <%= f.time_field :end_time %>
+  <small class="error">Valid time is required.</small>
+  <%= f.time_field :end_time, required: "" %>
   </p>
 
   <p>
   <%= f.label :Name %>
-  <%= f.text_field :person %>
+  <small class="error">Name is required.</small>
+  <%= f.text_field :person, required: "" %>
   </p>
 
   <p>
   <%= f.label :Organization %>
-  <%= f.text_field :organization %>
+  <small class="error">Organization is required.</small>
+  <%= f.text_field :organization, required: "" %>
   </p>
 
   <p>
   <%= f.label :Email %>
-  <%= f.text_field :email %>
+  <small class="error">Valid email is required.</small>
+  <%= f.text_field :email, required: "" %>
   </p>
 
   <p>
   <%= f.label :Phone %>
-  <%= f.telephone_field :phone %>
+  <small class="error">Valid phone number is required.</small>
+  <%= f.telephone_field :phone, required: "" %>
   </p>
 
   <p>
