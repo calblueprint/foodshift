@@ -1,6 +1,6 @@
 $(function() {
     var autocomplete = new google.maps.places.Autocomplete(
-        (document.getElementById('donor-address')), {
+        (document.getElementById('donation_address')), {
             types: ['geocode']
     });
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
@@ -24,6 +24,7 @@ $(function() {
             patterns: {
                     phone: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
                     time: /^([1-9]|1[0-2]):([0-5]\d)\s?(AM|PM)$/i,
+                    email : /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
                 }
             }
       });

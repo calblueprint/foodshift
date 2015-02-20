@@ -12,16 +12,19 @@
 #  phone           :string(255)      not null
 #  email           :string(255)      not null
 #  refrigeration   :boolean          default(FALSE)
-#  quantity        :string(255)      not null
 #  window_start    :datetime         not null
 #  window_end      :datetime         not null
 #  additional_info :text
-#  food_type       :string(255)      default([]), not null, is an Array
 #  latitude        :decimal(, )
 #  longitude       :decimal(, )
+#  picture         :string(255)
+#  description     :text
 #
 
 class Donation < ActiveRecord::Base
   belongs_to :donor
   nilify_blanks
+
+  # Image uploader using carrierwave
+  mount_uploader :picture, DonationUploader
 end
