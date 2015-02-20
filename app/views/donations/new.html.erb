@@ -23,7 +23,7 @@
 
   <p>
   <%= f.label :"Description" %><br />
-  <%= f.text_area :description %>
+  <%= f.text_area :description, required: "" %>
   </p>
 
   <p>
@@ -31,12 +31,14 @@
   <%= f.check_box :refrigeration %>
   </p>
 
-  <h3>Pickup Information</h3>
+  <h3 class="text-center block-title">Pickup Information</h3>
 
   <p>
   <%= f.label :Address %>
   <small class="error">Address is required.</small>
-  <%= f.text_field :address, required: "" %>
+  <%= f.text_field :address, required: "", placeholder: "" %>
+  <%= f.hidden_field :latitude, id: "donor-address-lat" %>
+  <%= f.hidden_field :longitude, id: "donor-address-lng" %>
   </p>
 
   <p>
@@ -56,6 +58,8 @@
   <small class="error">Valid time is required.</small>
   <%= f.time_field :end_time, required: "" %>
   </p>
+
+  <h3 class="text-center block-title">About You</h3>
 
   <p>
   <%= f.label :Name %>
