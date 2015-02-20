@@ -17,16 +17,29 @@
 <%= simple_form_for :donation, :html => { :"data-abide" => "", :multipart => true } do |f| %>
   <div id="donor-form-food-block">
     <div class="row">
-      <div class="small-12 columns text-center">
-        <%= f.label :description, "Write a short description of your donation!" %><br /><%= f.text_area :description, required: "" %>
+      <div class="small-12 columns">
+        <h3 class="text-center block-title">Describe your donation!</h3>
       </div>
     </div>
     <div class="row">
-      <div class="small-6 columns text-center">
-        <%= f.label :picture, "Upload a picture of your donation!" %><%= f.file_field :picture, required: "" %>
+      <div class="small-12 medium-8 medium-centered columns">
+        <%= f.text_area :description, required: "", rows: "5" %>
       </div>
-      <div class="small-6 columns text-center">
-        <%= f.label :refrigeration, "Does your donation require refrigeration?" %><%= f.check_box :refrigeration %>
+    </div>
+    <div class="row">
+      <div class="small-6 text-center columns">
+        <%= f.label :picture, "Upload a picture of your donation!" %>
+      </div>
+      <div class="small-6 text-center columns">
+        <%= f.label :refrigeration, "Does your donation require refrigeration?" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-6 text-center columns">
+        <%= f.file_field :picture, required: "" %>
+      </div>
+      <div class="small-6 text-center columns">
+        <%= f.check_box :refrigeration %>
       </div>
     </div>
   </div>
