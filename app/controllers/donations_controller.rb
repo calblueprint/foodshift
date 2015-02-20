@@ -39,7 +39,8 @@ class DonationsController < ApplicationController
       :phone,
       :refrigeration,
       :additional_info,
-      :description
+      :description,
+      :picture
     )
   end
 end

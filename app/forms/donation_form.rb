@@ -17,7 +17,8 @@ class DonationForm < Form
     :phone,
     :refrigeration,
     :additional_info,
-    :description
+    :description,
+    :picture
   )
 
   def save
@@ -42,6 +43,7 @@ class DonationForm < Form
   def donation
     @donation ||= Donation.new(
       description: description,
+      picture: picture,
       donor: donor,
       organization: organization,
       address: address,
