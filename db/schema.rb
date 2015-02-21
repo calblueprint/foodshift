@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220061610) do
+ActiveRecord::Schema.define(version: 20150221093841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150220061610) do
     t.decimal  "longitude"
     t.string   "picture"
     t.text     "description"
+    t.boolean  "can_dropoff"
   end
 
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
