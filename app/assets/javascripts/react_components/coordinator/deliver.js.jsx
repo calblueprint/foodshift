@@ -79,28 +79,44 @@ var DeliverDashboard = React.createClass({
         this.setState({openDeliveryId: deliveryId});
         console.log("Open deliveryId: " + deliveryId);
     },
+    submitConfirmation: function(data){
+        $.ajax({
+          url: window.location.href,
+          dataType: 'json',
+          type: 'POST',
+          data: data,
+          success: function(data) {
+            console.log("Submission success!");
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(window.location.href, status, err.toString());
+          }.bind(this)
+        });
+    },
     handlePickupSubmit: function(event){
-        // TODO: Submit pickups to backend
         var deliveryId = event.deliveryId;
         var currentDeliveries = this.state.deliveries;
         var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
         var index = _.indexOf(currentDeliveries, currentDelivery);
-
         currentDelivery.pickupTimestamp = _.now();
         currentDeliveries[index] = currentDelivery;
+
+        var data = {transaction_id: deliveryId, picked_up_at: currentDelivery.pickupTimestamp}
+        this.submitConfirmation(data);
         this.setState({deliveries: currentDeliveries});
 
         console.log("Transaction " + deliveryId + " successfully picked up");
     },
     handleDeliverySubmit: function(event){
-        // TODO: Submit deliveries to backend
         var deliveryId = event.deliveryId;
         var currentDeliveries = this.state.deliveries;
         var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
         var index = _.indexOf(currentDeliveries, currentDelivery);
-
         currentDelivery.deliveryTimestamp = _.now();
         currentDeliveries[index] = currentDelivery;
+
+        var data = {transaction_id: deliveryId, delivered_at: currentDelivery.deliveryTimestamp}
+        this.submitConfirmation(data);
         this.setState({deliveries: currentDeliveries});
 
         console.log("Transaction " + deliveryId + " successfully delivered");
@@ -145,8 +161,8 @@ var Delivery = React.createClass({
         }
     },
     render: function() {
-        var isPickedUp = !(_.isNull(this.props.delivery.pickupTimestamp));
-        var isDelivered = !(_.isNull(this.props.delivery.deliveryTimestamp));
+        var isPickedUp = !(_.isBlank(this.props.delivery.pickupTimestamp));
+        var isDelivered = !(_.isBlank(this.props.delivery.deliveryTimestamp));
         var actionButtons = this.renderActionButtons(isPickedUp, isDelivered);
 
         var entryClasses = React.addons.classSet({
