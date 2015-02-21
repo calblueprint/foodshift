@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   scope '/coordinator' do
     get '/deliver', to: 'coordinator#deliver', as: :coordinator_deliver
     get '/schedule', to: 'coordinator#schedule', as: :coordinator_schedule
+    post '/schedule', to: 'coordinator#match', as: :coordinator_match
     get '/data', to: 'coordinator#data', as: :coordinator_data
   end
 
