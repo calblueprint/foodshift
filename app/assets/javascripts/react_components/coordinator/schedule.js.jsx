@@ -9,7 +9,7 @@ var ScheduleDashboard = React.createClass({
         var donations = this.getDonationsList()
         return {
             donations: donations,
-            recipients: this.getRecipientsList(donations[0].id),
+            recipients: _.isEmpty(donations) ? [] : donations.this.getRecipientsList(donations[0].id),
             currDonationIndex: 0,
             transitionClass: "slide-right",
         };
@@ -77,7 +77,7 @@ var ScheduleDashboard = React.createClass({
     renderHasDonations: function() {
         var currDonation = this.state.donations[this.state.currDonationIndex];
         var flattenedRecipients = _.map(this.state.recipients, function(interest) {
-            return interest.recipient;
+            return _.extend(interest.recipient, {interestId: interest.id});
         });
         var flattenedRecipientProfiles = _.map(flattenedRecipients, function(recipient) {
             return recipient.recipient_profile;
@@ -133,24 +133,6 @@ var ScheduleDashboard = React.createClass({
 });
 
 var DonationInfo = React.createClass({
-    getDefaultProps: function() {
-        return {
-            donation: {
-                id: 0,
-                address: 'Test St.',
-                foodTypes: ['TestFood1', 'TestFood2'],
-                quantity: '1 Tray',
-                date: '1/1/2014',
-                window_start: '10:00AM',
-                window_end: '11:00AM',
-                name: 'Foodshift User',
-                organization: 'Food Shift',
-                email: 'food@shift.com',
-                phone: '123-456-7890',
-                additionalInfo: 'I\'m hungry'
-            }
-        }
-    },
     render: function() {
         return (
             <div className="donation-info">
@@ -271,30 +253,28 @@ var DonationRecipients = React.createClass({
 
 
 var Recipient = React.createClass({
-    getDefaultProps: function() {
-        return {
-            recipient: {
-                id: 2,
-                firstName: 'Test',
-                lastName: 'Recipient',
-                email: 'test@recipient.com',
-                phone: '123-456-7890',
-                organization: 'Greenprint',
-                address: '123 BP St.',
-                orgNumber: '9000',
-            },
-            isOpen: false,
-            handleClick: undefined,
-            handleSubmit: undefined,
-            donation: null
-        }
-    },
     handleClick: function() {
         this.props.handleClick({recipientId: this.props.recipient.id});
     },
     handleSubmit: function() {
-        // TODO: Actually submit via AJAX this select
-        console.log("Selected donation: " + this.props.recipient.donationId + " with recipient: " + this.props.recipient.firstName + " " + this.props.recipient.lastName);
+        console.log("Selected donation: " + this.props.donation.id + " with recipient: " + this.props.recipient.recipient_profile.person);
+        this.submitMatch(this.props.recipient.interestId, this.props.donation.id, this.props.recipient.id);
+        this.props.handleSubmit({donationId: this.props.donation.id});
+        this.refs.modal.hide()
+    },
+    submitMatch: function(interestId, donationId, recipientId) {
+        $.ajax({
+          url: window.location.href,
+          dataType: 'json',
+          type: 'POST',
+          data: {interest_id: interestId, donation_id: donationId, recipient_id: recipientId},
+          success: function(data) {
+            console.log("Submission success!");
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(window.location.href, status, err.toString());
+          }.bind(this)
+        });
     },
     render: function() {
         var content;
@@ -435,12 +415,6 @@ var Recipient = React.createClass({
         this.refs.modal.show()
     },
     handleExternalHide: function() {
-        this.refs.modal.hide()
-    },
-    handleSubmit: function() {
-        // TODO: Implement logic to post to backend
-        console.log("Match submitted");
-        this.props.handleSubmit({donationId: this.props.donation.id});
         this.refs.modal.hide()
     },
 });
