@@ -125,12 +125,13 @@ def create_donations_and_interests(num_rows)
       phone: Faker::PhoneNumber.phone_number,
       email: Faker::Internet.email,
       refrigeration: [true, false].sample,
-      quantity: Faker::Number.number(2),
       window_start: Faker::Date.between(2.days.ago, 1.days.ago),
       window_end: Faker::Date.between(1.days.ago, Date.today),
-      food_type: ["Bread", "Bulk", "Dairy", "Juice", "Mixed", "Meat", "Prepared", "Produce"].sample,
+      picture: Faker::Internet.url,
+      description: Faker::Lorem.sentence(3),
       longitude: Faker::Address.longitude,
-      latitude: Faker::Address.latitude
+      latitude: Faker::Address.latitude,
+      can_dropoff: [true, false].sample
     )
     1.upto(rand(num_rows)) do
       Interest.create!(
