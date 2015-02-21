@@ -9,6 +9,24 @@ class CoordinatorController < ApplicationController
                   :donation] })
   end
 
+  def confirm
+    transaction = Transaction.find_by(id: confirm_params[:transaction_id])
+    puts confirm_params
+    transaction.picked_up_at = Time.at(confirm_params[:picked_up_at].to_i / 1000) if confirm_params[:picked_up_at]
+    transaction.delivered_at = Time.at(confirm_params[:delivered_at].to_i / 1000) if confirm_params[:delivered_at]
+    respond_to do |format|
+      if transaction.save
+        format.json {render json: {}, status: :created}
+      else
+        format.json {render json: {}, status: :unprocessable_entity}
+      end
+    end
+  end
+
+  def confirm_params
+    params.permit([:transaction_id, :picked_up_at, :delivered_at])
+  end
+
   def schedule
     gon.donations = []
     gon.recipients = []
