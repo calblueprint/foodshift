@@ -167,24 +167,19 @@ var DonationInfo = React.createClass({
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul">
-                          <li><i className="fa-li fa fa-user"></i>{this.props.donation.name}</li>
+                          <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
                           <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email}</li>
                           <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone}</li>
                         </ul>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="medium-3 medium-offset-1 columns">
-                        <ul className="fa-ul">
-                            <li>
-                                <i className="fa-li fa fa-cutlery"></i>
-                                {this.props.donation.quantity} of:
-                                {this.renderFoodTypes()}
-                            </li>
-                        </ul>
+                    <div className="medium-7 medium-offset-1 columns">
+                        <p>{this.props.donation.description}</p>
                     </div>
-                    <div className="medium-8 columns">
+                    <div className="medium-4 columns">
                         <ul className="fa-ul additional-info-list">
+                            {this.props.donation.can_dropoff && <li><i class="fa fa-car"></i><p>This donor can drop off the donation!</p></li>}
                             <li>
                                 <i className="fa-li fa fa-info-circle"></i>
                                 <p>{this.renderAdditionalInfo()}</p>
@@ -383,8 +378,7 @@ var Recipient = React.createClass({
                                 <ul className="fa-ul">
                                     <li>
                                         <i className="fa-li fa fa-cutlery"></i>
-                                        {this.props.donation.quantity} of:
-                                        {this.renderFoodTypes()}
+                                        {this.props.donation.description}
                                     </li>
                                 </ul>
                             </div>
