@@ -79,31 +79,43 @@ var DeliverDashboard = React.createClass({
         this.setState({openDeliveryId: deliveryId});
         console.log("Open deliveryId: " + deliveryId);
     },
+    submitConfirmation: function(data){
+        $.ajax({
+          url: window.location.href,
+          dataType: 'json',
+          type: 'POST',
+          data: data,
+          success: function(data) {
+            console.log("Submission success!");
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(window.location.href, status, err.toString());
+          }.bind(this)
+        });
+    },
     handlePickupSubmit: function(event){
-        // TODO: Submit pickups to backend
         var deliveryId = event.deliveryId;
         var currentDeliveries = this.state.deliveries;
         var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
         var index = _.indexOf(currentDeliveries, currentDelivery);
-
-        currentDelivery.pickupTimestamp = _.now();
+        currentDelivery.picked_up_at = _.now();
         currentDeliveries[index] = currentDelivery;
-        this.setState({deliveries: currentDeliveries});
 
-        console.log("Transaction " + deliveryId + " successfully picked up");
+        var data = {transaction_id: deliveryId, picked_up_at: currentDelivery.picked_up_at}
+        this.submitConfirmation(data);
+        this.setState({deliveries: currentDeliveries});
     },
     handleDeliverySubmit: function(event){
-        // TODO: Submit deliveries to backend
         var deliveryId = event.deliveryId;
         var currentDeliveries = this.state.deliveries;
         var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
         var index = _.indexOf(currentDeliveries, currentDelivery);
-
-        currentDelivery.deliveryTimestamp = _.now();
+        currentDelivery.delivered_at = _.now();
         currentDeliveries[index] = currentDelivery;
-        this.setState({deliveries: currentDeliveries});
 
-        console.log("Transaction " + deliveryId + " successfully delivered");
+        var data = {transaction_id: deliveryId, delivered_at: currentDelivery.delivered_at}
+        this.submitConfirmation(data);
+        this.setState({deliveries: currentDeliveries});
     },
 });
 
@@ -145,8 +157,8 @@ var Delivery = React.createClass({
         }
     },
     render: function() {
-        var isPickedUp = !(_.isNull(this.props.delivery.pickupTimestamp));
-        var isDelivered = !(_.isNull(this.props.delivery.deliveryTimestamp));
+        var isPickedUp = !(_.isBlank(this.props.delivery.picked_up_at));
+        var isDelivered = !(_.isBlank(this.props.delivery.delivered_at));
         var actionButtons = this.renderActionButtons(isPickedUp, isDelivered);
 
         var entryClasses = React.addons.classSet({
