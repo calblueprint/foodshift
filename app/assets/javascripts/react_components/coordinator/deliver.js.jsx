@@ -98,10 +98,10 @@ var DeliverDashboard = React.createClass({
         var currentDeliveries = this.state.deliveries;
         var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
         var index = _.indexOf(currentDeliveries, currentDelivery);
-        currentDelivery.pickupTimestamp = _.now();
+        currentDelivery.picked_up_at = _.now();
         currentDeliveries[index] = currentDelivery;
 
-        var data = {transaction_id: deliveryId, picked_up_at: currentDelivery.pickupTimestamp}
+        var data = {transaction_id: deliveryId, picked_up_at: currentDelivery.picked_up_at}
         this.submitConfirmation(data);
         this.setState({deliveries: currentDeliveries});
     },
@@ -110,10 +110,10 @@ var DeliverDashboard = React.createClass({
         var currentDeliveries = this.state.deliveries;
         var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
         var index = _.indexOf(currentDeliveries, currentDelivery);
-        currentDelivery.deliveryTimestamp = _.now();
+        currentDelivery.delivered_at = _.now();
         currentDeliveries[index] = currentDelivery;
 
-        var data = {transaction_id: deliveryId, delivered_at: currentDelivery.deliveryTimestamp}
+        var data = {transaction_id: deliveryId, delivered_at: currentDelivery.delivered_at}
         this.submitConfirmation(data);
         this.setState({deliveries: currentDeliveries});
     },
@@ -157,8 +157,8 @@ var Delivery = React.createClass({
         }
     },
     render: function() {
-        var isPickedUp = !(_.isBlank(this.props.delivery.pickupTimestamp));
-        var isDelivered = !(_.isBlank(this.props.delivery.deliveryTimestamp));
+        var isPickedUp = !(_.isBlank(this.props.delivery.picked_up_at));
+        var isDelivered = !(_.isBlank(this.props.delivery.delivered_at));
         var actionButtons = this.renderActionButtons(isPickedUp, isDelivered);
 
         var entryClasses = React.addons.classSet({
