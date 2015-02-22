@@ -13,4 +13,10 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
   end
+
+  # Converts a string that represents a UNIX timestamp in milliseconds (the
+  # default in Javascript) to a Ruby Time object
+  def js_timestamp_to_time(timestamp)
+    Time.at(timestamp.to_i / 1000)
+  end
 end
