@@ -5,7 +5,7 @@ class DonationsController < ApplicationController
   def new
   end
 
-  # POST /donations
+  # POST /donate
   def create
     authorize! :create, Donation, message: "Not authorized to donate"
     donation_form = DonationForm.new(donation_params)
@@ -25,11 +25,8 @@ class DonationsController < ApplicationController
   end
 
   private
-
   def donation_params
     params.require(:donation).permit(
-      { food_type: [] },
-      :quantity,
       :address,
       :latitude,
       :longitude,
@@ -41,7 +38,9 @@ class DonationsController < ApplicationController
       :email,
       :phone,
       :refrigeration,
-      :additional_info
+      :additional_info,
+      :description,
+      :picture
     )
   end
 end

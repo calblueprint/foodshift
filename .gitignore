@@ -24,3 +24,6 @@ config/database.yml
 
 # All .DS_Store files
 *.DS_Store
+
+# tmp upload files
+public/uploads*

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207050409) do
+ActiveRecord::Schema.define(version: 20150221093841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +26,14 @@ ActiveRecord::Schema.define(version: 20141207050409) do
     t.string   "phone",                           null: false
     t.string   "email",                           null: false
     t.boolean  "refrigeration",   default: false
-    t.string   "quantity",                        null: false
     t.datetime "window_start",                    null: false
     t.datetime "window_end",                      null: false
     t.text     "additional_info"
-    t.string   "food_type",       default: [],    null: false, array: true
     t.decimal  "latitude"
     t.decimal  "longitude"
+    t.string   "picture"
+    t.text     "description"
+    t.boolean  "can_dropoff"
   end
 
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
@@ -105,18 +106,19 @@ ActiveRecord::Schema.define(version: 20141207050409) do
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "type"
     t.boolean  "subscribed"
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
