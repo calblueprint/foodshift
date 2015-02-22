@@ -104,8 +104,6 @@ var DeliverDashboard = React.createClass({
         var data = {transaction_id: deliveryId, picked_up_at: currentDelivery.pickupTimestamp}
         this.submitConfirmation(data);
         this.setState({deliveries: currentDeliveries});
-
-        console.log("Transaction " + deliveryId + " successfully picked up");
     },
     handleDeliverySubmit: function(event){
         var deliveryId = event.deliveryId;
@@ -118,8 +116,6 @@ var DeliverDashboard = React.createClass({
         var data = {transaction_id: deliveryId, delivered_at: currentDelivery.deliveryTimestamp}
         this.submitConfirmation(data);
         this.setState({deliveries: currentDeliveries});
-
-        console.log("Transaction " + deliveryId + " successfully delivered");
     },
 });
 
