@@ -42,13 +42,16 @@ class CoordinatorController < ApplicationController
   end
 
   def match
-    Interest.destroy_all(donation_id: match_params[:donation_id])
-    transaction = Transaction.new(donation_id: match_params[:donation_id],
-                                  recipient_id: match_params[:recipient_id])
     respond_to do |format|
-      if transaction.save
+      begin
+        ActiveRecord::Base.transaction do
+          Interest.destroy_all(donation_id: match_params[:donation_id])
+          Transaction.create(donation_id: match_params[:donation_id],
+                             recipient_id: match_params[:recipient_id])
+        end
         format.json { render json: {}, status: :created }
-      else
+      rescue ActiveRecord::ActiveRecordError
+        # TODO: What to do to handle this
         format.json { render json: {}, status: :unprocessable_entity }
       end
     end
