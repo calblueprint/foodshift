@@ -9,7 +9,7 @@ var ScheduleDashboard = React.createClass({
         var donations = this.getDonationsList()
         return {
             donations: donations,
-            recipients: _.isEmpty(donations) ? [] : donations.this.getRecipientsList(donations[0].id),
+            recipients: _.isEmpty(donations) ? [] : this.getRecipientsList(donations[0].id),
             currDonationIndex: 0,
             transitionClass: "slide-right",
         };
@@ -149,7 +149,7 @@ var DonationInfo = React.createClass({
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul">
-                          <li><i className="fa-li fa fa-user"></i>{this.props.donation.name}</li>
+                          <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
                           <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email}</li>
                           <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone}</li>
                         </ul>
