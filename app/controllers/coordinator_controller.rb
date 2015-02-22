@@ -42,7 +42,7 @@ class CoordinatorController < ApplicationController
   end
 
   def match
-    interests = Interest.destroy_all(donation_id: match_params[:donation_id])
+    Interest.destroy_all(donation_id: match_params[:donation_id])
     transaction = Transaction.new(donation_id: match_params[:donation_id],
                                   recipient_id: match_params[:recipient_id])
     respond_to do |format|
