@@ -22,26 +22,31 @@
       </div>
     </div>
     <div class="row">
-      <div class="small-12 medium-8 medium-centered columns">
+      <div class="small-12 medium-6 medium-centered columns">
         <%= f.text_area :description, required: "", placeholder: "Please estimate the weight and amount of space that the food items will take up!", rows: "5" %>
         <small class="error">Description is required.</small>
       </div>
     </div>
     <div class="row">
-      <div class="small-6 text-center columns">
-        <span>Upload a picture of your donation!</span>
+      <div class="small-12 medium-offset-2 medium-4 columns">
+        <div class="row">
+          <div class="small-6 columns">
+            <%= f.file_field :picture, required: "" %>
+          </div>
+          <div class="small-6 columns">
+            <span>Upload a picture of your donation!</span>
+          </div>
+        </div>
       </div>
-      <div class="small-6 text-center columns">
-        <span>Does your donation require refrigeration?</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-6 text-center columns">
-        <%= f.file_field :picture, required: "" %>
-        <small class="error">Picture is required.</small>
-      </div>
-      <div class="small-6 text-center columns">
-        <%= f.check_box :refrigeration %>
+      <div class="small-12 medium-4 end columns">
+        <div class="row">
+          <div class="small-1 small-offset-1 columns">
+            <%= f.check_box :refrigeration %>
+          </div>
+          <div class="small-10 columns">
+            <span>Does your donation require refrigeration?</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -66,7 +71,7 @@
             <span class="prefix">Date</span>
           </div>
           <div class="small-9 columns">
-            <%= f.datetime_local_field :date, required: "" %>
+            <%= f.text_field :date, required: "" %>
             <small class="error">Valid date is required (MM-DD-YY).</small>
           </div>
         </div>
@@ -75,20 +80,23 @@
             <span class="prefix">From</span>
           </div>
           <div class="small-4 columns">
-            <%= f.time_field :start_time, required: "" %>
+            <%= f.text_field :start_time, required: "" %>
             <small class="error">Valid time is required (HH:MMam/pm).</small>
           </div>
           <div class="small-2 columns">
               <span class="prefix">To</span>
           </div>
           <div class="small-4 columns">
-            <%= f.time_field :end_time, required: "" %>
+            <%= f.text_field :end_time, required: "" %>
             <small class="error">Valid time is required (HH:MMam/pm).</small>
           </div>
         </div>
         <div class="row collapse">
-          <div class="small-12 columns text-center">
-            <span>I can drop off this donation to a local charity</span>&nbsp;&nbsp;<%= f.check_box :can_dropoff %>
+          <div class="small-1 small-offset-3 columns">
+              <%= f.check_box :can_dropoff %>
+          </div>
+          <div class="small-6 end columns">
+              <span>I can drop off this donation to a local charity</span>
           </div>
         </div>
       </div>
