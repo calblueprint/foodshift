@@ -27,3 +27,6 @@ config/database.yml
 
 # tmp upload files
 public/uploads*
+
+# Ignore application configuration
+/config/application.yml
