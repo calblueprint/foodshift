@@ -34,5 +34,6 @@ module Foodshift
     config.assets.precompile += %w( react_components/* )
     config.assets.precompile += %w( application/* )
     config.react.addons = true
+    config.autoload_paths += Dir["#{config.root}/app/models/**/"]
   end
 end
