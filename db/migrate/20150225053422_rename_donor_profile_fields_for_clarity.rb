@@ -11,5 +11,4 @@ class RenameDonorProfileFieldsForClarity < ActiveRecord::Migration
       t.column :donated_before, :boolean
     end
   end
-
 end

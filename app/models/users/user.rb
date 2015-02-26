@@ -32,16 +32,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  @@TYPE_DONOR = "donor"
-  @@TYPE_RECIPIENT = "recipient"
-  @@TYPE_COORDINATOR = "coordinator"
-  def self.TYPE_DONOR
-    @@TYPE_DONOR
+  def self.type_donor
+    "donor"
   end
-  def self.TYPE_RECIPIENT
-    @@TYPE_DONOR
+  def self.type_recipient
+    "recipient"
   end
-  def self.TYPE_COORDINATOR
-    @@TYPE_DONOR
+  def self.type_coordinator
+    "coordinator"
   end
 end

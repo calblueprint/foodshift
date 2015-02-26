@@ -9,15 +9,9 @@ class RecipientsController < ApplicationController
     respond_to do |format|
       attempt = recipient_form.create_objects
       if attempt == true
-        format.html {
-          redirect_to root_path,
-          notice: "You have been successfully registered."
-        }
+        format.html { redirect_to root_path, notice: "You have been successfully registered." }
       else
-        format.html {
-          redirect_to recipients_new_path,
-          alert: attempt
-        }
+        format.html { redirect_to recipients_new_path, alert: attempt }
       end
     end
   end
