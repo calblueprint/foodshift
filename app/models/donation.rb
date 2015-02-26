@@ -19,6 +19,11 @@
 #  longitude       :decimal(, )
 #  picture         :string(255)
 #  description     :text
+#  can_dropoff     :boolean
+#
+# Indexes
+#
+#  index_donations_on_donor_id  (donor_id)
 #
 
 class Donation < ActiveRecord::Base

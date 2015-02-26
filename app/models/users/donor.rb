@@ -19,6 +19,11 @@
 #  subscribed             :boolean
 #  admin                  :boolean          default(FALSE)
 #
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
 
 class Donor < User
   has_one :donor_profile, class_name: "DonorProfile"

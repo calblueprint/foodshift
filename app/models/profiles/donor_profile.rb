@@ -2,18 +2,22 @@
 #
 # Table name: donor_profiles
 #
-#  id                   :integer          not null, primary key
-#  created_at           :datetime
-#  updated_at           :datetime
-#  donor_id             :integer
-#  reason               :string(255)
-#  organic              :boolean
-#  frequency_of_surplus :string(255)
-#  food_types           :string(255)
-#  quantity             :string(255)
-#  donated_in_past      :string(255)
-#  pounds_per_week      :integer
-#  good_samaritan       :boolean
+#  id                               :integer          not null, primary key
+#  created_at                       :datetime
+#  updated_at                       :datetime
+#  donor_id                         :integer
+#  reason_for_surplus               :string(255)
+#  serves_organic_food              :boolean
+#  frequency_of_surplus             :string(255)
+#  typical_food_types_served        :string(255)
+#  typical_quantity_of_donation     :string(255)
+#  pounds_per_week_donated          :integer
+#  aware_of_good_samaritan_food_act :boolean
+#  donated_before                   :boolean
+#
+# Indexes
+#
+#  index_donor_profiles_on_donor_id  (donor_id)
 #
 
 class DonorProfile < ActiveRecord::Base
