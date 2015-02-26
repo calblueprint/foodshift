@@ -11,6 +11,12 @@
 #  delivered_at   :datetime
 #  picked_up_at   :datetime
 #
+# Indexes
+#
+#  index_transactions_on_coordinator_id  (coordinator_id)
+#  index_transactions_on_donation_id     (donation_id)
+#  index_transactions_on_recipient_id    (recipient_id)
+#
 
 class Transaction < ActiveRecord::Base
   belongs_to :donation
