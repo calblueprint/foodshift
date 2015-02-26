@@ -37,9 +37,6 @@ Rails.application.routes.draw do
   #   resources :products
   resources :users
 
-  get '/recipient_profile', to: 'profiles/recipient_profiles#show'
-
-
   # Example resource route with options:
   #   resources :products do
   #     member do
