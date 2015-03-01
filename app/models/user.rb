@@ -29,4 +29,13 @@ class User < ActiveRecord::Base
   @@TYPE_DONOR = "donor"
   @@TYPE_RECIPIENT = "recipient"
   @@TYPE_COORDINATOR = "coordinator"
+  def self.TYPE_DONOR
+    @@TYPE_DONOR
+  end
+  def self.TYPE_RECIPIENT
+    @@TYPE_DONOR
+  end
+  def self.TYPE_COORDINATOR
+    @@TYPE_DONOR
+  end
 end
