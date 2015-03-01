@@ -50,6 +50,7 @@ def create_recipients(num_rows)
     recipient.password = "password"
     recipient.subscribed = "true"
     recipient.type = "Recipient"
+    recipient.secret_token = SecureRandom.hex(20)
     recipient.save!
 
     recipient_profile = RecipientProfile.find_or_initialize_by(recipient_id: recipient.id)
@@ -77,6 +78,7 @@ def create_recipients(num_rows)
   recipient.password = "password"
   recipient.subscribed = "true"
   recipient.type = "Recipient"
+  recipient.secret_token = SecureRandom.hex(20)
   recipient.save!
 
   recipient_profile = RecipientProfile.find_or_initialize_by(recipient_id: recipient.id)
