@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  TYPE_DONOR = "donor"
-  TYPE_RECIPIENT = "recipient"
-  TYPE_COORDINATOR = "coordinator"
+  @TYPE_DONOR = "donor"
+  @TYPE_RECIPIENT = "recipient"
+  @TYPE_COORDINATOR = "coordinator"
 end
