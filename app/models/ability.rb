@@ -9,5 +9,6 @@ class Ability
     end
     if user.type == "coordinator"
       can :read, Donation
+    end
   end
 end
