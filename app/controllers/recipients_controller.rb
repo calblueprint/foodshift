@@ -7,13 +7,17 @@ class RecipientsController < ApplicationController
   def create
     recipient_form = RecipientForm.new(recipient_params)
     respond_to do |format|
-      if recipient_form.create_objects
+      attempt = recipient_form.create_objects
+      if attempt == true
         format.html {
           redirect_to root_path,
           notice: "You have been successfully registered."
         }
       else
-        format.html { render recipients_new_path }
+        format.html {
+          redirect_to recipients_new_path,
+          alert: attempt
+        }
       end
     end
   end

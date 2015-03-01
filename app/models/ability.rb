@@ -7,7 +7,7 @@ class Ability
     if user.admin?
       can :manage, :all
     end
-    if user.type == "coordinator"
+    if user.type == User.TYPE_COORDINATOR
       can :read, Donation
     end
   end
