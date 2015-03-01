@@ -7,12 +7,8 @@ class Ability
     if user.admin?
       can :manage, :all
     end
-    if user.type == "Recipient"
-      can :create, Interest
-    elsif user.type == "Coordinator"
+    if user.type == "coordinator"
       can :read, Donation
-    else
-      can :create, Donation
     end
   end
 end
