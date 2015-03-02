@@ -18,7 +18,8 @@ class DonationForm < Form
     :refrigeration,
     :additional_info,
     :description,
-    :picture
+    :picture,
+    :can_dropoff
   )
 
   def save
@@ -56,6 +57,7 @@ class DonationForm < Form
       additional_info: additional_info,
       latitude:  latitude,
       longitude: longitude,
+      can_dropoff: can_dropoff
     )
   end
 
