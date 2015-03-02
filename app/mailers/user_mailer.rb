@@ -11,11 +11,15 @@ class UserMailer < ActionMailer::Base
   end
 
   def recipient_match(recipients)
-    mail(to: recipients, subject: "Your donation has found a recipient!")
+    if recipients.length > 0
+      mail(to: recipients, subject: "Your donation has found a recipient!")
+    end
   end
 
   def coordinator_email(recipients, donation)
-    @donation = donation
-    mail(to: recipients, subject: "(Coordinator) Donation Posted!")
+    if recipients.length > 0
+      @donation = donation
+      mail(to: recipients, subject: "(Coordinator) Donation Posted!")
+    end
   end
 end
