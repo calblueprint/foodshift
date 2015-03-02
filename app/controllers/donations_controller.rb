@@ -39,7 +39,8 @@ class DonationsController < ApplicationController
       :refrigeration,
       :additional_info,
       :description,
-      :picture
+      :picture,
+      :can_dropoff
     )
   end
 end
