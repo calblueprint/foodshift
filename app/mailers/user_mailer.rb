@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def coordinator_email(recipients, donation)
-    if recipient.length > 0
+    if recipients.length > 0
       @donation = donation
       mail(to: recipients, subject: "(Coordinator) Donation Posted!")
     end
