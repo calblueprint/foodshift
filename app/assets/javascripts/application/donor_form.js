@@ -32,4 +32,21 @@ $(function() {
     $('#donor-form-fields').on('invalid.fndtn.abide', function () {
         toastr.error('There was an error with your submission');
     });
+
+
+    $('#donation_date').datetimepicker({
+        timepicker: false,
+        format:'m/d/Y'
+    });
+    $('#donation_start_time').datetimepicker({
+        datepicker: false,
+        step: 15,
+        format:'g:i A'
+    });
+    $('#donation_end_time').datetimepicker({
+        datepicker: false,
+        step: 15,
+        format:'g:i A'
+    });
+
 });

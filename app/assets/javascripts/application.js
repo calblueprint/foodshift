@@ -17,6 +17,7 @@
 //= require underscore.string
 //= require react
 //= require ./application/bootstrap-modal.js
+//= require jquery.datetimepicker
 
 _.mixin(_.string.exports());
 

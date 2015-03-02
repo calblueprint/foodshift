@@ -1,5 +1,5 @@
 class DonationForm < Form
-  DATETIME_FORMAT = '%Y-%m-%d %I:%M %p'
+  DATETIME_FORMAT = "%m/%d/%Y %I:%M %p"
 
   attr_accessor(
     :donor,
