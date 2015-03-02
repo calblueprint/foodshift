@@ -16,8 +16,9 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  type                   :string(255)
-#  subscribed             :boolean
+#  subscribed             :boolean          default(TRUE)
 #  admin                  :boolean          default(FALSE)
+#  secret_token           :string(255)
 #
 
 class Recipient < User

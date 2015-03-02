@@ -19,6 +19,7 @@
 #  longitude       :decimal(, )
 #  picture         :string(255)
 #  description     :text
+#  can_dropoff     :boolean
 #
 
 class Donation < ActiveRecord::Base

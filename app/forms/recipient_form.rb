@@ -46,6 +46,7 @@ class RecipientForm < Form
     @recipient_user ||= Recipient.new(
       email: email,
       password: password,
+      secret_token: SecureRandom.hex(20)
     )
   end
 
