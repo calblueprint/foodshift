@@ -4,7 +4,7 @@ $recipient-image-height: 500px;
     .recipient-form-image {
         z-index: -20;
         background-size: cover;
-        background-image: url("https://s3-us-west-2.amazonaws.com/foodshift/assets/images/landing_splash_berries.jpg");
+        background-image: url("s3-us-west-2.amazonaws.com/foodshift/assets/images/landing_splash_berries.jpg");
         height: $recipient-image-height;
         width: 100%;
         top: 0;
