@@ -7,7 +7,6 @@ class DonationsController < ApplicationController
 
   # POST /donate
   def create
-    authorize! :create, Donation, message: "Not authorized to donate"
     donation_form = DonationForm.new(donation_params)
     donation_form.donor = current_user if user_signed_in?
     respond_to do |format|
