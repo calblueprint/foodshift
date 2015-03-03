@@ -252,7 +252,7 @@ var Recipient = React.createClass({
         this.props.handleClick({recipientId: this.props.recipient.id});
     },
     handleSubmit: function() {
-        console.log("Selected donation: " + this.props.donation.id + " with recipient: " + this.props.recipient.recipient_profile.person);
+        console.log("Selected donation: " + this.props.donation.id + " with recipient: " + this.props.recipient.recipient_profile.contact_person);
         this.submitMatch(this.props.recipient.interestId, this.props.donation.id, this.props.recipient.id);
         this.props.handleSubmit({donationId: this.props.donation.id});
         this.refs.modal.hide()
@@ -316,9 +316,9 @@ var Recipient = React.createClass({
                         <div className="recipient-details">
                             <p className="organization">{this.props.recipient.recipient_profile.organization}</p>
                             <ul className="fa-ul">
-                              <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.person}</li>
+                              <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.contact_person}</li>
                               <li><i className="fa-li fa fa-envelope-o"></i>{this.props.recipient.email}</li>
-                              <li><i className="fa-li fa fa-phone"></i>{this.props.recipient.recipient_profile.phone}</li>
+                              <li><i className="fa-li fa fa-phone"></i>{this.props.recipient.recipient_profile.contact_person_phone}</li>
                             </ul>
                         </div>
                     </div>
@@ -367,7 +367,7 @@ var Recipient = React.createClass({
                             <div className="medium-5 columns">
                                 <ul className="fa-ul">
                                   <li><i className="fa-li fa fa-users"></i>{this.props.recipient.recipient_profile.organization}</li>
-                                  <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.person}</li>
+                                  <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.contact_person}</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
