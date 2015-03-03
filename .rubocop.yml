@@ -9,6 +9,9 @@ AllCops:
     - db/migrate/**/*devise*.rb
     - db/migrate/**/*versions*.rb
     - spec/spec_helper.rb
+    - app/javascripts/vendor/*
+    - app/stylesheets/vendor/*
+    - vendor/*
     - Guardfile
 
 Metrics/LineLength:
