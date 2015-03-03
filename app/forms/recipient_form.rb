@@ -36,15 +36,17 @@ class RecipientForm < Form
       recipient_user.save!
       recipient_profile(recipient_user).save!
     end
+    true
   rescue ActiveRecord::RecordInvalid => err
     Rails.logger.error(err.to_s)
-    false
+    err.to_s
   end
 
   def recipient_user
     @recipient_user ||= Recipient.new(
       email: email,
       password: password,
+      secret_token: SecureRandom.hex(20)
     )
   end
 

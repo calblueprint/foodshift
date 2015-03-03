@@ -7,15 +7,12 @@ class RecipientsController < ApplicationController
   def create
     authorize! :create, @interest, message: "Not authorized to receive"
     recipient_form = RecipientForm.new(recipient_params)
-    recipient_form.recipient = current_user if user_signed_in?
     respond_to do |format|
-      if recipient_form.create_objects
-        format.html {
-          redirect_to root_path,
-          notice: "You have been successfully registered."
-        }
+      attempt = recipient_form.create_objects
+      if attempt == true
+        format.html { redirect_to root_path, notice: "You have been successfully registered." }
       else
-        format.html { render recipients_new_path }
+        format.html { redirect_to recipients_new_path, alert: attempt }
       end
     end
   end

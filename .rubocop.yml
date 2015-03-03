@@ -1,20 +1,38 @@
 AllCops:
   Exclude:
     - app/views/**/*
-    - app/helpers/ApplicationHelper
+    - app/helpers/application_helper.rb
     - bin/*
     - config/initializers/*
     - db/schema.rb
+    - db/seeds.rb
     - db/migrate/**/*devise*.rb
+    - db/migrate/**/*versions*.rb
     - spec/spec_helper.rb
+    - app/javascripts/vendor/*
+    - app/stylesheets/vendor/*
+    - vendor/*
     - Guardfile
 
 Metrics/LineLength:
   Description: 'Limit lines to 110 characters.'
   Max: 110
 
+Metrics/MethodLength:
+  Description: 'Limit methods to 15 lines.'
+  Max: 15
+
 Style/StringLiterals:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/DotPosition:
   Enabled: false

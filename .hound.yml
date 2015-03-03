@@ -1,3 +1,18 @@
-inherit_from: ./.rubocop.yml
+ruby:
+  enabled: true
+  config_file: ./.rubocop.yml
 
+coffee_script:
+  enabled: true
+  config_file: ./.coffeelint.json
+
+java_script:
+  enabled: true
+  ignore_file: ./.jshint_ignore
+
+scss:
+  enabled: true
+  config_file: ./.scss.yml
+
+# Show cop names by default; can commment out if needed
 ShowCopNames: true

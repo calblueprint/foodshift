@@ -1,0 +1,71 @@
+#!/usr/bin/env sh
+
+#Setting up Rails development environment and app for Food Shift
+
+#Set up Ruby dependencies via Bundler
+#Check if Bundler is installed
+echo "\nSetting up bundler"
+bundle --version &> /dev/null || gem install bundler --no-document
+bundle install
+tput setaf 2
+echo "Bundler done, check that it successfully installed"
+tput sgr0
+
+failed=false
+
+#Setting up database
+echo "\nSetting up database"
+if ! [ -f config/database.yml ]; then
+  failed=true
+  tput setaf 1
+  echo "config/database.yml doesn't exist!"
+  echo "Copy over config/database.yml.sample and change your username/password"
+  tput sgr0
+else
+  tput setaf 2
+  echo "Running rake db:reset"
+  tput sgr0 
+  rake db:reset
+  tput setaf 2
+  echo "Database set up!"
+  tput sgr0
+fi
+
+#Checking for Postgres
+echo "\nChecking for PostgreSQL!"
+which -s psql
+if [ $? -eq 0 ]; then
+  tput setaf 2
+  echo "PostgreSQL already installed!"
+  tput sgr0
+else
+  failed=true
+  tput setaf 1
+  echo "PostgreSQL not found, please install!"
+  tput sgr0
+fi
+
+#Setting up Phantom.js
+echo "\nChecking for Phantom.js!"
+which -s phantomjs
+if [ $? -eq 0 ]; then
+  tput setaf 2
+  echo "Phantom.js already installed!"
+  tput sgr0
+else
+  failed=true
+  tput setaf 1
+  echo "Phantom.js not found, please install!"
+  tput sgr0
+fi
+
+#Fail message
+if $failed; then
+  tput setaf 1
+  echo "\nA command failed! Make the changes suggested and run this script again. Also, make sure you run this in ~/foodshift directory, not the ~/foodshift/bin directory."
+  tput sgr0
+else
+  tput setaf 2
+  echo "\nDone! You rock! Welcome to your new Blueprint team!"
+  tput sgr0
+fi
