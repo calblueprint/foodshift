@@ -1,5 +1,5 @@
 class DonationForm < Form
-  DATETIME_FORMAT = '%Y-%m-%d %I:%M %p'
+  DATETIME_FORMAT = "%m/%d/%Y %I:%M %p"
 
   attr_accessor(
     :donor,
@@ -16,7 +16,10 @@ class DonationForm < Form
     :email,
     :phone,
     :refrigeration,
-    :additional_info
+    :additional_info,
+    :description,
+    :picture,
+    :can_dropoff
   )
 
   def save
@@ -40,6 +43,8 @@ class DonationForm < Form
 
   def donation
     @donation ||= Donation.new(
+      description: description,
+      picture: picture,
       donor: donor,
       organization: organization,
       address: address,
@@ -47,13 +52,12 @@ class DonationForm < Form
       phone: phone,
       email: email,
       refrigeration: refrigeration,
-      quantity: quantity,
       window_start: window_start,
       window_end: window_end,
       additional_info: additional_info,
-      food_type: food_type,
       latitude:  latitude,
       longitude: longitude,
+      can_dropoff: can_dropoff
     )
   end
 

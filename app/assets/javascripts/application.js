@@ -13,11 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require underscore
 //= require underscore.string
 //= require react
 //= require ./application/bootstrap-modal.js
+//= require jquery.datetimepicker
 
 _.mixin(_.string.exports());
 

@@ -72,14 +72,14 @@ var GoogleMap = React.createClass({
     });
     markers = []
     if (!(_.isNull(donation))) {
-      var donationMarker =  this.toMarker(donation.organization, donation.latitude, donation.longitude, donation.address, TYPE_DONATION)
+      var donationMarker =  this.toMarker(donation.organization, Number(donation.latitude), Number(donation.longitude), donation.address, TYPE_DONATION)
       donationMarker.setMap(map);
       markers.push(donationMarker);
     }
 
     if (!(_.isEmpty(recipients))) {
       _.map(recipients, function(recipient) {
-        var recipientMarker = this.toMarker(recipient.organization, recipient.latitude, recipient.longitude, recipient.address, TYPE_RECIPIENT);
+        var recipientMarker = this.toMarker(recipient.organization, Number(recipient.latitude), Number(recipient.longitude), recipient.address, TYPE_RECIPIENT);
         recipientMarker.setMap(map);
         markers.push(recipientMarker);
       }.bind(this));

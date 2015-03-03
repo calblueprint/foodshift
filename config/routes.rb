@@ -11,13 +11,17 @@ Rails.application.routes.draw do
 
   scope '/coordinator' do
     get '/deliver', to: 'coordinator#deliver', as: :coordinator_deliver
+    post '/deliver', to: 'coordinator#confirm', as: :coordinator_confirm
     get '/schedule', to: 'coordinator#schedule', as: :coordinator_schedule
+    post '/schedule', to: 'coordinator#match', as: :coordinator_match
     get '/data', to: 'coordinator#data', as: :coordinator_data
   end
 
   get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'
 
   devise_for :users
+
+  get "unsubscribe" => "api#unsubscribe"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

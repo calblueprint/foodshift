@@ -5,7 +5,7 @@ class DonationsController < ApplicationController
   def new
   end
 
-  # POST /donations
+  # POST /donate
   def create
     authorize! :create, Donation, message: "Not authorized to donate"
     donation_form = DonationForm.new(donation_params)
@@ -13,7 +13,7 @@ class DonationsController < ApplicationController
     respond_to do |format|
       if donation_form.create_objects
         @donation = donation_form.donation
-        @recipient_ids = Recipient.pluck(:id)
+        @recipient_ids = Recipient.where(subscribed: true).collect(&:id)
         UserMailer.donation_available(@recipient_ids, @donation).deliver
         @coordinators = Coordinator.pluck(:email)
         UserMailer.coordinator_email(@coordinators, @donation).deliver
@@ -25,11 +25,8 @@ class DonationsController < ApplicationController
   end
 
   private
-
   def donation_params
     params.require(:donation).permit(
-      { food_type: [] },
-      :quantity,
       :address,
       :latitude,
       :longitude,
@@ -41,7 +38,10 @@ class DonationsController < ApplicationController
       :email,
       :phone,
       :refrigeration,
-      :additional_info
+      :additional_info,
+      :description,
+      :picture,
+      :can_dropoff
     )
   end
 end

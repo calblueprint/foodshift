@@ -13,118 +13,14 @@ var DeliverDashboard = React.createClass({
         };
     },
     getCurrentDeliveries: function() {
-        //TODO: Write one that actually fetches real data
-        return [
-            {
-                id: 0,
-                donation: {
-                    id: 999,
-                    address: 'West Oakland BART Station 1451 7th St Oakland, CA 94607',
-                    latitude: 37.804872,
-                    longitude: -122.295139,
-                    foodTypes: ['Meat'],
-                    quantity: '1 tray',
-                    date: '10/10/2014',
-                    startTime: '10:00AM',
-                    endTime: '11:00AM',
-                    name: '2jun Jeong',
-                    organization: 'Greenprint',
-                    email: '2@jun.com',
-                    phone: '444-444-4444',
-                    additionalInfo: 'Here is some additional information about this donation.'
-                },
-                recipient: {
-                    id: 1,
-                    donationId: 999,
-                    firstName: '1Jun',
-                    lastName: 'the Receiver',
-                    email: '1jun@receiver.com',
-                    phone: '555-555-1111',
-                    organization: 'Blackprint',
-                    address: '1015 Folsom Street, San Francisco, CA, United States',
-                    latitude: 37.7781009,
-                    longitude: -122.4057628,
-                    orgNumber: '9000',
-                },
-                pickupTimestamp: null,
-                deliveryTimestamp: null,
-            },
-            {
-                id: 1,
-                donation: {
-                    id: 555,
-                    address: 'Sutardja Dai Hall, University of California, Berkeley, Berkeley, CA, United States',
-                    latitude: 37.8747924,
-                    longitude: -122.2583104,
-                    foodTypes: ['Bread', 'Dairy', 'Meat', 'Produce', 'Mixed'],
-                    quantity: '3 boxes',
-                    date: '1/1/2014',
-                    startTime: '1:00PM',
-                    endTime: '2:00PM',
-                    name: 'Joe Bloggs',
-                    organization: 'Blueprint',
-                    email: 'joe@bloggs.com',
-                    phone: '123-456-7890',
-                    additionalInfo: '  '
-                },
-                recipient: {
-                    id: 2,
-                    donationId: 555,
-                    firstName: 'Food',
-                    lastName: ' Recipient',
-                    email: 'food@recipient.com',
-                    phone: '999-999-9999',
-                    organization: 'Adult Food Finder',
-                    address: 'People\'s Park 2556 Haste St Berkeley, CA 94704',
-                    latitude: 37.865813,
-                    longitude: -122.257058,
-                    orgNumber: '6000',
-                },
-                pickupTimestamp: null,
-                deliveryTimestamp: null,
-            },
-            {
-                id: 2,
-                donation: {
-                    id: 111,
-                    address: 'Berkeley Bowl, 2020 Oregon St, Berkeley, CA 94703',
-                    latitude: 37.857843,
-                    longitude: -122.2613269,
-                    foodTypes: ['Bread'],
-                    quantity: '3 boxes',
-                    date: '1/1/2014',
-                    startTime: '4:00PM',
-                    endTime: '8:00PM',
-                    name: 'Mr. Bowl',
-                    organization: 'Berkeley Bowl',
-                    email: 'mrbowl@berkeleybowl.com',
-                    phone: '122-333-4444',
-                    additionalInfo: ''
-                },
-                recipient: {
-                    id: 2,
-                    donationId: 111,
-                    firstName: 'Food',
-                    lastName: ' Recipient',
-                    email: 'food@recipient.com',
-                    phone: '999-999-9999',
-                    organization: 'Adult Food Finder',
-                    address: 'People\'s Park 2556 Haste St Berkeley, CA 94704',
-                    latitude: 37.865813,
-                    longitude: -122.257058,
-                    orgNumber: '6000',
-                },
-                pickupTimestamp: null,
-                deliveryTimestamp: null,
-            },
-        ]
+        return gon.deliveries
     },
     getDirectionsDisplay: function(donation, recipient) {
         var directionsService = new google.maps.DirectionsService();
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var request = {
-            origin: new google.maps.LatLng(donation.latitude, donation.longitude),
-            destination: new google.maps.LatLng(recipient.latitude, recipient.longitude),
+            origin: new google.maps.LatLng(Number(donation.latitude), Number(donation.longitude)),
+            destination: new google.maps.LatLng(Number(recipient.recipient_profile.latitude), Number(recipient.recipient_profile.longitude)),
             travelMode: google.maps.TravelMode.DRIVING
         };
         directionsService.route(request, function(result, status){
@@ -133,6 +29,8 @@ var DeliverDashboard = React.createClass({
                 console.log(result.routes[0].legs[0].distance.text)
                 console.log(result.routes[0].legs[0].duration.text)
 
+            } else {
+                console.log(result);
             }
         });
         return directionsDisplay;
@@ -147,7 +45,7 @@ var DeliverDashboard = React.createClass({
             );
         } else {
             googleMapContent = (
-                <GoogleMap directionsDisplay={this.getDirectionsDisplay(currentDelivery.donation, currentDelivery.recipient)} latitude={currentDelivery.donation.latitude} longitude={currentDelivery.donation.longitude} />
+                <GoogleMap directionsDisplay={this.getDirectionsDisplay(currentDelivery.donation, currentDelivery.recipient)} latitude={Number(currentDelivery.donation.latitude)} longitude={Number(currentDelivery.donation.longitude)} />
             );
         }
         return (
@@ -181,31 +79,43 @@ var DeliverDashboard = React.createClass({
         this.setState({openDeliveryId: deliveryId});
         console.log("Open deliveryId: " + deliveryId);
     },
+    submitConfirmation: function(data){
+        $.ajax({
+          url: window.location.href,
+          dataType: 'json',
+          type: 'POST',
+          data: data,
+          success: function(data) {
+            console.log("Submission success!");
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(window.location.href, status, err.toString());
+          }.bind(this)
+        });
+    },
     handlePickupSubmit: function(event){
-        // TODO: Submit pickups to backend
         var deliveryId = event.deliveryId;
         var currentDeliveries = this.state.deliveries;
         var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
         var index = _.indexOf(currentDeliveries, currentDelivery);
-
-        currentDelivery.pickupTimestamp = _.now();
+        currentDelivery.picked_up_at = _.now();
         currentDeliveries[index] = currentDelivery;
-        this.setState({deliveries: currentDeliveries});
 
-        console.log("Transaction " + deliveryId + " successfully picked up");
+        var data = {transaction_id: deliveryId, picked_up_at: currentDelivery.picked_up_at}
+        this.submitConfirmation(data);
+        this.setState({deliveries: currentDeliveries});
     },
     handleDeliverySubmit: function(event){
-        // TODO: Submit deliveries to backend
         var deliveryId = event.deliveryId;
         var currentDeliveries = this.state.deliveries;
         var currentDelivery = _.findWhere(currentDeliveries, {id: deliveryId});
         var index = _.indexOf(currentDeliveries, currentDelivery);
-
-        currentDelivery.deliveryTimestamp = _.now();
+        currentDelivery.delivered_at = _.now();
         currentDeliveries[index] = currentDelivery;
-        this.setState({deliveries: currentDeliveries});
 
-        console.log("Transaction " + deliveryId + " successfully delivered");
+        var data = {transaction_id: deliveryId, delivered_at: currentDelivery.delivered_at}
+        this.submitConfirmation(data);
+        this.setState({deliveries: currentDeliveries});
     },
 });
 
@@ -247,8 +157,8 @@ var Delivery = React.createClass({
         }
     },
     render: function() {
-        var isPickedUp = !(_.isNull(this.props.delivery.pickupTimestamp));
-        var isDelivered = !(_.isNull(this.props.delivery.deliveryTimestamp));
+        var isPickedUp = !(_.isBlank(this.props.delivery.picked_up_at));
+        var isDelivered = !(_.isBlank(this.props.delivery.delivered_at));
         var actionButtons = this.renderActionButtons(isPickedUp, isDelivered);
 
         var entryClasses = React.addons.classSet({
@@ -269,12 +179,12 @@ var Delivery = React.createClass({
                                 <span className="address-prefix">From</span>{this.props.delivery.donation.address}
                             </div>
                             <div className="recipient-address">
-                                <span className="address-prefix">To</span>{this.props.delivery.recipient.address}
+                                <span className="address-prefix">To</span>{this.props.delivery.recipient.recipient_profile.address}
                             </div>
                             <div className="delivery-info">
                                 <p className="delivery-time">
                                   <i className="fa fa-clock-o fa-fw"></i>
-                                  {this.props.delivery.donation.date} {this.props.delivery.donation.startTime} - {this.props.delivery.donation.endTime}
+                                  {this.props.delivery.donation.date} {this.props.delivery.donation.window_start} - {this.props.delivery.donation.window_end}
                                 </p>
                                 <a className="delivery-link" onClick={this.handleGetDirections} href={this.getDirectionsLink()} target="_blank">
                                     <i className="fa fa-map-marker fa-fw"></i> Get directions
@@ -348,7 +258,7 @@ var Delivery = React.createClass({
     },
     getDirectionsLink: function() {
         var srcAddr = this.props.delivery.donation.address
-        var destAddr = this.props.delivery.recipient.address
+        var destAddr = this.props.delivery.recipient.recipient_profile.address
         return  _.sprintf("https://maps.google.com/maps?saddr=%s&daddr=%s", srcAddr, destAddr)
     }
 });
