@@ -14,6 +14,9 @@ var ScheduleDashboard = React.createClass({
             transitionClass: "slide-right",
         };
     },
+    getDefaultProps: function() {
+        return {};
+    },
     getDonationsList: function() {
         return gon.donations
     },
@@ -24,26 +27,23 @@ var ScheduleDashboard = React.createClass({
     },
     getNextDonation: function() {
         var index = (this.state.currDonationIndex + 1).mod( _.size(this.state.donations))
-        var recipients = this.getRecipientsList(this.state.donations[index].id);
         this.setState({
             currDonationIndex: index,
-            recipients: recipients,
+            recipients: this.getRecipientsList(this.state.donations[index].id),
             transitionClass: "slide-left"
         })
     },
     getPrevDonation: function() {
         var index = (this.state.currDonationIndex - 1).mod(_.size(this.state.donations))
-        var recipients = this.getRecipientsList(this.state.donations[index].id);
         this.setState({
             currDonationIndex: index,
-            recipients: recipients,
+            recipients: this.getRecipientsList(this.state.donations[index].id),
             transitionClass: "slide-right"
         })
     },
     handleSubmit: function(event) {
-        var submittedDonationId = event.donationId;
         var donations = _.reject(this.state.donations, function(donation) {
-            return donation.id === submittedDonationId;
+            return donation.id === event.donationId;
         });
         var index = 0;
         var recipients = []
@@ -56,9 +56,6 @@ var ScheduleDashboard = React.createClass({
             recipients: recipients,
             transitionClass: "slide-right",
         })
-    },
-    getDefaultProps: function() {
-        return {};
     },
     render: function() {
         var content = _.isEmpty(this.state.donations) ? this.renderEmpty() : this.renderHasDonations();
@@ -79,7 +76,7 @@ var ScheduleDashboard = React.createClass({
         var flattenedRecipients = _.map(this.state.recipients, function(interest) {
             return _.extend(interest.recipient, {interestId: interest.id});
         });
-        var flattenedRecipientProfiles = _.map(flattenedRecipients, function(recipient) {
+        var recipientProfilesList = _.map(flattenedRecipients, function(recipient) {
             return recipient.recipient_profile;
         });
         return (
@@ -109,10 +106,19 @@ var ScheduleDashboard = React.createClass({
                 <div className="donation-recipients">
                     <div className="row">
                         <div className="medium-6 columns no-right-pad">
-                            <DonationRecipients recipients={flattenedRecipients} donation={currDonation} handleSubmit={this.handleSubmit} />
+                            <DonationRecipients
+                                recipients={flattenedRecipients}
+                                donation={currDonation}
+                                handleSubmit={this.handleSubmit}
+                            />
                         </div>
                         <div className="medium-6 columns no-left-pad">
-                            <GoogleMap donation={currDonation} recipients={flattenedRecipientProfiles} longitude={Number(currDonation.longitude)} latitude={Number(currDonation.latitude)} />
+                            <GoogleMap
+                                donation={currDonation}
+                                recipients={recipientProfilesList}
+                                longitude={Number(currDonation.longitude)}
+                                latitude={Number(currDonation.latitude)}
+                            />
                         </div>
                     </div>
                 </div>
@@ -170,18 +176,6 @@ var DonationInfo = React.createClass({
                     </div>
                 </div>
             </div>
-        );
-    },
-    renderFoodTypes: function() {
-        var foodListItems = _.map(this.props.donation.foodTypes, function(foodType) {
-            return (
-                <li key={foodType}>{foodType}</li>
-            );
-        });
-        return (
-            <ul className="inline-list-food">
-                {foodListItems}
-            </ul>
         );
     },
     renderAdditionalInfo: function() {
@@ -252,7 +246,6 @@ var Recipient = React.createClass({
         this.props.handleClick({recipientId: this.props.recipient.id});
     },
     handleSubmit: function() {
-        console.log("Selected donation: " + this.props.donation.id + " with recipient: " + this.props.recipient.recipient_profile.contact_person);
         this.submitMatch(this.props.recipient.interestId, this.props.donation.id, this.props.recipient.id);
         this.props.handleSubmit({donationId: this.props.donation.id});
         this.refs.modal.hide()
@@ -385,18 +378,6 @@ var Recipient = React.createClass({
                 </Modal>
 
             </div>
-        );
-    },
-    renderFoodTypes: function() {
-        var foodListItems = _.map(this.props.donation.foodTypes, function(foodType) {
-            return (
-                <li key={foodType}>{foodType}</li>
-            );
-        });
-        return (
-            <ul className="inline-list">
-                {foodListItems}
-            </ul>
         );
     },
     renderClosed: function() {
