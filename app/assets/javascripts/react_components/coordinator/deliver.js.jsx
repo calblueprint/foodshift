@@ -26,9 +26,6 @@ var DeliverDashboard = React.createClass({
         directionsService.route(request, function(result, status){
             if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(result);
-                console.log(result.routes[0].legs[0].distance.text)
-                console.log(result.routes[0].legs[0].duration.text)
-
             } else {
                 console.log(result);
             }
@@ -45,7 +42,11 @@ var DeliverDashboard = React.createClass({
             );
         } else {
             googleMapContent = (
-                <GoogleMap directionsDisplay={this.getDirectionsDisplay(currentDelivery.donation, currentDelivery.recipient)} latitude={Number(currentDelivery.donation.latitude)} longitude={Number(currentDelivery.donation.longitude)} />
+                <GoogleMap
+                    directionsDisplay={this.getDirectionsDisplay(currentDelivery.donation, currentDelivery.recipient)}
+                    latitude={Number(currentDelivery.donation.latitude)}
+                    longitude={Number(currentDelivery.donation.longitude)}
+                />
             );
         }
         return (
@@ -77,7 +78,6 @@ var DeliverDashboard = React.createClass({
             deliveryId = null;
         }
         this.setState({openDeliveryId: deliveryId});
-        console.log("Open deliveryId: " + deliveryId);
     },
     submitConfirmation: function(data){
         $.ajax({
