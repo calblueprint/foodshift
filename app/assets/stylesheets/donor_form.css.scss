@@ -4,7 +4,7 @@ $donor-image-height: 500px;
     .donor-form-image {
         z-index: -20;
         background-size: cover;
-        background-image: url("s3-us-west-2.amazonaws.com/foodshift/assets/images/landing_splash_strawberries.jpg");
+        background-image: url("http://s3-us-west-2.amazonaws.com/foodshift/assets/images/landing_splash_strawberries.jpg");
         height: $donor-image-height;
         width: 100%;
         top: 0;

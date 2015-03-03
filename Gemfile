@@ -14,13 +14,14 @@ gem "simple_form"
 gem "figaro"
 
 # Frontend
-gem 'sass-rails', '~> 4.0.3'
-gem 'jquery-rails'
-gem 'foundation-rails'
-gem 'react-rails', '~> 0.11.1.0'
-gem 'underscore-rails'
-gem 'underscore-string-rails'
-gem 'uglifier', '>= 1.3.0'
+gem "sass-rails", "4.0.3"
+gem "jquery-rails"
+gem "foundation-rails", "~>5.4.5"
+gem "react-rails", "~> 0.11.1.0"
+gem "underscore-rails"
+gem "underscore-string-rails"
+gem "uglifier", ">= 1.3.0"
+
 # Rails objects -> JS objects
 gem 'gon'
 
