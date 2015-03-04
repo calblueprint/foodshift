@@ -73,10 +73,10 @@ var ScheduleDashboard = React.createClass({
     },
     renderHasDonations: function() {
         var currDonation = this.state.donations[this.state.currDonationIndex];
-        var flattenedRecipients = _.map(this.state.recipients, function(interest) {
+        var recipientsWithInterests = _.map(this.state.recipients, function(interest) {
             return _.extend(interest.recipient, {interestId: interest.id});
         });
-        var recipientProfilesList = _.map(flattenedRecipients, function(recipient) {
+        var recipientProfilesList = _.map(recipientsWithInterests, function(recipient) {
             return recipient.recipient_profile;
         });
         return (
@@ -107,7 +107,7 @@ var ScheduleDashboard = React.createClass({
                     <div className="row">
                         <div className="medium-6 columns no-right-pad">
                             <DonationRecipients
-                                recipients={flattenedRecipients}
+                                recipients={recipientsWithInterests}
                                 donation={currDonation}
                                 handleSubmit={this.handleSubmit}
                             />
