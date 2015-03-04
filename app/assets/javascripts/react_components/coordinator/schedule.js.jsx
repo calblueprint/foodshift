@@ -148,16 +148,16 @@ var DonationInfo = React.createClass({
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul">
-                          <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.window_start}</li>
-                          <li><i className="fa-li fa "></i>{this.props.donation.window_start} - {this.props.donation.window_end}</li>
-                          <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
+                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.window_start}</li>
+                            <li><i className="fa-li fa "></i>{this.props.donation.window_start} - {this.props.donation.window_end}</li>
+                            <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
                         </ul>
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul">
-                          <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
-                          <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email}</li>
-                          <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone}</li>
+                            <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
+                            <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email}</li>
+                            <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone}</li>
                         </ul>
                     </div>
                 </div>
@@ -252,23 +252,23 @@ var Recipient = React.createClass({
     },
     submitMatch: function(interestId, donationId, recipientId) {
         $.ajax({
-          url: window.location.href,
-          dataType: 'json',
-          type: 'POST',
-          data: {interest_id: interestId, donation_id: donationId, recipient_id: recipientId},
-          success: function(data) {
-            console.log("Submission success!");
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(window.location.href, status, err.toString());
-          }.bind(this)
+            url: window.location.href,
+            dataType: 'json',
+            type: 'POST',
+            data: {interest_id: interestId, donation_id: donationId, recipient_id: recipientId},
+            success: function(data) {
+                console.log("Submission success!");
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(window.location.href, status, err.toString());
+            }.bind(this)
         });
     },
     render: function() {
         var content;
         var titleClasses = React.addons.classSet({
-           'recipient-title': true,
-           'active': this.props.isOpen
+            'recipient-title': true,
+            'active': this.props.isOpen
         });
         var iconClasses = React.addons.classSet({
             'fa': true,
@@ -309,9 +309,9 @@ var Recipient = React.createClass({
                         <div className="recipient-details">
                             <p className="organization">{this.props.recipient.recipient_profile.organization}</p>
                             <ul className="fa-ul">
-                              <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.contact_person}</li>
-                              <li><i className="fa-li fa fa-envelope-o"></i>{this.props.recipient.email}</li>
-                              <li><i className="fa-li fa fa-phone"></i>{this.props.recipient.recipient_profile.contact_person_phone}</li>
+                                <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.contact_person}</li>
+                                <li><i className="fa-li fa fa-envelope-o"></i>{this.props.recipient.email}</li>
+                                <li><i className="fa-li fa fa-phone"></i>{this.props.recipient.recipient_profile.contact_person_phone}</li>
                             </ul>
                         </div>
                     </div>
@@ -327,13 +327,13 @@ var Recipient = React.createClass({
                         <div className="donation-row">
                             <div className="medium-5 columns">
                                 <ul className="fa-ul">
-                                  <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization}</li>
-                                  <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
+                                    <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization}</li>
+                                    <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
                                 <ul className="fa-ul">
-                                  <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
+                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
                                 </ul>
                             </div>
                         </div>
@@ -343,8 +343,8 @@ var Recipient = React.createClass({
                             </div>
                             <div className="small-10 medium-4 columns">
                                 <ul className="fa-ul">
-                                  <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.window_start}</li>
-                                  <li><i className="fa-li fa "></i>{this.props.donation.window_start}- {this.props.donation.window_end}</li>
+                                    <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.window_start}</li>
+                                    <li><i className="fa-li fa "></i>{this.props.donation.window_start}- {this.props.donation.window_end}</li>
                                 </ul>
                             </div>
                             <div className="small-10 small-offset-2 medium-7 medium-offset-0 columns">
@@ -359,13 +359,13 @@ var Recipient = React.createClass({
                         <div className="recipient-row">
                             <div className="medium-5 columns">
                                 <ul className="fa-ul">
-                                  <li><i className="fa-li fa fa-users"></i>{this.props.recipient.recipient_profile.organization}</li>
-                                  <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.contact_person}</li>
+                                    <li><i className="fa-li fa fa-users"></i>{this.props.recipient.recipient_profile.organization}</li>
+                                    <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.contact_person}</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
                                 <ul className="fa-ul">
-                                  <li><i className="fa-li fa fa-map-marker"></i>{this.props.recipient.recipient_profile.address}</li>
+                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.recipient.recipient_profile.address}</li>
                                 </ul>
                             </div>
                         </div>

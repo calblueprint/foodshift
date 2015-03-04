@@ -81,16 +81,16 @@ var DeliverDashboard = React.createClass({
     },
     submitConfirmation: function(data){
         $.ajax({
-          url: window.location.href,
-          dataType: 'json',
-          type: 'POST',
-          data: data,
-          success: function(data) {
-            console.log("Submission success!");
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(window.location.href, status, err.toString());
-          }.bind(this)
+            url: window.location.href,
+            dataType: 'json',
+            type: 'POST',
+            data: data,
+            success: function(data) {
+                console.log("Submission success!");
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(window.location.href, status, err.toString());
+            }.bind(this)
         });
     },
     handlePickupSubmit: function(event){
@@ -162,8 +162,8 @@ var Delivery = React.createClass({
         var actionButtons = this.renderActionButtons(isPickedUp, isDelivered);
 
         var entryClasses = React.addons.classSet({
-           'delivery-entry': true,
-           'active': this.props.isOpen
+            'delivery-entry': true,
+            'active': this.props.isOpen
         });
         var iconClasses = React.addons.classSet({
             'fa': true,
@@ -183,8 +183,8 @@ var Delivery = React.createClass({
                             </div>
                             <div className="delivery-info">
                                 <p className="delivery-time">
-                                  <i className="fa fa-clock-o fa-fw"></i>
-                                  {this.props.delivery.donation.date} {this.props.delivery.donation.window_start} - {this.props.delivery.donation.window_end}
+                                    <i className="fa fa-clock-o fa-fw"></i>
+                                    {this.props.delivery.donation.date} {this.props.delivery.donation.window_start} - {this.props.delivery.donation.window_end}
                                 </p>
                                 <a className="delivery-link" onClick={this.handleGetDirections} href={this.getDirectionsLink()} target="_blank">
                                     <i className="fa fa-map-marker fa-fw"></i> Get directions

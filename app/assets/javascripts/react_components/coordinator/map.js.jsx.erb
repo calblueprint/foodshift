@@ -26,7 +26,6 @@ var GoogleMap = React.createClass({
         var map = this.drawMap();
         this.setState({map: map});
         this.placeMarkers(this.props.donation, this.props.recipients, map);
-        console.log("Script Loaded");
     },
     onScriptError: function() {
         console.log("Error loading Google Maps script");
@@ -51,15 +50,6 @@ var GoogleMap = React.createClass({
             donation: null,
             recipients: [],
             directionsDisplay: null
-        }
-    },
-    componentWillReceiveProps: function(nextProps) {
-        this.placeMarkers(nextProps.donation, nextProps.recipients, this.state.map);
-        if (!(_.isNull(this.props.directionsDisplay))) {
-            this.props.directionsDisplay.setMap(null);
-        }
-        if (!(_.isNull(nextProps.directionsDisplay))) {
-            nextProps.directionsDisplay.setMap(this.state.map);
         }
     },
     placeMarkers: function(donation, recipients, map) {
@@ -108,6 +98,15 @@ var GoogleMap = React.createClass({
         return (
             <div id="map-canvas"></div>
         );
+    },
+    componentWillReceiveProps: function(nextProps) {
+        this.placeMarkers(nextProps.donation, nextProps.recipients, this.state.map);
+        if (!(_.isNull(this.props.directionsDisplay))) {
+            this.props.directionsDisplay.setMap(null);
+        }
+        if (!(_.isNull(nextProps.directionsDisplay))) {
+            nextProps.directionsDisplay.setMap(this.state.map);
+        }
     },
     componentDidMount: function() {
         var map = this.drawMap();
