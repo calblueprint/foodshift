@@ -19,21 +19,6 @@ Rails.application.configure do
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
-
-  # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
-
-  # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
-
-  # Generate digests for assets URLs.
-  config.assets.digest = true
-
-  # Version of your assets, change this if you want to expire all your assets.
-  config.assets.version = '1.0'
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -56,10 +41,6 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
-
-  # Precompile additional assets.
-  # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  # config.assets.precompile += %w( search.js )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -89,9 +70,48 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+
+  #
+  # Assets configs
+  #
+
+  # Flag that controls whether the asset pipeline is enabled
+  config.assets.enabled = true
+
+  # Enables the use of MD5 fingerprints in asset names
+  config.assets.digest = true
+
+  # Debug mode disables concatenation and preprocessing of assets.
+  # This option may cause significant delays in view rendering with a large
+  # number of complex assets.
+  config.assets.debug = false
+
+  # Adds additional error checking when serving assets at runtime.
+  # Checks for improperly declared sprockets dependencies.
+  # Raises helpful error messages.
+  config.assets.raise_runtime_errors = false
+
+  # Disable Rails's static asset server (Apache or nginx will already do this).
+  config.serve_static_assets = false
+
+  # Precompile additional assets.
+  # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
+  # config.assets.precompile += %w( search.js )
+
+  # Compress JavaScripts and CSS.
+  config.assets.js_compressor = :uglifier
+  config.assets.css_compressor = :sass
+
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = false
+
+  # Version of your assets, change this if you want to expire all your assets.
+  config.assets.version = '1.0'
+
+  # Use Amazon S3 as the asset host
+  config.action_controller.asset_host = "//#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
+
   # Use minified React version
   config.react.variant = :production
 
-  # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
 end

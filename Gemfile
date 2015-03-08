@@ -61,4 +61,7 @@ group :staging, :production do
 
   # Analytics - requires setup
   gem "newrelic_rpm"
+
+  # Syncs assets with S3
+  gem "asset_sync"
 end
