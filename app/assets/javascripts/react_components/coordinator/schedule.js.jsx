@@ -321,7 +321,6 @@ var Recipient = React.createClass({
                         </div>
                     </div>
                 </div>
-
                 <Modal ref="modal"  show={false} header="Confirm Match">
                     <div className="confirm-modal">
                         <div className="donation-row">
@@ -376,7 +375,6 @@ var Recipient = React.createClass({
                         </div>
                     </div>
                 </Modal>
-
             </div>
         );
     },
