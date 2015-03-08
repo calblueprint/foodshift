@@ -41,12 +41,12 @@ $(function() {
     $('#donation_start_time').datetimepicker({
         datepicker: false,
         step: 15,
-        format:'g:i A'
+        format:'H:i'
     });
     $('#donation_end_time').datetimepicker({
         datepicker: false,
         step: 15,
-        format:'g:i A'
+        format:'H:i'
     });
 
 });
