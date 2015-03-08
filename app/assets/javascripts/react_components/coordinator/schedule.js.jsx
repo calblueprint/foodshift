@@ -213,9 +213,30 @@ var DonationRecipients = React.createClass({
         }
         this.setState({openRecipientId: recipientId});
     },
+    computeTravelTime: function(donation, recipient, directionsService) {
+        var travelTime;
+        var request = {
+            origin: new google.maps.LatLng(Number(donation.latitude), Number(donation.longitude)),
+            destination: new google.maps.LatLng(Number(recipient.recipient_profile.latitude), Number(recipient.recipient_profile.longitude)),
+            travelMode: google.maps.TravelMode.TRANSIT
+        };
+        directionsService.route(request, function(result, status){
+            if (status == google.maps.DirectionsStatus.OK) {
+                // Since this is just an estimate, take the first route found
+                // The routes will only have 1 "leg" in every case because there is just 1 src and 1 dest
+                travelTime = result.routes[0].legs[0].duration.text;
+            } else {
+                console.log(result);
+            }
+        });
+        return travelTime;
+
+    },
     render: function() {
+        var directionsService = new google.maps.DirectionsService();
         var recipients =  _.map(this.props.recipients, function(recipient) {
             var isOpen = (recipient.id === this.state.openRecipientId);
+
             return (
                 <Recipient
                     key={recipient.id}
@@ -224,6 +245,7 @@ var DonationRecipients = React.createClass({
                     isOpen={isOpen}
                     handleClick={this.handleRecipientOpen}
                     handleSubmit={this.props.handleSubmit}
+                    travelTime={this.computeTravelTime(this.props.donation, recipient, directionsService)}
                 />
             );
         }.bind(this));
@@ -288,7 +310,7 @@ var Recipient = React.createClass({
                             {this.props.recipient.recipient_profile.address}
                         </div>
                         <div className="small-11 medium-3 columns">
-                            15 min
+                            {this.props.travelTime}
                         </div>
                         <div className="small-1 medium-1 end columns">
                             <a className="expand-icon" ><i className={iconClasses}></i></a>
