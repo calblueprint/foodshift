@@ -1,27 +1,27 @@
-$recipient-image-height: 500px;
+$donor-image-height: 500px;
 
-#recipient-form-image-block {
-    .recipient-form-image {
+#donor-form-image-block {
+    .donor-form-image {
         z-index: -20;
         background-size: cover;
-        background-image: url("landing_splash_berries.jpg");
-        height: $recipient-image-height;
+        background-image: url(<%= image_path('landing_splash_strawberries.jpg') %>);
+        height: $donor-image-height;
         width: 100%;
         top: 0;
         position: absolute;
         margin-top: $topbar-height + 1;
     }
-    .recipient-form-image-overlay {
+    .donor-form-image-overlay {
         z-index: -10;
-        height: $recipient-image-height;
+        height: $donor-image-height;
         width: 100%;
         top: 0;
         position: absolute;
         margin-top: $topbar-height + 1;
         background-color: rgba(0, 0, 0, 0.2);
     }
-    .recipient-form-content {
-        height: $recipient-image-height;
+    .donor-form-content {
+        height: $donor-image-height;
         background-color: transparent;
         padding-top: 10%;
     }
@@ -38,23 +38,41 @@ $recipient-image-height: 500px;
     }
 }
 
-#recipient-form-account-block {
+#donor-form-food-block {
     @include full-width-block($light-grey);
     border-bottom: 2px solid $dark-grey;
     @include form-block-padding();
 }
 
-#recipient-form-info-block {
+
+#donor-form-pickup-block {
     @include full-width-block($off-white);
     border-bottom: 2px solid $dark-grey;
     @include form-block-padding();
 }
 
-#recipient-form-org-block {
+#donor-form-detail-block {
     @include full-width-block($light-grey);
+    border-bottom: 2px solid $dark-grey;
     @include form-block-padding();
 }
 
-.signup-block {
+#donor-form-submit-block {
+    @include full-width-block($off-white);
+    @include form-block-padding();
+}
+
+.add-form-padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.contact-padding {
+    @media #{$medium-up} {
+        padding-top: 30px;
+    }
+}
+
+.donate-block {
     padding-top: 50px;
 }
