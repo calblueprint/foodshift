@@ -36,7 +36,8 @@ a.transparent-success-button {
   }
 }
 
-a.success-button, input.success-button {
+a.success-button,
+input.success-button {
   @extend .button;
   background-color: $medium-green;
   border: 1px solid $white;
