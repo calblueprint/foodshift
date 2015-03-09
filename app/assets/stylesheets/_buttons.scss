@@ -62,14 +62,16 @@ a.button {
 }
 
 a.transparent-button {
-    @extend .button;
+    @extend .button, .large;
+    @include transition-all(100ms);
     border-radius: $global-radius;
-    border: 1px solid $white;
+    border: 2px solid $white;
+    font-weight: 500;
     background-color: transparent;
     color: $white;
     &:hover {
-        color: $white;
-        background-color: rgba(0, 0, 0, 0.4);
+        color: $charcoal;
+        background-color: $white;
     }
 }
 
