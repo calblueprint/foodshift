@@ -29,13 +29,16 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.7)
-    annotate (2.6.5)
+    annotate (2.6.6)
       activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
+      rake (~> 10.4.2, >= 10.4.2)
     arel (5.0.1.20140414130214)
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
+    autoprefixer-rails (5.1.7)
+      execjs
+      json
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -89,8 +92,8 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.0.7)
-    excon (0.44.3)
-    execjs (2.3.0)
+    excon (0.44.4)
+    execjs (2.4.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -218,7 +221,7 @@ GEM
     hitimes (1.2.2)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
-    i18n-tasks (0.7.12)
+    i18n-tasks (0.7.13)
       activesupport
       easy_translate (>= 0.5.0)
       erubis
@@ -248,7 +251,7 @@ GEM
     mini_magick (4.1.0)
     mini_portile (0.6.2)
     minitest (5.5.1)
-    multi_json (1.10.1)
+    multi_json (1.11.0)
     nenv (0.2.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -412,6 +415,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  autoprefixer-rails
   better_errors
   binding_of_caller
   cancancan (~> 1.9)
