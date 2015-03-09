@@ -25,11 +25,13 @@ gem "uglifier", ">= 1.3.0"
 # Rails objects -> JS objects
 gem 'gon'
 
+# Want this on Heroku for sample data
+gem "faker"
+
 group :development do
   gem "annotate"
   gem "better_errors"
   gem "binding_of_caller"
-  gem "faker"
   gem "quiet_assets"
   gem "spring"
   gem "spring-commands-rspec"
