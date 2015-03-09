@@ -1,15 +1,5 @@
 @mixin transition-all($time) {
-  -webkit-transition: all $time ease;
-  -moz-transition: all $time ease;
-  -o-transition: all $time ease;
   transition: all $time ease;
-}
-
-@mixin button-transition {
-  -webkit-transition: -webkit-transform 0.5s ease;
-  -moz-transition: -moz-transform 0.5s ease;
-  -o-transition: o-transform 0.5s ease;
-  transition: all 0.5s ease;
 }
 
 a.button {
@@ -35,14 +25,14 @@ a.transparent-button {
 
 a.transparent-success-button {
   @extend .button;
-  border-radius: $global-radius;
-  border: 1px solid $charcoal;
   background-color: transparent;
+  border: 1px solid $charcoal;
+  border-radius: $global-radius;
   color: $charcoal;
 
   &:hover {
-    color: $medium-green;
     border: 1px solid $medium-green;
+    color: $medium-green;
   }
 }
 
@@ -54,14 +44,14 @@ a.success-button, input.success-button {
   color: $white;
 
   &:hover {
-    color: $white;
     background-color: scale-color($medium-green, $lightness: 10%);
+    color: $white;
   }
 }
 
 .material-success-button {
   @extend .button;
-  @include button-transition();
+  @include transition-all(0.5s);
   @include drop-shadow(1);
   background-color: transparent;
   border: 1px solid transparent;
