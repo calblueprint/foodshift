@@ -56,5 +56,4 @@ Rails.application.configure do
 
   # Use uniminified React version
   config.react.variant = :development
-
 end
