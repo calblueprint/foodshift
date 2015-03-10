@@ -26,11 +26,13 @@ gem "autoprefixer-rails"
 # Rails objects -> JS objects
 gem 'gon'
 
+# Want this on Heroku for sample data
+gem "faker"
+
 group :development do
   gem "annotate"
   gem "better_errors"
   gem "binding_of_caller"
-  gem "faker"
   gem "quiet_assets"
   gem "spring"
   gem "spring-commands-rspec"
@@ -62,4 +64,7 @@ group :staging, :production do
 
   # Analytics - requires setup
   gem "newrelic_rpm"
+
+  # Syncs assets with S3
+  gem "asset_sync"
 end

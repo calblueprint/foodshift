@@ -1,9 +1,11 @@
 # config/initializers/figaro.rb
 
-Figaro.require_keys("S3_KEY",
-                    "S3_SECRET",
-                    "S3_BUCKET",
-                    "S3_REGION",
-                    "EMAIL_USERNAME",
-                    "EMAIL_PASSWORD"
-                    )
+Figaro.require_keys(
+  "EMAIL_USERNAME",
+  "EMAIL_PASSWORD",
+  "AWS_ACCESS_KEY_ID",
+  "AWS_SECRET_ACCESS_KEY",
+  "FOG_PROVIDER",
+  "FOG_REGION",
+  "FOG_DIRECTORY"
+)

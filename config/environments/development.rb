@@ -31,6 +31,18 @@ Rails.application.configure do
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
+  # Raises error for missing translations
+  # config.action_view.raise_on_missing_translations = true
+
+  #
+  # Assets configs
+  #
+
+  # Flag that controls whether the asset pipeline is enabled
+  config.assets.enabled = true
+
+  # Enables the use of MD5 fingerprints in asset names
+  config.assets.digest = true
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
@@ -41,9 +53,6 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
-  # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
 
   # Use uniminified React version
   config.react.variant = :development
