@@ -41,6 +41,7 @@
   margin: 10px 0;
   padding: 10px;
   width: 100%;
+  
   h1 {
     background: none;
     color: $medium-green;
@@ -146,14 +147,15 @@
   min-height: 240px;
   padding: 12px;
   width: 25%;
+
   h2 {
-  color: $medium-green;
-  display: block;
-  font-size: 18px;
-  font-weight: normal;
-  margin-bottom: 25px;
-  margin-top: 10px;
-  text-align: center;
+    color: $medium-green;
+    display: block;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    text-align: center;
   }
 }
 
