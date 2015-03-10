@@ -3,10 +3,11 @@
 }
 
 .donation-container {
-  min-height: 0px;
+  min-height: 0;
 }
 
-.donation-container, .profile-container {
+.donation-container, 
+.profile-container {
   background: $white;
   font-size: 12px;
   margin: 0 auto;
@@ -14,7 +15,8 @@
   width: 68%;
 }
 
-.donation-container b, .profile-container b {
+.donation-container b, 
+.profile-container b {
   font-weight: 600;
 }
 
@@ -22,7 +24,8 @@
   min-height: 350px;
 }
 
-.donation-container h1, .profile-container h1 {
+.donation-container h1, 
+.profile-container h1 {
   background: $medium-green;
   color: $white;
   display: block;
@@ -35,18 +38,17 @@
 
 .donation-item {
   background: $donor-profile-light-grey;
-  margin: 10px 0px;
+  margin: 10px 0;
   padding: 10px;
   width: 100%;
-}
-
-.donation-item h1 {
-  background: none;
-  color: $medium-green;
-  font-size: 15px;
-  margin: 0px 0px 10px 0px;
-  padding: 0px;
-  text-align: left;
+  h1 {
+    background: none;
+    color: $medium-green;
+    font-size: 15px;
+    margin: 0 0 10px;
+    padding: 0;
+    text-align: left;
+  }
 }
 
 .donation-item-completed {
@@ -144,9 +146,7 @@
   min-height: 240px;
   padding: 12px;
   width: 25%;
-}
-
-.profile-summary h2 {
+  h2 {
   color: $medium-green;
   display: block;
   font-size: 18px;
@@ -154,11 +154,12 @@
   margin-bottom: 25px;
   margin-top: 10px;
   text-align: center;
+  }
 }
 
 .profile-summary-content {
-  border-radius: 2px;
   background: $donor-profile-medium-grey;
+  border-radius: 2px;
   float: right;
   margin-top: -4px;
   padding: 4px 8px;
