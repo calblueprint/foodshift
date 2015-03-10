@@ -1458,12 +1458,12 @@ $topbar-divider-border-top: solid 1px scale-color($medium-grey, $lightness: 50%)
 
 // Donor Profile Colors
 $donation-completed-key: #3ca532;
-$donation-inprogress-key: #D0EDCD;
-$donation-pending-key: #EAEAEA;
-$donor-profile-border-grey: #AAA;
-$donor-profile-donation-summary: #F8F8F8;
+$donation-inprogress-key: #d0edcd;
+$donation-pending-key: #eaeaea;
+$donor-profile-border-grey: #aaa;
+$donor-profile-donation-summary: #f8f8f8;
 $donor-profile-darker-grey: #555;
-$donor-profile-light-grey: #FBFBFB;
-$donor-profile-medium-grey: #DDD;
+$donor-profile-light-grey: #fbfbfb;
+$donor-profile-medium-grey: #ddd;
 
 @import 'foundation';
