@@ -4,7 +4,7 @@ $recipient-image-height: 500px;
     .recipient-form-image {
         z-index: -20;
         background-size: cover;
-        background-image: url("s3-us-west-2.amazonaws.com/foodshift/assets/images/landing_splash_berries.jpg");
+        background-image: url("landing_splash_berries.jpg");
         height: $recipient-image-height;
         width: 100%;
         top: 0;
@@ -18,7 +18,7 @@ $recipient-image-height: 500px;
         top: 0;
         position: absolute;
         margin-top: $topbar-height + 1;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.25);
     }
     .recipient-form-content {
         height: $recipient-image-height;
