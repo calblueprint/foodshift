@@ -165,11 +165,12 @@
 }
 
 .profile-summary-donate-link {
+  background: $white;
   border: 1px solid $donor-profile-border-grey;
-  color: $medium-green;
   border-radius: 4px;
-  padding: 5px 10px;
+  color: $medium-green;
   margin: 0 auto;
+  padding: 5px 10px;
 }
 
 .update-profile-link {
