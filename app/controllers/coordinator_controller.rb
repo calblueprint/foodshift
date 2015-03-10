@@ -65,6 +65,5 @@ class CoordinatorController < ApplicationController
   end
 
   def auth
-    authorize! :read, Donation
   end
 end
