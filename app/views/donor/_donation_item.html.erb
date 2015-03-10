@@ -1,5 +1,5 @@
 <div class="donation-modify">
-  <span class="donation-status donation-#{d.status}"><%= d.status %></span> <br>
+  <span class="donation-status"><%= d.status %></span> <br>
   <% if d.status == "Pending" %> 
   <%= link_to "Cancel Donation", root_path, class: "donation-modify-link donation-cancel" %> <!-- NEEDS TO BE IMPLEMENTED -->
   <br>

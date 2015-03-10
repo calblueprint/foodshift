@@ -5,7 +5,7 @@
 
 .profile-container, .donation-container {
   font-size: 12px;
-  background: #fff;
+  background: $white;
   width: 68%;
   margin: 0 auto;
   padding: 15px;
@@ -24,10 +24,10 @@
 }
 
 .profile-container h1, .donation-container h1 {
-  background: #3ca532;
+  background: $medium-green;
   display: block;
   padding: 10px;
-  color: #fff;
+  color: $white;
   text-align: center;
   font-size: 18px;
   font-weight: normal;
@@ -44,7 +44,7 @@
 
 .profile-label {
   font-weight: 400;
-  color: #28642d;
+  color: $dark-green;
 }
 
 .profile-information {
@@ -53,8 +53,8 @@
 }
 
 .update-profile-link {
-  background: #f3f3f3;
-  color: #555;
+  background: $donor-profile-light-grey;
+  color: $donor-profile-darker-grey;
   width: 100px;
   padding: 8px;
   text-decoration: none;
@@ -65,11 +65,11 @@
   padding: 12px;
   width: 25%;
   float: right;
-  background: #f3f3f3;
+  background: $donor-profile-donation-summary;
 }
 
 .profile-summary h2 {
-  color: #3ca532;
+  color: $medium-green;
   display: block;
   text-align: center;
   font-size: 18px;
@@ -82,27 +82,27 @@
   margin-top: -4px;
   border-radius: 2px;
   float: right;
-  background: #ddd;
+  background: $donor-profile-medium-grey;
   padding: 4px 8px;
 }
 
 .donation-item {
-  background: #fafafa;
+  background: $donor-profile-light-grey;
   width: 100%;
   padding: 10px;
   margin: 10px 0px;
 }
 
 .donation-item-inprogress {
-  border-left: 10px solid #d4f4c9;
+  border-left: 10px solid $donation-inprogress-key;
 }
 
 .donation-item-pending {
-  border-left: 10px solid #eaeaea;
+  border-left: 10px solid $donation-pending-key;
 }
 
 .donation-item-completed {
-  border-left: 10px solid #3ca532;
+  border-left: 10px solid $donation-completed-key;
 }
 
 .donation-title {
@@ -122,18 +122,6 @@
   font-weight: 400;
 }
 
-.donation-completed {
-  color: #3ca532;
-}
-
-.donation-inprogress {
-  color: #91d957;
-}
-
-.donation-pending {
-  color: #7b7b7b;
-}
-
 .donation-donation-profile-filler {
   height: 10px;
   width: 100%;
@@ -144,14 +132,14 @@
 }
 
 .donation-cancel {
-  color: red;
+  color: $red;
 }
 
 .donation-item h1 {
   font-size: 15px;
   text-align: left;
   background: none;
-  color: #3ca532;
+  color: $medium-green;
   padding: 0px;
   margin: 0px 0px 10px 0px;
 }
@@ -177,14 +165,14 @@
 }
 
 .donation-key-pending {
-  background: #eaeaea;
+  background: $donation-pending-key;
 }
 
 .donation-key-inprogress {
-  background: #d4f4c9;
+  background: $donation-inprogress-key;
 }
 
 .donation-key-completed {
-  background: #3ca532;
-  color: #fff;
+  background: $donation-completed-key;
+  color: $white;
 }

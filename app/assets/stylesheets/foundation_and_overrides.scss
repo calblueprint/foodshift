@@ -1456,4 +1456,13 @@ $topbar-divider-border-top: solid 1px scale-color($medium-grey, $lightness: 50%)
 // $include-legacy-visibility-classes: true;
 // $include-accessibility-classes: true;
 
+// Donor Profile Colors
+$donor-profile-donation-summary: #F8F8F8;
+$donor-profile-light-grey: #FBFBFB;
+$donor-profile-darker-grey: #555;
+$donor-profile-medium-grey: #DDD;
+$donation-inprogress-key: #D4F4C9;
+$donation-pending-key: #EAEAEA;
+$donation-completed-key: #3CA532;
+
 @import 'foundation';
