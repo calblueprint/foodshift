@@ -99,7 +99,7 @@
 		background: #fafafa;
 		width: 100%;
 		padding: 10px;
-		margin-bottom: 20px;
+		margin: 10px 0px;
 	}
 
 	.donation-title {
@@ -133,6 +133,14 @@
 	.donation-filler {
 		height: 10px;
 		width: 100%;
+	}
+
+	.donation-modify-link {
+		float: right;
+	}
+
+	.donation-cancel {
+		color: red;
 	}
 
 	.donation-item h1 {
@@ -182,7 +190,13 @@
 		<% @donations.each do |d| %>
 		<div class="donation-item">
 			<div class="donation-modify">
-				<span class="donation-status donation-#{d.status}"><%= d.status %></span>
+				<span class="donation-status donation-#{d.status}"><%= d.status %></span> <br>
+				<% if d.status == "Pending" %> 
+					<a href="#" class="donation-modify-link donation-cancel">Cancel Donation</a> <br> <!-- NEEDS TO BE IMPLEMENTED -->
+					<a href="#" class="donation-modify-link">Update Donation</a> <!-- NEEDS TO BE IMPLEMENTED -->
+				<% elsif d.status == "In Progress" %>
+					Cannot Cancel Donation
+				<% end %>
 			</div>
 			<h1><%= d.description %></h1>
 			<b>Contact:</b> <%= d.person %> | <b>Phone:</b> <%= d.phone %> | <b>Email:</b> <%= d.email %><br> 
