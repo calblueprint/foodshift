@@ -6,7 +6,7 @@ class DonorController < ApplicationController
 		@donations = Donation.where("donor_id = ?", current_user.id)
 		@pending_donations = @donations.where("status = ?", 'Pending')
 		@inprogress_donations = @donations.where("status = ?", 'In Progress')
-		@completed_donations = @donations.where("status = ?", 'Complete')
+		@completed_donations = @donations.where("status = ?", 'Completed')
 	end
 
 	def find_transaction(donation_id)
