@@ -184,9 +184,15 @@
 			<div class="donation-modify">
 				<span class="donation-status donation-#{d.status}"><%= d.status %></span>
 			</div>
-				<h1><%= d.description %></h1>
-				<b>Contact:</b> <%= d.person %> | <b>Phone:</b> <%= d.phone %> | <b>Email:</b> <%= d.email %><br> 
-				<b>Organization:</b> <%= d.organization %> | <b>Address:</b> <%= d.address %>
+			<h1><%= d.description %></h1>
+			<b>Contact:</b> <%= d.person %> | <b>Phone:</b> <%= d.phone %> | <b>Email:</b> <%= d.email %><br> 
+			<b>Organization:</b> <%= d.organization %> | <b>Address:</b> <%= d.address %> 
+			<% if d.status == "Completed" %>
+				<br> <br>
+				<b>Coordinator:</b> <%= find_transaction_coordinator(d.id).email %> | <b>Recipient: <%= find_transaction_recipient(d.id).email %>  <br>
+				<b>Picked Up:</b> <%= find_transaction(d.id).picked_up_at %> <br> 
+				<b>Delivered Up:</b> <%= find_transaction(d.id).delivered_at %> <br> 
+			<% end %>
 		</div>
 		<% end %>
 	</div>
