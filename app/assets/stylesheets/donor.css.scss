@@ -151,7 +151,7 @@
   display: block;
   font-size: 18px;
   font-weight: normal;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   margin-top: 10px;
   text-align: center;
 }
@@ -162,6 +162,14 @@
   float: right;
   margin-top: -4px;
   padding: 4px 8px;
+}
+
+.profile-summary-donate-link {
+  border: 1px solid $donor-profile-border-grey;
+  color: $medium-green;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 0 auto;
 }
 
 .update-profile-link {

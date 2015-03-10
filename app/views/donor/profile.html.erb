@@ -20,7 +20,9 @@
     <span class="profile-label">In Progress</span> 
     <span class="profile-summary-content"><%= @inprogress_donations.count %></span> <br> <br>
     <span class="profile-label">Pending</span>  
-    <span class="profile-summary-content"><%= @pending_donations.count %></span> <br> <br> 
+    <span class="profile-summary-content"><%= @pending_donations.count %></span> 
+    <div class="donation-profile-filler"></div>
+    <center><%= link_to "Donate!", donations_new_path, class: "profile-summary-donate-link" %></center>
   </div>
 </div>
 <div class="donation-profile-filler"></div>
