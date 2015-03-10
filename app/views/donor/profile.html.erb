@@ -168,11 +168,11 @@
 		<div class="profile-summary">
 				<h2>Donation Summary</h2>
 				<span class="profile-label">Completed Donations</span> 
-				<span class="profile-summary-content">2</span> <br> <br>
-				<span class="profile-label">Pending Donations</span> 
-				<span class="profile-summary-content">3</span> <br> <br>
-				<span class="profile-label">Submitted Donations</span>  
-				<span class="profile-summary-content">5</span> <br> <br> 
+				<span class="profile-summary-content"><%= @completed_donations.count %></span> <br> <br>
+				<span class="profile-label">In Progress Donations</span> 
+				<span class="profile-summary-content"><%= @inprogress_donations.count %></span> <br> <br>
+				<span class="profile-label">Pending Donations</span>  
+				<span class="profile-summary-content"><%= @pending_donations.count %></span> <br> <br> 
 		</div>
 	</div>
 	<div class="filler"></div>
@@ -182,7 +182,7 @@
 		<% @donations.each do |d| %>
 		<div class="donation-item">
 			<div class="donation-modify">
-				<span class="donation-status donation-inprogress">In Progress</span>
+				<span class="donation-status donation-#{d.status}"><%= d.status %></span>
 			</div>
 				<h1><%= d.description %></h1>
 				<b>Contact:</b> <%= d.person %> | <b>Phone:</b> <%= d.phone %> | <b>Email:</b> <%= d.email %><br> 
