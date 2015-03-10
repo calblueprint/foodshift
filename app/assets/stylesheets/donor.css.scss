@@ -1,17 +1,20 @@
-.donation-profile-filler {
-  height: 30px;
-  width: 100%;
+.donation-cancel {
+  color: $red;
 }
 
-.profile-container, .donation-container {
-  font-size: 12px;
+.donation-container {
+  min-height: 0px;
+}
+
+.donation-container, .profile-container {
   background: $white;
-  width: 68%;
+  font-size: 12px;
   margin: 0 auto;
   padding: 15px;
+  width: 68%;
 }
 
-.profile-container b, .donation-container b {
+.donation-container b, .profile-container b {
   font-weight: 600;
 }
 
@@ -19,78 +22,35 @@
   min-height: 350px;
 }
 
-.donation-container {
-  min-height: 0px;
-}
-
-.profile-container h1, .donation-container h1 {
+.donation-container h1, .profile-container h1 {
   background: $medium-green;
-  display: block;
-  padding: 10px;
   color: $white;
-  text-align: center;
-  font-size: 18px;
-  font-weight: normal;
-  margin-bottom: 20px;
-}
-
-.profile-img {
-  height: 250px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  float: left;
-  margin-right: 12px;
-}
-
-.profile-label {
-  font-weight: 400;
-  color: $dark-green;
-}
-
-.profile-information {
-  float: left;
-  width: 70%;
-}
-
-.update-profile-link {
-  background: $donor-profile-light-grey;
-  color: $donor-profile-darker-grey;
-  width: 100px;
-  padding: 8px;
-  text-decoration: none;
-}
-
-.profile-summary {
-  min-height: 240px;
-  padding: 12px;
-  width: 25%;
-  float: right;
-  background: $donor-profile-donation-summary;
-}
-
-.profile-summary h2 {
-  color: $medium-green;
   display: block;
-  text-align: center;
   font-size: 18px;
   font-weight: normal;
   margin-bottom: 20px;
-  margin-top: 10px;
-}
-
-.profile-summary-content {
-  margin-top: -4px;
-  border-radius: 2px;
-  float: right;
-  background: $donor-profile-medium-grey;
-  padding: 4px 8px;
+  padding: 10px;
+  text-align: center;
 }
 
 .donation-item {
   background: $donor-profile-light-grey;
-  width: 100%;
-  padding: 10px;
   margin: 10px 0px;
+  padding: 10px;
+  width: 100%;
+}
+
+.donation-item h1 {
+  background: none;
+  color: $medium-green;
+  font-size: 15px;
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+  text-align: left;
+}
+
+.donation-item-completed {
+  border-left: 10px solid $donation-completed-key;
 }
 
 .donation-item-inprogress {
@@ -101,8 +61,54 @@
   border-left: 10px solid $donation-pending-key;
 }
 
-.donation-item-completed {
-  border-left: 10px solid $donation-completed-key;
+.donation-key {
+  border-radius: 5px;
+  float: left;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.donation-key-container {
+  height: 30px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.donation-key-completed {
+  background: $donation-completed-key;
+  color: $white;
+}
+
+.donation-key-description {
+  border-radius: 5px;
+  float: left;
+  margin-right: 20px;
+  padding: 5px 10px;
+}
+
+.donation-key-inprogress {
+  background: $donation-inprogress-key;
+}
+
+.donation-key-pending {
+  background: $donation-pending-key;
+}
+
+.donation-modify {
+  float: right;
+  text-align: right;
+  width: 200px; 
+}
+
+.donation-profile-filler {
+  height: 30px;
+  width: 100%;
+}
+
+.donation-status {
+  float: right;
+  font-weight: 400;
+  text-align: right;
 }
 
 .donation-title {
@@ -110,69 +116,58 @@
   width: 70%;
 }
 
-.donation-modify {
-  float: right;
-  width: 200px; 
-  text-align: right;
-}
-
-.donation-status {
-  text-align: right;
-  float: right;
-  font-weight: 400;
-}
-
-.donation-donation-profile-filler {
-  height: 10px;
-  width: 100%;
-}
-
 .donation-modify-link {
   float: right;
 }
 
-.donation-cancel {
-  color: $red;
+.profile-img {
+  border: 1px solid $donor-profile-medium-grey;
+  float: left;
+  height: 250px;
+  margin-right: 12px;
+  padding: 8px;
 }
 
-.donation-item h1 {
-  font-size: 15px;
-  text-align: left;
-  background: none;
+.profile-information {
+  float: left;
+  width: 70%;
+}
+
+.profile-label {
+  color: $dark-green;
+  font-weight: 400;
+}
+
+.profile-summary {
+  background: $donor-profile-donation-summary;
+  float: right;
+  min-height: 240px;
+  padding: 12px;
+  width: 25%;
+}
+
+.profile-summary h2 {
   color: $medium-green;
-  padding: 0px;
-  margin: 0px 0px 10px 0px;
-}
-
-.donation-key-container {
-  width: 100%;
+  display: block;
+  font-size: 18px;
+  font-weight: normal;
   margin-bottom: 20px;
-  height: 30px;
-}
-
-.donation-key {
-  float: left;
+  margin-top: 10px;
   text-align: center;
-  padding: 5px 10px;
-  border-radius: 5px;
 }
 
-.donation-key-description {
-  margin-right: 20px;
-  float: left;
-  padding: 5px 10px;
-  border-radius: 5px;
+.profile-summary-content {
+  border-radius: 2px;
+  background: $donor-profile-medium-grey;
+  float: right;
+  margin-top: -4px;
+  padding: 4px 8px;
 }
 
-.donation-key-pending {
-  background: $donation-pending-key;
-}
-
-.donation-key-inprogress {
-  background: $donation-inprogress-key;
-}
-
-.donation-key-completed {
-  background: $donation-completed-key;
-  color: $white;
+.update-profile-link {
+  background: $donor-profile-light-grey;
+  color: $donor-profile-darker-grey;
+  padding: 8px;
+  text-decoration: none;
+  width: 100px;
 }
