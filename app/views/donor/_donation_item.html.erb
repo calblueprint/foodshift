@@ -1,0 +1,23 @@
+<div class="donation-modify">
+  <span class="donation-status donation-#{d.status}"><%= d.status %></span> <br>
+  <% if d.status == "Pending" %> 
+  <%= link_to "Cancel Donation", root_path, class: "donation-modify-link donation-cancel" %> <!-- NEEDS TO BE IMPLEMENTED -->
+  <br>
+  <%= link_to "Modify Donation", root_path, class: "donation-modify-link" %> <!-- NEEDS TO BE IMPLEMENTED -->
+  <% elsif d.status == "In Progress" %>
+  Cannot Cancel Donation<br>
+  <%= link_to "Update Donation", root_path, class: "donation-modify-link" %> <!-- NEEDS TO BE IMPLEMENTED -->
+  <% end %>
+</div>
+<h1><%= d.description %></h1>
+<b>Contact:</b> <%= d.person %> | <b>Phone:</b> <%= d.phone %> | <b>Email:</b> <%= d.email %><br> 
+<b>Organization:</b> <%= d.organization %> | <b>Address:</b> <%= d.address %> 
+<% if d.status == "Completed" %>
+<br> <br>
+<b>Coordinator:</b> <%= find_transaction_coordinator(d.id).email %> | <b>Recipient: <%= find_transaction_recipient(d.id).email %>  <br>
+<b>Picked Up:</b> <%= find_transaction(d.id).picked_up_at %> <br> 
+<b>Delivered Up:</b> <%= find_transaction(d.id).delivered_at %> <br> 
+<% elsif d.status == "In Progress" %>
+<br> <br>
+Some kind of progress bar here...
+<% end %>

@@ -102,6 +102,18 @@
     margin: 10px 0px;
   }
 
+  .donation-item-inprogress {
+    border-left: 10px solid #d4f4c9;
+  }
+
+  .donation-item-pending {
+    border-left: 10px solid #eaeaea;
+  }
+
+  .donation-item-completed {
+    border-left: 10px solid #3ca532;
+  }
+
   .donation-title {
     float: left;
     width: 70%;
@@ -209,11 +221,11 @@
   </div>
   <div class="profile-summary">
     <h2>Donation Summary</h2>
-    <span class="profile-label">Completed Donations</span> 
+    <span class="profile-label">Completed</span> 
     <span class="profile-summary-content"><%= @completed_donations.count %></span> <br> <br>
-    <span class="profile-label">In Progress Donations</span> 
+    <span class="profile-label">In Progress</span> 
     <span class="profile-summary-content"><%= @inprogress_donations.count %></span> <br> <br>
-    <span class="profile-label">Pending Donations</span>  
+    <span class="profile-label">Pending</span>  
     <span class="profile-summary-content"><%= @pending_donations.count %></span> <br> <br> 
   </div>
 </div>
@@ -231,31 +243,13 @@
   </div>
 
   <% @donations.each do |d| %>
-  <div class="donation-item">
-    <div class="donation-modify">
-      <span class="donation-status donation-#{d.status}"><%= d.status %></span> <br>
-      <% if d.status == "Pending" %> 
-        <%= link_to "Cancel Donation", root_path, class: "donation-modify-link donation-cancel" %> <!-- NEEDS TO BE IMPLEMENTED -->
-        <br>
-      <%= link_to "Modify Donation", root_path, class: "donation-modify-link" %> <!-- NEEDS TO BE IMPLEMENTED -->
-      <% elsif d.status == "In Progress" %>
-        Cannot Cancel Donation<br>
-        <%= link_to "Update Donation", root_path, class: "donation-modify-link" %> <!-- NEEDS TO BE IMPLEMENTED -->
-      <% end %>
-    </div>
-    <h1><%= d.description %></h1>
-    <b>Contact:</b> <%= d.person %> | <b>Phone:</b> <%= d.phone %> | <b>Email:</b> <%= d.email %><br> 
-    <b>Organization:</b> <%= d.organization %> | <b>Address:</b> <%= d.address %> 
-    <% if d.status == "Completed" %>
-      <br> <br>
-      <b>Coordinator:</b> <%= find_transaction_coordinator(d.id).email %> | <b>Recipient: <%= find_transaction_recipient(d.id).email %>  <br>
-      <b>Picked Up:</b> <%= find_transaction(d.id).picked_up_at %> <br> 
-      <b>Delivered Up:</b> <%= find_transaction(d.id).delivered_at %> <br> 
-    <% elsif d.status == "In Progress" %>
-      <br> <br>
-      Some kind of progress bar here...
+    <% if d.status == "In Progress" %>
+      <%= render partial: "in_progress", locals: { d: d } %>
+    <% elsif d.status == "Pending" %>
+      <%= render partial: "pending", locals: { d: d } %>
+    <% elsif d.status == "Completed" %>
+      <%= render partial: "completed", locals: { d: d } %> 
     <% end %>
-  </div>
   <% end %>
 </div>
 
