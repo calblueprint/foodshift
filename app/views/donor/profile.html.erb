@@ -7,208 +7,208 @@
 <%= javascript_include_tag "react_components/react_script_loader" %>
 <%= javascript_include_tag "react_components/coordinator/map" %>
 <%= javascript_include_tag "react_components/coordinator/schedule" %>
- -->
+-->
 
-	<style>
+<style>
 
-	.filler {
-		height: 50px;
-		width: 100%;
-	}
+  .filler {
+    height: 50px;
+    width: 100%;
+  }
 
-	.profile-container, .donation-container {
-		font-size: 12px;
-		background: #fff;
-		width: 68%;
-		margin: 0 auto;
-		padding: 15px;
-	}
+  .profile-container, .donation-container {
+    font-size: 12px;
+    background: #fff;
+    width: 68%;
+    margin: 0 auto;
+    padding: 15px;
+  }
 
-	.profile-container {
-		min-height: 350px;
-	}
+  .profile-container {
+    min-height: 350px;
+  }
 
-	.donation-container {
-		min-height: 0px;
-	}
+  .donation-container {
+    min-height: 0px;
+  }
 
-	.profile-container h1, .donation-container h1 {
-		background: #3ca532;
-		display: block;
-		padding: 10px;
-		color: #fff;
-		text-align: center;
-		font-size: 18px;
-		font-weight: normal;
-		margin-bottom: 20px;
-	}
+  .profile-container h1, .donation-container h1 {
+    background: #3ca532;
+    display: block;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
 
-	.profile-img {
-		height: 250px;
-		padding: 8px;
-		border: 1px solid #ccc;
-		float: left;
-		margin-right: 12px;
-	}
+  .profile-img {
+    height: 250px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    float: left;
+    margin-right: 12px;
+  }
 
-	.profile-label {
-		font-weight: 400;
-		color: #28642d;
-	}
+  .profile-label {
+    font-weight: 400;
+    color: #28642d;
+  }
 
-	.profile-information {
-		float: left;
-		width: 70%;
-	}
+  .profile-information {
+    float: left;
+    width: 70%;
+  }
 
-	.update-profile-link {
-		background: #f3f3f3;
-		color: #555;
-		width: 100px;
-		padding: 8px;
-		text-decoration: none;
-	}
+  .update-profile-link {
+    background: #f3f3f3;
+    color: #555;
+    width: 100px;
+    padding: 8px;
+    text-decoration: none;
+  }
 
-	.profile-summary {
-		min-height: 240px;
-		padding: 12px;
-		width: 25%;
-		float: right;
-		background: #f3f3f3;
-	}
+  .profile-summary {
+    min-height: 240px;
+    padding: 12px;
+    width: 25%;
+    float: right;
+    background: #f3f3f3;
+  }
 
-	.profile-summary h2 {
-		color: #3ca532;
-		display: block;
-		text-align: center;
-		font-size: 18px;
-		font-weight: normal;
-		margin-bottom: 20px;
-		margin-top: 10px;
-	}
+  .profile-summary h2 {
+    color: #3ca532;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
 
-	.profile-summary-content {
-		margin-top: -4px;
-		border-radius: 2px;
-		float: right;
-		background: #ddd;
-		padding: 4px 8px;
-	}
+  .profile-summary-content {
+    margin-top: -4px;
+    border-radius: 2px;
+    float: right;
+    background: #ddd;
+    padding: 4px 8px;
+  }
 
-	.donation-item {
-		background: #fafafa;
-		width: 100%;
-		padding: 10px;
-		margin: 10px 0px;
-	}
+  .donation-item {
+    background: #fafafa;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0px;
+  }
 
-	.donation-title {
-		float: left;
-		width: 70%;
-	}
+  .donation-title {
+    float: left;
+    width: 70%;
+  }
 
-	.donation-modify {
-		float: right;
-		width: 200px;	
-	}
+  .donation-modify {
+    float: right;
+    width: 200px; 
+  }
 
-	.donation-status {
-		text-align: right;
-		float: right;
-		font-weight: 400;
-	}
+  .donation-status {
+    text-align: right;
+    float: right;
+    font-weight: 400;
+  }
 
-	.donation-completed {
-		color: #3ca532;
-	}
+  .donation-completed {
+    color: #3ca532;
+  }
 
-	.donation-inprogress {
-		color: #91d957;
-	}
+  .donation-inprogress {
+    color: #91d957;
+  }
 
-	.donation-pending {
-		color: #7b7b7b;
-	}
+  .donation-pending {
+    color: #7b7b7b;
+  }
 
-	.donation-filler {
-		height: 10px;
-		width: 100%;
-	}
+  .donation-filler {
+    height: 10px;
+    width: 100%;
+  }
 
-	.donation-modify-link {
-		float: right;
-	}
+  .donation-modify-link {
+    float: right;
+  }
 
-	.donation-cancel {
-		color: red;
-	}
+  .donation-cancel {
+    color: red;
+  }
 
-	.donation-item h1 {
-		font-size: 15px;
-		text-align: left;
-		background: none;
-		color: #3ca532;
-		padding: 0px;
-		margin: 0px 0px 10px 0px;
-	}
+  .donation-item h1 {
+    font-size: 15px;
+    text-align: left;
+    background: none;
+    color: #3ca532;
+    padding: 0px;
+    margin: 0px 0px 10px 0px;
+  }
 
-	b {
-		font-weight: 400;
-	}
+  b {
+    font-weight: 400;
+  }
 
-	</style>
+</style>
 
-	<div class="filler"></div>
-	<div class="profile-container">
-		<h1>Welcome, <%= @user.email %> (User ID: <%= @user.id %>)</h1>
-		<div class="profile-information">
-			<%= image_tag "profile_img.png", class: "profile-img" %> 
-			<span class="profile-label">Subscribed?</span> <br>
-			<% if @user.subscribed %> Yes <% else %> No <% end %><br> <br>
-			<span class="profile-label">Phone</span> <br>
-			408-823-2389 (this is hard coded) <br> <br>
-			<span class="profile-label">Address</span> <br>
-			123 Some Street Here <br>
-			Berkeley, CA 94704 (also hard coded, should users have a set address?) <br> <br>
-			<span class="profile-label">Email</span> <br>
-			<%= @user.email %> <br> <br>
-		</div>
-		<div class="profile-summary">
-				<h2>Donation Summary</h2>
-				<span class="profile-label">Completed Donations</span> 
-				<span class="profile-summary-content"><%= @completed_donations.count %></span> <br> <br>
-				<span class="profile-label">In Progress Donations</span> 
-				<span class="profile-summary-content"><%= @inprogress_donations.count %></span> <br> <br>
-				<span class="profile-label">Pending Donations</span>  
-				<span class="profile-summary-content"><%= @pending_donations.count %></span> <br> <br> 
-		</div>
-	</div>
-	<div class="filler"></div>
-	<div class="donation-container">
-		<h1>Donation History (<%= @donations.count %>)</h1>
-		
-		<% @donations.each do |d| %>
-		<div class="donation-item">
-			<div class="donation-modify">
-				<span class="donation-status donation-#{d.status}"><%= d.status %></span> <br>
-				<% if d.status == "Pending" %> 
-					<a href="#" class="donation-modify-link donation-cancel">Cancel Donation</a> <br> <!-- NEEDS TO BE IMPLEMENTED -->
-					<a href="#" class="donation-modify-link">Update Donation</a> <!-- NEEDS TO BE IMPLEMENTED -->
-				<% elsif d.status == "In Progress" %>
-					Cannot Cancel Donation
-				<% end %>
-			</div>
-			<h1><%= d.description %></h1>
-			<b>Contact:</b> <%= d.person %> | <b>Phone:</b> <%= d.phone %> | <b>Email:</b> <%= d.email %><br> 
-			<b>Organization:</b> <%= d.organization %> | <b>Address:</b> <%= d.address %> 
-			<% if d.status == "Completed" %>
-				<br> <br>
-				<b>Coordinator:</b> <%= find_transaction_coordinator(d.id).email %> | <b>Recipient: <%= find_transaction_recipient(d.id).email %>  <br>
-				<b>Picked Up:</b> <%= find_transaction(d.id).picked_up_at %> <br> 
-				<b>Delivered Up:</b> <%= find_transaction(d.id).delivered_at %> <br> 
-			<% end %>
-		</div>
-		<% end %>
-	</div>
+<div class="filler"></div>
+<div class="profile-container">
+  <h1>Welcome, <%= @user.email %> (User ID: <%= @user.id %>)</h1>
+  <div class="profile-information">
+    <%= image_tag "profile_img.png", class: "profile-img" %> 
+    <span class="profile-label">Subscribed?</span> <br>
+    <% if @user.subscribed %> Yes <% else %> No <% end %><br> <br>
+    <span class="profile-label">Phone</span> <br>
+    408-823-2389 (this is hard coded) <br> <br>
+    <span class="profile-label">Address</span> <br>
+    123 Some Street Here <br>
+    Berkeley, CA 94704 (also hard coded, should users have a set address?) <br> <br>
+    <span class="profile-label">Email</span> <br>
+    <%= @user.email %> <br> <br>
+  </div>
+  <div class="profile-summary">
+    <h2>Donation Summary</h2>
+    <span class="profile-label">Completed Donations</span> 
+    <span class="profile-summary-content"><%= @completed_donations.count %></span> <br> <br>
+    <span class="profile-label">In Progress Donations</span> 
+    <span class="profile-summary-content"><%= @inprogress_donations.count %></span> <br> <br>
+    <span class="profile-label">Pending Donations</span>  
+    <span class="profile-summary-content"><%= @pending_donations.count %></span> <br> <br> 
+  </div>
+</div>
+<div class="filler"></div>
+<div class="donation-container">
+  <h1>Donation History (<%= @donations.count %>)</h1>
+  
+  <% @donations.each do |d| %>
+  <div class="donation-item">
+    <div class="donation-modify">
+      <span class="donation-status donation-#{d.status}"><%= d.status %></span> <br>
+      <% if d.status == "Pending" %> 
+      <a href="#" class="donation-modify-link donation-cancel">Cancel Donation</a> <br> <!-- NEEDS TO BE IMPLEMENTED -->
+      <a href="#" class="donation-modify-link">Update Donation</a> <!-- NEEDS TO BE IMPLEMENTED -->
+      <% elsif d.status == "In Progress" %>
+      Cannot Cancel Donation
+      <% end %>
+    </div>
+    <h1><%= d.description %></h1>
+    <b>Contact:</b> <%= d.person %> | <b>Phone:</b> <%= d.phone %> | <b>Email:</b> <%= d.email %><br> 
+    <b>Organization:</b> <%= d.organization %> | <b>Address:</b> <%= d.address %> 
+    <% if d.status == "Completed" %>
+    <br> <br>
+    <b>Coordinator:</b> <%= find_transaction_coordinator(d.id).email %> | <b>Recipient: <%= find_transaction_recipient(d.id).email %>  <br>
+    <b>Picked Up:</b> <%= find_transaction(d.id).picked_up_at %> <br> 
+    <b>Delivered Up:</b> <%= find_transaction(d.id).delivered_at %> <br> 
+    <% end %>
+  </div>
+  <% end %>
+</div>
 
-	<div class="filler"></div>
+<div class="filler"></div>
