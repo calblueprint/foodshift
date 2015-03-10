@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(user)
-    return donor_profile_path if current_user.type == User.type_donor
-    return root_path
+    return donor_profile_path if user.type == User.type_donor
+    root_path
   end
 
   rescue_from CanCan::AccessDenied do |exception|
