@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(user)
     return donor_profile_path if user.type == User.type_donor
+    return recipient_profile_path if user.type == User.type_recipient
     root_path
   end
 
