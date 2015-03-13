@@ -4,23 +4,23 @@ class DonorController < ApplicationController
   def profile
     @user = current_user
     @donations = Donation.where("donor_id = ?", current_user.id)
-    @pending_donations = @donations.where(:status => 'Pending')
-    @inprogress_donations = @donations.where(:status => 'In Progress')
-    @completed_donations = @donations.where(:status => 'Completed')
+    @pending_donations = @donations.where(status: 'Pending')
+    @inprogress_donations = @donations.where(status: 'In Progress')
+    @completed_donations = @donations.where(status: 'Completed')
   end
 
   def find_transaction(donation_id)
-    Transaction.where(:donation_id => donation_id).first
+    Transaction.where(donation_id: donation_id).first
   end
 
   def find_transaction_coordinator(donation_id)
-    @transaction = Transaction.where(:donation_id => donation_id).first
+    @transaction = Transaction.where(donation_id: donation_id).first
     @coord_id = @transaction.coordinator_id
     Coordinator.find(@coord_id)
   end
 
   def find_transaction_recipient(donation_id)
-    @transaction = Transaction.where(:donation_id => donation_id).first
+    @transaction = Transaction.where(donation_id: donation_id).first
     @recipient_id = @transaction.recipient_id
     Recipient.find(@recipient_id)
   end
