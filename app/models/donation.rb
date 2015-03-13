@@ -20,6 +20,7 @@
 #  picture         :string(255)
 #  description     :text
 #  can_dropoff     :boolean
+#  status          :string(255)
 #
 # Indexes
 #

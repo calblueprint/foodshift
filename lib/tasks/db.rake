@@ -10,9 +10,9 @@ namespace :db do
     puts "Creating coordinators..."
     create_coordinators(num_rows)
     puts "Creating donations and interests..."
-    create_donations_and_interests(num_rows)
+    create_donations_and_interests(5*num_rows)
     puts "Creating transactions..."
-    create_transactions(num_rows)
+    create_transactions(10*num_rows)
     puts "Done!"
   end
 end
@@ -26,14 +26,14 @@ def create_donors(num_rows)
     donor.save!
 
     donor_profile = DonorProfile.find_or_initialize_by(donor_id: donor.id)
-    donor_profile.reason = Faker::Lorem.sentence(2)
-    donor_profile.organic = [true, false].sample
+    donor_profile.reason_for_surplus = Faker::Lorem.sentence(2)
+    donor_profile.serves_organic_food = [true, false].sample
     donor_profile.frequency_of_surplus = Faker::Lorem.sentence(2)
-    donor_profile.food_types = Faker::Lorem.sentence(2)
-    donor_profile.quantity = Faker::Lorem.sentence(2)
-    donor_profile.donated_in_past = Faker::Lorem.sentence(2)
-    donor_profile.pounds_per_week = Faker::Number.number(2)
-    donor_profile.good_samaritan = true
+    donor_profile.typical_food_types_served = Faker::Lorem.sentence(2)
+    donor_profile.typical_quantity_of_donation = Faker::Lorem.sentence(2)
+    donor_profile.donated_before = Faker::Lorem.sentence(2)
+    donor_profile.pounds_per_week_donated = Faker::Number.number(2)
+    donor_profile.aware_of_good_samaritan_food_act = true
     donor_profile.save!
   end
 
@@ -57,15 +57,15 @@ def create_recipients(num_rows)
     recipient_profile.organization = Faker::Company.name
     recipient_profile.address = Faker::Address.street_address
     recipient_profile.org501c3 = Faker::Number.number(5)
-    recipient_profile.person = Faker::Name.name
-    recipient_profile.phone = Faker::PhoneNumber.phone_number
-    recipient_profile.operation = Faker::Lorem.word
-    recipient_profile.num_people_serve = Faker::Number.number(3)
+    recipient_profile.contact_person = Faker::Name.name
+    recipient_profile.contact_person_phone = Faker::PhoneNumber.phone_number
+    recipient_profile.hrs_of_operation = Faker::Lorem.word
+    recipient_profile.num_people_served = Faker::Number.number(3)
     recipient_profile.kitchen = [true, false].sample
     recipient_profile.refrigeration = [true, false].sample
     recipient_profile.notfications = [true, false].sample
-    recipient_profile.population = Faker::Lorem.paragraph
-    recipient_profile.days_serve = Faker::Lorem.word
+    recipient_profile.population_description = Faker::Lorem.paragraph
+    recipient_profile.days_of_operation = Faker::Lorem.word
     recipient_profile.food_types_wanted = Faker::Lorem.sentence(3)
     recipient_profile.food_types_unwanted = Faker::Lorem.sentence(3)
     recipient_profile.challenges = Faker::Lorem.paragraph
@@ -85,15 +85,15 @@ def create_recipients(num_rows)
   recipient_profile.organization = Faker::Company.name
   recipient_profile.address = Faker::Address.street_address
   recipient_profile.org501c3 = Faker::Number.number(5)
-  recipient_profile.person = Faker::Name.name
-  recipient_profile.phone = Faker::PhoneNumber.phone_number
-  recipient_profile.operation = Faker::Lorem.word
-  recipient_profile.num_people_serve = Faker::Number.number(3)
+  recipient_profile.contact_person = Faker::Name.name
+  recipient_profile.contact_person_phone = Faker::PhoneNumber.phone_number
+  recipient_profile.hrs_of_operation = Faker::Lorem.word
+  recipient_profile.num_people_served = Faker::Number.number(3)
   recipient_profile.kitchen = [true, false].sample
   recipient_profile.refrigeration = [true, false].sample
   recipient_profile.notfications = [true, false].sample
-  recipient_profile.population = Faker::Lorem.paragraph
-  recipient_profile.days_serve = Faker::Lorem.word
+  recipient_profile.population_description = Faker::Lorem.paragraph
+  recipient_profile.days_of_operation = Faker::Lorem.word
   recipient_profile.food_types_wanted = Faker::Lorem.sentence(3)
   recipient_profile.food_types_unwanted = Faker::Lorem.sentence(3)
   recipient_profile.challenges = Faker::Lorem.paragraph
@@ -121,6 +121,8 @@ end
 def create_donations_and_interests(num_rows)
   1.upto(num_rows) do |n|
     donation = Donation.create!(
+      status: ["In Progress", "Pending", "Completed"].sample,
+      donor_id: [1, 2, 3, 4, 5].sample,
       organization: Faker::Company.name,
       address: Faker::Address.street_address,
       person: Faker::Name.name,

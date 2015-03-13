@@ -14,21 +14,25 @@ gem "simple_form"
 gem "figaro"
 
 # Frontend
-gem 'sass-rails', '~> 4.0.3'
-gem 'jquery-rails'
-gem 'foundation-rails'
-gem 'react-rails', '~> 0.11.1.0'
-gem 'underscore-rails'
-gem 'underscore-string-rails'
-gem 'uglifier', '>= 1.3.0'
+gem "sass-rails", "4.0.3"
+gem "jquery-rails"
+gem "foundation-rails", "~>5.4.5"
+gem "react-rails", "~> 0.11.1.0"
+gem "underscore-rails"
+gem "underscore-string-rails"
+gem "uglifier", ">= 1.3.0"
+gem "autoprefixer-rails"
+
 # Rails objects -> JS objects
 gem 'gon'
+
+# Want this on Heroku for sample data
+gem "faker"
 
 group :development do
   gem "annotate"
   gem "better_errors"
   gem "binding_of_caller"
-  gem "faker"
   gem "quiet_assets"
   gem "spring"
   gem "spring-commands-rspec"
@@ -60,4 +64,7 @@ group :staging, :production do
 
   # Analytics - requires setup
   gem "newrelic_rpm"
+
+  # Syncs assets with S3
+  gem "asset_sync"
 end

@@ -1,8 +1,8 @@
 <div class="splash-block">
     <div class="splash-images">
-        <div class="splash-image" style="background-image: url(https://s3-us-west-2.amazonaws.com/foodshift/assets/images/landing_splash_farm.jpg);"></div>
-        <div class="splash-image" style="background-image: url(https://s3-us-west-2.amazonaws.com/foodshift/assets/images/landing_splash_fruits.jpg);"></div>
-        <div class="splash-image" style="background-image: url(https://s3-us-west-2.amazonaws.com/foodshift/assets/images/landing_splash_veggies.jpg);"></div>
+        <div class="splash-image" style="background-image: url(<%= image_path 'landing_splash_farm.jpg' %>);"></div>
+        <div class="splash-image" style="background-image: url(<%= image_path 'landing_splash_fruits.jpg' %>);"></div>
+        <div class="splash-image" style="background-image: url(<%= image_path 'landing_splash_veggies.jpg' %>);"></div>
     </div>
     <div class="splash-overlay"></div>
     <div class="splash-title">
@@ -12,10 +12,10 @@
                 <h2 class="text-center">Be a part of the movement to reduce wasted food.</h2>
                 <div class="row button-row">
                     <div class="small-1 small-offset-4 columns">
-                        <a href="<%= donations_new_url %>" class="right transparent-button">Make a Food Donation</a>
+                        <a href="<%= donations_new_url %>" class="right transparent-button">Donate Food</a>
                     </div>
                     <div class="small-1 small-offset-2 end columns">
-                        <a href="<%= recipients_new_url %>" class="left transparent-button">Receive Food Donations</a>
+                        <a href="<%= recipients_new_url %>" class="left transparent-button">Receive Food</a>
                     </div>
                 </div>
             </div>
@@ -33,15 +33,10 @@
             <h3 class="circle-border text-center"><i class="fa fa-heart-o"></i></h3>
         </div>
         <div class="small-8 medium-7 end columns">
-            <h3 class="dark-green">Donate</h3>
+            <h3><a class="dark-green" href="<%= donations_new_url %>">Donate</a></h3>
             <p>
             If you're a grocery store, market, restaurant, event or other food establishment with edible surplus food, use our platform to post information about it. Tell us when and where it should be picked up, and other organizations interested in receiving donations will be notified.
             </p>
-        </div>
-    </div>
-    <div class="row bottom-margin">
-        <div class="small-12 columns text-center">
-            <a href="<%= donations_new_url %>">Donate food today &raquo;</a>
         </div>
     </div>
     <div class="row">
@@ -49,16 +44,11 @@
             <h3 class="circle-border text-center"><i class="fa fa-thumbs-o-up"></i></h3>
         </div>
         <div class="small-8 medium-7 end columns">
-            <h3 class="dark-green">Request</h3>
+            <h3><a class="dark-green" href="<%= recipients_new_url %>">Request</a></h3>
             <p>
             If you're an organization that needs extra food, sign up to be notified via email when food donations are posted.
             When you see a donation you're interested in, click the link in the email to request the donation.
             </p>
-        </div>
-    </div>
-    <div class="row bottom-margin">
-        <div class="small-12 columns text-center">
-            <a href="<%= recipients_new_url %>">Become a recipient &raquo;</a>
         </div>
     </div>
     <div class="row">
@@ -66,7 +56,7 @@
             <h3 class="circle-border text-center"><i class="fa fa-truck"></i></h3>
         </div>
         <div class="small-8 medium-7 end columns">
-            <h3 class="dark-green">Deliver</h3>
+            <h3><a class="dark-green" href="#">Deliver</a></h3>
             <p>
             Food Shift's coordinators will see the food donations and all the organizations interested in receiving each of these donations.
             Based on factors like location and availability, our coordinators will try to find the best match between donor and recipient and contact you if you've been matched.

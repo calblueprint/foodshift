@@ -33,12 +33,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def self.type_donor
-    "donor"
+    "Donor"
   end
   def self.type_recipient
-    "recipient"
+    "Recipient"
   end
   def self.type_coordinator
-    "coordinator"
+    "Coordinator"
   end
 end

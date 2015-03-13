@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     get '/data', to: 'coordinator#data', as: :coordinator_data
   end
 
+  scope '/donor' do
+    get '/profile', to: 'donor#profile', as: :donor_profile
+  end
+
   get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'
 
   devise_for :users

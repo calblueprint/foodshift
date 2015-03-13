@@ -1,265 +1,67 @@
-@mixin box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
-    -webkit-box-shadow: $horizontal $vertical $blur $color;
-    -moz-box-shadow: $horizontal $vertical $blur $color;
-    box-shadow: $horizontal $vertical $blur $color;
-}
-@mixin inset-box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
-    -webkit-box-shadow: inset $horizontal $vertical $blur $color;
-    -moz-box-shadow: inset $horizontal $vertical $blur $color;
-    box-shadow: inset $horizontal $vertical $blur $color;
-}
-
-@mixin gradient($color-from, $color-to) {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($color-from),to($color-to));
-    background-image: -webkit-linear-gradient($color-from, $color-to);
-    background-image: -moz-linear-gradient(top, $color-from, $color-to);
-    background-image: -ms-linear-gradient($color-from, $color-to);
-    background-image: -o-linear-gradient($color-from, $color-to);
-    background-image: linear-gradient($color-from, $color-to);
-    background-repeat: no-repeat
-}
-
-@mixin display-flex() {
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: flex;
-}
-@mixin flex-flow($flex-dir: row, $flex-wrap: nowrap) {
-    -webkit-flex-flow: $flex-dir $flex-wrap;
-    -moz-flex-flow: $flex-dir $flex-wrap;
-    -ms-flex-flow: $flex-dir $flex-wrap;
-    flex-flow: $flex-dir $flex-wrap;
-}
-
-@mixin justify-content($arg: flex-start) {
-    -webkit-justify-content: $arg;
-    -moz-justify-content: $arg;
-    -ms-justify-content: $arg;
-    justify-content: $arg;
-}
-
-@mixin flex($arg: 1) {
-    -webkit-flex: $arg;
-    -moz-flex: $arg;
-    -ms-flex: $arg;
-    flex: $arg;
-}
-
 @mixin transition-all($time) {
-    -webkit-transition: all $time ease;
-    -moz-transition: all $time ease;
-    o-transition: all $time ease;
-    transition: all $time ease;
-
+  transition: all $time ease;
 }
 
 a.button {
-    &:hover {
-       color: $medium-green;
-    }
+  &:hover {
+    color: $medium-green;
+  }
 }
 
 a.transparent-button {
-    @extend .button;
-    border-radius: $global-radius;
-    border: 1px solid $white;
-    background-color: transparent;
-    color: $white;
-    &:hover {
-        color: $white;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
+  @extend .button, .large;
+  @include transition-all(250ms);
+  background-color: transparent;
+  border: 2px solid $white;
+  border-radius: $global-radius;
+  color: $white;
+  font-weight: 500;
+
+  &:hover {
+    background-color: $white;
+    color: $charcoal;
+  }
 }
 
 a.transparent-success-button {
-    @extend .button;
-    border-radius: $global-radius;
-    border: 1px solid $charcoal;
-    background-color: transparent;
-    color: $charcoal;
-    &:hover {
-        color: $medium-green;
-        border: 1px solid $medium-green;
-    }
+  @extend .button;
+  background-color: transparent;
+  border: 1px solid $charcoal;
+  border-radius: $global-radius;
+  color: $charcoal;
+
+  &:hover {
+    border: 1px solid $medium-green;
+    color: $medium-green;
+  }
 }
 
-a.success-button, input.success-button {
-    @extend .button;
-    border-radius: $global-radius;
-    border: 1px solid $white;
+a.success-button,
+input.success-button {
+  @extend .button;
+  background-color: $medium-green;
+  border: 1px solid $white;
+  border-radius: $global-radius;
+  color: $white;
+
+  &:hover {
+    background-color: scale-color($medium-green, $lightness: 10%);
     color: $white;
-    background-color: $medium-green;
-    &:hover {
-        color: $white;
-        background-color: scale-color($medium-green, $lightness: 10%);
-    }
-
-}
-
-.tabs {
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-    width: 100%;
-    font-weight: 300;
-    font-size: 1.25em;
-        ul {
-            text-align: center;
-            @include display-flex();
-            @include flex-flow();
-            position: relative;
-            margin: 0 auto;
-            padding: 0;
-            max-width: 1200px;
-            list-style: none;
-            -ms-box-orient: horizontal;
-            -ms-box-pack: center;
-            li {
-                @include flex();
-                position: relative;
-                z-index: 1;
-                display: block;
-                margin: 0;
-                text-align: center;
-                a {
-                    position: relative;
-                    display: block;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    line-height: 2.5;
-                }
-            }
-        }
-}
-
-@mixin cubic-bezier-color() {
-	-webkit-transition: color 0.3s cubic-bezier(0.7,0,0.3,1);
-	transition: color 0.3s cubic-bezier(0.7,0,0.3,1);
-}
-
-@mixin cubic-bezier-transform() {
-	-webkit-transition: transform 0.3s cubic-bezier(0.7,0,0.3,1);
-	transition: transform 0.3s cubic-bezier(0.7,0,0.3,1);
-}
-
-@mixin circle-transition() {
-    -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
-    transition: transform 0.2s, opacity 0.2s;
-    -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-    -webkit-transform: scale3d(0,0,1);
-    transform: scale3d(0,0,1);
-}
-
-@mixin translate-vertical($pixels) {
-    -webkit-transform: translate3d(0, $pixels ,0);
-    transform: translate3d(0, $pixels ,0);
-}
-
-
-.tabs-style-circle {
-    .tabs-row {
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-	overflow: visible;
-    li::before {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -60px 0 0 -60px;
-        width: 120px;
-        height: 120px;
-        border: 1px solid $medium-green;
-        border-radius: 50%;
-        content: '';
-        opacity: 0;
-        @include circle-transition();
-    }
-    li {
-        a {
-            color: $charcoal;
-        }
-    }
-    li.tab-current {
-        a {
-            color: $medium-green;
-            span {
-                //@include translate-vertical(4px);
-            }
-        }
-        &::before {
-            opacity: 1;
-            -webkit-transform: scale3d(1,1,1);
-            transform: scale3d(1,1,1);
-        }
-        .icon::before {
-            @include translate-vertical(-4px);
-        }
-    }
-    a {
-        overflow: visible;
-        color: $charcoal;
-        font-weight: 400;
-        font-size: 0.9em;
-        line-height: 1.1;
-        @include cubic-bezier-color();
-        span {
-            display: inline-block;
-            @include cubic-bezier-transform();
-        }
-    }
-    .icon::before {
-        @include cubic-bezier-transform();
-        display: block;
-        margin: 0;
-        pointer-events: none;
-    }
-    a:hover, a:focus {
-        color: $medium-green;
-    }
-}
-
-@media #{$small-only}  {
-	.tabs-style-circle li::before {
-		margin: -40px 0 0 -40px;
-		width: 80px;
-		height: 80px;
-	}
-}
-
-@mixin icon($path) {
-    width: 20px;
-    height: 20px;
-    background-size: 100%;
-    background-image: url($path);
-    position: relative;
-    display: block;
-}
-
-@mixin button-transition {
-    -webkit-transition: -webkit-transform 0.5s ease;
-    -moz-transition: -moz-transform 0.5s ease;
-    -o-transition: o-transform 0.5s ease;
-    transition: all 0.5s ease;
+  }
 }
 
 .material-success-button {
-    @extend .button;
-    @include button-transition();
-    @include drop-shadow(1);
+  @extend .button;
+  @include transition-all(0.5s);
+  @include drop-shadow(1);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: $global-radius;
+  text-transform: uppercase;
 
-    text-transform: uppercase;
-    border-radius: $global-radius;
+  &:hover {
+    @include drop-shadow(2);
     background-color: transparent;
     border: 1px solid transparent;
-
-    &:hover {
-        @include drop-shadow(2);
-        background-color: transparent;
-        border: 1px solid transparent;
-    }
+  }
 }

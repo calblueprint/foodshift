@@ -1,0 +1,110 @@
+
+#about-image-block {
+    $about-image-height: 250px;
+    .about-image {
+        z-index: -20;
+        background-size: cover;
+        background-image: url(<%= image_path('landing_splash_bridge.jpg') %>);
+        background-position-y: 80%;
+        height: $about-image-height;
+        width: 100%;
+        top: 0;
+        position: absolute;
+        margin-top: $topbar-height + 1;
+    }
+    .about-image-overlay {
+        z-index: -10;
+        height: $about-image-height;
+        width: 100%;
+        top: 0;
+        position: absolute;
+        margin-top: $topbar-height + 1;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    .about-content {
+        height: $about-image-height;
+        background-color: transparent;
+        h1.title {
+            @extend .text-center;
+            font-weight: 600;
+            color: $white;
+            padding-top: 90px;
+        }
+    }
+}
+
+.about-mission-block {
+    @include full-width-block($off-white);
+    @include block-padding;
+    border-top: 1px solid $dark-grey;
+    p {
+        color: $dark-green;
+        margin: 0;
+        &.mission {
+            @extend .text-center;
+            font-size: rem-calc(20);
+        }
+        &.about {
+            font-size: rem-calc(16);
+            margin-top: 40px;
+        }
+    }
+}
+
+.about-participants-block {
+    @include full-width-block($light-grey);
+    @include block-padding;
+    border-top: 1px solid $dark-grey;
+    .donors, .recipients {
+        h2 {
+            @extend .text-center;
+            font-size: rem-calc(27);
+            color: $dark-green;
+        }
+        ul.org-list {
+            @media #{$large-up} {
+                @include block-grid(3);
+            }
+            @media #{$medium-only} {
+                @include block-grid(2);
+            }
+            @media #{$small-only} {
+                @include block-grid(1);
+            }
+            @extend .text-center;
+            li.org {
+                padding: 0;
+                span.has-tip {
+                    display: inline-block;
+                    border: none;
+                    cursor: default;
+                    width: 100%;
+                    margin-top: 50px;
+                    img {
+                        width: 300px;
+                        height: 112px;
+                        transition: all 0.5s ease;
+                        opacity: 0.5;
+                    }
+                    &:hover {
+                        img {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .recipients {
+        margin-top: 50px;
+    }
+}
+
+.tooltip {
+    margin-top: -10px;
+    margin-left: 14px;
+    background-color: $charcoal;
+    .nub {
+        display: none;
+    }
+}

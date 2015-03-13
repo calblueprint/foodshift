@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301014522) do
+ActiveRecord::Schema.define(version: 20150310102753) do
 
   create_table "donations", force: true do |t|
     t.datetime "created_at"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150301014522) do
     t.string   "picture"
     t.text     "description"
     t.boolean  "can_dropoff"
+    t.string   "status"
   end
 
   add_index "donations", ["donor_id"], name: "index_donations_on_donor_id", using: :btree
@@ -42,20 +43,11 @@ ActiveRecord::Schema.define(version: 20150301014522) do
     t.string   "reason_for_surplus"
     t.boolean  "serves_organic_food"
     t.string   "frequency_of_surplus"
-<<<<<<< HEAD
-    t.string   "food_types"
-    t.string   "quantity"
-    t.string   "donated_in_past"
-    t.integer  "pounds_per_week"
-    t.boolean  "good_samaritan"
-    t.integer  "logo"
-=======
     t.string   "typical_food_types_served"
     t.string   "typical_quantity_of_donation"
     t.integer  "pounds_per_week_donated"
     t.boolean  "aware_of_good_samaritan_food_act"
     t.boolean  "donated_before"
->>>>>>> 5d3faa6... adding auto-annotate and changing field names in donor and recipient profiles for added clarity
   end
 
   add_index "donor_profiles", ["donor_id"], name: "index_donor_profiles_on_donor_id", using: :btree

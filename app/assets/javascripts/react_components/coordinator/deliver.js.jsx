@@ -26,9 +26,6 @@ var DeliverDashboard = React.createClass({
         directionsService.route(request, function(result, status){
             if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(result);
-                console.log(result.routes[0].legs[0].distance.text)
-                console.log(result.routes[0].legs[0].duration.text)
-
             } else {
                 console.log(result);
             }
@@ -45,7 +42,11 @@ var DeliverDashboard = React.createClass({
             );
         } else {
             googleMapContent = (
-                <GoogleMap directionsDisplay={this.getDirectionsDisplay(currentDelivery.donation, currentDelivery.recipient)} latitude={Number(currentDelivery.donation.latitude)} longitude={Number(currentDelivery.donation.longitude)} />
+                <GoogleMap
+                    directionsDisplay={this.getDirectionsDisplay(currentDelivery.donation, currentDelivery.recipient)}
+                    latitude={Number(currentDelivery.donation.latitude)}
+                    longitude={Number(currentDelivery.donation.longitude)}
+                />
             );
         }
         return (
@@ -77,20 +78,19 @@ var DeliverDashboard = React.createClass({
             deliveryId = null;
         }
         this.setState({openDeliveryId: deliveryId});
-        console.log("Open deliveryId: " + deliveryId);
     },
     submitConfirmation: function(data){
         $.ajax({
-          url: window.location.href,
-          dataType: 'json',
-          type: 'POST',
-          data: data,
-          success: function(data) {
-            console.log("Submission success!");
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(window.location.href, status, err.toString());
-          }.bind(this)
+            url: window.location.href,
+            dataType: 'json',
+            type: 'POST',
+            data: data,
+            success: function(data) {
+                console.log("Submission success!");
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(window.location.href, status, err.toString());
+            }.bind(this)
         });
     },
     handlePickupSubmit: function(event){
@@ -162,8 +162,8 @@ var Delivery = React.createClass({
         var actionButtons = this.renderActionButtons(isPickedUp, isDelivered);
 
         var entryClasses = React.addons.classSet({
-           'delivery-entry': true,
-           'active': this.props.isOpen
+            'delivery-entry': true,
+            'active': this.props.isOpen
         });
         var iconClasses = React.addons.classSet({
             'fa': true,
@@ -183,8 +183,8 @@ var Delivery = React.createClass({
                             </div>
                             <div className="delivery-info">
                                 <p className="delivery-time">
-                                  <i className="fa fa-clock-o fa-fw"></i>
-                                  {this.props.delivery.donation.date} {this.props.delivery.donation.window_start} - {this.props.delivery.donation.window_end}
+                                    <i className="fa fa-clock-o fa-fw"></i>
+                                    {this.props.delivery.donation.date} {this.props.delivery.donation.window_start} - {this.props.delivery.donation.window_end}
                                 </p>
                                 <a className="delivery-link" onClick={this.handleGetDirections} href={this.getDirectionsLink()} target="_blank">
                                     <i className="fa fa-map-marker fa-fw"></i> Get directions

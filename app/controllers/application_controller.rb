@@ -10,6 +10,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :type
   end
 
+  def after_sign_in_path_for(user)
+    return donor_profile_path if user.type == User.type_donor
+    return coordinator_schedule_path if user.type == User.type_coordinator
+    root_path
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
   end
