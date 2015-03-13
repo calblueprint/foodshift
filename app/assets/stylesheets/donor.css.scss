@@ -1,3 +1,8 @@
+@mixin clear-list-margins() {
+  margin: 0;
+  list-style-type: none;
+}
+
 .profile-label {
   color: $dark-green;
   font-weight: 400;
@@ -19,14 +24,6 @@
     margin-top: 10px;
     text-align: center;
   }
-}
-
-.profile-summary-content {
-  background: $donor-profile-medium-grey;
-  border-radius: 2px;
-  float: right;
-  margin-top: -4px;
-  padding: 4px 8px;
 }
 
 .profile-summary-donate-link {
@@ -95,13 +92,24 @@
       color: $charcoal;
       .donation-info {
         .profile-img-wrap {
-          margin: 0;
-          list-style-type: none;
+          @include clear-list-margins();
           .profile-img-item {
             text-align: center;
             .profile-img {
-              max-height: rem-calc(250px);
+              max-height: rem-calc(200px);
               padding: rem-calc(15px);
+            }
+          }
+        }
+
+        .profile-summary-wrap {
+          @include clear-list-margins();
+          .profile-summary-item {
+            padding-left: rem-calc(50px);
+            padding-right: rem-calc(50px);
+
+            .profile-summary-count {
+              float: right;
             }
           }
         }
@@ -112,7 +120,9 @@
           padding-bottom: rem-calc(15px);
           font-size: rem-calc(24);
         }
-        h2.donation-info-datetime {
+        h2.profile-summary-title {
+          @extend .text-center;
+          color: $charcoal;
           font-size: rem-calc(18);
         }
         i.fa-li {

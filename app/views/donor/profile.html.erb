@@ -24,23 +24,19 @@
 
                     <div class="medium-4 columns">
                       <ul class="fa-ul">
-                        <li><i class="fa-li fa fa-bullhorn"></i><% if @user.subscribed %> Subscribed <% else %> Not subscribed <% end %></li>
-                        <li><i class="fa-li fa fa-clock-o"></i>1/1/11</li>
-                        <li><i class="fa-li fa "></i>10:00pm to 11:00pm</li>
-                        <li><i class="fa-li fa fa-map-marker"></i>123 Some Street Here, Berkeley, CA</li>
                         <li><i class="fa-li fa fa-user"></i>Chicken Katsu</li>
                         <li><i class="fa-li fa fa-envelope-o"></i><%= @user.email %></li>
                         <li><i class="fa-li fa fa-phone"></i>408-823-2389 (this is hard coded)</li>
+                        <li><i class="fa-li fa fa-map-marker"></i>123 Some Street Here, Berkeley, CA</li>
+                        <li><i class="fa-li fa fa-bullhorn"></i><% if @user.subscribed %> Subscribed <% else %> Not subscribed <% end %></li>
                       </ul>
                     </div>
                   <div class="medium-4 columns">
-                    <h2>Donation Summary</h2>
-                    <span class="profile-label">Completed</span>
-                    <span class="profile-summary-content"><%= @completed_donations.count %></span> <br> <br>
-                    <span class="profile-label">In Progress</span>
-                    <span class="profile-summary-content"><%= @inprogress_donations.count %></span> <br> <br>
-                    <span class="profile-label">Pending</span>
-                    <span class="profile-summary-content"><%= @pending_donations.count %></span>
+                    <h2 class="profile-summary-title">Donation Summary</h2>
+                    <ul class="profile-summary-wrap">
+                      <li class="profile-summary-item">Completed: <span class="profile-summary-count"><%= @completed_donations.count %></span></li>
+                      <li class="profile-summary-item">In progress: <span class="profile-summary-count"><%= @inprogress_donations.count %></span></li>
+                      <li class="profile-summary-item">Pending: <span class="profile-summary-count"><%= @pending_donations.count %></span></li>
                     <div class="donation-profile-filler"></div>
                     <center><%= link_to "Donate!", donations_new_path, class: "profile-summary-donate-link" %></center>
                   </div>
