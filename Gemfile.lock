@@ -408,6 +408,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   better_errors
+  binding_of_caller
   cancancan (~> 1.9)
   capybara
   carrierwave
