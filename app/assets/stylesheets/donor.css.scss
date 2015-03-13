@@ -1,170 +1,22 @@
-.donation-cancel {
-  color: $red;
+@mixin clear-list-margins() {
+  margin: 0;
+  list-style-type: none;
 }
 
-.donation-container {
-  min-height: 0;
-}
+@mixin card-header-arrow() {
+  display: inline-block;
 
-.donation-container, 
-.profile-container {
-  background: $white;
-  font-size: 12px;
-  margin: 0 auto;
-  padding: 15px;
-  width: 68%;
-}
-
-.donation-container b, 
-.profile-container b {
-  font-weight: 600;
-}
-
-.profile-container {
-  min-height: 350px;
-}
-
-.donation-container h1, 
-.profile-container h1 {
-  background: $medium-green;
-  color: $white;
-  display: block;
-  font-size: 18px;
-  font-weight: normal;
-  margin-bottom: 20px;
-  padding: 10px;
-  text-align: center;
-}
-
-.donation-item {
-  background: $donor-profile-light-grey;
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-
-  h1 {
-    background: none;
-    color: $medium-green;
-    font-size: 15px;
-    margin: 0 0 10px;
-    padding: 0;
-    text-align: left;
+  .fa {
+    padding-top: 12px;
   }
-}
 
-.donation-item-completed {
-  border-left: 10px solid $donation-completed-key;
-}
+  a {
+    color: $dark-grey;
 
-.donation-item-inprogress {
-  border-left: 10px solid $donation-inprogress-key;
-}
-
-.donation-item-pending {
-  border-left: 10px solid $donation-pending-key;
-}
-
-.donation-key {
-  border-radius: 5px;
-  float: left;
-  padding: 5px 10px;
-  text-align: center;
-}
-
-.donation-key-container {
-  height: 30px;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.donation-key-completed {
-  background: $donation-completed-key;
-  color: $white;
-}
-
-.donation-key-description {
-  border-radius: 5px;
-  float: left;
-  margin-right: 20px;
-  padding: 5px 10px;
-}
-
-.donation-key-inprogress {
-  background: $donation-inprogress-key;
-}
-
-.donation-key-pending {
-  background: $donation-pending-key;
-}
-
-.donation-modify {
-  float: right;
-  text-align: right;
-  width: 200px; 
-}
-
-.donation-profile-filler {
-  height: 30px;
-  width: 100%;
-}
-
-.donation-status {
-  float: right;
-  font-weight: 400;
-  text-align: right;
-}
-
-.donation-title {
-  float: left;
-  width: 70%;
-}
-
-.donation-modify-link {
-  float: right;
-}
-
-.profile-img {
-  border: 1px solid $donor-profile-medium-grey;
-  float: left;
-  height: 250px;
-  margin-right: 12px;
-  padding: 8px;
-}
-
-.profile-information {
-  float: left;
-  width: 70%;
-}
-
-.profile-label {
-  color: $dark-green;
-  font-weight: 400;
-}
-
-.profile-summary {
-  background: $donor-profile-donation-summary;
-  float: right;
-  min-height: 240px;
-  padding: 12px;
-  width: 25%;
-
-  h2 {
-    color: $medium-green;
-    display: block;
-    font-size: 18px;
-    font-weight: normal;
-    margin-bottom: 25px;
-    margin-top: 10px;
-    text-align: center;
+    &:hover {
+      color: $white;
+    }
   }
-}
-
-.profile-summary-content {
-  background: $donor-profile-medium-grey;
-  border-radius: 2px;
-  float: right;
-  margin-top: -4px;
-  padding: 4px 8px;
 }
 
 .profile-summary-donate-link {
@@ -182,4 +34,197 @@
   padding: 8px;
   text-decoration: none;
   width: 100px;
+}
+
+.donor-dashboard-block {
+  @include full-width-block($off-white);
+  @include block-padding();
+  min-height: 900px;
+}
+
+.dashboard {
+  @include drop-shadow(1);
+  border: 1px solid $dark-grey;
+}
+
+.card-header {
+  @extend .text-center;
+  background-color: $medium-green;
+  border-bottom: 1px solid $dark-grey;
+
+  .card-header-title {
+    color: $white;
+    display: inline-block;
+    font-size: rem-calc(18);
+    font-weight: 400;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+
+  .card-header-arrow-left {
+    @include card-header-arrow();
+    margin-right: 30px;
+  }
+
+  .card-header-arrow-right {
+    @include card-header-arrow();
+    margin-left: 30px;
+  }
+}
+
+.card-profile {
+  background-color: $white;
+  border-bottom: 1px solid $dark-grey;
+  color: $charcoal;
+  padding-top: 30px;
+}
+
+.profile-info {
+  .fa-li {
+    padding-top: 2px;
+  }
+
+  .inline-list-food {
+    @extend %inline-list;
+    padding-top: 0;
+  }
+
+  .additional-info-list {
+    margin-top: -20px;
+  }
+}
+
+.profile-img-wrap {
+  @include clear-list-margins();
+
+  .profile-img-item {
+    text-align: center;
+  }
+
+  .profile-img {
+    max-height: rem-calc(200px);
+    padding: rem-calc(15px);
+  }
+}
+
+.profile-summary-wrap {
+  @include clear-list-margins();
+}
+
+.profile-summary-item {
+  padding-left: rem-calc(50px);
+  padding-right: rem-calc(50px);
+
+  .profile-summary-count {
+    float: right;
+  }
+}
+
+.profile-info-title {
+  @extend .text-center;
+  color: $charcoal;
+  font-size: rem-calc(24);
+  padding-bottom: rem-calc(15px);
+}
+
+.profile-summary-title {
+  @extend .text-center;
+  color: $charcoal;
+  font-size: rem-calc(18);
+}
+
+.card-history {
+  background-color: $white;
+
+  .history-title {
+    @extend .text-center;
+    background-color: $medium-green;
+    border-bottom: 1px solid $dark-grey;
+    color: $white;
+    font-size: rem-calc(18);
+    font-weight: 400;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+}
+
+.donation-key-container {
+  font-size: 0.8rem;
+  padding: rem-calc(15px);
+
+  .donation-key {
+    border-radius: 5px;
+    float: left;
+    padding: 5px 10px;
+    text-align: center;
+  }
+
+  .donation-key-completed {
+    background: $donation-completed-key;
+    color: $white;
+  }
+
+  .donation-key-description {
+    border-radius: 5px;
+    float: left;
+    margin-right: rem-calc(20px);
+    padding: 5px 10px;
+  }
+
+  .donation-key-inprogress {
+    background: $donation-inprogress-key;
+  }
+
+  .donation-key-pending {
+    background: $donation-pending-key;
+  }
+}
+
+.donation-item {
+  background: $donor-profile-light-grey;
+  margin: 10px 0;
+  padding: 10px;
+
+  h4 {
+    color: $medium-green;
+    font-size: rem-calc(18);
+    margin: 0 0 10px;
+    padding: 0;
+    text-align: left;
+  }
+
+  b {
+    font-weight: 400;
+  }
+}
+
+.donation-item-completed {
+  border-left: 10px solid $donation-completed-key;
+}
+
+.donation-item-inprogress {
+  border-left: 10px solid $donation-inprogress-key;
+}
+
+.donation-item-pending {
+  border-left: 10px solid $donation-pending-key;
+}
+
+.donation-modify {
+  float: right;
+  text-align: right;
+
+  .donation-status {
+    float: right;
+    font-weight: 400;
+    text-align: right;
+  }
+
+  .donation-modify-link {
+    float: right;
+  }
+
+  .donation-cancel {
+    color: $red;
+  }
 }

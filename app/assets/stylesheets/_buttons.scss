@@ -10,7 +10,7 @@ a.button {
 
 a.transparent-button {
   @extend .button, .large;
-  @include transition-all(100ms);
+  @include transition-all(250ms);
   background-color: transparent;
   border: 2px solid $white;
   border-radius: $global-radius;
