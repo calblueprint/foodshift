@@ -139,6 +139,8 @@
     }
 
     .card-history {
+      background-color: $white;
+
       .history-title {
         @extend .text-center;
         color: $white;

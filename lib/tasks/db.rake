@@ -121,6 +121,7 @@ end
 def create_donations_and_interests(num_rows)
   1.upto(num_rows) do |n|
     donation = Donation.create!(
+      status: ["In Progress", "Pending", "Completed"].sample,
       donor_id: [1, 2, 3, 4, 5].sample,
       organization: Faker::Company.name,
       address: Faker::Address.street_address,
