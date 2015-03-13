@@ -34,6 +34,7 @@
       @extend .text-center;
       border-bottom: 1px solid $dark-grey;
       background-color: $medium-green;
+
       .card-header-title {
         display: inline-block;
         font-size: rem-calc(18);
@@ -42,11 +43,14 @@
         margin-top: 8px;
         margin-bottom: 8px;
       }
+
       @mixin card-header-arrow() {
         display: inline-block;
+
         i.fa {
           padding-top: 12px;
         }
+
         a {
           color: $dark-grey;
           &:hover {
@@ -54,23 +58,28 @@
           }
         }
       }
+
       .card-header-arrow-left {
         @include card-header-arrow();
         margin-right: 30px;
       }
+
       .card-header-arrow-right {
         @include card-header-arrow();
         margin-left: 30px;
       }
     }
+
     .card-profile {
       padding-top: 30px;
       background-color: $white;
       border-bottom: 1px solid $dark-grey;
       color: $charcoal;
+
       .profile-info {
         .profile-img-wrap {
           @include clear-list-margins();
+
           .profile-img-item {
             text-align: center;
             .profile-img {
@@ -82,6 +91,7 @@
 
         .profile-summary-wrap {
           @include clear-list-margins();
+
           .profile-summary-item {
             padding-left: rem-calc(50px);
             padding-right: rem-calc(50px);
@@ -98,18 +108,22 @@
           padding-bottom: rem-calc(15px);
           font-size: rem-calc(24);
         }
+
         h2.profile-summary-title {
           @extend .text-center;
           color: $charcoal;
           font-size: rem-calc(18);
         }
+
         i.fa-li {
           padding-top: 2px;
         }
+
         ul.inline-list-food {
           @extend .inline-list;
           padding-top: 0px;
         }
+
         .additional-info-list {
           margin-top: -20px;
         }
@@ -163,7 +177,6 @@
       }
     }
   }
-
 }
 
 .donation-item {
