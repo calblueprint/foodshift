@@ -109,14 +109,14 @@
 
 .profile-summary-wrap {
   @include clear-list-margins();
+}
 
-  .profile-summary-item {
-    padding-left: rem-calc(50px);
-    padding-right: rem-calc(50px);
+.profile-summary-item {
+  padding-left: rem-calc(50px);
+  padding-right: rem-calc(50px);
 
-    .profile-summary-count {
-      float: right;
-    }
+  .profile-summary-count {
+    float: right;
   }
 }
 
