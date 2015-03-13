@@ -85,12 +85,12 @@
         margin-left: 30px;
       }
     }
-    .card-donation {
+    .card-profile {
       padding-top: 30px;
       background-color: $white;
       border-bottom: 1px solid $dark-grey;
       color: $charcoal;
-      .donation-info {
+      .profile-info {
         .profile-img-wrap {
           @include clear-list-margins();
           .profile-img-item {
@@ -137,6 +137,51 @@
         }
       }
     }
+
+    .card-history {
+      .history-title {
+        @extend .text-center;
+        color: $white;
+        font-weight: 400;
+        font-size: rem-calc(18);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $dark-grey;
+        background-color: $medium-green;
+      }
+
+      .donation-key-container {
+        font-size: .8rem;
+        padding: rem-calc(15px);
+
+        .donation-key {
+          border-radius: 5px;
+          float: left;
+          padding: 5px 10px;
+          text-align: center;
+        }
+
+        .donation-key-completed {
+          background: $donation-completed-key;
+          color: $white;
+        }
+
+        .donation-key-description {
+          border-radius: 5px;
+          float: left;
+          margin-right: rem-calc(20px);
+          padding: 5px 10px;
+        }
+
+        .donation-key-inprogress {
+          background: $donation-inprogress-key;
+        }
+
+        .donation-key-pending {
+          background: $donation-pending-key;
+        }
+      }
+    }
   }
 
 }
@@ -171,39 +216,6 @@
 
 .donation-item-pending {
   border-left: 10px solid $donation-pending-key;
-}
-
-.donation-key {
-  border-radius: 5px;
-  float: left;
-  padding: 5px 10px;
-  text-align: center;
-}
-
-.donation-key-container {
-  height: 30px;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.donation-key-completed {
-  background: $donation-completed-key;
-  color: $white;
-}
-
-.donation-key-description {
-  border-radius: 5px;
-  float: left;
-  margin-right: 20px;
-  padding: 5px 10px;
-}
-
-.donation-key-inprogress {
-  background: $donation-inprogress-key;
-}
-
-.donation-key-pending {
-  background: $donation-pending-key;
 }
 
 .donation-modify {
