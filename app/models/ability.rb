@@ -8,7 +8,10 @@ class Ability
       can :manage, :all
     end
     if user.type == User.type_coordinator
-      can :read, Donation
+      can :manage, [User, Interest, RecipientProfile, Donation, Recipient]
+    end
+    if user.type == User.type_donor
+      can :manage, [Donor, Donation]
     end
   end
 end
