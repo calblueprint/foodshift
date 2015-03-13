@@ -3,28 +3,6 @@
   list-style-type: none;
 }
 
-.profile-label {
-  color: $dark-green;
-  font-weight: 400;
-}
-
-.profile-summary {
-  background: $donor-profile-donation-summary;
-  float: right;
-  min-height: 240px;
-  padding: 12px;
-  width: 25%;
-
-  h2 {
-    color: $medium-green;
-    display: block;
-    font-size: 18px;
-    font-weight: normal;
-    margin-bottom: 25px;
-    margin-top: 10px;
-    text-align: center;
-  }
-}
 
 .profile-summary-donate-link {
   background: $white;
@@ -198,13 +176,16 @@
   padding: 10px;
   width: 100%;
 
-  h1 {
-    background: none;
+  h4 {
+    font-size: rem-calc(18);
     color: $medium-green;
-    font-size: 15px;
     margin: 0 0 10px;
     padding: 0;
     text-align: left;
+  }
+
+  b {
+    font-weight: 500;
   }
 }
 
