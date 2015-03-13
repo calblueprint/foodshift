@@ -36,21 +36,20 @@
                         <li class="profile-summary-item">Completed: <span class="profile-summary-count"><%= @completed_donations.count %></span></li>
                         <li class="profile-summary-item">In progress: <span class="profile-summary-count"><%= @inprogress_donations.count %></span></li>
                         <li class="profile-summary-item">Pending: <span class="profile-summary-count"><%= @pending_donations.count %></span></li>
-                      <div class="donation-profile-filler"></div>
-                      <center><%= link_to "Donate!", donations_new_path, class: "profile-summary-donate-link" %></center>
+                        <br>
+                        <center><%= link_to "Donate!", donations_new_path, class: "profile-summary-donate-link" %></center>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="card-history">
-            <div class="row">
-              <div class="small-12 columns">
-                <div class="history-title">
-                  Donation History (<%= @donations.count %>)
-                </div>
-                <div class="donation-container">
+            <div class="card-history">
+              <div class="row">
+                <div class="small-12 columns">
+                  <div class="history-title">
+                    Donation History (<%= @donations.count %>)
+                  </div>
                   <div class="donation-key-container">
                     <div class="row">
                       <div class="small-12 columns">
@@ -64,15 +63,17 @@
                     </div>
                   </div>
 
-                  <% @donations.each do |d| %>
+                  <div class="donation-container">
+                    <% @donations.each do |d| %>
                     <% if d.status == "In Progress" %>
-                      <%= render partial: "in_progress", locals: { d: d } %>
+                    <%= render partial: "in_progress", locals: { d: d } %>
                     <% elsif d.status == "Pending" %>
-                      <%= render partial: "pending", locals: { d: d } %>
+                    <%= render partial: "pending", locals: { d: d } %>
                     <% elsif d.status == "Completed" %>
-                      <%= render partial: "completed", locals: { d: d } %>
+                    <%= render partial: "completed", locals: { d: d } %>
                     <% end %>
-                  <% end %>
+                    <% end %>
+                  </div>
                 </div>
               </div>
             </div>
@@ -81,7 +82,6 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="donation-profile-filler"></div>
