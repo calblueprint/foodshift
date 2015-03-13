@@ -4,9 +4,10 @@
     <b>Contact:</b> <%= d.person %> | <b>Phone:</b> <%= d.phone %> | <b>Email:</b> <%= d.email %><br>
     <b>Organization:</b> <%= d.organization %> | <b>Address:</b> <%= d.address %>
     <% if d.status == "Completed" %>
+      <br> <br>
       <b>Coordinator:</b> <%= find_transaction_coordinator(d.id).email %> | <b>Recipient:</b> <%= find_transaction_recipient(d.id).email %>  <br>
-      <b>Picked up at:</b> <%= find_transaction(d.id).picked_up_at %> <br>
-      <b>Delivered at:</b> <%= find_transaction(d.id).delivered_at %> <br>
+      <b>Picked up at:</b> <%= find_transaction(d.id).picked_up_at.strftime("%I:%M %p %A, %B %d, %Y") %> <br>
+      <b>Delivered at:</b> <%= find_transaction(d.id).delivered_at.strftime("%I:%M %p %A, %B %d, %Y") %> <br>
     <% elsif d.status == "In Progress" %>
       <br>
       Some kind of progress bar here...
