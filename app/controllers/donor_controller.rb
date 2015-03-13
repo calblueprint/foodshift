@@ -10,18 +10,18 @@ class DonorController < ApplicationController
   end
 
   def find_transaction(donation_id)
-    return Transaction.where(:donation_id => donation_id).first
+    Transaction.where(:donation_id => donation_id).first
   end
 
   def find_transaction_coordinator(donation_id)
     @transaction = Transaction.where(:donation_id => donation_id).first
     @coord_id = @transaction.coordinator_id
-    return Coordinator.find(@coord_id)
+    Coordinator.find(@coord_id)
   end
 
   def find_transaction_recipient(donation_id)
     @transaction = Transaction.where(:donation_id => donation_id).first
     @recipient_id = @transaction.recipient_id
-    return Recipient.find(@recipient_id)
+    Recipient.find(@recipient_id)
   end
 end
