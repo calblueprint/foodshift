@@ -1,4 +1,5 @@
 class DonorController < ApplicationController
+  load_and_authorize_resource
   helper_method :find_transaction, :find_transaction_coordinator, :find_transaction_recipient
 
   def profile
