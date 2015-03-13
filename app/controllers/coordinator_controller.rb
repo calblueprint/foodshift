@@ -1,5 +1,5 @@
 class CoordinatorController < ApplicationController
-  before_action :auth
+  load_and_authorize_resource
 
   def deliver
     current_deliveries = Transaction.includes(
