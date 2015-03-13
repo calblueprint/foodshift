@@ -1,105 +1,138 @@
-.dashboard {
-  border: 1px solid $dark-grey;
-  @include drop-shadow(1);
-  .card-header {
-    @extend .text-center;
-    border-bottom: 1px solid $dark-grey;
-    background-color: $medium-green;
-    .card-header-title {
-      display: inline-block;
-      font-size: rem-calc(18);
-      font-weight: 400;
-      color: $white;
-      margin-top: 8px;
-      margin-bottom: 8px;
-    }
-    @mixin card-header-arrow() {
-      display: inline-block;
-      i.fa {
-        padding-top: 12px;
+.profile-label {
+  color: $dark-green;
+  font-weight: 400;
+}
+
+.profile-summary {
+  background: $donor-profile-donation-summary;
+  float: right;
+  min-height: 240px;
+  padding: 12px;
+  width: 25%;
+
+  h2 {
+    color: $medium-green;
+    display: block;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+.profile-summary-content {
+  background: $donor-profile-medium-grey;
+  border-radius: 2px;
+  float: right;
+  margin-top: -4px;
+  padding: 4px 8px;
+}
+
+.profile-summary-donate-link {
+  background: $white;
+  border: 1px solid $donor-profile-border-grey;
+  border-radius: 4px;
+  color: $medium-green;
+  margin: 0 auto;
+  padding: 5px 10px;
+}
+
+.update-profile-link {
+  background: $donor-profile-light-grey;
+  color: $donor-profile-darker-grey;
+  padding: 8px;
+  text-decoration: none;
+  width: 100px;
+}
+
+.donor-dashboard-block {
+  @include full-width-block($off-white);
+  @include block-padding();
+  min-height: 900px;
+
+  .dashboard {
+    border: 1px solid $dark-grey;
+    @include drop-shadow(1);
+
+    .card-header {
+      @extend .text-center;
+      border-bottom: 1px solid $dark-grey;
+      background-color: $medium-green;
+      .card-header-title {
+        display: inline-block;
+        font-size: rem-calc(18);
+        font-weight: 400;
+        color: $white;
+        margin-top: 8px;
+        margin-bottom: 8px;
       }
-      a {
-        color: $dark-grey;
-        &:hover {
-          color: $white;
+      @mixin card-header-arrow() {
+        display: inline-block;
+        i.fa {
+          padding-top: 12px;
+        }
+        a {
+          color: $dark-grey;
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+      .card-header-arrow-left {
+        @include card-header-arrow();
+        margin-right: 30px;
+      }
+      .card-header-arrow-right {
+        @include card-header-arrow();
+        margin-left: 30px;
+      }
+    }
+    .card-donation {
+      padding-top: 30px;
+      background-color: $white;
+      border-bottom: 1px solid $dark-grey;
+      color: $charcoal;
+      .donation-info {
+        .profile-img-wrap {
+          margin: 0;
+          list-style-type: none;
+          .profile-img-item {
+            text-align: center;
+            .profile-img {
+              max-height: rem-calc(250px);
+              padding: rem-calc(15px);
+            }
+          }
+        }
+
+        h1.profile-info-title {
+          @extend .text-center;
+          color: $charcoal;
+          padding-bottom: rem-calc(15px);
+          font-size: rem-calc(24);
+        }
+        h2.donation-info-datetime {
+          font-size: rem-calc(18);
+        }
+        i.fa-li {
+          padding-top: 2px;
+        }
+        ul.inline-list-food {
+          @extend .inline-list;
+          padding-top: 0px;
+        }
+        .additional-info-list {
+          margin-top: -20px;
         }
       }
     }
-    .card-header-arrow-left {
-      @include card-header-arrow();
-      margin-right: 30px;
-    }
-    .card-header-arrow-right {
-      @include card-header-arrow();
-      margin-left: 30px;
-    }
   }
-  .card-donation {
-    padding-top: 30px;
-    background-color: $white;
-    border-bottom: 1px solid $dark-grey;
-    color: $charcoal;
-    .donation-info {
-      h1.donation-info-title {
-        @extend .text-center;
-        color: $charcoal;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-size: rem-calc(24);
-      }
-      h2.donation-info-datetime {
-        font-size: rem-calc(18);
-      }
-      i.fa-li {
-        padding-top: 2px;
-      }
-      ul.inline-list-food {
-        @extend .inline-list;
-        padding-top: 0px;
-      }
-      .additional-info-list {
-        margin-top: -20px;
-      }
-    }
-  }
+
 }
 
 .donation-cancel {
   color: $red;
-}
-
-.donation-container {
-  min-height: 0;
-}
-
-.donation-container, 
-.profile-container {
-  background: $white;
-  font-size: 12px;
-  margin: 0 auto;
-  padding: 15px;
-  width: 68%;
-}
-
-.donation-container b,
-.profile-container b {
-  font-weight: 600;
-}
-
-.profile-container {
-  min-height: 350px;
-}
-
-.donation-container h1,
-.profile-container h1 {
-  background: $medium-green;
-  color: $white;
-  display: block;
-  font-size: 18px;
-  font-weight: normal;
-  margin-bottom: 20px;
-  padding: 10px;
-  text-align: center;
 }
 
 .donation-item {
@@ -187,65 +220,4 @@
 
 .donation-modify-link {
   float: right;
-}
-
-.profile-img {
-  border: 1px solid $donor-profile-medium-grey;
-  float: left;
-  height: 250px;
-  margin-right: 12px;
-  padding: 8px;
-}
-
-.profile-information {
-  float: left;
-  width: 70%;
-}
-
-.profile-label {
-  color: $dark-green;
-  font-weight: 400;
-}
-
-.profile-summary {
-  background: $donor-profile-donation-summary;
-  float: right;
-  min-height: 240px;
-  padding: 12px;
-  width: 25%;
-
-  h2 {
-    color: $medium-green;
-    display: block;
-    font-size: 18px;
-    font-weight: normal;
-    margin-bottom: 25px;
-    margin-top: 10px;
-    text-align: center;
-  }
-}
-
-.profile-summary-content {
-  background: $donor-profile-medium-grey;
-  border-radius: 2px;
-  float: right;
-  margin-top: -4px;
-  padding: 4px 8px;
-}
-
-.profile-summary-donate-link {
-  background: $white;
-  border: 1px solid $donor-profile-border-grey;
-  border-radius: 4px;
-  color: $medium-green;
-  margin: 0 auto;
-  padding: 5px 10px;
-}
-
-.update-profile-link {
-  background: $donor-profile-light-grey;
-  color: $donor-profile-darker-grey;
-  padding: 8px;
-  text-decoration: none;
-  width: 100px;
 }

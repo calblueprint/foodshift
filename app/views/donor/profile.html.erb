@@ -1,73 +1,81 @@
-<div class="donation-profile-filler"></div>
-<div class="profile-container">
-  <div class="dashboard">
-    <div class="card-header">
-        <div class="row">
-            <div class="small-12 columns">
-                <span class="card-header-title">Welcome, <%= @user.email %> (User ID: <%= @user.id %>)</span>
-            </div>
-        </div>
-    </div>
-    <div class="card-donation">
-      <div class="row">
-        <div class="small-12 columns">
-          <div class="donation-info">
+<div class="donor-dashboard-block">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="dashboard-wrap">
+        <div class="dashboard">
+          <div class="card-header">
+              <div class="row">
+                  <div class="small-12 columns">
+                      <span class="card-header-title">Welcome, <%= @user.email %> (User ID: <%= @user.id %>)</span>
+                  </div>
+              </div>
+          </div>
+          <div class="card-donation">
             <div class="row">
-              <div class="medium-4 columns">
-                <%= image_tag "profile_img.png", class: "profile-img" %>
-              </div>
+              <div class="small-12 columns">
+                <div class="donation-info">
+                  <div class="row">
+                    <div class="medium-4 columns">
+                      <ul class="profile-img-wrap">
+                        <li class="profile-img-item"><%= image_tag "profile_img.png", class: "profile-img" %></li>
+                      </ul>
+                      <h1 class="profile-info-title">Blooprint</h1>
+                    </div>
 
-              <div class="medium-4 columns">
-                <ul class="fa-ul">
-                  <li><span class="profile-label">Subscribed?</span><% if @user.subscribed %> Yes <% else %> No <% end %></li>
-                  <li><i class="fa-li fa fa-clock-o"></i>1/1/11</li>
-                  <li><i class="fa-li fa "></i>10:00pm to 11:00pm</li>
-                  <li><i class="fa-li fa fa-map-marker"></i>123 Some Street Here, Berkeley, CA</li>
-                  <li><i class="fa-li fa fa-user"></i>Chicken Katsu</li>
-                  <li><i class="fa-li fa fa-envelope-o"></i><%= @user.email %></li>
-                  <li><i class="fa-li fa fa-phone"></i>408-823-2389 (this is hard coded)</li>
-                </ul>
+                    <div class="medium-4 columns">
+                      <ul class="fa-ul">
+                        <li><i class="fa-li fa fa-bullhorn"></i><% if @user.subscribed %> Subscribed <% else %> Not subscribed <% end %></li>
+                        <li><i class="fa-li fa fa-clock-o"></i>1/1/11</li>
+                        <li><i class="fa-li fa "></i>10:00pm to 11:00pm</li>
+                        <li><i class="fa-li fa fa-map-marker"></i>123 Some Street Here, Berkeley, CA</li>
+                        <li><i class="fa-li fa fa-user"></i>Chicken Katsu</li>
+                        <li><i class="fa-li fa fa-envelope-o"></i><%= @user.email %></li>
+                        <li><i class="fa-li fa fa-phone"></i>408-823-2389 (this is hard coded)</li>
+                      </ul>
+                    </div>
+                  <div class="medium-4 columns">
+                    <h2>Donation Summary</h2>
+                    <span class="profile-label">Completed</span>
+                    <span class="profile-summary-content"><%= @completed_donations.count %></span> <br> <br>
+                    <span class="profile-label">In Progress</span>
+                    <span class="profile-summary-content"><%= @inprogress_donations.count %></span> <br> <br>
+                    <span class="profile-label">Pending</span>
+                    <span class="profile-summary-content"><%= @pending_donations.count %></span>
+                    <div class="donation-profile-filler"></div>
+                    <center><%= link_to "Donate!", donations_new_path, class: "profile-summary-donate-link" %></center>
+                  </div>
+                </div>
               </div>
-            <div class="medium-4 columns">
-              <h2>Donation Summary</h2>
-              <span class="profile-label">Completed</span>
-              <span class="profile-summary-content"><%= @completed_donations.count %></span> <br> <br>
-              <span class="profile-label">In Progress</span>
-              <span class="profile-summary-content"><%= @inprogress_donations.count %></span> <br> <br>
-              <span class="profile-label">Pending</span>
-              <span class="profile-summary-content"><%= @pending_donations.count %></span>
-              <div class="donation-profile-filler"></div>
-              <center><%= link_to "Donate!", donations_new_path, class: "profile-summary-donate-link" %></center>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="donation-profile-filler"></div>
-<div class="donation-container">
-  <h1>Donation History (<%= @donations.count %>)</h1>
+  <div class="donation-profile-filler"></div>
+  <div class="donation-container">
+    <h1>Donation History (<%= @donations.count %>)</h1>
 
-  <div class="donation-key-container">
-    <div class="donation-key donation-key-pending">Pending</div>
-    <div class="donation-key-description">Needs Coordinator and/or Recipient</div>
-    <div class="donation-key donation-key-inprogress">In Progress</div>
-    <div class="donation-key-description">Coordinator and Recipient Assigned</div>
-    <div class="donation-key donation-key-completed">Completed</div>
-    <div class="donation-key-description">Donation Delivered</div>
-  </div>
+    <div class="donation-key-container">
+      <div class="donation-key donation-key-pending">Pending</div>
+      <div class="donation-key-description">Needs Coordinator and/or Recipient</div>
+      <div class="donation-key donation-key-inprogress">In Progress</div>
+      <div class="donation-key-description">Coordinator and Recipient Assigned</div>
+      <div class="donation-key donation-key-completed">Completed</div>
+      <div class="donation-key-description">Donation Delivered</div>
+    </div>
 
-  <% @donations.each do |d| %>
-    <% if d.status == "In Progress" %>
-      <%= render partial: "in_progress", locals: { d: d } %>
-    <% elsif d.status == "Pending" %>
-      <%= render partial: "pending", locals: { d: d } %>
-    <% elsif d.status == "Completed" %>
-      <%= render partial: "completed", locals: { d: d } %>
+    <% @donations.each do |d| %>
+      <% if d.status == "In Progress" %>
+        <%= render partial: "in_progress", locals: { d: d } %>
+      <% elsif d.status == "Pending" %>
+        <%= render partial: "pending", locals: { d: d } %>
+      <% elsif d.status == "Completed" %>
+        <%= render partial: "completed", locals: { d: d } %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
 <div class="donation-profile-filler"></div>
