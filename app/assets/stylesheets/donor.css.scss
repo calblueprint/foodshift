@@ -19,6 +19,10 @@
   }
 }
 
+.donation-profile-filler {
+  height: 15px;
+}
+
 .profile-summary-donate-link {
   background: $white;
   border: 1px solid $donor-profile-border-grey;
@@ -146,6 +150,10 @@
     padding-bottom: 10px;
     padding-top: 10px;
   }
+}
+
+.donation-container {
+  padding: 0 10px;
 }
 
 .donation-key-container {
