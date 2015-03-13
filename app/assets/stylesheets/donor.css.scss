@@ -146,37 +146,37 @@
     padding-bottom: 10px;
     padding-top: 10px;
   }
+}
 
-  .donation-key-container {
-    font-size: .8rem;
-    padding: rem-calc(15px);
+.donation-key-container {
+  font-size: 0.8rem;
+  padding: rem-calc(15px);
 
-    .donation-key {
-      border-radius: 5px;
-      float: left;
-      padding: 5px 10px;
-      text-align: center;
-    }
+  .donation-key {
+    border-radius: 5px;
+    float: left;
+    padding: 5px 10px;
+    text-align: center;
+  }
 
-    .donation-key-completed {
-      background: $donation-completed-key;
-      color: $white;
-    }
+  .donation-key-completed {
+    background: $donation-completed-key;
+    color: $white;
+  }
 
-    .donation-key-description {
-      border-radius: 5px;
-      float: left;
-      margin-right: rem-calc(20px);
-      padding: 5px 10px;
-    }
+  .donation-key-description {
+    border-radius: 5px;
+    float: left;
+    margin-right: rem-calc(20px);
+    padding: 5px 10px;
+  }
 
-    .donation-key-inprogress {
-      background: $donation-inprogress-key;
-    }
+  .donation-key-inprogress {
+    background: $donation-inprogress-key;
+  }
 
-    .donation-key-pending {
-      background: $donation-pending-key;
-    }
+  .donation-key-pending {
+    background: $donation-pending-key;
   }
 }
 
