@@ -18,7 +18,7 @@ class DonationsController < ApplicationController
         UserMailer.coordinator_email(@coordinators, @donation).deliver
         format.html { redirect_to root_path, notice: "Donation was successfully created." }
       else
-        format.html { render donations_new_path }
+        format.html { redirect_to root_path, alert: "Donation failed because of unsupported file type." }
       end
     end
   end
