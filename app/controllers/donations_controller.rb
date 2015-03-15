@@ -7,7 +7,6 @@ class DonationsController < ApplicationController
 
   # POST /donate
   def create
-    authorize! :create, Donation, message: "Not authorized to donate"
     donation_form = DonationForm.new(donation_params)
     donation_form.donor = current_user if user_signed_in?
     respond_to do |format|
@@ -19,7 +18,7 @@ class DonationsController < ApplicationController
         UserMailer.coordinator_email(@coordinators, @donation).deliver
         format.html { redirect_to root_path, notice: "Donation was successfully created." }
       else
-        format.html { redirect_to root_path, notice: "Donation failed because of unsupported file type." }
+        format.html { redirect_to root_path, alert: "Donation failed because of unsupported file type." }
       end
     end
   end
