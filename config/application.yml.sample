@@ -2,8 +2,8 @@
 AWS_ACCESS_KEY_ID: "chicken"
 AWS_SECRET_ACCESS_KEY: "katsu"
 FOG_DIRECTORY: "hello"
-FOG_REGION: "goodbye"
-FOG_PROVIDER: "gogl"
+FOG_REGION: "us-west-2"
+FOG_PROVIDER: "AWS"
 
 # Mailer config
 EMAIL_USERNAME: "1goon@calblueprint.org"
