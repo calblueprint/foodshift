@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   scope '/donor' do
     get '/profile', to: 'donor#profile', as: :donor_profile
+    put '/profile', to: 'donor#change_profile', as: :donor_profile_update
   end
   get 'recipient_profile', to: 'recipient_profiles#show', as: :recipient_profile
 

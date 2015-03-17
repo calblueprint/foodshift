@@ -23,10 +23,10 @@
                     </div>
                     <div class="medium-4 columns">
                       <ul class="fa-ul">
-                        <li><i class="fa-li fa fa-user"></i><%= best_in_place @profile, :person, :as => :input %></li>
-                        <li><i class="fa-li fa fa-envelope-o"></i><%= best_in_place @profile, :email, :as => :input %></li>
-                        <li><i class="fa-li fa fa-phone"></i><%= best_in_place @profile, :phone, :as => :input %></li>
-                        <li><i class="fa-li fa fa-map-marker"></i><%= best_in_place @profile, :address, :as => :input %></li>
+                        <li><i class="fa-li fa fa-user"></i><%= best_in_place @profile, :person, as: :input %></li>
+                        <li><i class="fa-li fa fa-envelope-o"></i><%= best_in_place @profile, :email, as: :input %></li>
+                        <li><i class="fa-li fa fa-phone"></i><%= best_in_place @profile, :phone, as: :input %></li>
+                        <li><i class="fa-li fa fa-map-marker"></i><%= best_in_place @profile, :address, as: :input %></li>
                         <li>
                           <i class="fa-li fa fa-bullhorn"></i><%= best_in_place @user, :subscribed, :as => :checkbox, :collection => ["Not subscribed", "Currently subscribed"] %>
                         </li>

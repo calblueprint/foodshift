@@ -23,6 +23,17 @@ class DonorController < ApplicationController
     end
   end
 
+  def change_profile
+    profile = DonorProfile.where(donor_id: current_user.id).first
+    respond_to do |format|
+      if profile.update_attributes(profile_params)
+        format.json { respond_with_bip(profile) }
+      else
+        format.json { respond_with_bip(profile) }
+      end
+    end
+  end
+
   def find_transaction(donation_id)
     Transaction.where(donation_id: donation_id).first
   end
@@ -43,6 +54,13 @@ class DonorController < ApplicationController
   def donor_params
     params.require(:user).permit(
       :subscribed
+    )
+  end
+
+  private
+  def profile_params
+    params.require(:donor_profile).permit(
+      :address
     )
   end
 end
