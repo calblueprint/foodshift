@@ -1,0 +1,10 @@
+# S3 keys
+AWS_ACCESS_KEY_ID: "chicken"
+AWS_SECRET_ACCESS_KEY: "katsu"
+FOG_DIRECTORY: "hello"
+FOG_REGION: "goodbye"
+FOG_PROVIDER: "gogl"
+
+# Mailer config
+EMAIL_USERNAME: "1goon@calblueprint.org"
+EMAIL_PASSWORD: "iamwonjun1234"
