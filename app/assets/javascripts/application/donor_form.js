@@ -29,9 +29,14 @@ $(function() {
             }
       });
 
-    $('#donor-form-fields').on('invalid.fndtn.abide', function () {
-        toastr.error('There was an error with your submission');
-    });
+    $('#donor-form-fields')
+        .on('invalid.fndtn.abide', function () {
+            toastr.error('There was an error with your submission');
+        })
+        .on('valid.fndtn.abide', function () {
+            donationModalInstance.handleShowModal();
+            console.log('valid!');
+        });
 
 
     $('#donation_date').datetimepicker({
