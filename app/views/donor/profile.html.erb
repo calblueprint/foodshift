@@ -23,13 +23,13 @@
                     </div>
                     <div class="medium-4 columns">
                       <ul class="fa-ul">
-                        <li><i class="fa-li fa fa-user"></i>
-                          <%= @profile.person %>
+                        <li><i class="fa-li fa fa-user"></i><%= best_in_place @profile, :person, :as => :input %></li>
+                        <li><i class="fa-li fa fa-envelope-o"></i><%= best_in_place @profile, :email, :as => :input %></li>
+                        <li><i class="fa-li fa fa-phone"></i><%= best_in_place @profile, :phone, :as => :input %></li>
+                        <li><i class="fa-li fa fa-map-marker"></i><%= best_in_place @profile, :address, :as => :input %></li>
+                        <li>
+                          <i class="fa-li fa fa-bullhorn"></i><%= best_in_place @user, :subscribed, :as => :checkbox, :collection => ["Not subscribed", "Currently subscribed"] %>
                         </li>
-                        <li><i class="fa-li fa fa-envelope-o"></i><%= @user.email %></li>
-                        <li><i class="fa-li fa fa-phone"></i>408-823-2389 (this is hard coded)</li>
-                        <li><i class="fa-li fa fa-map-marker"></i>123 Some Street Here, Berkeley, CA</li>
-                        <li><i class="fa-li fa fa-bullhorn"></i><% if @user.subscribed %> Subscribed <% else %> Not subscribed <% end %></li>
                       </ul>
                     </div>
                     <div class="medium-4 columns">

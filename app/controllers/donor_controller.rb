@@ -12,19 +12,15 @@ class DonorController < ApplicationController
     @completed_donations = @donations.where(status: 'Completed')
   end
 
-  # POST /profile
-  def edit_profile
-    profile = DonorProfile.where(donor_id: current_user.id).first
-    DonorProfile.update(profile.id,
-      reason_for_surplus: params[:reason_for_surplus],
-      serves_organic_food: params[:serves_organic_food],
-      frequency_of_surplus: params[:frequency_of_surplus],
-      typical_food_types_served: params[:typical_food_types_served],
-      typical_quantity_of_donation: params[:typical_quantity_of_donation],
-      pounds_per_week_donated: params[:pounds_per_week_donated],
-      aware_of_good_samaritan_food_act: params[:aware_of_good_samaritan_food_act],
-      donated_before: params[:donated_before]
-    )
+  def update
+    user = Donor.find(params[:id])
+    respond_to do |format|
+      if user.update_attributes(donor_params)
+        format.json { respond_with_bip(user) }
+      else
+        format.json { respond_with_bip(user) }
+      end
+    end
   end
 
   def find_transaction(donation_id)
@@ -41,5 +37,12 @@ class DonorController < ApplicationController
     @transaction = Transaction.where(donation_id: donation_id).first
     @recipient_id = @transaction.recipient_id
     Recipient.find(@recipient_id)
+  end
+
+  private
+  def donor_params
+    params.require(:user).permit(
+      :subscribed
+    )
   end
 end
