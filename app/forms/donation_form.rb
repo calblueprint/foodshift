@@ -1,5 +1,5 @@
 class DonationForm < Form
-  DATETIME_FORMAT = "%m/%d/%Y %I:%M %p"
+  DATETIME_FORMAT = "%m/%d/%Y %H:%M"
 
   attr_accessor(
     :donor,
@@ -37,7 +37,6 @@ class DonationForm < Form
       donation.save!
     end
     rescue ActiveRecord::RecordInvalid => err
-      logger.error(err.to_s)
       false
   end
 
