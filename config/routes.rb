@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   scope '/donor' do
     get '/profile', to: 'donor#profile', as: :donor_profile
   end
+  get 'recipient_profile', to: 'recipient_profiles#show', as: :recipient_profile
 
   get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'
 
