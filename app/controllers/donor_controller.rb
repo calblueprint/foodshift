@@ -5,7 +5,8 @@ class DonorController < ApplicationController
   # GET /profile
   def profile
     @user = current_user
-    @donations = Donation.where("donor_id = ?", current_user.id)
+    @profile = DonorProfile.where(donor_id: current_user.id).first
+    @donations = Donation.where(donor_id: current_user.id)
     @pending_donations = @donations.where(status: 'Pending')
     @inprogress_donations = @donations.where(status: 'In Progress')
     @completed_donations = @donations.where(status: 'Completed')

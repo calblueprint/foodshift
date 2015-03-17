@@ -11,6 +11,7 @@ gem "carrierwave"
 gem "mini_magick"
 gem "fog"
 gem "simple_form"
+gem 'best_in_place', '~> 3.0.1'
 gem "figaro"
 
 # Frontend
