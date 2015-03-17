@@ -12,23 +12,14 @@ class DonorController < ApplicationController
     @completed_donations = @donations.where(status: 'Completed')
   end
 
-  def update
-    user = Donor.find(params[:id])
-    respond_to do |format|
-      if user.update_attributes(donor_params)
-        format.json { respond_with_bip(user) }
-      else
-        format.json { respond_with_bip(user) }
-      end
-    end
-  end
-
   def change_profile
+    request.format = :json # unsure why i have to coerce it to json...
     profile = DonorProfile.where(donor_id: current_user.id).first
     respond_to do |format|
+
       if profile.update_attributes(profile_params)
         format.json { respond_with_bip(profile) }
-      else
+      elsif
         format.json { respond_with_bip(profile) }
       end
     end
@@ -51,16 +42,10 @@ class DonorController < ApplicationController
   end
 
   private
-  def donor_params
-    params.require(:user).permit(
-      :subscribed
-    )
-  end
-
-  private
   def profile_params
     params.require(:donor_profile).permit(
-      :address
+      :address,
+      :phone
     )
   end
 end
