@@ -19,13 +19,17 @@
   }
 }
 
-.profile-summary-donate-link {
-  background: $white;
-  border: 1px solid $donor-profile-border-grey;
-  border-radius: 4px;
-  color: $medium-green;
-  margin: 0 auto;
-  padding: 5px 10px;
+.profile-summary-link-wrap {
+  padding: rem-calc(15px) 0;
+
+  .profile-summary-link {
+    background: $white;
+    border: 1px solid $donor-profile-border-grey;
+    border-radius: 4px;
+    color: $medium-green;
+    margin: 0 auto;
+    padding: 5px 10px;
+  }
 }
 
 .update-profile-link {
@@ -83,15 +87,6 @@
   .fa-li {
     padding-top: 2px;
   }
-
-  .inline-list-food {
-    @extend %inline-list;
-    padding-top: 0;
-  }
-
-  .additional-info-list {
-    margin-top: -20px;
-  }
 }
 
 .profile-img-wrap {
@@ -124,7 +119,8 @@
   @extend .text-center;
   color: $charcoal;
   font-size: rem-calc(24);
-  padding-bottom: rem-calc(15px);
+  padding: rem-calc(15px);
+  padding-top: 0;
 }
 
 .profile-summary-title {
@@ -226,5 +222,13 @@
 
   .donation-cancel {
     color: $red;
+  }
+}
+
+.additional-info {
+  padding-bottom: rem-calc(4px);
+
+  .additional-info-key {
+    font-weight: 500;
   }
 }

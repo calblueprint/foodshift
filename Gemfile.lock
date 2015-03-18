@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/bernat/best_in_place.git
+  revision: fd40a44656ef01425799d7e34e848057887c324e
+  specs:
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -424,6 +432,7 @@ DEPENDENCIES
   annotate
   asset_sync
   autoprefixer-rails
+  best_in_place!
   better_errors
   binding_of_caller
   cancancan (~> 1.9)
