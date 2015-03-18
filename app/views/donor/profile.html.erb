@@ -38,11 +38,11 @@
                             <li class="profile-summary-item">In progress: <span class="profile-summary-count"><%= @inprogress_donations.count %></span></li>
                             <li class="profile-summary-item">Pending: <span class="profile-summary-count"><%= @pending_donations.count %></span></li>
                           </ul>
-                          <center><%= link_to "Donate!", donations_new_path, class: "profile-summary-donate-link" %></center>
+                          <center class="profile-summary-link-wrap"><%= link_to "Donate Now", donations_new_path, class: "profile-summary-link" %></center>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="medium-10 columns">
+                        <div class="medium-11 columns">
                           <dl class="accordion" data-accordion>
                             <dd class="accordion-navigation">
                               <a href="#panel1a">Additional Information</a>
