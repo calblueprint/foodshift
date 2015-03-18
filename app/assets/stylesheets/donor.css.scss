@@ -83,15 +83,6 @@
   .fa-li {
     padding-top: 2px;
   }
-
-  .inline-list-food {
-    @extend %inline-list;
-    padding-top: 0;
-  }
-
-  .additional-info-list {
-    margin-top: -20px;
-  }
 }
 
 .profile-img-wrap {
@@ -124,7 +115,8 @@
   @extend .text-center;
   color: $charcoal;
   font-size: rem-calc(24);
-  padding-bottom: rem-calc(15px);
+  padding: rem-calc(15px);
+  padding-top: 0;
 }
 
 .profile-summary-title {
@@ -226,5 +218,13 @@
 
   .donation-cancel {
     color: $red;
+  }
+}
+
+.additional-info {
+  padding-bottom: rem-calc(4px);
+
+  .additional-info-key {
+    font-weight: 500;
   }
 }

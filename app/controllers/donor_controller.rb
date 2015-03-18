@@ -16,7 +16,6 @@ class DonorController < ApplicationController
     request.format = :json # unsure why i have to coerce it to json...
     profile = DonorProfile.where(donor_id: current_user.id).first
     respond_to do |format|
-
       if profile.update_attributes(profile_params)
         format.json { respond_with_bip(profile) }
       elsif
@@ -44,8 +43,16 @@ class DonorController < ApplicationController
   private
   def profile_params
     params.require(:donor_profile).permit(
+      :person,
+      :email,
       :address,
-      :phone
+      :phone,
+      :serves_organic_food,
+      :frequency_of_surplus,
+      :typical_food_types_served,
+      :typical_quantity_of_donation,
+      :pounds_per_week_donated,
+      :aware_of_good_samaritan_act
     )
   end
 end
