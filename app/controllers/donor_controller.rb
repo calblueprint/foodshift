@@ -41,6 +41,7 @@ class DonorController < ApplicationController
   end
 
   private
+  
   def profile_params
     params.require(:donor_profile).permit(
       :person,

@@ -27,7 +27,6 @@ Rails.application.routes.draw do
 
   put '/users/:id', to: 'users#update'
 
-
   devise_for :users
 
   get "unsubscribe" => "api#unsubscribe"
