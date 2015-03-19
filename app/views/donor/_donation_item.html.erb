@@ -1,11 +1,11 @@
 <div class="row">
   <div class="small-9 columns">
     <h4><%= d.description %></h4>
-    <% if d.status == "Completed" %>
+    <% if d.status == Donation.type_completed %>
       <b>Coordinator:</b> <%= find_transaction_coordinator(d.id).email %> | <b>Recipient:</b> <%= find_transaction_recipient(d.id).email %>  <br>
       <b>Picked up at:</b> <%= find_transaction(d.id).picked_up_at %> <br>
       <b>Delivered at:</b> <%= find_transaction(d.id).delivered_at %> <br>
-    <% elsif d.status == "In Progress" %>
+    <% elsif d.status == Donation.type_in_progress %>
       <br>
       Some kind of progress bar here...
     <% end %>
@@ -14,11 +14,11 @@
   <div class="small-3 columns">
     <div class="donation-modify">
       <span class="donation-status"><%= d.status %></span> <br>
-      <% if d.status == "Pending" %>
+      <% if d.status == Donation.type_pending %>
         <%= link_to "Cancel Donation", root_path, class: "donation-modify-link donation-cancel" %> <!-- NEEDS TO BE IMPLEMENTED -->
         <br>
         <%= link_to "Modify Donation", root_path, class: "donation-modify-link" %> <!-- NEEDS TO BE IMPLEMENTED -->
-      <% elsif d.status == "In Progress" %>
+      <% elsif d.status == Donation.type_in_progress %>
         Cannot Cancel Donation<br>
         <%= link_to "Update Donation", root_path, class: "donation-modify-link" %> <!-- NEEDS TO BE IMPLEMENTED -->
       <% end %>

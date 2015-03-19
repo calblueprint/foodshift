@@ -7,9 +7,9 @@ class DonorController < ApplicationController
     @user = current_user
     @profile = DonorProfile.where(donor_id: current_user.id).first
     @donations = Donation.where(donor_id: current_user.id)
-    @pending_donations = @donations.where(status: 'Pending')
-    @inprogress_donations = @donations.where(status: 'In Progress')
-    @completed_donations = @donations.where(status: 'Completed')
+    @pending_donations = @donations.where(status: Donation.type_pending)
+    @inprogress_donations = @donations.where(status: Donation.type_in_progress)
+    @completed_donations = @donations.where(status: Donation.type_completed)
   end
 
   def change_profile
@@ -41,7 +41,7 @@ class DonorController < ApplicationController
   end
 
   private
-  
+
   def profile_params
     params.require(:donor_profile).permit(
       :person,
