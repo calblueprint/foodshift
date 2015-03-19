@@ -57,7 +57,7 @@
             <span class="prefix">Address</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :address, required: "", placeholder: "" %>
+            <%= f.text_field :address, required: "" %>
             <small class="error">Address is required.</small>
             <%= f.hidden_field :latitude, id: "donor-address-lat" %>
             <%= f.hidden_field :longitude, id: "donor-address-lng" %>
@@ -68,7 +68,7 @@
             <span class="prefix">Date</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :date, required: "" %>
+            <%= f.text_field :date, required: "", value: Date.today.strftime("%m/%d/%Y") %>
             <small class="error">Valid date is required (MM-DD-YY).</small>
           </div>
         </div>
@@ -77,14 +77,14 @@
             <span class="prefix">From</span>
           </div>
           <div class="small-4 columns">
-            <%= f.text_field :start_time, required: "" %>
+            <%= f.text_field :start_time, required: "", value: "12:00pm" %>
             <small class="error">Valid time is required (HH:MMam/pm).</small>
           </div>
           <div class="small-2 columns">
               <span class="prefix">To</span>
           </div>
           <div class="small-4 columns">
-            <%= f.text_field :end_time, required: "" %>
+            <%= f.text_field :end_time, required: "", value: "01:00pm" %>
             <small class="error">Valid time is required (HH:MMam/pm).</small>
           </div>
         </div>
@@ -127,7 +127,7 @@
             <span class="prefix">Email</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :email, required: "" %>
+            <%= f.text_field :email, required: "", value: current_user.email %>
             <small class="error">Valid email addess is required.</small>
           </div>
         </div>
