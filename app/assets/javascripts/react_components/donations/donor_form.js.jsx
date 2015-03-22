@@ -25,7 +25,7 @@ var DonationModal = React.createClass({
                     <p>I'm the content.</p>
                     <p>That's about it, really.</p>
 
-                    <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
+                    <a className="confirm-button" onClick={this.handleSubmit2}>Confirm</a>
                 </Modal>
             </div>
         );
@@ -45,9 +45,39 @@ var DonationModal = React.createClass({
             url: window.location.href,
             dataType: 'json',
             type: 'POST',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
             data: data,
             success: function(data) {
                 console.log("Submission success!");
+                window.location.href = "/";
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(window.location.href, status, err.toString());
+            }.bind(this)
+        });
+        this.refs.modal.hide();
+    },
+    handleSubmit2: function() {
+        var data = {
+            user: {
+                email: 'donor@donor.com',
+                password: 'password',
+                remember_me: 1,
+                commit: 'Log in'
+            }
+        };
+        $.ajax({
+            url: '/users/sign_in',
+            dataType: 'json',
+            type: 'POST',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            data: data,
+            success: function(data) {
+                console.log("login success!");
                 window.location.href = "/";
             }.bind(this),
             error: function(xhr, status, err) {

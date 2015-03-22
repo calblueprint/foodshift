@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'
 
-  devise_for :users
+  devise_for :users, :controllers => { sessions: 'sessions', registrations: 'registrations' }
 
   get "unsubscribe" => "api#unsubscribe"
 
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :users
+  # resources :users
 
   # Example resource route with options:
   #   resources :products do
