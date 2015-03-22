@@ -24,6 +24,8 @@ var DonationModal = React.createClass({
                 >
                     <p>I'm the content.</p>
                     <p>That's about it, really.</p>
+
+                    <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
                 </Modal>
             </div>
         );
@@ -36,6 +38,23 @@ var DonationModal = React.createClass({
     },
     handleDoingNothing: function() {
         this.handleLog("Remember I said I'd do nothing? ...I lied!", 'danger')
+    },
+    handleSubmit: function() {
+        var data = $("#donor-form-fields").serialize();
+        $.ajax({
+            url: window.location.href,
+            dataType: 'json',
+            type: 'POST',
+            data: data,
+            success: function(data) {
+                console.log("Submission success!");
+                window.location.href = "/";
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(window.location.href, status, err.toString());
+            }.bind(this)
+        });
+        this.refs.modal.hide();
     },
     handleLog: function(message, type) {
         this.setState({
