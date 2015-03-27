@@ -133,6 +133,8 @@
                       <%= render partial: "pending", locals: { d: d } %>
                     <% elsif d.status == Donation.type_completed %>
                       <%= render partial: "completed", locals: { d: d } %>
+                    <% elsif d.status == Donation.type_canceled %>
+                      <%= render partial: "canceled", locals: { d: d } %>
                     <% end %>
                   <% end %>
                 </div>

@@ -35,6 +35,9 @@ class Donation < ActiveRecord::Base
   def self.type_completed
     "Completed"
   end
+  def self.type_canceled
+    "Canceled"
+  end
 
   # Image uploader using carrierwave
   mount_uploader :picture, DonationUploader

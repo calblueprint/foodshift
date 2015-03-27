@@ -206,6 +206,10 @@
   border-left: 10px solid $donation-pending-key;
 }
 
+.donation-item-canceled {
+  border-left: 10px solid $donation-canceled-key;
+}
+
 .donation-modify {
   float: right;
   text-align: right;
