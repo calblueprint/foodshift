@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   scope '/donation' do
-    post '/cancel', to: 'donations#cancel', as: :donations_cancel
+    get '/cancel', to: 'donations#cancel', as: :donations_cancel
   end
 
   get 'recipient_profile', to: 'recipient_profiles#show', as: :recipient_profile

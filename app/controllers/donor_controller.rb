@@ -1,6 +1,6 @@
 class DonorController < ApplicationController
   load_and_authorize_resource
-  helper_method :find_transaction, :find_transaction_coordinator, :find_transaction_recipient
+  helper_method :find_transaction, :find_transaction_coordinator, :find_transaction_recipient, :find_recipient_profile
 
   # GET /profile
   def profile
@@ -26,6 +26,10 @@ class DonorController < ApplicationController
 
   def find_transaction(donation_id)
     Transaction.where(donation_id: donation_id).first
+  end
+
+  def find_recipient_profile(recipient_id)
+    RecipientProfile.where(recipient_id: recipient_id).first
   end
 
   def find_transaction_coordinator(donation_id)

@@ -3,12 +3,8 @@
     <h4><%= d.description %></h4>
 
     <% if d.status == Donation.type_completed %>
-      <b>Coordinator:</b> <%= find_transaction_coordinator(d.id).email %> | <b>Recipient:</b> <%= find_transaction_recipient(d.id).email %>  <br>
-      <b>Picked up at:</b> <%= find_transaction(d.id).picked_up_at %> <br>
-      <b>Delivered at:</b> <%= find_transaction(d.id).delivered_at %> <br>
-    <% elsif d.status == Donation.type_in_progress %>
-      <br>
-      Some kind of progress bar here...
+      <b>Recipient:</b> <%= find_recipient_profile(find_transaction_recipient(d.id).id).contact_person %>  <br>
+      <b>Picked up at:</b> <%= find_transaction(d.id).picked_up_at %> | <b>Delivered at:</b> <%= find_transaction(d.id).delivered_at %> <br>
     <% end %>
 
   </div>
@@ -17,7 +13,7 @@
       <span class="donation-status"><%= d.status %></span> <br>
 
       <% if d.status == Donation.type_pending %>
-        <%= link_to "Cancel Donation", donations_cancel_path(d), class: "donation-modify-link donation-cancel" %> <!-- NEEDS TO BE IMPLEMENTED -->
+        <%= link_to "Cancel Donation", donations_cancel_path(d), class: "donation-modify-link donation-cancel" %>
       <% elsif d.status == Donation.type_in_progress %>
         Cannot Cancel Donation<br>
       <% end %>
