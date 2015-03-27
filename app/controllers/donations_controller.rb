@@ -31,6 +31,7 @@ class DonationsController < ApplicationController
   end
 
   private
+
   def donation_params
     params.require(:donation).permit(
       :address,

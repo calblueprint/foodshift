@@ -1,6 +1,9 @@
 class DonorController < ApplicationController
   load_and_authorize_resource
-  helper_method :find_transaction, :find_transaction_coordinator, :find_transaction_recipient, :find_recipient_profile
+  helper_method :find_transaction,
+                :find_transaction_coordinator,
+                :find_transaction_recipient,
+                :find_recipient_profile
 
   # GET /profile
   def profile
@@ -16,11 +19,7 @@ class DonorController < ApplicationController
     request.format = :json # unsure why i have to coerce it to json...
     profile = DonorProfile.where(donor_id: current_user.id).first
     respond_to do |format|
-      if profile.update_attributes(profile_params)
-        format.json { respond_with_bip(profile) }
-      elsif
-        format.json { respond_with_bip(profile) }
-      end
+      format.json { respond_with_bip(profile) }
     end
   end
 
