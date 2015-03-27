@@ -1,31 +1,34 @@
 class DonorController < ApplicationController
   load_and_authorize_resource
-  helper_method :find_transaction, :find_transaction_coordinator, :find_transaction_recipient
+  helper_method :find_transaction,
+                :find_transaction_coordinator,
+                :find_transaction_recipient,
+                :find_recipient_profile
 
   # GET /profile
   def profile
     @user = current_user
     @profile = DonorProfile.where(donor_id: current_user.id).first
     @donations = Donation.where(donor_id: current_user.id)
-    @pending_donations = @donations.where(status: 'Pending')
-    @inprogress_donations = @donations.where(status: 'In Progress')
-    @completed_donations = @donations.where(status: 'Completed')
+    @pending_donations = @donations.where(status: Donation.type_pending)
+    @inprogress_donations = @donations.where(status: Donation.type_in_progress)
+    @completed_donations = @donations.where(status: Donation.type_completed)
   end
 
   def change_profile
     request.format = :json # unsure why i have to coerce it to json...
     profile = DonorProfile.where(donor_id: current_user.id).first
     respond_to do |format|
-      if profile.update_attributes(profile_params)
-        format.json { respond_with_bip(profile) }
-      elsif
-        format.json { respond_with_bip(profile) }
-      end
+      format.json { respond_with_bip(profile) }
     end
   end
 
   def find_transaction(donation_id)
     Transaction.where(donation_id: donation_id).first
+  end
+
+  def find_recipient_profile(recipient_id)
+    RecipientProfile.where(recipient_id: recipient_id).first
   end
 
   def find_transaction_coordinator(donation_id)
@@ -41,7 +44,7 @@ class DonorController < ApplicationController
   end
 
   private
-  
+
   def profile_params
     params.require(:donor_profile).permit(
       :person,

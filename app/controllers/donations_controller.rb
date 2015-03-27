@@ -23,7 +23,15 @@ class DonationsController < ApplicationController
     end
   end
 
+  # GET /donation/cancel
+  def cancel
+    donation = Donation.find_by id: params[:format]
+    donation.update_attributes status: Donation.type_canceled
+    redirect_to donor_profile_path
+  end
+
   private
+
   def donation_params
     params.require(:donation).permit(
       :address,

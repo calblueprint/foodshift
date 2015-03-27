@@ -21,6 +21,11 @@ Rails.application.routes.draw do
     get '/profile', to: 'donor#profile', as: :donor_profile
     put '/profile', to: 'donor#change_profile', as: :donor_profile_change
   end
+
+  scope '/donation' do
+    get '/cancel', to: 'donations#cancel', as: :donations_cancel
+  end
+
   get 'recipient_profile', to: 'recipient_profiles#show', as: :recipient_profile
 
   get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'

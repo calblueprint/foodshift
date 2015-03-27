@@ -127,12 +127,14 @@
                   </div>
 
                   <% @donations.each do |d| %>
-                    <% if d.status == "In Progress" %>
+                    <% if d.status == Donation.type_in_progress %>
                       <%= render partial: "in_progress", locals: { d: d } %>
-                    <% elsif d.status == "Pending" %>
+                    <% elsif d.status == Donation.type_pending %>
                       <%= render partial: "pending", locals: { d: d } %>
-                    <% elsif d.status == "Completed" %>
+                    <% elsif d.status == Donation.type_completed %>
                       <%= render partial: "completed", locals: { d: d } %>
+                    <% elsif d.status == Donation.type_canceled %>
+                      <%= render partial: "canceled", locals: { d: d } %>
                     <% end %>
                   <% end %>
                 </div>
