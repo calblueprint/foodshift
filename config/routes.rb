@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'
 
   devise_for :users, :controllers => { sessions: 'sessions', registrations: 'registrations' }
+  get 'users/exists', to: 'users#check_user', as: :user_exists
 
   get "unsubscribe" => "api#unsubscribe"
 

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource :only => :check_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: "User was successfully created." }
@@ -49,6 +49,14 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+    end
+  end
+
+  # GET /users/exists/<email>
+  def check_user
+    @user = User.where(email: params[:email]).first
+    respond_to do |format|
+      format.json { render json: @user, :only => [:email] }
     end
   end
 
