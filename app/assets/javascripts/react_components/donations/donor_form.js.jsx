@@ -5,7 +5,7 @@ var DonationModal = React.createClass({
         return {email: null};
     },
     render: function() {
-        return _.isNull(this.state.email) ? this.renderRegister() : this.renderLogin();
+        return _.isNull(this.state.email) ? this.renderRegister() : this.renderSignIn();
     },
     renderRegister: function() {
         return (
@@ -20,14 +20,14 @@ var DonationModal = React.createClass({
             </div>
         );
     },
-    renderLogin: function(email) {
+    renderSignIn: function(email) {
         return (
             <div className="panel panel-default">
                 <Modal ref="modal"
                     show={false}
                     header="Example Modal"
                 >
-                    <p>Please Login.</p>
+                    <p>Please Sign In.</p>
                     <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
                 </Modal>
             </div>
@@ -68,24 +68,12 @@ var DonationModal = React.createClass({
         console.log(password);
         console.log(data);
 
+        _.isNull(this.state.email) ? this.handleRegister(this.state.email, password, beforeSend, data) : this.handleSignIn(this.state.email, password, beforeSend, data);
 
-        this.refs.modal.hide();
+
+        //this.refs.modal.hide();
     },
-    checkEmailExists: function(email) {
-        return $.ajax({
-            url: '/users/exists',
-            dataType: 'json',
-            type: 'GET',
-            data: {email: email},
-            success: function(data) {
-                console.log("Query success!");
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(window.location.href, status, err.toString());
-            }.bind(this)
-        });
-    },
-    handleDonation: function(data, beforeSend, onSuccess) {
+    handleDonation: function(data, beforeSend) {
         $.ajax({
             url: window.location.href,
             dataType: 'json',
@@ -117,19 +105,20 @@ var DonationModal = React.createClass({
             beforeSend: beforeSend,
             data: data,
             success: function(data) {
-                console.log("login success!");
+                console.log("Signin success!");
+                this.handleDonation(donationData, beforeSend);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(window.location.href, status, err.toString());
             }.bind(this)
         });
     },
-    handleRegister: function(email, password, password_confirmation, beforeSend, donationData) {
+    handleRegister: function(email, password, beforeSend, donationData) {
         var data = {
             user: {
                 email: email,
                 password: password,
-                password_confirmation: password_confirmation,
+                password_confirmation: password,
                 commit: 'Sign up'
             }
         };
@@ -141,6 +130,7 @@ var DonationModal = React.createClass({
             data: data,
             success: function(data) {
                 console.log("Signup success!");
+                this.handleDonation(donationData, beforeSend);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(window.location.href, status, err.toString());
