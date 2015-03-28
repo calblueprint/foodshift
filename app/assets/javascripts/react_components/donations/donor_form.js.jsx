@@ -2,10 +2,13 @@
 
 var DonationModal = React.createClass({
     getInitialState: function() {
-        return {email: null};
+        return {
+            email: null,
+            userExists: false
+        };
     },
     render: function() {
-        return _.isNull(this.state.email) ? this.renderRegister() : this.renderSignIn();
+        return this.state.userExists ? this.renderSignIn() : this.renderRegister();
     },
     renderRegister: function() {
         return (
@@ -52,9 +55,6 @@ var DonationModal = React.createClass({
     handleExternalHide: function() {
         this.refs.modal.hide()
     },
-    handleDoingNothing: function() {
-        this.handleLog("Remember I said I'd do nothing? ...I lied!", 'danger')
-    },
     handleSubmit: function() {
         var data = $("#donor-form-fields").serialize();
         var dataArray = $("#donor-form-fields").serializeArray();
@@ -64,11 +64,11 @@ var DonationModal = React.createClass({
         var beforeSend = function(xhr) {
             xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
         }
-        console.log(email);
+        console.log(this.state.email);
         console.log(password);
         console.log(data);
 
-        _.isNull(this.state.email) ? this.handleRegister(this.state.email, password, beforeSend, data) : this.handleSignIn(this.state.email, password, beforeSend, data);
+        this.state.userExists ? this.handleSignIn(this.state.email, password, beforeSend, data) : this.handleRegister(this.state.email, password, beforeSend, data);
 
 
         //this.refs.modal.hide();
@@ -95,7 +95,6 @@ var DonationModal = React.createClass({
                 email: email,
                 password: password,
                 remember_me: 1,
-                commit: 'Log in'
             }
         };
         $.ajax({
@@ -119,7 +118,7 @@ var DonationModal = React.createClass({
                 email: email,
                 password: password,
                 password_confirmation: password,
-                commit: 'Sign up'
+                type: 'Donor'
             }
         };
         $.ajax({

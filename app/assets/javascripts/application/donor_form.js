@@ -76,7 +76,7 @@ $(function() {
                 // If 'result' is null, no email was found so the user must register
                 // If 'result' is not null, then 'result' is an object {email: <email>}
                 if (donationModalInstance.isMounted()) {
-                     _.isNull(result) ? donationModalInstance.setState({email: null}) : donationModalInstance.setState({email: result.email})
+                     _.isNull(result) ? donationModalInstance.setState({email: email, userExists: false}) : donationModalInstance.setState({email: result.email, userExists: true})
                 }
             })
             .fail(function(result) {
