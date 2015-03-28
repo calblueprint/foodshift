@@ -2,30 +2,46 @@
 
 var DonationModal = React.createClass({
     getInitialState: function() {
-        return {
-            logs: []
-        }
+        return {email: null};
     },
     render: function() {
-        var logs = this.state.logs.map(function(log) {
-            return <div className={'alert alert-' + log.type}>
-                [<strong>{log.time}</strong>] {log.message}
-            </div>
-        });
+        return _.isNull(this.state.email) ? this.renderRegister() : this.renderLogin();
+    },
+    renderRegister: function() {
         return (
             <div className="panel panel-default">
                 <Modal ref="modal"
                     show={false}
                     header="Example Modal"
-                    handleShow={this.handleLog.bind(this, 'Modal about to show', 'info')}
-                    handleShown={this.handleLog.bind(this, 'Modal showing', 'success')}
-                    handleHide={this.handleLog.bind(this, 'Modal about to hide', 'warning')}
-                    handleHidden={this.handleLog.bind(this, 'Modal hidden', 'danger')}
                 >
-                    <p>I'm the content.</p>
-                    <p>That's about it, really.</p>
-
-                    <a className="confirm-button" onClick={this.handleSubmit2}>Confirm</a>
+                    <p>Please Register.</p>
+                    <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
+                </Modal>
+            </div>
+        );
+    },
+    renderLogin: function(email) {
+        return (
+            <div className="panel panel-default">
+                <Modal ref="modal"
+                    show={false}
+                    header="Example Modal"
+                >
+                    <p>Please Login.</p>
+                    <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
+                </Modal>
+            </div>
+        );
+    },
+    renderFailure: function() {
+        return (
+            <div className="panel panel-default">
+                <Modal ref="modal"
+                    show={false}
+                    header="Example Modal"
+                >
+                    <p>We're sorry, something went wrong. Please try again.</p>
+                    <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
                 </Modal>
             </div>
         );
@@ -41,13 +57,40 @@ var DonationModal = React.createClass({
     },
     handleSubmit: function() {
         var data = $("#donor-form-fields").serialize();
+        var dataArray = $("#donor-form-fields").serializeArray();
+        var email = _.find(dataArray, function(field) {return field.name === "donation[email]"}).value;
+        var password = "password";
+        var password_confirmation = password;
+        var beforeSend = function(xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+        }
+        console.log(email);
+        console.log(password);
+        console.log(data);
+
+
+        this.refs.modal.hide();
+    },
+    checkEmailExists: function(email) {
+        return $.ajax({
+            url: '/users/exists',
+            dataType: 'json',
+            type: 'GET',
+            data: {email: email},
+            success: function(data) {
+                console.log("Query success!");
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(window.location.href, status, err.toString());
+            }.bind(this)
+        });
+    },
+    handleDonation: function(data, beforeSend, onSuccess) {
         $.ajax({
             url: window.location.href,
             dataType: 'json',
             type: 'POST',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-            },
+            beforeSend: beforeSend,
             data: data,
             success: function(data) {
                 console.log("Submission success!");
@@ -57,13 +100,12 @@ var DonationModal = React.createClass({
                 console.error(window.location.href, status, err.toString());
             }.bind(this)
         });
-        this.refs.modal.hide();
     },
-    handleSubmit2: function() {
+    handleSignIn: function(email, password, beforeSend, donationData) {
         var data = {
             user: {
-                email: 'donor@donor.com',
-                password: 'password',
+                email: email,
+                password: password,
                 remember_me: 1,
                 commit: 'Log in'
             }
@@ -72,20 +114,40 @@ var DonationModal = React.createClass({
             url: '/users/sign_in',
             dataType: 'json',
             type: 'POST',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-            },
+            beforeSend: beforeSend,
             data: data,
             success: function(data) {
                 console.log("login success!");
-                window.location.href = "/";
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(window.location.href, status, err.toString());
             }.bind(this)
         });
-        this.refs.modal.hide();
     },
+    handleRegister: function(email, password, password_confirmation, beforeSend, donationData) {
+        var data = {
+            user: {
+                email: email,
+                password: password,
+                password_confirmation: password_confirmation,
+                commit: 'Sign up'
+            }
+        };
+        $.ajax({
+            url: '/users',
+            dataType: 'json',
+            type: 'POST',
+            beforeSend: beforeSend,
+            data: data,
+            success: function(data) {
+                console.log("Signup success!");
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(window.location.href, status, err.toString());
+            }.bind(this)
+        });
+    },
+
     handleLog: function(message, type) {
         this.setState({
             logs: [{
