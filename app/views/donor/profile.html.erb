@@ -1,0 +1,148 @@
+<div class="donor-dashboard-block">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="dashboard-wrap">
+        <div class="dashboard">
+          <div class="card-header">
+            <div class="row">
+              <div class="small-12 columns">
+                <span class="card-header-title">Welcome, <%= @user.email %> (User ID: <%= @user.id %>)</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-profile">
+            <div class="row">
+              <div class="small-12 columns">
+                <div class="profile-info">
+                  <div class="row">
+                    <div class="medium-4 columns">
+                      <ul class="profile-img-wrap">
+                        <li class="profile-img-item"><%= image_tag "profile_img.png", class: "profile-img" %></li>
+                      </ul>
+                      <h1 class="profile-info-title"><%= best_in_place @profile, :organization, as: :input %></h1>
+                    </div>
+                    <div class="medium-8 columns">
+                      <div class="row">
+                        <div class="medium-6 columns">
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-user"></i><%= best_in_place @profile, :person, as: :input %></li>
+                            <li><i class="fa-li fa fa-envelope-o"></i><%= best_in_place @profile, :email, as: :input %></li>
+                            <li><i class="fa-li fa fa-phone"></i><%= best_in_place @profile, :phone, as: :input %></li>
+                            <li><i class="fa-li fa fa-map-marker"></i><%= best_in_place @profile, :address, as: :input %></li>
+                          </ul>
+                        </div>
+                        <div class="medium-6 columns">
+                          <h2 class="profile-summary-title">Donation Summary</h2>
+                          <ul class="profile-summary-wrap">
+                            <li class="profile-summary-item">Completed: <span class="profile-summary-count"><%= @completed_donations.count %></span></li>
+                            <li class="profile-summary-item">In progress: <span class="profile-summary-count"><%= @inprogress_donations.count %></span></li>
+                            <li class="profile-summary-item">Pending: <span class="profile-summary-count"><%= @pending_donations.count %></span></li>
+                          </ul>
+                          <center class="profile-summary-link-wrap"><%= link_to "Donate Now", donations_new_path, class: "profile-summary-link" %></center>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="medium-11 columns">
+                          <dl class="accordion" data-accordion>
+                            <dd class="accordion-navigation">
+                              <a href="#panel1a">Additional Information</a>
+                              <div id="panel1a" class="content">
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Subscribed?</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @user, :subscribed, :as => :checkbox, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Frequency of surplus?</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :frequency_of_surplus, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Typical food types served:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :typical_food_types_served, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Typical quantity of donation:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :typical_quantity_of_donation, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Pounds per week donated:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :pounds_per_week_donated, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Aware of Good Samaritan Food Act?</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :aware_of_good_samaritan_food_act, :as => :checkbox, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                              </div>
+                            </dd>
+                          </dl>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-history">
+            <div class="row">
+              <div class="small-12 columns">
+                <div class="history-title">
+                  Donation History (<%= @donations.count %>)
+                </div>
+                <div class="donation-container">
+                  <div class="donation-key-container">
+                    <div class="row">
+                      <div class="small-12 columns">
+                        <div class="donation-key donation-key-pending">Pending</div>
+                        <div class="donation-key-description">Needs Coordinator and/or Recipient</div>
+                        <div class="donation-key donation-key-inprogress">In Progress</div>
+                        <div class="donation-key-description">Coordinator and Recipient Assigned</div>
+                        <div class="donation-key donation-key-completed">Completed</div>
+                        <div class="donation-key-description">Donation Delivered</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <% @donations.each do |d| %>
+                    <% if d.status == Donation.type_in_progress %>
+                      <%= render partial: "in_progress", locals: { d: d } %>
+                    <% elsif d.status == Donation.type_pending %>
+                      <%= render partial: "pending", locals: { d: d } %>
+                    <% elsif d.status == Donation.type_completed %>
+                      <%= render partial: "completed", locals: { d: d } %>
+                    <% elsif d.status == Donation.type_canceled %>
+                      <%= render partial: "canceled", locals: { d: d } %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

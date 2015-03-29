@@ -1,0 +1,238 @@
+@mixin clear-list-margins() {
+  margin: 0;
+  list-style-type: none;
+}
+
+@mixin card-header-arrow() {
+  display: inline-block;
+
+  .fa {
+    padding-top: 12px;
+  }
+
+  a {
+    color: $dark-grey;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.profile-summary-link-wrap {
+  padding: rem-calc(15px) 0;
+
+  .profile-summary-link {
+    background: $white;
+    border: 1px solid $donor-profile-border-grey;
+    border-radius: 4px;
+    color: $medium-green;
+    margin: 0 auto;
+    padding: 5px 10px;
+  }
+}
+
+.update-profile-link {
+  background: $donor-profile-light-grey;
+  color: $donor-profile-darker-grey;
+  padding: 8px;
+  text-decoration: none;
+  width: 100px;
+}
+
+.donor-dashboard-block {
+  @include full-width-block($off-white);
+  @include block-padding();
+  min-height: 900px;
+}
+
+.dashboard {
+  @include drop-shadow(1);
+  border: 1px solid $dark-grey;
+}
+
+.card-header {
+  @extend .text-center;
+  background-color: $medium-green;
+  border-bottom: 1px solid $dark-grey;
+
+  .card-header-title {
+    color: $white;
+    display: inline-block;
+    font-size: rem-calc(18);
+    font-weight: 400;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+
+  .card-header-arrow-left {
+    @include card-header-arrow();
+    margin-right: 30px;
+  }
+
+  .card-header-arrow-right {
+    @include card-header-arrow();
+    margin-left: 30px;
+  }
+}
+
+.card-profile {
+  background-color: $white;
+  border-bottom: 1px solid $dark-grey;
+  color: $charcoal;
+  padding-top: 30px;
+}
+
+.profile-info {
+  .fa-li {
+    padding-top: 2px;
+  }
+}
+
+.profile-img-wrap {
+  @include clear-list-margins();
+
+  .profile-img-item {
+    text-align: center;
+  }
+
+  .profile-img {
+    max-height: rem-calc(200px);
+    padding: rem-calc(15px);
+  }
+}
+
+.profile-summary-wrap {
+  @include clear-list-margins();
+}
+
+.profile-summary-item {
+  padding-left: rem-calc(50px);
+  padding-right: rem-calc(50px);
+
+  .profile-summary-count {
+    float: right;
+  }
+}
+
+.profile-info-title {
+  @extend .text-center;
+  color: $charcoal;
+  font-size: rem-calc(24);
+  padding: rem-calc(15px);
+  padding-top: 0;
+}
+
+.profile-summary-title {
+  @extend .text-center;
+  color: $charcoal;
+  font-size: rem-calc(18);
+}
+
+.card-history {
+  background-color: $white;
+
+  .history-title {
+    @extend .text-center;
+    background-color: $medium-green;
+    border-bottom: 1px solid $dark-grey;
+    color: $white;
+    font-size: rem-calc(18);
+    font-weight: 400;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+}
+
+.donation-key-container {
+  font-size: 0.8rem;
+  padding: rem-calc(15px);
+
+  .donation-key {
+    border-radius: 5px;
+    float: left;
+    padding: 5px 10px;
+    text-align: center;
+  }
+
+  .donation-key-completed {
+    background: $donation-completed-key;
+    color: $white;
+  }
+
+  .donation-key-description {
+    border-radius: 5px;
+    float: left;
+    margin-right: rem-calc(20px);
+    padding: 5px 10px;
+  }
+
+  .donation-key-inprogress {
+    background: $donation-inprogress-key;
+  }
+
+  .donation-key-pending {
+    background: $donation-pending-key;
+  }
+}
+
+.donation-item {
+  background: $donor-profile-light-grey;
+  margin: 10px 0;
+  padding: 10px;
+
+  h4 {
+    color: $medium-green;
+    font-size: rem-calc(18);
+    margin: 0 0 10px;
+    padding: 0;
+    text-align: left;
+  }
+
+  b {
+    font-weight: 400;
+  }
+}
+
+.donation-item-completed {
+  border-left: 10px solid $donation-completed-key;
+}
+
+.donation-item-inprogress {
+  border-left: 10px solid $donation-inprogress-key;
+}
+
+.donation-item-pending {
+  border-left: 10px solid $donation-pending-key;
+}
+
+.donation-item-canceled {
+  border-left: 10px solid $donation-canceled-key;
+}
+
+.donation-modify {
+  float: right;
+  text-align: right;
+
+  .donation-status {
+    float: right;
+    font-weight: 400;
+    text-align: right;
+  }
+
+  .donation-modify-link {
+    float: right;
+  }
+
+  .donation-cancel {
+    color: $red;
+  }
+}
+
+.additional-info {
+  padding-bottom: rem-calc(4px);
+
+  .additional-info-key {
+    font-weight: 500;
+  }
+}

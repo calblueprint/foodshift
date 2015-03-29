@@ -55,7 +55,7 @@
 // $rem-base: 16px;
 
 // Allows the use of rem-calc() or lower-bound() in your settings
-@import "foundation/functions";
+@import 'foundation/functions';
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
@@ -87,18 +87,18 @@ $row-width: rem-calc(1000);
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // Foodshift.net Colors
-$dark-green: #28642D;
-$medium-green: #3CA532;
-$light-green: #91BE1E;
-$tan: #C3B48C;
-$light-tan: #E1DCC8;
-$off-white: #F5F0E6;
+$dark-green: #28642d;
+$medium-green: #3ca532;
+$light-green: #91be1e;
+$tan: #c3b48c;
+$light-tan: #e1dcc8;
+$off-white: #f5f0e6;
 $charcoal: #565a5c;
 $light-grey: #f5f5f5;
 $medium-grey: #edefed;
 $dark-grey: #dce0e0;
-$white: #FFFFFF;
-$red: #CA5E5E;
+$white: #fff;
+$red: #ca5e5e;
 $light-red: scale-color($red, $lightness: 45%);
 $blue: #7caadd;
 
@@ -1455,5 +1455,16 @@ $topbar-divider-border-top: solid 1px scale-color($medium-grey, $lightness: 50%)
 // $include-table-visibility-classes: true;
 // $include-legacy-visibility-classes: true;
 // $include-accessibility-classes: true;
+
+// Donor Profile Colors
+$donation-completed-key: #3ca532;
+$donation-inprogress-key: #d0edcd;
+$donation-pending-key: #eaeaea;
+$donation-canceled-key: $light-red;
+$donor-profile-border-grey: #aaa;
+$donor-profile-donation-summary: #f8f8f8;
+$donor-profile-darker-grey: #555;
+$donor-profile-light-grey: #fbfbfb;
+$donor-profile-medium-grey: #ddd;
 
 @import 'foundation';
