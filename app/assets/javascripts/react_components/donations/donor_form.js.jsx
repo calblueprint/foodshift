@@ -69,17 +69,17 @@ var DonationModal = React.createClass({
         this.refs.modal.hide()
     },
     handleSubmit: function() {
-        var data = $("#donor-form-fields").serialize();
         var beforeSend = function(xhr) {
             xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
         }
         if (this.state.userExists) {
-            this.handleSignIn(this.state.email, this.state.password, beforeSend, data);
+            this.handleSignIn(this.state.email, this.state.password, beforeSend);
         } else {
-            this.handleRegister(this.state.email, this.state.password, beforeSend, data);
+            this.handleRegister(this.state.email, this.state.password, beforeSend);
         }
     },
-    handleDonation: function(data, beforeSend) {
+    handleDonation: function(beforeSend) {
+        var data = $("#donor-form-fields").serialize();
         $.ajax({
             url: window.location.href,
             dataType: 'json',
@@ -96,7 +96,7 @@ var DonationModal = React.createClass({
             }.bind(this)
         });
     },
-    handleSignIn: function(email, password, beforeSend, donationData) {
+    handleSignIn: function(email, password, beforeSend) {
         var data = {
             user: {
                 email: email,
@@ -111,7 +111,7 @@ var DonationModal = React.createClass({
             beforeSend: beforeSend,
             data: data,
             success: function(data) {
-                this.handleDonation(donationData, beforeSend);
+                this.handleDonation(beforeSend);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(window.location.href, status, err.toString());
@@ -119,7 +119,7 @@ var DonationModal = React.createClass({
             }.bind(this)
         });
     },
-    handleRegister: function(email, password, beforeSend, donationData) {
+    handleRegister: function(email, password, beforeSend) {
         var data = {
             user: {
                 email: email,
@@ -135,7 +135,7 @@ var DonationModal = React.createClass({
             beforeSend: beforeSend,
             data: data,
             success: function(data) {
-                this.handleDonation(donationData, beforeSend);
+                this.handleDonation(beforeSend);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(window.location.href, status, err.toString());
