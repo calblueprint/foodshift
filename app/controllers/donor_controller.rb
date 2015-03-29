@@ -8,7 +8,7 @@ class DonorController < ApplicationController
   # GET /profile
   def profile
     @user = current_user
-    @profile = DonorProfile.where(donor_id: current_user.id).first
+    @profile = DonorProfile.find_by(donor_id: current_user.id)
     @donations = Donation.where(donor_id: current_user.id)
     @pending_donations = @donations.where(status: Donation.type_pending)
     @inprogress_donations = @donations.where(status: Donation.type_in_progress)
@@ -17,7 +17,7 @@ class DonorController < ApplicationController
 
   def change_profile
     request.format = :json # unsure why i have to coerce it to json...
-    profile = DonorProfile.where(donor_id: current_user.id).first
+    profile = DonorProfile.find_by(donor_id: current_user.id)
     respond_to do |format|
       format.json { respond_with_bip(profile) }
     end

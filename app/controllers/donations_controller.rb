@@ -9,7 +9,7 @@ class DonationsController < ApplicationController
   # POST /donate
   def create
     donation_form = DonationForm.new(donation_params)
-    donation_form.donor = Donor.find(current_user.id) if user_signed_in?
+    donation_form.donor = current_user.id # this should never be nil
     respond_to do |format|
       if donation_form.create_objects
         @donation = donation_form.donation
