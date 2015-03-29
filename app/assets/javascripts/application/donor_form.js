@@ -14,9 +14,9 @@ $(function() {
         $('#donor-address-lng').val(place.geometry.location.lng());
     }
 
-    $("#scroll-arrow").click(function() {
+    $('#scroll-arrow').click(function() {
         $('html, body').animate({
-            scrollTop: $("#donor-form-food-block").offset().top
+            scrollTop: $('#donor-form-food-block').offset().top
         }, 300);
     });
 
@@ -53,7 +53,7 @@ $(function() {
             type: 'GET',
             data: {email: email},
             success: function(data) {
-                console.log("Query success!");
+                // console.log('Query success!');
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(window.location.href, status, err.toString());
@@ -67,22 +67,22 @@ $(function() {
             toastr.error('There was an error with your submission');
         })
         .on('valid.fndtn.abide', function () {
-            var dataArray = $("#donor-form-fields").serializeArray();
-            var email = _.find(dataArray, function(field) {return field.name === "donation[email]"}).value;
+            var dataArray = $('#donor-form-fields').serializeArray();
+            var email = _.find(dataArray, function(field) {return field.name === 'donation[email]'}).value;
 
             checkEmailExists(email)
             .done(function(result) {
-                console.log(result);
+                // console.log(result);
                 // If 'result' is null, no email was found so the user must register
                 // If 'result' is not null, then 'result' is an object {email: <email>}
                 if (donationModalInstance.isMounted()) {
-                     _.isNull(result) ? donationModalInstance.setState({email: email, userExists: false}) : donationModalInstance.setState({email: result.email, userExists: true})
+                     _.isNull(result) ? donationModalInstance.setState({email: email, userExists: false}) : donationModalInstance.setState({email: email, userExists: true})
                 }
+                donationModalInstance.handleShowModal();
             })
             .fail(function(result) {
-                console.error(result);
+                toastr.error("We're sorry, something went wrong. Please try again.");
             });
 
-            donationModalInstance.handleShowModal();
         });
 });

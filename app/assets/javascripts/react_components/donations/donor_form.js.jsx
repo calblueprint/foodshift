@@ -3,51 +3,64 @@
 var DonationModal = React.createClass({
     getInitialState: function() {
         return {
-            email: null,
+            email: '',
+            password: '',
             userExists: false
         };
     },
     render: function() {
-        return this.state.userExists ? this.renderSignIn() : this.renderRegister();
-    },
-    renderRegister: function() {
+        var validPassword = this.state.password.length >= 8;
+        var buttonClasses = React.addons.classSet({
+            'success-button': true,
+            'disabled': !validPassword
+        });
+        var passwordClasses = React.addons.classSet({
+            'error': !validPassword
+        });
+        var passwordError = validPassword ? null : (
+            <small className="error">Password must be at least 8 characters long.</small>
+        );
+        var modalHeader = this.state.userExists ? 'Sign In' : 'Register';
+        var modalText = this.state.userExists ? (
+            <p>We saw that you've donated food before using an account with this email address. Sign in to finish submitting the donation.</p>
+        ) : (
+            <p>It looks like this is your first time donating. Create an account to finish submitting the donation.</p>
+        );
+
         return (
             <div className="panel panel-default">
                 <Modal ref="modal"
                     show={false}
-                    header="Example Modal"
+                    header={modalHeader}
                 >
-                    <p>Please Register.</p>
-                    <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
+                    {modalText}
+                    <div className="row collapse">
+                        <div className="small-3 large-2 columns">
+                          <span className="prefix">Email</span>
+                        </div>
+                        <div className="small-9 large-10 columns">
+                          <input type="text" value={this.state.email} readOnly/>
+                        </div>
+                    </div>
+                    <div className="row collapse">
+                        <div className="small-3 large-2 columns">
+                          <span className="prefix">Password</span>
+                        </div>
+                        <div className="small-9 large-10 columns">
+                          <input type="password" className={passwordClasses} value={this.state.password} onChange={this.handlePasswordChange}/>
+                          {passwordError}
+                        </div>
+                    </div>
+                    <div className="text-center">
+                        <a className={buttonClasses} onClick={validPassword ? this.handleSubmit : null}>Confirm</a>
+                    </div>
                 </Modal>
             </div>
         );
+
     },
-    renderSignIn: function(email) {
-        return (
-            <div className="panel panel-default">
-                <Modal ref="modal"
-                    show={false}
-                    header="Example Modal"
-                >
-                    <p>Please Sign In.</p>
-                    <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
-                </Modal>
-            </div>
-        );
-    },
-    renderFailure: function() {
-        return (
-            <div className="panel panel-default">
-                <Modal ref="modal"
-                    show={false}
-                    header="Example Modal"
-                >
-                    <p>We're sorry, something went wrong. Please try again.</p>
-                    <a className="confirm-button" onClick={this.handleSubmit}>Confirm</a>
-                </Modal>
-            </div>
-        );
+    handlePasswordChange: function(event) {
+        this.setState({password: event.target.value});
     },
     handleShowModal: function() {
         this.refs.modal.show()
@@ -57,21 +70,14 @@ var DonationModal = React.createClass({
     },
     handleSubmit: function() {
         var data = $("#donor-form-fields").serialize();
-        var dataArray = $("#donor-form-fields").serializeArray();
-        var email = _.find(dataArray, function(field) {return field.name === "donation[email]"}).value;
-        var password = "password";
-        var password_confirmation = password;
         var beforeSend = function(xhr) {
             xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
         }
-        console.log(this.state.email);
-        console.log(password);
-        console.log(data);
-
-        this.state.userExists ? this.handleSignIn(this.state.email, password, beforeSend, data) : this.handleRegister(this.state.email, password, beforeSend, data);
-
-
-        //this.refs.modal.hide();
+        if (this.state.userExists) {
+            this.handleSignIn(this.state.email, this.state.password, beforeSend, data);
+        } else {
+            this.handleRegister(this.state.email, this.state.password, beforeSend, data);
+        }
     },
     handleDonation: function(data, beforeSend) {
         $.ajax({
@@ -81,11 +87,12 @@ var DonationModal = React.createClass({
             beforeSend: beforeSend,
             data: data,
             success: function(data) {
-                console.log("Submission success!");
-                window.location.href = "/";
+                toastr.success('Submission success!');
+                window.location.href = '/';
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(window.location.href, status, err.toString());
+                toastr.error(xhr.responseJSON.error);
             }.bind(this)
         });
     },
@@ -104,11 +111,11 @@ var DonationModal = React.createClass({
             beforeSend: beforeSend,
             data: data,
             success: function(data) {
-                console.log("Signin success!");
                 this.handleDonation(donationData, beforeSend);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(window.location.href, status, err.toString());
+                toastr.error(xhr.responseJSON.error);
             }.bind(this)
         });
     },
@@ -128,23 +135,13 @@ var DonationModal = React.createClass({
             beforeSend: beforeSend,
             data: data,
             success: function(data) {
-                console.log("Signup success!");
                 this.handleDonation(donationData, beforeSend);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(window.location.href, status, err.toString());
+                toastr.error(xhr.responseJSON.error);
             }.bind(this)
         });
-    },
-
-    handleLog: function(message, type) {
-        this.setState({
-            logs: [{
-                type: type,
-                time: new Date().toLocaleTimeString(),
-                message: message
-            }].concat(this.state.logs.slice(0, 3))
-        })
     }
 });
 
