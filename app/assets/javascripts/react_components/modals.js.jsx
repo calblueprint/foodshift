@@ -126,7 +126,6 @@ var ExampleApp = React.createClass({
                 <Modal ref="modal"
                     show={false}
                     header="Example Modal"
-                    buttons={buttons}
                     handleShow={this.handleLog.bind(this, 'Modal about to show', 'info')}
                     handleShown={this.handleLog.bind(this, 'Modal showing', 'success')}
                     handleHide={this.handleLog.bind(this, 'Modal about to hide', 'warning')}

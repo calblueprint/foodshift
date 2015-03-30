@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<%= simple_form_for :donation, :html => { :"data-abide" => "", :multipart => true } do |f| %>
+<%= simple_form_for :donation, :html => { :id => "donor-form-fields", :"data-abide" => "ajax", :multipart => true } do |f| %>
   <div id="donor-form-food-block">
     <div class="row">
       <div class="small-12 columns">
@@ -32,6 +32,7 @@
         <div class="row">
           <div class="small-6 columns">
             <%= f.file_field :picture, required: "" %>
+            <small class="error">Picture is required.</small>
           </div>
           <div class="small-6 columns">
             <span>Upload a picture of your donation!</span>
@@ -163,8 +164,12 @@
       </div>
     </div>
   </div>
-
 <% end %>
 
+<div id="donation-modal"></div>
+
+
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places" %>
+<%= javascript_include_tag "react_components/modals" %>
+<%= javascript_include_tag "react_components/donations/donor_form" %>
 <%= javascript_include_tag "application/donor_form" %>

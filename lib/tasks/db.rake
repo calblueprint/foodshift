@@ -151,7 +151,11 @@ def create_transactions(num_rows)
     Transaction.create!(
       donation_id: Donation.offset(rand(Donation.count)).first.id,
       recipient_id: Recipient.offset(rand(Recipient.count)).first.id,
-      coordinator_id: Coordinator.offset(rand(Coordinator.count)).first.id
+      coordinator_id: Coordinator.offset(rand(Coordinator.count)).first.id,
+      delivered_at: Faker::Date.between(1.days.ago, Date.today),
+      picked_up_at: Faker::Date.between(4.days.ago, 1.days.ago),
+      created_at: Faker::Date.between(7.days.ago, 4.days.ago),
+      updated_at: Faker::Date.between(7.days.ago, 4.days.ago),
     )
   end
 end

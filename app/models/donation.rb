@@ -26,6 +26,19 @@ class Donation < ActiveRecord::Base
   belongs_to :donor
   nilify_blanks
 
+  def self.type_pending
+    "Pending"
+  end
+  def self.type_in_progress
+    "In Progress"
+  end
+  def self.type_completed
+    "Completed"
+  end
+  def self.type_canceled
+    "Canceled"
+  end
+
   # Image uploader using carrierwave
   mount_uploader :picture, DonationUploader
 end

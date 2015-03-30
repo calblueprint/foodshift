@@ -263,7 +263,7 @@ var Delivery = React.createClass({
     }
 });
 
-React.renderComponent(
+React.render(
     <DeliverDashboard />,
     document.getElementById('deliver-content')
 );
