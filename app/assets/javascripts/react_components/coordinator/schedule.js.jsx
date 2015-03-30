@@ -167,7 +167,7 @@ var DonationInfo = React.createClass({
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul additional-info-list">
-                            {this.props.donation.can_dropoff && <li><i class="fa fa-car"></i><p>This donor can drop off the donation!</p></li>}
+                            {this.props.donation.can_dropoff && <li><i className="fa fa-car"></i><p>This donor can drop off the donation!</p></li>}
                             <li>
                                 <i className="fa-li fa fa-info-circle"></i>
                                 <p>{this.renderAdditionalInfo()}</p>
@@ -414,7 +414,7 @@ var Recipient = React.createClass({
     },
 });
 
-React.renderComponent(
+React.render(
     <ScheduleDashboard />,
     document.getElementById('schedule-content')
 );
