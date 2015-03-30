@@ -109,7 +109,7 @@
             <span class="prefix">Name</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :person, required: "" %>
+            <%= f.text_field :person, required: "", value: @profile.person %>
             <small class="error">Name is required.</small>
           </div>
         </div>
