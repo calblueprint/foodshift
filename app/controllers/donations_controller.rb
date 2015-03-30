@@ -4,6 +4,8 @@ class DonationsController < ApplicationController
   # GET /donate
   def new
     gon.isSignedInOnLoad = !current_user.nil?
+    @user = current_user
+    @profile = DonorProfile.find_by(donor_id: current_user.id)
   end
 
   # POST /donate

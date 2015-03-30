@@ -58,7 +58,7 @@
             <span class="prefix">Address</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :address, required: "" %>
+            <%= f.text_field :address, required: "", value: @profile.address %>
             <small class="error">Address is required.</small>
             <%= f.hidden_field :latitude, id: "donor-address-lat" %>
             <%= f.hidden_field :longitude, id: "donor-address-lng" %>
@@ -119,7 +119,7 @@
             <span class="prefix">Organization/Company Name</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :organization, required: "" %>
+            <%= f.text_field :organization, required: "", value: @profile.organization %>
             <small class="error">Organization is required.</small>
           </div>
         </div>
@@ -137,7 +137,7 @@
             <span class="prefix">Phone</span>
           </div>
           <div class="small-9 columns">
-            <%= f.telephone_field :phone, pattern: "phone", required: "" %>
+            <%= f.telephone_field :phone, pattern: "phone", required: "", value: @profile.phone %>
             <small class="error">Valid phone number is required.</small>
           </div>
         </div>
