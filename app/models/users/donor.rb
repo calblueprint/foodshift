@@ -28,6 +28,7 @@
 
 class Donor < User
   has_one :donor_profile, class_name: "DonorProfile"
+  has_many :donations
 
   after_create :create_donor_profile
   def self.model_name
