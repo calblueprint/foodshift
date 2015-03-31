@@ -43,16 +43,25 @@ class CoordinatorController < ApplicationController
 
   def match
     respond_to do |format|
+      donation_id = match_params[:donation_id]
+      recipient_id = match_params[:recipient_id]
       begin
         ActiveRecord::Base.transaction do
-          Interest.destroy_all(donation_id: match_params[:donation_id])
-          Transaction.create(donation_id: match_params[:donation_id],
-                             recipient_id: match_params[:recipient_id])
+          Interest.destroy_all(donation_id: donation_id)
+          Transaction.create(donation_id: donation_id,
+                             recipient_id: recipient_id)
         end
+
+        @donation = Donation.find_by(id: donation_id)
+        @donor_profile = DonorProfile.find_by(donor_id: donation_id)
+        @recipient_profile = RecipientProfile.find_by(recipient_id: recipient_id)
+        UserMailer.coordinator_match(@donation, donor_id, recipient_id)
+
         format.json { render json: {}, status: :created }
-      rescue ActiveRecord::ActiveRecordError
-        # TODO: What to do to handle this
-        format.json { render json: {}, status: :unprocessable_entity }
+
+        rescue ActiveRecord::ActiveRecordError
+          # TODO: What to do to handle this
+          format.json { render json: {}, status: :unprocessable_entity }
       end
     end
   end
