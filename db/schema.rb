@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317025659) do
+ActiveRecord::Schema.define(version: 20150331023246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150317025659) do
     t.text     "challenges"
     t.decimal  "longitude"
     t.decimal  "latitude"
+    t.string   "contact_email"
   end
 
   add_index "recipient_profiles", ["recipient_id"], name: "index_recipient_profiles_on_recipient_id", using: :btree

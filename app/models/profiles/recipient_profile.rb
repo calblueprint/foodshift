@@ -23,6 +23,7 @@
 #  challenges             :text
 #  longitude              :decimal(, )
 #  latitude               :decimal(, )
+#  contact_email          :string(255)
 #
 # Indexes
 #

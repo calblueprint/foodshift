@@ -64,6 +64,7 @@ def create_recipients(num_rows)
     recipient_profile.org501c3 = Faker::Number.number(5)
     recipient_profile.contact_person = Faker::Name.name
     recipient_profile.contact_person_phone = Faker::PhoneNumber.phone_number
+    recipient_profile.contact_email = Faker::Internet.email
     recipient_profile.hrs_of_operation = Faker::Lorem.word
     recipient_profile.num_people_served = Faker::Number.number(3)
     recipient_profile.kitchen = [true, false].sample
