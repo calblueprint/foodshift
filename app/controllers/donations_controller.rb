@@ -5,7 +5,9 @@ class DonationsController < ApplicationController
   def new
     gon.isSignedInOnLoad = !current_user.nil?
     @user = current_user
-    @profile = DonorProfile.find_by(donor_id: current_user.id)
+    if !@user.nil?
+      @profile = DonorProfile.find_by(donor_id: current_user.id)
+    end
   end
 
   # POST /donate
