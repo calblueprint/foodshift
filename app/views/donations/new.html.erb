@@ -58,7 +58,7 @@
             <span class="prefix">Address</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :address, required: "", value: @profile.address %>
+            <%= f.text_field :address, required: "", value: @profile != nil ? @profile.address : "" %>
             <small class="error">Address is required.</small>
             <%= f.hidden_field :latitude, id: "donor-address-lat" %>
             <%= f.hidden_field :longitude, id: "donor-address-lng" %>
@@ -110,7 +110,7 @@
             <span class="prefix">Name</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :person, required: "", value: @profile.person %>
+            <%= f.text_field :person, required: "", value: @profile != nil ? @profile.person : "" %>
             <small class="error">Name is required.</small>
           </div>
         </div>
@@ -119,7 +119,7 @@
             <span class="prefix">Organization/Company Name</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :organization, required: "", value: @profile.organization %>
+            <%= f.text_field :organization, required: "", value: @profile != nil ? @profile.organization : "" %>
             <small class="error">Organization is required.</small>
           </div>
         </div>
@@ -128,7 +128,7 @@
             <span class="prefix">Email</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :email, required: "", value: current_user.email %>
+            <%= f.text_field :email, required: "", value: current_user != nil ? current_user.email : "" %>
             <small class="error">Valid email addess is required.</small>
           </div>
         </div>
@@ -137,7 +137,7 @@
             <span class="prefix">Phone</span>
           </div>
           <div class="small-9 columns">
-            <%= f.telephone_field :phone, pattern: "phone", required: "", value: @profile.phone %>
+            <%= f.telephone_field :phone, pattern: "phone", required: "", value: @profile != nil ? @profile.phone : "" %>
             <small class="error">Valid phone number is required.</small>
           </div>
         </div>
