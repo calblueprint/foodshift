@@ -13,5 +13,8 @@ class Ability
     if user.type == User.type_donor
       can :manage, [Donor, Donation]
     end
+    if user.type == User.type_shifter
+      can :manage, [Shifter]
+    end
   end
 end

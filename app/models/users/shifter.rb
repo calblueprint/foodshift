@@ -26,22 +26,8 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  def self.type_donor
-    "Donor"
-  end
-  def self.type_recipient
-    "Recipient"
-  end
-  def self.type_coordinator
-    "Coordinator"
-  end
-  def self.type_shifter
-    "Shifter"
+class Shifter < User
+  def self.model_name
+    User.model_name
   end
 end
