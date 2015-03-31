@@ -3,6 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def donation_available(recipient_ids, donation)
     @donation = donation
+    @profile = DonorProfile.find_by donor_id: donation.donor_id
     recipient_ids.each do |r|
       @recipient = Recipient.find(r)
       @email = @recipient.email
@@ -19,6 +20,7 @@ class UserMailer < ActionMailer::Base
   def coordinator_email(recipients, donation)
     if recipients.length > 0
       @donation = donation
+      @profile = DonorProfile.find_by donor_id: donation.donor_id
       mail(to: recipients, subject: "(Coordinator) Donation Posted!")
     end
   end

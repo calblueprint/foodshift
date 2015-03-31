@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource :only => :check_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: "User was successfully created." }
@@ -35,20 +35,28 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    user = User.find(params[:id])
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
+      if user.update_attributes(user_params)
+        format.json { respond_with_bip(user) }
       else
-        format.html { render :edit }
+        format.json { respond_with_bip(user) }
       end
     end
   end
-
   # DELETE /users/1
   def destroy
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+    end
+  end
+
+  # GET /users/exists/<email>
+  def check_user
+    @user = User.where(email: params[:email]).first
+    respond_to do |format|
+      format.json { render json: @user, :only => [:email] }
     end
   end
 
@@ -60,6 +68,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :type)
+    params.require(:user).permit(:email, :type, :subscribed)
   end
 end

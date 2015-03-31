@@ -26,6 +26,11 @@ def create_donors(num_rows)
     donor.save!
 
     donor_profile = DonorProfile.find_or_initialize_by(donor_id: donor.id)
+    donor_profile.organization = Faker::Company.name
+    donor_profile.address = Faker::Address.street_address
+    donor_profile.person = Faker::Name.name
+    donor_profile.phone = Faker::PhoneNumber.phone_number
+    donor_profile.email = Faker::Internet.email
     donor_profile.reason_for_surplus = Faker::Lorem.sentence(2)
     donor_profile.serves_organic_food = [true, false].sample
     donor_profile.frequency_of_surplus = Faker::Lorem.sentence(2)
@@ -123,11 +128,6 @@ def create_donations_and_interests(num_rows)
     donation = Donation.create!(
       status: ["In Progress", "Pending", "Completed"].sample,
       donor_id: [1, 2, 3, 4, 5].sample,
-      organization: Faker::Company.name,
-      address: Faker::Address.street_address,
-      person: Faker::Name.name,
-      phone: Faker::PhoneNumber.phone_number,
-      email: Faker::Internet.email,
       refrigeration: [true, false].sample,
       window_start: Faker::Date.between(2.days.ago, 1.days.ago),
       window_end: Faker::Date.between(1.days.ago, Date.today),
@@ -151,7 +151,11 @@ def create_transactions(num_rows)
     Transaction.create!(
       donation_id: Donation.offset(rand(Donation.count)).first.id,
       recipient_id: Recipient.offset(rand(Recipient.count)).first.id,
-      coordinator_id: Coordinator.offset(rand(Coordinator.count)).first.id
+      coordinator_id: Coordinator.offset(rand(Coordinator.count)).first.id,
+      delivered_at: Faker::Date.between(1.days.ago, Date.today),
+      picked_up_at: Faker::Date.between(4.days.ago, 1.days.ago),
+      created_at: Faker::Date.between(7.days.ago, 4.days.ago),
+      updated_at: Faker::Date.between(7.days.ago, 4.days.ago),
     )
   end
 end

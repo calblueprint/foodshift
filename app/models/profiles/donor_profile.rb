@@ -14,6 +14,11 @@
 #  pounds_per_week_donated          :integer
 #  aware_of_good_samaritan_food_act :boolean
 #  donated_before                   :boolean
+#  organization                     :string(255)
+#  address                          :string(255)
+#  person                           :string(255)
+#  phone                            :string(255)
+#  email                            :string(255)
 #
 # Indexes
 #

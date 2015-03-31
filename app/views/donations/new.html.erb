@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<%= simple_form_for :donation, :html => { :"data-abide" => "", :multipart => true } do |f| %>
+<%= simple_form_for :donation, :html => { :id => "donor-form-fields", :"data-abide" => "ajax", :multipart => true } do |f| %>
   <div id="donor-form-food-block">
     <div class="row">
       <div class="small-12 columns">
@@ -32,6 +32,7 @@
         <div class="row">
           <div class="small-6 columns">
             <%= f.file_field :picture, required: "" %>
+            <small class="error">Picture is required.</small>
           </div>
           <div class="small-6 columns">
             <span>Upload a picture of your donation!</span>
@@ -57,7 +58,7 @@
             <span class="prefix">Address</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :address, required: "", placeholder: "" %>
+            <%= f.text_field :address, required: "", value: !@profile.nil? ? @profile.address : "" %>
             <small class="error">Address is required.</small>
             <%= f.hidden_field :latitude, id: "donor-address-lat" %>
             <%= f.hidden_field :longitude, id: "donor-address-lng" %>
@@ -68,7 +69,7 @@
             <span class="prefix">Date</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :date, required: "" %>
+            <%= f.text_field :date, required: "", value: Date.today.strftime("%m/%d/%Y") %>
             <small class="error">Valid date is required (MM-DD-YY).</small>
           </div>
         </div>
@@ -77,14 +78,14 @@
             <span class="prefix">From</span>
           </div>
           <div class="small-4 columns">
-            <%= f.text_field :start_time, required: "" %>
+            <%= f.text_field :start_time, required: "", value: "12:00pm" %>
             <small class="error">Valid time is required (HH:MMam/pm).</small>
           </div>
           <div class="small-2 columns">
               <span class="prefix">To</span>
           </div>
           <div class="small-4 columns">
-            <%= f.text_field :end_time, required: "" %>
+            <%= f.text_field :end_time, required: "", value: "01:00pm" %>
             <small class="error">Valid time is required (HH:MMam/pm).</small>
           </div>
         </div>
@@ -109,7 +110,7 @@
             <span class="prefix">Name</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :person, required: "" %>
+            <%= f.text_field :person, required: "", value: !@profile.nil? ? @profile.person : "" %>
             <small class="error">Name is required.</small>
           </div>
         </div>
@@ -118,7 +119,7 @@
             <span class="prefix">Organization/Company Name</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :organization, required: "" %>
+            <%= f.text_field :organization, required: "", value: !@profile.nil? ? @profile.organization : "" %>
             <small class="error">Organization is required.</small>
           </div>
         </div>
@@ -127,7 +128,7 @@
             <span class="prefix">Email</span>
           </div>
           <div class="small-9 columns">
-            <%= f.text_field :email, required: "" %>
+            <%= f.text_field :email, required: "", value: !current_user.nil? ? current_user.email : "" %>
             <small class="error">Valid email addess is required.</small>
           </div>
         </div>
@@ -136,7 +137,7 @@
             <span class="prefix">Phone</span>
           </div>
           <div class="small-9 columns">
-            <%= f.telephone_field :phone, pattern: "phone", required: "" %>
+            <%= f.telephone_field :phone, pattern: "phone", required: "", value: !@profile.nil? ? @profile.phone : "" %>
             <small class="error">Valid phone number is required.</small>
           </div>
         </div>
@@ -163,8 +164,12 @@
       </div>
     </div>
   </div>
-
 <% end %>
 
+<div id="donation-modal"></div>
+
+
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places" %>
+<%= javascript_include_tag "react_components/modals" %>
+<%= javascript_include_tag "react_components/donations/donor_form" %>
 <%= javascript_include_tag "application/donor_form" %>

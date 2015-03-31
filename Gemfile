@@ -11,13 +11,14 @@ gem "carrierwave"
 gem "mini_magick"
 gem "fog"
 gem "simple_form"
+gem 'best_in_place', github: 'bernat/best_in_place'
 gem "figaro"
 
 # Frontend
 gem "sass-rails", "4.0.3"
 gem "jquery-rails"
 gem "foundation-rails", "~>5.4.5"
-gem "react-rails", "~> 0.11.1.0"
+gem "react-rails", "~> 0.13.0.0"
 gem "underscore-rails"
 gem "underscore-string-rails"
 gem "uglifier", ">= 1.3.0"

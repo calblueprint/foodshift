@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/bernat/best_in_place.git
+  revision: fd40a44656ef01425799d7e34e848057887c324e
+  specs:
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -317,11 +325,11 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    react-rails (0.11.1.0)
+    react-rails (0.13.0.0)
       execjs
       rails (>= 3.1)
-      react-source (= 0.11.1)
-    react-source (0.11.1)
+      react-source (= 0.13.0)
+    react-source (0.13.0)
     request_store (1.1.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
@@ -424,6 +432,7 @@ DEPENDENCIES
   annotate
   asset_sync
   autoprefixer-rails
+  best_in_place!
   better_errors
   binding_of_caller
   cancancan (~> 1.9)
@@ -453,7 +462,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.1.0)
   rails_12factor
-  react-rails (~> 0.11.1.0)
+  react-rails (~> 0.13.0.0)
   rspec-rails (~> 3.1.0)
   rubocop
   sass-rails (= 4.0.3)
