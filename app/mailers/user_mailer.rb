@@ -24,4 +24,12 @@ class UserMailer < ActionMailer::Base
       mail(to: recipients, subject: "(Coordinator) Donation Posted!")
     end
   end
+
+  def coordinator_match(donation, donor_id, recipient_id)
+    @donation = donation
+    @donor_profile = DonorProfile.find_by donor_id: donor_id
+    @recipient_profile = RecipientProfile.find_by recipient_id: recipient_id
+    mail(to: @recipient_profile.contact_email, subject: "(Recipient) Match made!")
+    mail(to: @donor_profile.email, subject: "(Donor) Match made!")
+  end
 end
