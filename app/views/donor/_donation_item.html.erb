@@ -3,7 +3,8 @@
     <h4><%= d.description %></h4>
     <% if d.status == Donation.type_completed %>
       <b>Recipient:</b> <%= find_recipient_profile(find_transaction_recipient(d.id).id).contact_person %>  <br>
-      <b>Picked up at:</b> <%= find_transaction(d.id).picked_up_at %> | <b>Delivered at:</b> <%= find_transaction(d.id).delivered_at %> <br>
+      <b>Picked up at:</b> <%= find_transaction(d.id).picked_up_at.strftime("%I:%M %p %A, %B %d, %Y") %> <br>
+      <b>Delivered at:</b> <%= find_transaction(d.id).delivered_at.strftime("%I:%M %p %A, %B %d, %Y") %> <br>
     <% end %>
 
   </div>

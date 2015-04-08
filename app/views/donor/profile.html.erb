@@ -99,7 +99,6 @@
                             </dd>
                           </dl>
                         </div>
->>>>>>> master
                       </div>
                     </div>
                   </div>
@@ -124,28 +123,15 @@
                       </div>
                     </div>
                   </div>
-
-<<<<<<< HEAD
                   <div class="donation-container">
                     <% @donations.each do |d| %>
-                    <% if d.status == "In Progress" %>
-                    <%= render partial: "in_progress", locals: { d: d } %>
-                    <% elsif d.status == "Pending" %>
-                    <%= render partial: "pending", locals: { d: d } %>
-                    <% elsif d.status == "Completed" %>
-                    <%= render partial: "completed", locals: { d: d } %>
-                    <% end %>
-=======
-                  <% @donations.each do |d| %>
-                    <% if d.status == Donation.type_in_progress %>
-                      <%= render partial: "in_progress", locals: { d: d } %>
-                    <% elsif d.status == Donation.type_pending %>
-                      <%= render partial: "pending", locals: { d: d } %>
-                    <% elsif d.status == Donation.type_completed %>
-                      <%= render partial: "completed", locals: { d: d } %>
-                    <% elsif d.status == Donation.type_canceled %>
-                      <%= render partial: "canceled", locals: { d: d } %>
->>>>>>> master
+                      <% if d.status == "In Progress" %>
+                        <%= render partial: "in_progress", locals: { d: d } %>
+                      <% elsif d.status == "Pending" %>
+                        <%= render partial: "pending", locals: { d: d } %>
+                      <% elsif d.status == "Completed" %>
+                        <%= render partial: "completed", locals: { d: d } %>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>
@@ -157,8 +143,3 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-
-<div class="donation-profile-filler"></div>
-=======
->>>>>>> master
