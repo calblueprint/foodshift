@@ -29,7 +29,7 @@ class UserMailer < ActionMailer::Base
     @donation = donation
     @donor_profile = DonorProfile.find_by donor_id: donor_id
     @recipient_profile = RecipientProfile.find_by recipient_id: recipient_id
-    mail(to: @recipient_profile.email, subject: "(Recipient) Match made!")
+    mail(to: @recipient_profile.contact_email, subject: "(Recipient) Match made!")
     mail(to: @donor_profile.email, subject: "(Donor) Match made!")
   end
 end
