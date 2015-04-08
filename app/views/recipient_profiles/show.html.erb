@@ -1,1 +1,50 @@
-RECIPIENT PROFILE!
+<div class="donor-dashboard-block">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="dashboard-wrap">
+        <div class="dashboard">
+          <div class="card-header">
+            <div class="row">
+              <div class="small-12 columns">
+                <span class="card-header-title">Welcome, <%= @user.email %> (User ID: <%= @user.id %>)</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-profile">
+            <div class="row">
+              <div class="small-12 columns">
+                <div class="profile-info">
+                  <div class="row">
+                    <div class="medium-4 columns">
+                      <ul class="profile-img-wrap">
+                        <li class="profile-img-item"><%= image_tag "profile_img.png", class: "profile-img" %></li>
+                      </ul>
+                    </div>
+                    <div class="medium-8 columns">
+                      <div class="row">
+                        <div class="medium-6 columns">
+                          <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-user"></i><%= best_in_place @profile, :contact_person, as: :input %></li>
+                            <li><i class="fa-li fa fa-phone"></i><%= best_in_place @profile, :contact_person_phone, as: :input %></li>
+                            <li><i class="fa-li fa fa-map-marker"></i><%= best_in_place @profile, :address, as: :input %></li>
+                          </ul>
+                        </div>
+                        <div class="medium-6 columns">
+                          <h2 class="profile-summary-title">Donation Summary</h2>
+                          <ul class="profile-summary-wrap">
+                            <li class="profile-summary-item">Received: <span class="profile-summary-count"><%= @received_donations.count %></span></li>
+                            <li class="profile-summary-item">Requested: <span class="profile-summary-count"><%= @requested_donations.count %></span></li>
+                          </ul>
+                          <center class="profile-summary-link-wrap"><%= link_to "Donate Now", donations_new_path, class: "profile-summary-link" %></center>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

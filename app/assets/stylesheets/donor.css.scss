@@ -47,7 +47,7 @@
 }
 
 .dashboard {
-  @include drop-shadow(1);
+  // @include drop-shadow(1);
   border: 1px solid $dark-grey;
 }
 
