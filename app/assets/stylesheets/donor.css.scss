@@ -238,10 +238,10 @@
 }
 
 .best_in_place:hover {
-    cursor: pointer;
-    color: white;
-    background-color: $medium-green;
-    border-radius: 4px;
-    padding-left: rem-calc(5px);
-    padding-right: rem-calc(5px);
+  background-color: $medium-green;
+  border-radius: 4px;
+  color: $white;
+  cursor: pointer;
+  padding-left: rem-calc(5px);
+  padding-right: rem-calc(5px);
 }
