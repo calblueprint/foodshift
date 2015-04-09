@@ -57,8 +57,10 @@ var DonationHistory = React.createClass({
               </div>
               <div className="small-3 columns">
                 <div className="donation-modify">
-                  <span className="donation-status">{donation.status}</span>
-                  <span>Cannot Cancel Donation</span>
+                  <div className="donation-status">
+                    <p><strong>{donation.status}</strong></p>
+                  </div>
+                  <p>Cannot Cancel Donation</p>
                 </div>
               </div>
             </div>
@@ -74,7 +76,9 @@ var DonationHistory = React.createClass({
               </div>
               <div className="small-3 columns">
                 <div className="donation-modify">
-                  <span className="donation-status">{donation.status}</span>
+                  <div className="donation-status">
+                    <p><strong>{donation.status}</strong></p>
+                  </div>
                   <a href={"/donation/cancel.".concat(donation.id)} className="donation-modify-link donation-cancel">Cancel Donation</a>
                 </div>
               </div>
@@ -84,23 +88,19 @@ var DonationHistory = React.createClass({
     },
     renderDonationCompleted: function(donation) {
         return (
-          <div key={donation.id} className="donation-item donation-item-inprogress">
+          <div key={donation.id} className="donation-item donation-item-completed">
             <div className="row">
               <div className="small-9 columns">
                 <h4>{donation.description}</h4>
-                <div>
-                    <b>Recipient:</b> {donation.food_transaction.recipient.recipient_profile.contact_person}
-                </div>
-                <div>
-                    <b>Picked up at:</b> {donation.food_transaction.picked_up_at}
-                </div>
-                <div>
-                    <b>Delivered at:</b> {donation.food_transaction.delivered_at}
-                </div>
+                <p><strong>Recipient:</strong> {donation.food_transaction.recipient.recipient_profile.contact_person}</p>
+                <p><strong>Picked up at:</strong> {donation.food_transaction.picked_up_at}</p>
+                <p><strong>Delivered at:</strong> {donation.food_transaction.delivered_at}</p>
               </div>
               <div className="small-3 columns">
                 <div className="donation-modify">
-                  <span className="donation-status">{donation.status}</span>
+                  <div className="donation-status">
+                    <p><strong>{donation.status}</strong></p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -116,7 +116,9 @@ var DonationHistory = React.createClass({
               </div>
               <div className="small-3 columns">
                 <div className="donation-modify">
-                  <span className="donation-status">{donation.status}</span>
+                  <div className="donation-status">
+                    <p><strong>{donation.status}</strong></p>
+                  </div>
                 </div>
               </div>
             </div>
