@@ -9,10 +9,20 @@ class DonorController < ApplicationController
   def profile
     @user = current_user
     @profile = DonorProfile.find_by(donor_id: current_user.id)
-    @donations = Donation.where(donor_id: current_user.id)
+    @donations = Donation.where(donor_id: current_user.id).includes(
+      food_transaction: [{ recipient: :recipient_profile }, :coordinator]
+    )
+
     @pending_donations = @donations.where(status: Donation.type_pending)
     @inprogress_donations = @donations.where(status: Donation.type_in_progress)
     @completed_donations = @donations.where(status: Donation.type_completed)
+
+    gon.donations = @donations.as_json(
+      include: [{ food_transaction: {
+        include: [{ recipient: {
+          include: [:recipient_profile] } }, :coordinator]
+      } }]
+    )
   end
 
   def change_profile

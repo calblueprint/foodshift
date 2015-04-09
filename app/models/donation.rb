@@ -24,6 +24,10 @@
 
 class Donation < ActiveRecord::Base
   belongs_to :donor
+  # The association name "transaction" will conflict with a method
+  # "transaction" already defined by Active Record
+  has_one :food_transaction, class_name: "Transaction"
+  has_many :interests
   nilify_blanks
 
   def self.type_pending

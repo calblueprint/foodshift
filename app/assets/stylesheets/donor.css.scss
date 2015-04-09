@@ -189,7 +189,11 @@
     text-align: left;
   }
 
-  b {
+  p {
+    margin: 0;
+  }
+
+  strong {
     font-weight: 400;
   }
 }
@@ -211,17 +215,18 @@
 }
 
 .donation-modify {
-  float: right;
   text-align: right;
 
   .donation-status {
-    float: right;
     font-weight: 400;
     text-align: right;
+
+    .canceled {
+      color: $charcoal;
+    }
   }
 
   .donation-modify-link {
-    float: right;
   }
 
   .donation-cancel {
@@ -235,4 +240,11 @@
   .additional-info-key {
     font-weight: 500;
   }
+}
+
+.best_in_place:hover {
+  background-color: $medium-green;
+  border-radius: 4px;
+  color: $white;
+  cursor: pointer;
 }

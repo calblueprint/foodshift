@@ -106,43 +106,13 @@
               </div>
             </div>
           </div>
-          <div class="card-history">
-            <div class="row">
-              <div class="small-12 columns">
-                <div class="history-title">
-                  Donation History (<%= @donations.count %>)
-                </div>
-                <div class="donation-container">
-                  <div class="donation-key-container">
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <div class="donation-key donation-key-pending">Pending</div>
-                        <div class="donation-key-description">Needs Coordinator and/or Recipient</div>
-                        <div class="donation-key donation-key-inprogress">In Progress</div>
-                        <div class="donation-key-description">Coordinator and Recipient Assigned</div>
-                        <div class="donation-key donation-key-completed">Completed</div>
-                        <div class="donation-key-description">Donation Delivered</div>
-                      </div>
-                    </div>
-                  </div>
 
-                  <% @donations.each do |d| %>
-                    <% if d.status == Donation.type_in_progress %>
-                      <%= render partial: "in_progress", locals: { d: d } %>
-                    <% elsif d.status == Donation.type_pending %>
-                      <%= render partial: "pending", locals: { d: d } %>
-                    <% elsif d.status == Donation.type_completed %>
-                      <%= render partial: "completed", locals: { d: d } %>
-                    <% elsif d.status == Donation.type_canceled %>
-                      <%= render partial: "canceled", locals: { d: d } %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div id="donation-history"></div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<%= javascript_include_tag "react_components/donor/profile" %>

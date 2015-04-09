@@ -27,6 +27,8 @@
 #
 
 class Coordinator < User
+  has_many :transactions
+
   def self.model_name
     User.model_name
   end
