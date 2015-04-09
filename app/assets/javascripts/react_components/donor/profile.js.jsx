@@ -117,7 +117,7 @@ var DonationHistory = React.createClass({
               <div className="small-3 columns">
                 <div className="donation-modify">
                   <div className="donation-status">
-                    <p><strong>{donation.status}</strong></p>
+                    <p><strong className="canceled">{donation.status}</strong></p>
                   </div>
                 </div>
               </div>
