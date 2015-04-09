@@ -58,7 +58,7 @@ class RecipientForm < Form
       address: address,
       org501c3: organization_number,
       contact_person: name_to_person,
-      contact_phone: phone,
+      contact_person_phone: phone,
       latitude: latitude,
       longitude: longitude,
       kitchen: kitchen,
