@@ -36,6 +36,15 @@ class DonationForm < Form
     ActiveRecord::Base.transaction do
       donation.save!
     end
+    @profile = DonorProfile.find_by(donor_id: donor)
+    @profile.update(
+      donor_id: donor,
+      organization: organization,
+      address: address,
+      email: email,
+      person: person,
+      phone: phone
+    )
     rescue ActiveRecord::RecordInvalid => err
       false
   end
@@ -44,19 +53,15 @@ class DonationForm < Form
     @donation ||= Donation.new(
       description: description,
       picture: picture,
-      donor: donor,
-      organization: organization,
-      address: address,
-      person: person,
-      phone: phone,
-      email: email,
+      donor_id: donor,
       refrigeration: refrigeration,
       window_start: window_start,
       window_end: window_end,
       additional_info: additional_info,
       latitude:  latitude,
       longitude: longitude,
-      can_dropoff: can_dropoff
+      can_dropoff: can_dropoff,
+      status: "Pending"
     )
   end
 

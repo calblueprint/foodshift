@@ -19,12 +19,20 @@ Rails.application.routes.draw do
 
   scope '/donor' do
     get '/profile', to: 'donor#profile', as: :donor_profile
+    put '/profile', to: 'donor#change_profile', as: :donor_profile_change
   end
+
+  scope '/donation' do
+    get '/cancel', to: 'donations#cancel', as: :donations_cancel
+  end
+
   get 'recipient_profile', to: 'recipient_profiles#show', as: :recipient_profile
 
   get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'
 
-  devise_for :users
+  devise_for :users, :controllers => { sessions: 'sessions', registrations: 'registrations' }
+  get '/users/exists', to: 'users#check_user', as: :user_exists
+  put '/users/:id', to: 'users#update'
 
   get "unsubscribe" => "api#unsubscribe"
 
@@ -42,7 +50,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :users
+  # resources :users
 
   # Example resource route with options:
   #   resources :products do

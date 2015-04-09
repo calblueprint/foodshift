@@ -214,8 +214,8 @@
                                                                   <td align="center" valign="top" class="textContent">
                                                                     <center><img src="http://foodshift.net/wp-content/uploads/2013/01/cropped-cropped-Food-Shift_Main-Menu_Logo-01.png"></center> <br> <br>
 
-                                                                    <h2 style="text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#37a536;line-height:135%;">Donation Available!</h2>
-                                                                    <div style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#28602b;line-height:135%;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</div>
+                                                                    <h2 style="text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#37a536;line-height:135%;">Match Made</h2>
+                                                                    <div style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#28602b;line-height:135%;">We've paired together a donor and a recipient!</div>
                                                                   </td>
                                                                 </tr>
                                                               </table>
@@ -300,27 +300,22 @@
                                                           <td align="left" class="textContent">
                                                             <h3 style="color:#92bf20;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left">Information</h3>
                                                             <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                              <%= image_tag(@donation.picture) %>
+                                                              <%= image_tag(@donation.picture) %> <br>
                                                               <b>Food Description:</b> <%= @donation.description %> <br>
-                                                              <b>Refrigeration?</b> <%= @donation.refrigeration.to_s %> <br>
                                                               <b>Available starting:</b><br><%= @donation.window_start.to_formatted_s(:long_ordinal) %> <br>
                                                               <b>Available until:</b><br><%= @donation.window_end.to_formatted_s(:long_ordinal) %> <br>
-                                                              <b>Donated by:</b> <%= @profile.organization %>
-                                                            </div>
-                                                          </td>
-                                                        </tr>
-                                                      </table>
-                                                    </td>
-                                                    <td align="right" valign="middle" class="flexibleContainerBox">
-                                                      <table class="flexibleContainerBoxNext" border="0" cellpadding="0" cellspacing="0" width="210" style="max-width: 100%;">
-                                                        <tr>
-                                                          <td align="left" class="textContent">
-                                                            <h3 style="color:#92bf20;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;">Contact</h3>
-                                                            <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                              <b>Name:</b> <%= @profile.person %> <br>
-                                                              <b>Address:</b> <%= @profile.address %> <br>
-                                                              <b>Phone:</b> <%= @profile.phone %> <br>
-                                                              <b>Email:</b> <span style="color: #5c5c5c"><%= @profile.email %></span> <br>
+                                                              <b>Donor Contact</b>
+                                                              <ul style="list-style-type:none;margin-top:0;padding:0">
+                                                                <li>Name: <%= @donor_profile.person %></li>
+                                                                <li>Phone: <%= @donor_profile.phone %></li>
+                                                                <li>Email: <%= @donor_profile.email %></li>
+                                                              </ul>
+                                                              <b>Recipient Contact</b>
+                                                              <ul style="list-style-type:none;margin:0;padding:0">
+                                                                <li>Name: <%= @recipient_profile.contact_person %></li>
+                                                                <li>Phone: <%= @recipient_profile.contact_person_phone %></li>
+                                                                <li>Email: <%= @recipient_profile.contact_email %></li>
+                                                              </ul>
                                                             </div>
                                                           </td>
                                                         </tr>
@@ -329,7 +324,6 @@
                                                   </tr>
                                                 </table>
                                                 <!-- // CONTENT TABLE -->
-
                                               </td>
                                             </tr>
                                           </table>

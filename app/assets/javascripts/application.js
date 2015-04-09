@@ -18,9 +18,11 @@
 //= require react
 //= require ./application/bootstrap-modal.js
 //= require jquery.datetimepicker
+//= require best_in_place
 
 _.mixin(_.string.exports());
 
 $(function(){
-    $(document).foundation();
+  $(document).foundation();
+  $(".best_in_place").best_in_place();
 });
