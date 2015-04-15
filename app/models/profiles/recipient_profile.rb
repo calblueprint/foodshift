@@ -13,7 +13,7 @@
 #  contact_person_phone   :string(255)
 #  hrs_of_operation       :string(255)
 #  num_people_served      :string(255)
-#  kitchen                :boolean
+#  vehicle                :boolean
 #  refrigeration          :boolean
 #  notfications           :boolean
 #  population_description :text
