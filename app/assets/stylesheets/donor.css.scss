@@ -90,15 +90,30 @@
 }
 
 .profile-img-wrap {
-  @include clear-list-margins();
-
   .profile-img-item {
     text-align: center;
   }
 
   .profile-img {
+    display: block;
+    margin: auto;
     max-height: rem-calc(200px);
+    max-width: rem-calc(200px);
+  }
+
+  .profile-img-target {
+    display: none;
+  }
+
+  .profile-img {
     padding: rem-calc(15px);
+  }
+
+  .profile-img:hover {
+    background-color: $medium-green;
+    border-radius: 4px;
+    color: $white;
+    cursor: pointer;
   }
 }
 

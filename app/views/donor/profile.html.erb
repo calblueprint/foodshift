@@ -16,9 +16,14 @@
                 <div class="profile-info">
                   <div class="row">
                     <div class="medium-4 columns">
-                      <ul class="profile-img-wrap">
-                        <li class="profile-img-item"><%= image_tag "profile_img.png", class: "profile-img" %></li>
-                      </ul>
+                      <div class="profile-img-wrap">
+                        <div class="profile-img-trigger"><%= image_tag @profile.logo, class: "profile-img" %></div>
+                        <div class="profile-img-target">
+                          <%= simple_form_for @profile, :html => { :id => "profile-img-submit" } do |f| %>
+                            <%= f.file_field :logo, class: "profile-img-uploader" %>
+                          <% end %>
+                        </div>
+                      </div>
                       <h1 class="profile-info-title"><%= best_in_place @profile, :organization, as: :input %></h1>
                     </div>
                     <div class="medium-8 columns">
@@ -116,3 +121,4 @@
 </div>
 
 <%= javascript_include_tag "react_components/donor/profile" %>
+<%= javascript_include_tag "application/donor_profile" %>

@@ -24,6 +24,7 @@
 #  longitude              :decimal(, )
 #  latitude               :decimal(, )
 #  contact_email          :string(255)
+#  logo                   :string(255)
 #
 # Indexes
 #
@@ -33,4 +34,7 @@
 class RecipientProfile < ActiveRecord::Base
   belongs_to :recipient
   validates :recipient, presence: true
+
+  # Image uploader using carrierwave
+  mount_uploader :logo, LogoUploader
 end
