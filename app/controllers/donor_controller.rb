@@ -34,11 +34,17 @@ class DonorController < ApplicationController
   end
 
   def find_transaction(donation_id)
-    Transaction.where(donation_id: donation_id).first
+    transactions = Transaction.where(donation_id: donation_id)
+    if !transactions.nil?
+      transactions.first
+    end
   end
 
   def find_recipient_profile(recipient_id)
-    RecipientProfile.where(recipient_id: recipient_id).first
+    profiles = RecipientProfile.where(recipient_id: recipient_id)
+    if !profiles.nil?
+      profiles.first
+    end
   end
 
   def find_transaction_coordinator(donation_id)
