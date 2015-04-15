@@ -7,6 +7,7 @@ class UserMailer < ActionMailer::Base
     recipient_ids.each do |r|
       @recipient = Recipient.find(r)
       @email = @recipient.email
+      puts("emailing " + @email + "\n\n")
       mail(to: @email, subject: "(Recipient) Donation Available!")
     end
   end

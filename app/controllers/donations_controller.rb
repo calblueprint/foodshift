@@ -17,7 +17,10 @@ class DonationsController < ApplicationController
     respond_to do |format|
       if donation_form.create_objects
         @donation = donation_form.donation
-        @recipient_ids = Recipient.where(subscribed: true).collect(&:id)
+        @recipient_ids = Recipient.where(subscribed: true).pluck(:id)
+        # puts("\n \n ///////////////// RECIPIENT EMAILS ///////////// \n")
+        # puts(@recipient_ids) 
+        # puts("\n \n \n \n \n \n \n \n")
         UserMailer.donation_available(@recipient_ids, @donation).deliver
         @coordinators = Coordinator.pluck(:email)
         UserMailer.coordinator_email(@coordinators, @donation).deliver
