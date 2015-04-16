@@ -99,14 +99,11 @@
     margin: auto;
     max-height: rem-calc(200px);
     max-width: rem-calc(200px);
+    padding: rem-calc(15px);
   }
 
   .profile-img-target {
     display: none;
-  }
-
-  .profile-img {
-    padding: rem-calc(15px);
   }
 
   .profile-img:hover {
@@ -235,13 +232,10 @@
   .donation-status {
     font-weight: 400;
     text-align: right;
-
-    .canceled {
-      color: $charcoal;
-    }
   }
 
-  .donation-modify-link {
+  .canceled {
+    color: $charcoal;
   }
 
   .donation-cancel {
