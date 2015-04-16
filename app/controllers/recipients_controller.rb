@@ -29,7 +29,7 @@ class RecipientsController < ApplicationController
       :latitude,
       :longitude,
       :organization_number,
-      :kitchen,
+      :vehicle,
       :refrigeration
     )
   end

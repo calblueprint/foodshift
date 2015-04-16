@@ -14,7 +14,7 @@ var DonationHistory = React.createClass({
               <div className="row">
                 <div className="small-12 columns">
                   <div className="history-title">
-                    Donation History (3)
+                    Donation History ({this.state.donations.length})
                   </div>
                   <div className="donation-container">
                     <div className="donation-key-container">
