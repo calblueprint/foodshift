@@ -36,8 +36,6 @@ class DonorController < ApplicationController
 
   # PATCH /donor/profile
   def upload_logo
-    puts request
-
     profile = DonorProfile.find_by(donor_id: current_user.id)
     profile.update(logo: params['donor_profile']['logo'])
     redirect_to donor_profile_path
