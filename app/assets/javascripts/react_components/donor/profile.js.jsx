@@ -93,8 +93,8 @@ var DonationItem = React.createClass({
                     <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.food_transaction.recipient.email}</li>
                   </ul>
                 </div>
-                <div className="small-12 medium-8 columns">
-                  <img src={this.props.donation.picture.url}/>
+                <div className="small-12 medium-6 medium-offset-1 end columns">
+                  <img className="donation-picture picture-inprogress" src={this.props.donation.picture.url}/>
                 </div>
               </div>
             </div>
@@ -135,7 +135,7 @@ var DonationItem = React.createClass({
             <div className="donation-item-fold"  key={_.join("-", this.props.donation.id, "open")}>
               <div className="row">
                 <div className="small-9 columns">
-                  <img src={this.props.donation.picture.url}/>
+                  <img className="donation-picture" src={this.props.donation.picture.url}/>
                 </div>
               </div>
             </div>
@@ -183,8 +183,8 @@ var DonationItem = React.createClass({
                     <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.food_transaction.recipient.email}</li>
                   </ul>
                 </div>
-                <div className="small-12 medium-8 columns">
-                  <img src={this.props.donation.picture.url}/>
+                <div className="small-12 medium-6 medium-offset-1 end columns">
+                  <img className="donation-picture picture-completed" src={this.props.donation.picture.url}/>
                 </div>
               </div>
             </div>
@@ -226,7 +226,7 @@ var DonationItem = React.createClass({
             <div className="donation-item-fold"  key={_.join("-", this.props.donation.id, "open")}>
               <div className="row">
                 <div className="small-9 columns">
-                  <img src={this.props.donation.picture.url}/>
+                    <img className="donation-picture" src={this.props.donation.picture.url}/>
                 </div>
               </div>
             </div>
