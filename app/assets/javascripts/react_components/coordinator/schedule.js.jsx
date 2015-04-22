@@ -148,8 +148,8 @@ var DonationInfo = React.createClass({
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul">
-                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_date}</li>
-                            
+                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate}</li>
+                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_enddate}</li>
                             <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
                         </ul>
                     </div>

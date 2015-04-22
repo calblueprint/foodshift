@@ -19,7 +19,6 @@
 //= require ./application/bootstrap-modal.js
 //= require jquery.datetimepicker
 //= require best_in_place
-//= require moment.js
 
 _.mixin(_.string.exports());
 
