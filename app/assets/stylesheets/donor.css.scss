@@ -187,10 +187,10 @@
 }
 
 .donation-item {
-  background: $light-grey;
-  padding: 10px;
-  border-top: 1px solid $dark-grey;
   @include transition-all(0.5s);
+  background: $light-grey;
+  border-top: 1px solid $dark-grey;
+  padding: 10px;
 
   &:hover {
     background: $donor-profile-light-grey;
@@ -263,7 +263,7 @@
 }
 
 .donation-item-fold {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .donation-picture {
@@ -271,28 +271,22 @@
 }
 
 .donation-item-enter {
-  overflow: hidden;
   max-height: 0;
-  transition: max-height .5s ease;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+
   &.donation-item-enter-active {
     max-height: 1000px;
   }
 }
 
-.donation-item-enter.donation-item-enter-active {
-  max-height: 1000px;
-}
-
 .donation-item-leave {
-  overflow: hidden;
   max-height: 1000px;
-  transition: max-height .25s ease;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+
   &.donation-item-leave-active {
     max-height: 0;
   }
-}
-
-.donation-item-leave.donation-item-leave-active {
-    max-height: 0;
 }
 
