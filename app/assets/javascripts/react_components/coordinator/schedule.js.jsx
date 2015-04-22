@@ -364,8 +364,8 @@ var Recipient = React.createClass({
                             </div>
                             <div className="small-10 medium-4 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.window_start}</li>
-                                    <li><i className="fa-li fa "></i>{this.props.donation.window_start}- {this.props.donation.window_end}</li>
+                                    <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate}</li>
+                                    <li><i className="fa-li fa "></i>{this.props.donation.format_startdate}- {this.props.donation.format_enddate}</li>
                                 </ul>
                             </div>
                             <div className="small-10 small-offset-2 medium-7 medium-offset-0 columns">
