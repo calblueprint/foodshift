@@ -17,7 +17,7 @@
                   <div class="row">
                     <div class="medium-4 columns">
                       <div class="profile-img-wrap">
-                        <div class="profile-img-trigger"><%= image_tag @profile.logo, class: "profile-img" %></div>
+                        <div class="profile-img-trigger"><%= image_tag @profile.logo.thumb, class: "profile-img" %></div>
                         <div class="profile-img-target">
                           <%= simple_form_for @profile, :html => { :id => "profile-img-submit" } do |f| %>
                             <%= f.file_field :logo, class: "profile-img-uploader" %>
