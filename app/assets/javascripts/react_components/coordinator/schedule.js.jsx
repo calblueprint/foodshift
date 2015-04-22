@@ -139,13 +139,7 @@ var ScheduleDashboard = React.createClass({
 });
 
 var DonationInfo = React.createClass({
-    getDefaultProps: function () {
-        return {
-            format: 'h:mm:ss a'
-        }
-    },
     render: function() {
-        var time = moment(this.props.donation.window_start).format(this.props.format);
         return (
             <div className="donation-info">
                 <div className="row">
@@ -154,7 +148,7 @@ var DonationInfo = React.createClass({
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul">
-                            <li><i className="fa-li fa fa-clock-o"></i>{time}.</li>
+                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_date}</li>
                             
                             <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
                         </ul>
