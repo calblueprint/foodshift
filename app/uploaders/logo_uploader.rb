@@ -25,6 +25,10 @@ class LogoUploader < CarrierWave::Uploader::Base
     process resize_and_crop: 200
   end
 
+  version :thumb_large do
+    process resize_and_crop: 400
+  end
+
   private
   # Resize and crop square from Center
   def resize_and_crop(size)
