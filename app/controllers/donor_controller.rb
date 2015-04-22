@@ -5,7 +5,7 @@ class DonorController < ApplicationController
                 :find_transaction_recipient,
                 :find_recipient_profile
 
-  # GET /profile
+  # GET /donor/profile
   def profile
     @user = current_user
     @profile = DonorProfile.find_by(donor_id: current_user.id)
@@ -25,6 +25,7 @@ class DonorController < ApplicationController
     )
   end
 
+  # PUT /donor/profile
   def change_profile
     request.format = :json # unsure why i have to coerce it to json...
     profile = DonorProfile.find_by(donor_id: current_user.id)
@@ -33,12 +34,25 @@ class DonorController < ApplicationController
     end
   end
 
+  # PATCH /donor/profile
+  def upload_logo
+    profile = DonorProfile.find_by(donor_id: current_user.id)
+    profile.update(logo: params['donor_profile']['logo'])
+    redirect_to donor_profile_path
+  end
+
   def find_transaction(donation_id)
-    Transaction.where(donation_id: donation_id).first
+    transactions = Transaction.where(donation_id: donation_id)
+    if !transactions.nil?
+      transactions.first
+    end
   end
 
   def find_recipient_profile(recipient_id)
-    RecipientProfile.where(recipient_id: recipient_id).first
+    profiles = RecipientProfile.where(recipient_id: recipient_id)
+    if !profiles.nil?
+      profiles.first
+    end
   end
 
   def find_transaction_coordinator(donation_id)
