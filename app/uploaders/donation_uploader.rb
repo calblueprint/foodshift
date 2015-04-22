@@ -12,7 +12,7 @@ class DonationUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    "uploads/default_donation.png"
+    "/uploads/default_donation.png"
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

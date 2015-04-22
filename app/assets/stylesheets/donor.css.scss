@@ -5,11 +5,9 @@
 
 @mixin card-header-arrow() {
   display: inline-block;
-
   .fa {
     padding-top: 12px;
   }
-
   a {
     color: $dark-grey;
 
@@ -189,9 +187,15 @@
 }
 
 .donation-item {
-  background: $donor-profile-light-grey;
-  margin: 10px 0;
+  @include transition-all(0.5s);
+  background: $light-grey;
+  border-top: 1px solid $dark-grey;
   padding: 10px;
+
+  &:hover {
+    background: $donor-profile-light-grey;
+    cursor: pointer;
+  }
 
   h4 {
     color: $medium-green;
@@ -257,3 +261,32 @@
   color: $white;
   cursor: pointer;
 }
+
+.donation-item-fold {
+  padding-top: 10px;
+}
+
+.donation-picture {
+  padding-bottom: 20px;
+}
+
+.donation-item-enter {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+
+  &.donation-item-enter-active {
+    max-height: 1000px;
+  }
+}
+
+.donation-item-leave {
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+
+  &.donation-item-leave-active {
+    max-height: 0;
+  }
+}
+
