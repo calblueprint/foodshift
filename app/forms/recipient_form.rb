@@ -15,7 +15,8 @@ class RecipientForm < Form
     :longitude,
     :organization_number,
     :kitchen,
-    :refrigeration
+    :refrigeration,
+    :contact_email
   )
 
   validate :email_is_unique
@@ -37,6 +38,15 @@ class RecipientForm < Form
       recipient_profile(recipient_user).save!
     end
     true
+    @profile = RecipientProfile.find_by(recipient_id: recipient)
+    @profile.update(
+      recipient_id: recipient, 
+      organization: organization,
+      address: address,
+      contact_email: contact_email,
+      contact_person: contact_person,
+      contact_person_phone: contact_person_phone
+    )
   rescue ActiveRecord::RecordInvalid => err
     Rails.logger.error(err.to_s)
     err.to_s
@@ -59,6 +69,7 @@ class RecipientForm < Form
       org501c3: organization_number,
       contact_person: name_to_person,
       contact_person_phone: phone,
+      contact_email: email,
       latitude: latitude,
       longitude: longitude,
       kitchen: kitchen,

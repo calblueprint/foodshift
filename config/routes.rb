@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   scope '/recipient' do
     get '/profile', to: 'recipient_profiles#show', as: :recipient_profile
+    put 'profile', to: 'recipient_profiles#change_profile', as: :recipient_profile_change
   end
 
   scope '/donation' do
@@ -37,7 +38,6 @@ Rails.application.routes.draw do
   put '/users/:id', to: 'users#update'
 
   get "unsubscribe" => "api#unsubscribe"
-
   resources :user, only: [:email]
 
   # The priority is based upon order of creation: first created -> highest priority.

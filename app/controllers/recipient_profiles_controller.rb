@@ -3,6 +3,25 @@ class RecipientProfilesController < ApplicationController
   	:find_received_donation,
   	:find_donor_profile
 
+  def change_profile
+    request.format = :json 
+    profile = RecipientProfile.find_by(recipient_id: current_user.id)
+    respond_to do |format|
+      profile.update_attributes(
+        params[:donor_profile].permit(
+          :person,
+          :email,
+          :address,
+          :phone
+        )
+      )
+      if !params[:recipient_profile][:email].nil?
+        current_user.update(email: params[:recipient_profile][:email])
+      end
+      format.json { respond_with_bip(profile) }
+    end
+  end
+
   def show
   	@user = current_user
   	@profile = RecipientProfile.find_by(recipient_id: current_user.id)  
