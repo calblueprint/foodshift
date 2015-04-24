@@ -42,9 +42,11 @@ class Donation < ActiveRecord::Base
   def self.type_canceled
     "Canceled"
   end
+
   def format_startdate
     window_start.strftime("%B %d, %Y %I:%M %p")
   end
+  
   def format_enddate
     window_end.strftime("%B %d, %Y %I:%M %p")
   end
