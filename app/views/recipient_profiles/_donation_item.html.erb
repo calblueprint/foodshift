@@ -1,11 +1,11 @@
 <div class="row">
   <div class="small-9 columns">
     <h4><%= donation.description %></h4>
-
+    <b>Donated By:</b> <%= find_donor_profile(donation.id).person %>
   </div>
   <div class="small-3 columns">
     <div class="donation-modify">
-      <span class="donation-status">in progress</span> <br>
+      <span class="donation-status"><%= donation.status %></span> <br>
         <%= link_to "Cancel Donation", donations_cancel_path(donation), class: "donation-modify-link donation-cancel" %>
     </div>
   </div>

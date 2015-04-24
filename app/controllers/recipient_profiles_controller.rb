@@ -1,5 +1,7 @@
 class RecipientProfilesController < ApplicationController
-  helper_method :find_requested_donation
+  helper_method :find_requested_donation,
+  	:find_received_donation,
+  	:find_donor_profile
 
   def show
   	@user = current_user
@@ -10,9 +12,20 @@ class RecipientProfilesController < ApplicationController
   end
 
   def find_requested_donation(donation_id)
-  	puts("\n FOUND REQUESTED DONATION \n")
     @interest_id = Interest.where(id: donation_id).first.donation_id
     @donation = Donation.where(id: @interest_id).first
   	@donation
+  end
+
+  def find_received_donation(donation_id)
+  	@transaction_id = Transaction.where(id: donation_id).first.donation_id
+  	@donation = Donation.where(id: @transaction_id).first
+  	@donation
+  end
+
+  def find_donor_profile(donation_id)
+    @donor_id = Donation.where(id: donation_id).first.donor_id
+    @donor = DonorProfile.where(donor_id: @donor_id).first
+    @donor
   end
 end

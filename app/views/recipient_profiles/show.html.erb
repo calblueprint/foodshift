@@ -26,16 +26,16 @@
                           <ul class="fa-ul">
                             <li><i class="fa-li fa fa-user"></i><%= best_in_place @profile, :contact_person, as: :input %></li>
                             <li><i class="fa-li fa fa-phone"></i><%= best_in_place @profile, :contact_person_phone, as: :input %></li>
+                            <li><i class="fa-li fa fa-envelope"></i><%= best_in_place @user, :email, as: :input %></li>
                             <li><i class="fa-li fa fa-map-marker"></i><%= best_in_place @profile, :address, as: :input %></li>
                           </ul>
                         </div>
                         <div class="medium-6 columns">
                           <h2 class="profile-summary-title">Donation Summary</h2>
                           <ul class="profile-summary-wrap">
-                            <li class="profile-summary-item">Received: <span class="profile-summary-count"><%= @received_donations.count %></span></li>
+                            <li class="profile-summary-item">Matched: <span class="profile-summary-count"><%= @received_donations.count %></span></li>
                             <li class="profile-summary-item">Requested: <span class="profile-summary-count"><%= @requested_donations.count %></span></li>
                           </ul>
-                          <center class="profile-summary-link-wrap"><%= link_to "Donate Now", donations_new_path, class: "profile-summary-link" %></center>
                         </div>
                       </div>
                     </div>
@@ -55,8 +55,8 @@
                       <div class="small-12 columns">
                         <div class="donation-key donation-key-inprogress">Requested</div>
                         <div class="donation-key-description">Donation Requested</div>
-                        <div class="donation-key donation-key-completed">Received</div>
-                        <div class="donation-key-description">Donation Received</div>
+                        <div class="donation-key donation-key-completed">Matched</div>
+                        <div class="donation-key-description">Selected to Receive</div>
                       </div>
                     </div>
                   </div>
@@ -64,6 +64,11 @@
                     <% @requested_donations.each do |d| %>
                       <div class="donation-item donation-item-inprogress">
                         <%= render partial: "donation_item", locals: { donation: find_requested_donation(d.id) } %>
+                      </div>
+                    <% end %>
+                    <% @received_donations.each do |d| %>
+                      <div class="donation-item donation-item-completed">
+                        <%= render partial: "donation_item", locals: { donation: find_received_donation(d.id) } %>
                       </div>
                     <% end %>
                   </div>
