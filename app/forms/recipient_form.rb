@@ -15,7 +15,8 @@ class RecipientForm < Form
     :longitude,
     :organization_number,
     :vehicle,
-    :refrigeration
+    :refrigeration,
+    :kitchen
   )
 
   validate :email_is_unique
@@ -62,7 +63,8 @@ class RecipientForm < Form
       latitude: latitude,
       longitude: longitude,
       vehicle: vehicle,
-      refrigeration: refrigeration
+      refrigeration: refrigeration,
+      kitchen: kitchen
     )
   end
 
