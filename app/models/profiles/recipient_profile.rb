@@ -25,6 +25,7 @@
 #  latitude               :decimal(, )
 #  contact_email          :string(255)
 #  logo                   :string(255)
+#  kitchen                :boolean
 #
 # Indexes
 #

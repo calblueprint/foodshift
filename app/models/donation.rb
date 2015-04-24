@@ -43,6 +43,14 @@ class Donation < ActiveRecord::Base
     "Canceled"
   end
 
+  def format_startdate
+    window_start.strftime("%B %d, %Y %I:%M %p")
+  end
+  
+  def format_enddate
+    window_end.strftime("%B %d, %Y %I:%M %p")
+  end
+
   # Image uploader using carrierwave
   mount_uploader :picture, DonationUploader
 end
