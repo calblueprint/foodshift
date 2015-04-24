@@ -8,11 +8,11 @@ class RecipientProfilesController < ApplicationController
     profile = RecipientProfile.find_by(recipient_id: current_user.id)
     respond_to do |format|
       profile.update_attributes(
-        params[:donor_profile].permit(
-          :person,
-          :email,
+        params[:recipient_profile].permit(
+          :contact_person,
+          :contact_email,
           :address,
-          :phone
+          :contact_person_phone
         )
       )
       if !params[:recipient_profile][:email].nil?

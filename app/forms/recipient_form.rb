@@ -33,24 +33,20 @@ class RecipientForm < Form
     end
   end
 
+  # PUT /recipient/profile
   def create_objects
     ActiveRecord::Base.transaction do
-      recipient_user.save!
-      recipient_profile(recipient_user).save!
+      donation.save!
     end
-    true
-    @profile = RecipientProfile.find_by(recipient_id: recipient)
+    @profile = RecipientProfile.find_by(recipient_id: current_user.id)
     @profile.update(
-      recipient_id: recipient, 
-      organization: organization,
       address: address,
       contact_email: contact_email,
       contact_person: contact_person,
       contact_person_phone: contact_person_phone
     )
-  rescue ActiveRecord::RecordInvalid => err
-    Rails.logger.error(err.to_s)
-    err.to_s
+    rescue ActiveRecord::RecordInvalid => err
+      false
   end
 
   def recipient_user
