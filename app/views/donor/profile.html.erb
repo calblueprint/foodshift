@@ -16,9 +16,14 @@
                 <div class="profile-info">
                   <div class="row">
                     <div class="medium-4 columns">
-                      <ul class="profile-img-wrap">
-                        <li class="profile-img-item"><%= image_tag "profile_img.png", class: "profile-img" %></li>
-                      </ul>
+                      <div class="profile-img-wrap">
+                        <div class="profile-img-trigger"><%= image_tag @profile.logo, class: "profile-img" %></div>
+                        <div class="profile-img-target">
+                          <%= simple_form_for @profile, :html => { :id => "profile-img-submit" } do |f| %>
+                            <%= f.file_field :logo, class: "profile-img-uploader" %>
+                          <% end %>
+                        </div>
+                      </div>
                       <h1 class="profile-info-title"><%= best_in_place @profile, :organization, as: :input %></h1>
                     </div>
                     <div class="medium-8 columns">
@@ -106,43 +111,14 @@
               </div>
             </div>
           </div>
-          <div class="card-history">
-            <div class="row">
-              <div class="small-12 columns">
-                <div class="history-title">
-                  Donation History (<%= @donations.count %>)
-                </div>
-                <div class="donation-container">
-                  <div class="donation-key-container">
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <div class="donation-key donation-key-pending">Pending</div>
-                        <div class="donation-key-description">Needs Coordinator and/or Recipient</div>
-                        <div class="donation-key donation-key-inprogress">In Progress</div>
-                        <div class="donation-key-description">Coordinator and Recipient Assigned</div>
-                        <div class="donation-key donation-key-completed">Completed</div>
-                        <div class="donation-key-description">Donation Delivered</div>
-                      </div>
-                    </div>
-                  </div>
 
-                  <% @donations.each do |d| %>
-                    <% if d.status == Donation.type_in_progress %>
-                      <%= render partial: "in_progress", locals: { d: d } %>
-                    <% elsif d.status == Donation.type_pending %>
-                      <%= render partial: "pending", locals: { d: d } %>
-                    <% elsif d.status == Donation.type_completed %>
-                      <%= render partial: "completed", locals: { d: d } %>
-                    <% elsif d.status == Donation.type_canceled %>
-                      <%= render partial: "canceled", locals: { d: d } %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div id="donation-history"></div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<%= javascript_include_tag "react_components/donor/profile" %>
+<%= javascript_include_tag "application/donor_profile" %>

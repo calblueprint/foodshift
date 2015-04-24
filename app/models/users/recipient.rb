@@ -28,6 +28,8 @@
 
 class Recipient < User
   has_one :recipient_profile, class_name: "RecipientProfile"
+  has_many :transactions
+  has_many :interests
 
   def self.model_name
     User.model_name

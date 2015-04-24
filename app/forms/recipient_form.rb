@@ -14,7 +14,7 @@ class RecipientForm < Form
     :latitude,
     :longitude,
     :organization_number,
-    :kitchen,
+    :vehicle,
     :refrigeration
   )
 
@@ -57,11 +57,11 @@ class RecipientForm < Form
       organization: organization_name,
       address: address,
       org501c3: organization_number,
-      person: name_to_person,
-      phone: phone,
+      contact_person: name_to_person,
+      contact_person_phone: phone,
       latitude: latitude,
       longitude: longitude,
-      kitchen: kitchen,
+      vehicle: vehicle,
       refrigeration: refrigeration
     )
   end

@@ -38,12 +38,14 @@ $(function() {
     $('#donation_start_time').datetimepicker({
         datepicker: false,
         step: 15,
-        format:'H:i',
+        formatTime:'g:i A',
+        format: 'g:i A'
     });
     $('#donation_end_time').datetimepicker({
         datepicker: false,
         step: 15,
-        format:'H:i'
+        formatTime:'g:i A',
+        format: 'g:i A'
     });
 
     function checkEmailExists(email) {
