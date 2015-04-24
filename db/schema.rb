@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317025659) do
+ActiveRecord::Schema.define(version: 20150424205300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150317025659) do
     t.string   "person"
     t.string   "phone"
     t.string   "email"
+    t.string   "logo"
   end
 
   add_index "donor_profiles", ["donor_id"], name: "index_donor_profiles_on_donor_id", using: :btree
@@ -76,7 +77,7 @@ ActiveRecord::Schema.define(version: 20150317025659) do
     t.string   "contact_person_phone"
     t.string   "hrs_of_operation"
     t.string   "num_people_served"
-    t.boolean  "kitchen"
+    t.boolean  "vehicle"
     t.boolean  "refrigeration"
     t.boolean  "notfications"
     t.text     "population_description"
@@ -86,6 +87,9 @@ ActiveRecord::Schema.define(version: 20150317025659) do
     t.text     "challenges"
     t.decimal  "longitude"
     t.decimal  "latitude"
+    t.string   "contact_email"
+    t.string   "logo"
+    t.boolean  "kitchen"
   end
 
   add_index "recipient_profiles", ["recipient_id"], name: "index_recipient_profiles_on_recipient_id", using: :btree

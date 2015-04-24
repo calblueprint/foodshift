@@ -26,7 +26,7 @@ config/database.yml
 *.DS_Store
 
 # tmp upload files
-public/uploads*
+public/uploads/tmp*
 
 # Ignore application configuration
 /config/application.yml

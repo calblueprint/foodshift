@@ -14,8 +14,9 @@ class RecipientForm < Form
     :latitude,
     :longitude,
     :organization_number,
-    :kitchen,
+    :vehicle,
     :refrigeration,
+    :kitchen,
     :contact_email
   )
 
@@ -72,8 +73,9 @@ class RecipientForm < Form
       contact_email: email,
       latitude: latitude,
       longitude: longitude,
-      kitchen: kitchen,
-      refrigeration: refrigeration
+      vehicle: vehicle,
+      refrigeration: refrigeration,
+      kitchen: kitchen
     )
   end
 

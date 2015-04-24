@@ -31,9 +31,12 @@ class CoordinatorController < ApplicationController
   def schedule
     gon.donations = []
     gon.recipients = []
+    gon.startdate = []
     Interest.includes({ recipient: [:recipient_profile] }, :donation).group_by(
       &:donation).each do |donation, interests|
-      gon.donations << donation
+      gon.startdate << donation.attributes
+      gon.donations << donation.as_json(
+        methods: [:format_startdate, :format_enddate])
       interests.each do |interest|
         gon.recipients << interest.as_json(
           include: { recipient: { include: [:recipient_profile] } })
@@ -43,16 +46,26 @@ class CoordinatorController < ApplicationController
 
   def match
     respond_to do |format|
+      donation_id = match_params[:donation_id]
+      recipient_id = match_params[:recipient_id]
+      interest_id = match_params[:interest_id]
       begin
         ActiveRecord::Base.transaction do
-          Interest.destroy_all(donation_id: match_params[:donation_id])
-          Transaction.create(donation_id: match_params[:donation_id],
-                             recipient_id: match_params[:recipient_id])
+          Interest.destroy_all(id: interest_id)
+          Transaction.create(donation_id: donation_id,
+                             recipient_id: recipient_id)
         end
+
+        @donation = Donation.find_by(id: donation_id)
+        donor_id = @donation.donor_id
+        @donor_profile = DonorProfile.find_by(donor_id: donor_id)
+        @recipient_profile = RecipientProfile.find_by(recipient_id: recipient_id)
+        UserMailer.coordinator_match(@donation, donor_id, recipient_id).deliver
         format.json { render json: {}, status: :created }
-      rescue ActiveRecord::ActiveRecordError
-        # TODO: What to do to handle this
-        format.json { render json: {}, status: :unprocessable_entity }
+
+        rescue ActiveRecord::ActiveRecordError
+          # TODO: What to do to handle this
+          format.json { render json: {}, status: :unprocessable_entity }
       end
     end
   end
