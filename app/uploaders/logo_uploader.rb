@@ -30,14 +30,15 @@ class LogoUploader < CarrierWave::Uploader::Base
   end
 
   private
+
   # Resize and crop square from Center
   def resize_and_crop(size)
     manipulate! do |image|
       if image[:width] < image[:height]
-        remove = ((image[:height] - image[:width])/2).round
+        remove = ((image[:height] - image[:width]) / 2).round
         image.shave("0x#{remove}")
       elsif image[:width] > image[:height]
-        remove = ((image[:width] - image[:height])/2).round
+        remove = ((image[:width] - image[:height]) / 2).round
         image.shave("#{remove}x0")
       end
       image.resize("#{size}x#{size}")

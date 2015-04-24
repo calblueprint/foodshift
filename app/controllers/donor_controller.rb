@@ -28,7 +28,6 @@ class DonorController < ApplicationController
   # PUT /donor/profile
   def change_profile
     request.format = :json # unsure why i have to coerce it to json...
-    puts params
     profile = DonorProfile.find_by(donor_id: current_user.id)
     respond_to do |format|
       profile.update_attributes(
