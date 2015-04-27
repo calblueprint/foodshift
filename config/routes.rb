@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   get 'about' => 'static_pages#about'
+  get 'contact' => 'static_pages#contact'
 
   get 'donate', to: 'donations#new', as: :donations_new
   post 'donate', to: 'donations#create', as: :donations_create
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   scope '/donor' do
     get '/profile', to: 'donor#profile', as: :donor_profile
     put '/profile', to: 'donor#change_profile', as: :donor_profile_change
+    patch '/profile', to: 'donor#upload_logo', as: :donor_profile_logo
   end
 
   scope '/donation' do

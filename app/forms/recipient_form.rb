@@ -14,8 +14,9 @@ class RecipientForm < Form
     :latitude,
     :longitude,
     :organization_number,
-    :kitchen,
-    :refrigeration
+    :vehicle,
+    :refrigeration,
+    :kitchen
   )
 
   validate :email_is_unique
@@ -58,11 +59,12 @@ class RecipientForm < Form
       address: address,
       org501c3: organization_number,
       contact_person: name_to_person,
-      contact_phone: phone,
+      contact_person_phone: phone,
       latitude: latitude,
       longitude: longitude,
-      kitchen: kitchen,
-      refrigeration: refrigeration
+      vehicle: vehicle,
+      refrigeration: refrigeration,
+      kitchen: kitchen
     )
   end
 

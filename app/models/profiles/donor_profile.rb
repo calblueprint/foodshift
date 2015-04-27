@@ -19,6 +19,7 @@
 #  person                           :string(255)
 #  phone                            :string(255)
 #  email                            :string(255)
+#  logo                             :string(255)
 #
 # Indexes
 #
@@ -27,4 +28,7 @@
 
 class DonorProfile < ActiveRecord::Base
   belongs_to :donor
+
+  # Image uploader using carrierwave
+  mount_uploader :logo, LogoUploader
 end

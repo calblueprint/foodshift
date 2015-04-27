@@ -24,6 +24,10 @@
 
 class Donation < ActiveRecord::Base
   belongs_to :donor
+  # The association name "transaction" will conflict with a method
+  # "transaction" already defined by Active Record
+  has_one :food_transaction, class_name: "Transaction"
+  has_many :interests
   nilify_blanks
 
   def self.type_pending
@@ -37,6 +41,14 @@ class Donation < ActiveRecord::Base
   end
   def self.type_canceled
     "Canceled"
+  end
+
+  def format_startdate
+    window_start.strftime("%B %d, %Y %I:%M %p")
+  end
+  
+  def format_enddate
+    window_end.strftime("%B %d, %Y %I:%M %p")
   end
 
   # Image uploader using carrierwave

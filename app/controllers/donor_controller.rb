@@ -5,30 +5,71 @@ class DonorController < ApplicationController
                 :find_transaction_recipient,
                 :find_recipient_profile
 
-  # GET /profile
+  # GET /donor/profile
   def profile
     @user = current_user
     @profile = DonorProfile.find_by(donor_id: current_user.id)
-    @donations = Donation.where(donor_id: current_user.id)
+    @donations = Donation.where(donor_id: current_user.id).includes(
+      food_transaction: [{ recipient: :recipient_profile }, :coordinator]
+    )
+
     @pending_donations = @donations.where(status: Donation.type_pending)
     @inprogress_donations = @donations.where(status: Donation.type_in_progress)
     @completed_donations = @donations.where(status: Donation.type_completed)
+
+    gon.donations = @donations.as_json(
+      include: [{ food_transaction: {
+        include: [{ recipient: {
+          include: [:recipient_profile] } }, :coordinator]
+      } }]
+    )
   end
 
+  # PUT /donor/profile
   def change_profile
     request.format = :json # unsure why i have to coerce it to json...
     profile = DonorProfile.find_by(donor_id: current_user.id)
     respond_to do |format|
+      profile.update_attributes(
+        params[:donor_profile].permit(
+          :person,
+          :email,
+          :address,
+          :phone,
+          :serves_organic_food,
+          :frequency_of_surplus,
+          :typical_food_types_served,
+          :typical_quantity_of_donation,
+          :pounds_per_week_donated,
+          :aware_of_good_samaritan_act
+        )
+      )
+      if !params[:donor_profile][:email].nil?
+        current_user.update(email: params[:donor_profile][:email])
+      end
       format.json { respond_with_bip(profile) }
     end
   end
 
+  # PATCH /donor/profile
+  def upload_logo
+    profile = DonorProfile.find_by(donor_id: current_user.id)
+    profile.update(logo: params['donor_profile']['logo'])
+    redirect_to donor_profile_path
+  end
+
   def find_transaction(donation_id)
-    Transaction.where(donation_id: donation_id).first
+    transactions = Transaction.where(donation_id: donation_id)
+    if !transactions.nil?
+      transactions.first
+    end
   end
 
   def find_recipient_profile(recipient_id)
-    RecipientProfile.where(recipient_id: recipient_id).first
+    profiles = RecipientProfile.where(recipient_id: recipient_id)
+    if !profiles.nil?
+      profiles.first
+    end
   end
 
   def find_transaction_coordinator(donation_id)
