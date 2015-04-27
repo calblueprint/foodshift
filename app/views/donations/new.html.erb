@@ -30,20 +30,18 @@
     <div class="row">
       <div class="small-12 medium-centered columns">
         <div class="row">
-          <div class="small-6 columns">
+          <div class="small-offset-3 small-1 columns">
             <%= f.file_field :picture, required: "" %>
-            <label class="medium-centered add-photo-btn">upload</label>
+            <label class="small-offset-6 small-1 add-photo-btn">upload</label>
             <small class="error">Picture is required.</small>
           </div>
-          <div class="small-6 columns">
+          <div class="small-7 columns">
             <span>Upload a picture of your donation!</span>
           </div>
         </div>
         <div class="row">
-          <div class="small-12 medium-6 end columns">
-            <div class="small-12 end columns">
-              <%= f.check_box :refrigeration %> <label for="donation_refrigeration">Does your donation require refrigeration?</label>
-            </div>
+          <div class="small-offset-4 small-5 columns">
+            <%= f.check_box :refrigeration %> <label for="donation_refrigeration">Does your donation require refrigeration?</label>
           </div>
         </div>
       </div>
