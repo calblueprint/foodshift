@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   get 'about' => 'static_pages#about'
+  get 'contact' => 'static_pages#contact'
 
   get 'donate', to: 'donations#new', as: :donations_new
   post 'donate', to: 'donations#create', as: :donations_create
