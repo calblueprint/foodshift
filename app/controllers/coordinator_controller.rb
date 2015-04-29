@@ -36,7 +36,7 @@ class CoordinatorController < ApplicationController
       &:donation).each do |donation, interests|
       gon.startdate << donation.attributes
       gon.donations << donation.as_json(
-        methods: [:format_startdate, :format_enddate])
+        methods: [:format_startdate, :format_enddate, :organization, :address, :person, :email, :phone, :thumb])
       interests.each do |interest|
         gon.recipients << interest.as_json(
           include: { recipient: { include: [:recipient_profile] } })

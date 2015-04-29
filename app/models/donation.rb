@@ -43,12 +43,36 @@ class Donation < ActiveRecord::Base
     "Canceled"
   end
 
+  def profile
+    DonorProfile.find_by(donor_id: donor_id)
+  end
+
   def format_startdate
     window_start.strftime("%B %d, %Y %I:%M %p")
   end
-  
+
   def format_enddate
     window_end.strftime("%B %d, %Y %I:%M %p")
+  end
+
+  def organization
+    profile.organization
+  end
+
+  def address
+    profile.address
+  end
+
+  def person
+    profile.person
+  end
+
+  def email
+    profile.email
+  end
+
+  def phone
+    profile.phone
   end
 
   # Image uploader using carrierwave
