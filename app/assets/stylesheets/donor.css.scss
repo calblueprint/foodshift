@@ -45,7 +45,6 @@
 }
 
 .dashboard {
-  // @include drop-shadow(1);
   border: 1px solid $dark-grey;
 }
 
@@ -89,6 +88,7 @@
 
 .profile-img-wrap {
   .profile-img-item {
+    list-style: none;
     text-align: center;
   }
 
