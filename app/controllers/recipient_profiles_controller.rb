@@ -1,8 +1,7 @@
 class RecipientProfilesController < ApplicationController
-  helper_method
-    :find_requested_donation,
-    :find_received_donation,
-    :find_donor_profile
+  helper_method :find_requested_donation,
+                :find_received_donation,
+                :find_donor_profile
 
   def change_profile
     request.format = :json
