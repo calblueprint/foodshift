@@ -1,5 +1,6 @@
 class RecipientProfilesController < ApplicationController
-  helper_method :find_requested_donation,
+  helper_method
+    :find_requested_donation,
     :find_received_donation,
     :find_donor_profile
 
@@ -24,7 +25,7 @@ class RecipientProfilesController < ApplicationController
 
   def show
     @user = current_user
-    @profile = RecipientProfile.find_by(recipient_id: current_user.id)  
+    @profile = RecipientProfile.find_by(recipient_id: current_user.id)
     @received_donations = Transaction.where(recipient_id: current_user.id)
     @requested_donations = Interest.where(recipient_id: current_user.id)
     @total_count = @received_donations.count + @requested_donations.count
