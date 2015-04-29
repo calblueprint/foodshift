@@ -5,7 +5,7 @@ class RecipientProfilesController < ApplicationController
     :find_donor_profile
 
   def change_profile
-    request.format = :json 
+    request.format = :json
     profile = RecipientProfile.find_by(recipient_id: current_user.id)
     respond_to do |format|
       profile.update_attributes(

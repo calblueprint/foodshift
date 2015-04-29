@@ -46,6 +46,7 @@ class DonationForm < Form
       phone: phone
     )
     rescue ActiveRecord::RecordInvalid => err
+      Rails.logger.error(err.to_s)
       false
   end
 
