@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   put '/users/:id', to: 'users#update'
 
   get "unsubscribe" => "api#unsubscribe"
-  resources :user, only: [:email]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
