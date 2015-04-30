@@ -63,7 +63,8 @@ class CoordinatorController < ApplicationController
         UserMailer.coordinator_match(@donation, donor_id, recipient_id).deliver
         format.json { render json: {}, status: :created }
 
-        rescue ActiveRecord::ActiveRecordError
+        rescue ActiveRecord::ActiveRecordError => err
+          Rails.logger.error(err.to_s)
           # TODO: What to do to handle this
           format.json { render json: {}, status: :unprocessable_entity }
       end

@@ -6,7 +6,6 @@ class UserMailer < ActionMailer::Base
     @profile = DonorProfile.find_by donor_id: donation.donor_id
     recipient_ids.each do |r|
       @recipient = Recipient.find(r)
-      @email = @recipient.email
       mail(to: @email, subject: "(Recipient) Donation Available!")
     end
   end
