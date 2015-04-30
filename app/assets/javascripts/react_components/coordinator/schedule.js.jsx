@@ -144,20 +144,20 @@ var DonationInfo = React.createClass({
             <div className="donation-info">
                 <div className="row">
                     <div className="medium-4 columns">
-                        <h1 className="donation-info-title">{this.props.donation.organization}</h1>
+                        <h1 className="donation-info-title">{this.props.donation.organization} &nbsp;</h1>
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul">
-                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate}</li>
-                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_enddate}</li>
-                            <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
+                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate} &nbsp;</li>
+                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_enddate} &nbsp;</li>
+                            <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address} &nbsp;</li>
                         </ul>
                     </div>
                     <div className="medium-4 columns">
                         <ul className="fa-ul">
-                            <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
-                            <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email}</li>
-                            <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone}</li>
+                            <li><i className="fa-li fa fa-user"></i>{this.props.donation.person} &nbsp;</li>
+                            <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email} &nbsp;</li>
+                            <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone} &nbsp;</li>
                         </ul>
                     </div>
                 </div>
