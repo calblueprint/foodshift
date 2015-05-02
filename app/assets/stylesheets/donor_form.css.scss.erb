@@ -43,34 +43,36 @@ $donor-image-height: 500px;
     border-bottom: 2px solid $dark-grey;
     @include form-block-padding();
 
-    #donation_picture{
-      z-index: 999;
-      line-height: 0;
-      position: absolute;
-      opacity: 0;
-      filter: alpha(opacity = 0);-ms-filter: "alpha(opacity=0)";
-      cursor: pointer;
-      _cursor: hand;
-      margin: 0;
-      padding:0;
-      left:0;
-      }
-     .add-photo-btn{
-       position:relative;
-       overflow:hidden;
-       cursor:pointer;
-       text-align:center;
-       background-color:#3ca532;
-       color:#fff;
-       display:block;
-       width:100px;
-       height:31px;
-       font-size:14px;
-       line-height:30px;
-       float:left;
-       border-radius: $global-radius;
-     }
+    label.donation_picture_button input[type="file"] {
+      position: fixed;
+      top: -1000px;
+    }
 
+    .donation_picture_button {
+      height:31px;
+      width:80px;
+      background: $medium-green;
+      border: 1px solid $white;
+      border-radius: $global-radius;
+      padding: 2px 5px;
+      margin: 2px;
+    }
+
+    .donation_picture_button:hover {
+        background-color: scale-color($medium-green, $lightness: 10%);
+    }
+
+    .donation_picture_button :invalid + span {
+        color: $white;
+    }
+    .donation_picture_button :valid + span {
+        color: $white;
+    }
+
+    .no-file-selected {
+        font-size: 12px;
+        line-height: 31px;
+    }
 }
 
 
