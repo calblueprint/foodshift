@@ -26,3 +26,18 @@ $(function(){
   $(document).foundation();
   $(".best_in_place").best_in_place();
 });
+
+$(window).bind("load", function () {
+    var footer = $(".footer");
+    var topPadding = parseFloat(footer.css('padding-top'));
+    console.log(topPadding);
+    var pos = footer.position();
+    var height = $(window).height();
+    height = height - pos.top - topPadding;
+    height = height - footer.height();
+    if (height > 0) {
+        footer.css({
+            'margin-top': height + 'px'
+        });
+    }
+});
