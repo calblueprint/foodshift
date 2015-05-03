@@ -9,27 +9,27 @@
     </ul>
 
     <section class="top-bar-section">
-        <ul class="right">
-          <li class=""><%= link_to("About", about_path) %></li>
-          <li class="divider"></li>
-          <li class=""><a href="#">Help</a></li>
-          <li class="divider"></li>
-          <% if user_signed_in? %>
-            <li class="">
-            <% if current_user.type == User.type_donor %>
-              <%= link_to 'View Profile', donor_profile_path %>
-            <% elsif current_user.type == User.type_recipient %>
-              <%= link_to 'View Profile', recipient_profile_path %>
-            <% elsif current_user.type == User.type_coordinator %>
-              <%= link_to 'View Dashboard', coordinator_schedule_path %>
-            <% end %>
-            </li>
-            <li class="divider"></li>
-            <li class=""><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
-          <% else %>
-            <li class=""><%= link_to 'Sign In', new_user_session_path %></li>
+      <ul class="right">
+        <li class=""><%= link_to("About", about_path) %></li>
+        <li class="divider"></li>
+        <li class=""><%= link_to("Contact", contact_path) %></li>
+        <li class="divider"></li>
+        <% if user_signed_in? %>
+          <li class="">
+          <% if current_user.type == User.type_donor %>
+            <%= link_to 'View Profile', donor_profile_path %>
+          <% elsif current_user.type == User.type_recipient %>
+            <%= link_to 'View Profile', recipient_profile_path %>
+          <% elsif current_user.type == User.type_coordinator %>
+            <%= link_to 'View Dashboard', coordinator_schedule_path %>
           <% end %>
-        </ul>
-      </section>
-    </nav>
+          </li>
+          <li class="divider"></li>
+          <li class=""><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+          <li class=""><%= link_to 'Sign In', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </section>
+  </nav>
 </div>
