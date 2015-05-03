@@ -348,24 +348,25 @@ var Recipient = React.createClass({
                         <div className="donation-row">
                             <div className="medium-5 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization}</li>
-                                    <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
+                                    <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization} Blueprint</li>
+                                    <li><i className="fa-li fa fa-user"></i>{this.props.donation.person} John Smith</li>
+                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address} 123  Oski Bear Lane</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
+                                    <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate}</li>
+                                    <li><i className="fa-li fa "></i>{this.props.donation.format_startdate}- {this.props.donation.format_enddate}</li>
                                 </ul>
                             </div>
                         </div>
                         <div className="delivery-row">
                             <div className="small-2 medium-1 columns">
-                                <i className="fa fa-long-arrow-down fa-5x delivery-arrow"></i>
+                                
                             </div>
                             <div className="small-10 medium-4 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate}</li>
-                                    <li><i className="fa-li fa "></i>{this.props.donation.format_startdate}- {this.props.donation.format_enddate}</li>
+                                    <i className="fa fa-long-arrow-down fa-5x delivery-arrow"></i>
                                 </ul>
                             </div>
                             <div className="small-10 small-offset-2 medium-7 medium-offset-0 columns">
@@ -382,11 +383,12 @@ var Recipient = React.createClass({
                                 <ul className="fa-ul">
                                     <li><i className="fa-li fa fa-users"></i>{this.props.recipient.recipient_profile.organization}</li>
                                     <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.contact_person}</li>
+                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.recipient.recipient_profile.address}</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.recipient.recipient_profile.address}</li>
+                                    
                                 </ul>
                             </div>
                         </div>
