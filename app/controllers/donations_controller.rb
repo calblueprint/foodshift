@@ -4,9 +4,13 @@ class DonationsController < ApplicationController
   # GET /donate
   def new
     gon.isSignedInOnLoad = !current_user.nil?
-    @user = current_user
-    if !@user.nil?
-      @profile = DonorProfile.find_by(donor_id: current_user.id)
+    if (gon.isSignedInOnLoad && current_user.type != User.type_donor)
+      redirect_to root_path, notice: "You are unauthorized to view this page."
+    else
+      @user = current_user
+      if !@user.nil?
+        @profile = DonorProfile.find_by(donor_id: current_user.id)
+      end
     end
   end
 
