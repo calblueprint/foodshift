@@ -30,6 +30,9 @@ class Donation < ActiveRecord::Base
   has_many :interests
   nilify_blanks
 
+  def self.type_new
+    "New"
+  end
   def self.type_pending
     "Pending"
   end
@@ -41,9 +44,6 @@ class Donation < ActiveRecord::Base
   end
   def self.type_canceled
     "Canceled"
-  end
-  def self.type_new
-    "New"
   end
 
   def profile
