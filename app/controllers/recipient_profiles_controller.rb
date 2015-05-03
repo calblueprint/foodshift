@@ -25,16 +25,18 @@ class RecipientProfilesController < ApplicationController
 
   # GET /donation/cancel_interest
   def cancel_interest
+    # remove interest object 
     donation = Donation.find_by id: params[:format]
-    donation.update_attributes status: Donation.type_canceled
-    redirect_to donor_profile_path
+    interest = Interest.find_by(donation_id: donation.id, recipient_id: current_user.id)
+    Interest.destroy(interest.id)
+    redirect_to recipient_profile_path
   end
 
   # GET /donation/cancel_match
-  def cancel_interest
+  def cancel_match
     donation = Donation.find_by id: params[:format]
     donation.update_attributes status: Donation.type_canceled
-    redirect_to donor_profile_path
+    redirect_to recipient_profile_path
   end
 
   def find_transaction(donation_id)
