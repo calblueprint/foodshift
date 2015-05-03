@@ -357,15 +357,12 @@ var Recipient = React.createClass({
                             </div>
                         </div>
                         <div className="delivery-row">
-                            <div className="small-2 medium-1 columns">
-                                
-                            </div>
-                            <div className="small-10 medium-4 columns">
+                            <div className="medium-5 columns">
                                 <ul className="fa-ul">
                                     <i className="fa fa-long-arrow-down fa-5x delivery-arrow"></i>
                                 </ul>
                             </div>
-                            <div className="small-10 small-offset-2 medium-7 medium-offset-0 columns">
+                            <div className="medium-7 columns">
                                 <ul className="fa-ul">
                                     <li>
                                         <i className="fa-li fa fa-cutlery"></i>
