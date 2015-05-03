@@ -45,8 +45,15 @@
       </div>
       <script>
         function showFilePath() {
-            var x=document.getElementById("donation_picture");
-            document.getElementById('no-file-selected').innerHTML=x.value;
+          var fullPath=document.getElementById("donation_picture").value;
+          if (fullPath) {
+            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+            var filename = fullPath.substring(startIndex);
+            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+              filename = filename.substring(1);
+            }
+            document.getElementById('no-file-selected').innerHTML=filename;
+          }
         }
       </script>
     </div>
@@ -56,7 +63,7 @@
       </div>
     </div>
   </div>
-
+  
   <div id="donor-form-pickup-block">
     <div class="row">
       <div class="small-12 medium-8 medium-centered columns">
