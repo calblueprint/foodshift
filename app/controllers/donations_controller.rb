@@ -5,7 +5,7 @@ class DonationsController < ApplicationController
   def new
     gon.isSignedInOnLoad = !current_user.nil?
     if (gon.isSignedInOnLoad && current_user.type != User.type_donor)
-      redirect_to root_path, notice: "You are unauthorized to view this page."
+      redirect_to root_path, notice: "Set up a donor account in order to make a donation."
     else
       @user = current_user
       if !@user.nil?
