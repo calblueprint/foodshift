@@ -14,8 +14,8 @@
 
       <% if d.status == Donation.type_pending %>
         <%= link_to "Cancel Donation", donations_cancel_path(d), class: "donation-modify-link donation-cancel" %>
-      <% elsif d.status == Donation.type_completed %>
-        Already Matched<br>
+      <% elsif d.status == Donation.type_in_progress %>
+        Cannot Cancel Donation<br>
       <% end %>
 
     </div>

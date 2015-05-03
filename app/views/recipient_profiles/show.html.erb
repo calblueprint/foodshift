@@ -53,10 +53,12 @@
                   <div class="donation-key-container">
                     <div class="row">
                       <div class="small-12 columns">
-                        <div class="donation-key donation-key-inprogress">Requested</div>
+                        <div class="donation-key donation-key-pending">Requested</div>
                         <div class="donation-key-description">Donation Requested</div>
-                        <div class="donation-key donation-key-completed">Matched</div>
-                        <div class="donation-key-description">Selected to Receive</div>
+                        <div class="donation-key donation-key-inprogress">Matched</div>
+                        <div class="donation-key-description">Selected as Recipient</div>
+                        <div class="donation-key donation-key-completed">Completed</div>
+                        <div class="donation-key-description">Donation Received</div>
                       </div>
                     </div>
                   </div>
@@ -66,10 +68,11 @@
                         <div class="donation-item donation-item-canceled">
                           <%= render partial: "donation_item", locals: { donation: find_requested_donation(d.id) } %>
                         </div>
-                      <% else %>
-                        <div class="donation-item donation-item-inprogress">
+                      <% elsif find_requested_donation(d.id).status == Donation.type_pending %>
+                        <div class="donation-item donation-item-pending">
                           <%= render partial: "donation_item", locals: { donation: find_requested_donation(d.id) } %>
                         </div>
+                      
                       <% end %>
                     <% end %>
                     <% @received_donations.each do |d| %>
@@ -77,7 +80,11 @@
                         <div class="donation-item donation-item-canceled">
                           <%= render partial: "donation_item", locals: { donation: find_received_donation(d.id) } %>
                         </div>
-                      <% else %>
+                      <% elsif find_received_donation(d.id).status == Donation.type_in_progress %>
+                        <div class="donation-item donation-item-inprogress">
+                          <%= render partial: "donation_item", locals: { donation: find_received_donation(d.id) } %>
+                        </div>
+                      <% elsif find_received_donation(d.id).status == Donation.type_completed %>
                         <div class="donation-item donation-item-completed">
                           <%= render partial: "donation_item", locals: { donation: find_received_donation(d.id) } %>
                         </div>

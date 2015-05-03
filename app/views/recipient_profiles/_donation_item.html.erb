@@ -2,11 +2,24 @@
   <div class="small-9 columns">
     <h4><%= donation.description %></h4>
     <b>Donated By:</b> <%= find_donor_profile(donation.id).person %>
+    <% if donation.status == Donation.type_completed %>
+      <br> <b>Picked up at:</b> <%= find_transaction(donation.id).picked_up_at.strftime("%I:%M %p %A, %B %d, %Y") %> <br>
+      <b>Delivered at:</b> <%= find_transaction(donation.id).delivered_at.strftime("%I:%M %p %A, %B %d, %Y") %> <br>
+    <% end %>
   </div>
   <div class="small-3 columns">
     <div class="donation-modify">
-      <span class="donation-status"><%= donation.status %></span> <br>
+      <% if donation.status == Donation.type_completed %> 
+        <span class="donation-status">Received</span> 
+      <% elsif donation.status == Donation.type_pending %>
+        <span class="donation-status">Requested</span> <br>
         <%= link_to "Cancel Donation", donations_cancel_path(donation), class: "donation-modify-link donation-cancel" %>
+      <% elsif donation.status == Donation.type_in_progress %>
+        <span class="donation-status">Matched</span> <br>
+        <%= link_to "Cancel Donation", donations_cancel_path(donation), class: "donation-modify-link donation-cancel" %>
+      <% elsif donation.status == Donation.type_canceled %>
+        <span class="donation-status">Canceled</span>
+      <% end %>
     </div>
   </div>
 </div>

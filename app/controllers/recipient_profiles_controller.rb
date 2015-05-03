@@ -1,7 +1,8 @@
 class RecipientProfilesController < ApplicationController
   helper_method :find_requested_donation,
                 :find_received_donation,
-                :find_donor_profile
+                :find_donor_profile,
+                :find_transaction
 
   def change_profile
     request.format = :json
@@ -19,6 +20,27 @@ class RecipientProfilesController < ApplicationController
         current_user.update(email: params[:recipient_profile][:email])
       end
       format.json { respond_with_bip(profile) }
+    end
+  end
+
+  # GET /donation/cancel_interest
+  def cancel_interest
+    donation = Donation.find_by id: params[:format]
+    donation.update_attributes status: Donation.type_canceled
+    redirect_to donor_profile_path
+  end
+
+  # GET /donation/cancel_match
+  def cancel_interest
+    donation = Donation.find_by id: params[:format]
+    donation.update_attributes status: Donation.type_canceled
+    redirect_to donor_profile_path
+  end
+
+  def find_transaction(donation_id)
+    transactions = Transaction.where(donation_id: donation_id)
+    if !transactions.nil?
+      transactions.first
     end
   end
 
