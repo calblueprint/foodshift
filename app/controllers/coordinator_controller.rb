@@ -32,6 +32,7 @@ class CoordinatorController < ApplicationController
     gon.donations = []
     gon.recipients = []
     gon.startdate = []
+    gon.donors = []
     Interest.includes({ recipient: [:recipient_profile] }, :donation).group_by(
       &:donation).each do |donation, interests|
       gon.startdate << donation.attributes

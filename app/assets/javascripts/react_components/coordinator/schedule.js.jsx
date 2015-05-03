@@ -355,8 +355,7 @@ var Recipient = React.createClass({
                             </div>
                             <div className="medium-7 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate}</li>
-                                    <li><i className="fa-li fa "></i>{this.props.donation.format_startdate}- {this.props.donation.format_enddate}</li>
+                                    <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate}- {this.props.donation.format_enddate}</li>
                                 </ul>
                             </div>
                         </div>

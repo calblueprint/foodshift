@@ -89,10 +89,10 @@ var Modal = React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                             {this.renderCloseButton()}
-                            <div className="modal-header-text">{this.props.header} &nbsp;</div>
+                            <div className="modal-header-text">{this.props.header}</div>
                         </div>
                         <div className="modal-body">
-                            {this.props.children} &nbsp;
+                            {this.props.children}
                         </div>
                     </div>
                 </div>
