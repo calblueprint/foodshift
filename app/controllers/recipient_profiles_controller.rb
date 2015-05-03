@@ -25,7 +25,6 @@ class RecipientProfilesController < ApplicationController
 
   # GET /donation/cancel_interest
   def cancel_interest
-    # remove interest object 
     donation = Donation.find_by id: params[:format]
     interest = Interest.find_by(donation_id: donation.id, recipient_id: current_user.id)
     Interest.destroy(interest.id)
@@ -34,7 +33,15 @@ class RecipientProfilesController < ApplicationController
 
   # GET /donation/cancel_match
   def cancel_match
+    # update status of donation
     donation = Donation.find_by id: params[:format]
+    donation.update_attributes status: Donation.type_pending # should be type_new but it doesn't exist yet 
+    # delete transaction
+    transaction = Transaction.find_by(donation_id: donation.id, recipient_id: current_user.id)
+    Transaction.destroy(transaction.id)
+    # resend email
+    @recipient_ids = Recipient.where(subscribed: true).pluck(:id)
+    # UserMailer.donation_available(@recipient_ids, donation).deliver
     redirect_to recipient_profile_path
   end
 
