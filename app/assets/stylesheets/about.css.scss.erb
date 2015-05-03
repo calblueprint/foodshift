@@ -38,7 +38,6 @@
     @include block-padding;
     border-top: 1px solid $dark-grey;
     p {
-        color: $dark-green;
         margin: 0;
         &.mission {
             @extend .text-center;
@@ -51,60 +50,60 @@
     }
 }
 
-.about-participants-block {
-    @include full-width-block($light-grey);
-    @include block-padding;
-    border-top: 1px solid $dark-grey;
-    .donors, .recipients {
-        h2 {
-            @extend .text-center;
-            font-size: rem-calc(27);
-            color: $dark-green;
-        }
-        ul.org-list {
-            @media #{$large-up} {
-                @include block-grid(3);
-            }
-            @media #{$medium-only} {
-                @include block-grid(2);
-            }
-            @media #{$small-only} {
-                @include block-grid(1);
-            }
-            @extend .text-center;
-            li.org {
-                padding: 0;
-                span.has-tip {
-                    display: inline-block;
-                    border: none;
-                    cursor: default;
-                    width: 100%;
-                    margin-top: 50px;
-                    img {
-                        width: 300px;
-                        height: 112px;
-                        transition: all 0.5s ease;
-                        opacity: 0.5;
-                    }
-                    &:hover {
-                        img {
-                            opacity: 1;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    .recipients {
-        margin-top: 50px;
-    }
-}
-
-.tooltip {
-    margin-top: -10px;
-    margin-left: 14px;
-    background-color: $charcoal;
-    .nub {
-        display: none;
-    }
-}
+// .about-participants-block {
+//     @include full-width-block($light-grey);
+//     @include block-padding;
+//     border-top: 1px solid $dark-grey;
+//     .donors, .recipients {
+//         h2 {
+//             @extend .text-center;
+//             font-size: rem-calc(27);
+//             color: $dark-green;
+//         }
+//         ul.org-list {
+//             @media #{$large-up} {
+//                 @include block-grid(3);
+//             }
+//             @media #{$medium-only} {
+//                 @include block-grid(2);
+//             }
+//             @media #{$small-only} {
+//                 @include block-grid(1);
+//             }
+//             @extend .text-center;
+//             li.org {
+//                 padding: 0;
+//                 span.has-tip {
+//                     display: inline-block;
+//                     border: none;
+//                     cursor: default;
+//                     width: 100%;
+//                     margin-top: 50px;
+//                     img {
+//                         width: 300px;
+//                         height: 112px;
+//                         transition: all 0.5s ease;
+//                         opacity: 0.5;
+//                     }
+//                     &:hover {
+//                         img {
+//                             opacity: 1;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     .recipients {
+//         margin-top: 50px;
+//     }
+// }
+//
+// .tooltip {
+//     margin-top: -10px;
+//     margin-left: 14px;
+//     background-color: $charcoal;
+//     .nub {
+//         display: none;
+//     }
+// }
