@@ -31,11 +31,8 @@ class CoordinatorController < ApplicationController
   def schedule
     gon.donations = []
     gon.recipients = []
-    gon.startdate = []
-    gon.donors = []
     Interest.includes({ recipient: [:recipient_profile] }, :donation).group_by(
       &:donation).each do |donation, interests|
-      gon.startdate << donation.attributes
       gon.donations << donation.as_json(
         methods: [:format_startdate, :format_enddate,
                   :organization, :address, :person, :email, :phone, :thumb])
