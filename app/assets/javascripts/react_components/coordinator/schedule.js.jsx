@@ -351,8 +351,8 @@ var Recipient = React.createClass({
                         <div className="donation-row">
                             <div className="medium-5 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization} Blueprint</li>
-                                    <li><i className="fa-li fa fa-user"></i>{this.props.donation.person} John Smith</li>
+                                    <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization}</li>
+                                    <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
                                     <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address} 123  Oski Bear Lane</li>
                                 </ul>
                             </div>
