@@ -143,6 +143,7 @@ var DonationInfo = React.createClass({
         return (
             <div className="donation-info">
                 <div className="row">
+
                     <div className="medium-4 medium-offset-1 columns">
                         <h1 className="donation-info-title">{this.props.donation.organization}</h1>
                         <ul className="fa-ul">
@@ -150,6 +151,7 @@ var DonationInfo = React.createClass({
                             <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
                             <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email}</li>
                             <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone}</li>
+
                         </ul>
                         <ul className="fa-ul additional-info-list">
                             {this.props.donation.can_dropoff && <li><i className="fa fa-li fa-car"></i><p>This donor can drop off the donation!</p></li>}
@@ -345,25 +347,22 @@ var Recipient = React.createClass({
                                 <ul className="fa-ul">
                                     <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization}</li>
                                     <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
+                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
+                                    <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate}- {this.props.donation.format_enddate}</li>
                                 </ul>
                             </div>
                         </div>
                         <div className="delivery-row">
-                            <div className="small-2 medium-1 columns">
-                                <i className="fa fa-long-arrow-down fa-5x delivery-arrow"></i>
-                            </div>
-                            <div className="small-10 medium-4 columns">
+                            <div className="medium-5 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate}</li>
-                                    <li><i className="fa-li fa "></i>{this.props.donation.format_startdate}- {this.props.donation.format_enddate}</li>
+                                    <i className="fa fa-long-arrow-down fa-5x delivery-arrow"></i>
                                 </ul>
                             </div>
-                            <div className="small-10 small-offset-2 medium-7 medium-offset-0 columns">
+                            <div className="medium-7 columns">
                                 <ul className="fa-ul">
                                     <li>
                                         <i className="fa-li fa fa-cutlery"></i>
@@ -377,11 +376,12 @@ var Recipient = React.createClass({
                                 <ul className="fa-ul">
                                     <li><i className="fa-li fa fa-users"></i>{this.props.recipient.recipient_profile.organization}</li>
                                     <li><i className="fa-li fa fa-user"></i>{this.props.recipient.recipient_profile.contact_person}</li>
+                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.recipient.recipient_profile.address}</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
                                 <ul className="fa-ul">
-                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.recipient.recipient_profile.address}</li>
+                                    
                                 </ul>
                             </div>
                         </div>
