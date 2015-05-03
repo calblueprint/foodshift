@@ -13,10 +13,10 @@
         <span class="donation-status">Received</span> 
       <% elsif donation.status == Donation.type_pending %>
         <span class="donation-status">Requested</span> <br>
-        <%= link_to "Cancel Request", interest_cancel_path(donation), data: {confirm: "r u shur doe"}, class: "donation-modify-link donation-cancel" %>
+        <%= link_to "Cancel Request", interest_cancel_path(donation), data: {confirm: "Are you sure you want to cancel your donation request?"}, class: "donation-modify-link donation-cancel" %>
       <% elsif donation.status == Donation.type_in_progress %>
         <span class="donation-status">Matched</span> <br>
-        <%= link_to "Cancel", match_cancel_path(donation), data: {confirm: "r u shur doe"}, class: "donation-modify-link donation-cancel" %>
+        <%= link_to "Cancel", match_cancel_path(donation), data: {confirm: "Are you sure you no longer want to receive this donation?"}, class: "donation-modify-link donation-cancel" %>
       <% elsif donation.status == Donation.type_canceled %>
         <span class="donation-status">Canceled</span>
       <% end %>
