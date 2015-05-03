@@ -42,6 +42,9 @@ class Donation < ActiveRecord::Base
   def self.type_canceled
     "Canceled"
   end
+  def self.type_new
+    "New"
+  end
 
   def profile
     DonorProfile.find_by(donor_id: donor_id)
