@@ -143,21 +143,15 @@ var DonationInfo = React.createClass({
         return (
             <div className="donation-info">
                 <div className="row">
-                    <div className="medium-4 columns">
-                        <h1 className="donation-info-title">{this.props.donation.organization} &nbsp;</h1>
-                    </div>
-                    <div className="medium-4 columns">
+
+                    <div className="medium-4 medium-offset-1 columns">
+                        <h1 className="donation-info-title">{this.props.donation.organization}</h1>
                         <ul className="fa-ul">
-                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_startdate} &nbsp;</li>
-                            <li><i className="fa-li fa fa-clock-o"></i>{this.props.donation.format_enddate} &nbsp;</li>
-                            <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address} &nbsp;</li>
-                        </ul>
-                    </div>
-                    <div className="medium-4 columns">
-                        <ul className="fa-ul">
-                            <li><i className="fa-li fa fa-user"></i>{this.props.donation.person} &nbsp;</li>
-                            <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email} &nbsp;</li>
-                            <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone} &nbsp;</li>
+                            <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
+                            <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
+                            <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.email}</li>
+                            <li><i className="fa-li fa fa-phone"></i>{this.props.donation.phone}</li>
+
                         </ul>
                         <ul className="fa-ul additional-info-list">
                             {this.props.donation.can_dropoff && <li><i className="fa fa-li fa-car"></i><p>This donor can drop off the donation!</p></li>}
@@ -353,7 +347,7 @@ var Recipient = React.createClass({
                                 <ul className="fa-ul">
                                     <li><i className="fa-li fa fa-users"></i>{this.props.donation.organization}</li>
                                     <li><i className="fa-li fa fa-user"></i>{this.props.donation.person}</li>
-                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address} 123  Oski Bear Lane</li>
+                                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.address}</li>
                                 </ul>
                             </div>
                             <div className="medium-7 columns">
