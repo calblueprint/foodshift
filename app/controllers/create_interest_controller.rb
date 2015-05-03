@@ -3,7 +3,7 @@ class CreateInterestController < ApplicationController
     @recipient_id = params[:recipient_id]
     @donation_id = params[:donation_id]
     # check to see if it the id's are valid
-    
+
     if not (Recipient.exists?(@recipient_id) && Donation.exists?(@donation_id))
       @result = "Invalid recipient/donation ID"
       return
@@ -21,6 +21,7 @@ class CreateInterestController < ApplicationController
     new_interest.donation_id = @donation_id
     new_interest.recipient_id = @recipient_id
     if new_interest.save
+      Donation.find(donation_id).update_attributes(status: Donation.type_pending)
       @result = "Succesfully created Interest Object with recipient_id #{@recipient_id} and donation_id #{@donation_id}!"
     end
   end

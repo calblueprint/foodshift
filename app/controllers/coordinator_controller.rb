@@ -33,12 +33,14 @@ class CoordinatorController < ApplicationController
     gon.recipients = []
     Interest.includes({ recipient: [:recipient_profile] }, :donation).group_by(
       &:donation).each do |donation, interests|
-      gon.donations << donation.as_json(
-        methods: [:format_startdate, :format_enddate,
-                  :organization, :address, :person, :email, :phone, :thumb])
-      interests.each do |interest|
-        gon.recipients << interest.as_json(
-          include: { recipient: { include: [:recipient_profile] } })
+      if [Donation.type_new, Donation.type_pending].include? donation.status
+        gon.donations << donation.as_json(
+          methods: [:format_startdate, :format_enddate,
+                    :organization, :address, :person, :email, :phone, :thumb])
+        interests.each do |interest|
+          gon.recipients << interest.as_json(
+            include: { recipient: { include: [:recipient_profile] } })
+        end
       end
     end
   end
@@ -56,6 +58,7 @@ class CoordinatorController < ApplicationController
         end
 
         @donation = Donation.find_by(id: donation_id)
+        @donation.update_attributes(status: Donation.type_in_progress)
         donor_id = @donation.donor_id
         @donor_profile = DonorProfile.find_by(donor_id: donor_id)
         @recipient_profile = RecipientProfile.find_by(recipient_id: recipient_id)

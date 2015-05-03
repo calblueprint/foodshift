@@ -381,7 +381,7 @@ var Recipient = React.createClass({
                             </div>
                             <div className="medium-7 columns">
                                 <ul className="fa-ul">
-                                    
+
                                 </ul>
                             </div>
                         </div>
