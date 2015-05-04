@@ -160,8 +160,6 @@
                 border-bottom: 1px solid $dark-grey;
                 color: $charcoal;
                 .donation-info {
-                    @extend .text-center;
-
                     h1.donation-info-title {
                         color: $charcoal;
                         padding-top: 20px;
@@ -175,7 +173,7 @@
                         max-height: rem-calc(240px);
                     }
                     .coordinator-donation-info {
-                        text-align: center;
+                        @extend .text-center;
                     }
                     i.fa-li {
                         padding-top: 2px;
