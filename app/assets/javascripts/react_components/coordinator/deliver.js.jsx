@@ -184,7 +184,7 @@ var Delivery = React.createClass({
                             <div className="delivery-info">
                                 <p className="delivery-time">
                                     <i className="fa fa-clock-o fa-fw"></i>
-                                    {this.props.delivery.donation.date} {this.props.delivery.donation.window_start} - {this.props.delivery.donation.window_end}
+                                    {this.props.delivery.donation.format_startdate} - {this.props.delivery.donation.format_enddate}
                                 </p>
                                 <a className="delivery-link" onClick={this.handleGetDirections} href={this.getDirectionsLink()} target="_blank">
                                     <i className="fa fa-map-marker fa-fw"></i> Get directions
