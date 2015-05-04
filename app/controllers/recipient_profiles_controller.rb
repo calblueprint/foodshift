@@ -40,7 +40,7 @@ class RecipientProfilesController < ApplicationController
     Transaction.destroy(transaction.id)
     @recipient_ids= Recipient.where(subscribed: true).pluck(:id)
     UserMailer.donation_available(@recipient_ids, donation).deliver
-    UserMailer.match_canceled(donation, current_user.id, ).deliver
+    UserMailer.match_canceled(donation, current_user.id, @coordinator_id).deliver
     redirect_to recipient_profile_path
   end
 
