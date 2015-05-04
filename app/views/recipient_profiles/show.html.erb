@@ -44,38 +44,11 @@
               </div>
             </div>
           </div>
-          <div class="card-history">
-              <div class="row">
-                <div class="small-12 columns">
-                  <div class="history-title">
-                    Donation History (<%= @total_count %>)
-                  </div>
-                  <div class="donation-key-container">
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <div class="donation-key donation-key-inprogress">Requested</div>
-                        <div class="donation-key-description">Donation Requested</div>
-                        <div class="donation-key donation-key-completed">Matched</div>
-                        <div class="donation-key-description">Selected to Receive</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="donation-container">
-                    <% @requested_donations.each do |d| %>
-                      <div class="donation-item donation-item-inprogress">
-                        <%= render partial: "donation_item", locals: { donation: find_requested_donation(d.id) } %>
-                      </div>
-                    <% end %>
-                    <% @received_donations.each do |d| %>
-                      <div class="donation-item donation-item-completed">
-                        <%= render partial: "donation_item", locals: { donation: find_received_donation(d.id) } %>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
+
+        <div id="recipient-history"></div>
+
       </div>
     </div>
   </div>
+
+<%= javascript_include_tag "react_components/recipient/profile" %>
