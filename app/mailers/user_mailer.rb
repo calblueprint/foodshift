@@ -10,25 +10,28 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def recipient_match(recipients)
-    if recipients.length > 0
-      mail(to: recipients, subject: "Your donation has found a recipient!")
+  def coordinator_email(coordinator_ids, donation)
+    @donation = donation
+    @profile = DonorProfile.find_by donor_id: donation.donor_id
+    if coordinator_ids.length > 0
+      coordinator_ids.each do |c|
+        @coordinator = Coordinator.find(c)
+        mail(to: @coordinator.email, subject: "(Coordinator) Donation Posted!")
+      end
     end
   end
 
-  def coordinator_email(recipients, donation)
-    if recipients.length > 0
-      @donation = donation
-      @profile = DonorProfile.find_by donor_id: donation.donor_id
-      mail(to: recipients, subject: "(Coordinator) Donation Posted!")
-    end
-  end
-
-  def coordinator_match(donation, donor_id, recipient_id)
+  def coordinator_matched_donor(donation, donor_id)
     @donation = donation
     @donor_profile = DonorProfile.find_by donor_id: donor_id
-    @recipient_profile = RecipientProfile.find_by recipient_id: recipient_id
-    mail(to: @recipient_profile.contact_email, subject: "(Recipient) Match made!")
+    @donor = Donor.find donor_id
     mail(to: @donor_profile.email, subject: "(Donor) Match made!")
+  end
+
+  def coordinator_matched_recipient(donation, recipient_id)
+    @donation = donation
+    @recipient_profile = RecipientProfile.find_by recipient_id: recipient_id
+    @recipient = Recipient.find recipient_id
+    mail(to: @recipient_profile.contact_email, subject: "(Recipient) Match made!")
   end
 end

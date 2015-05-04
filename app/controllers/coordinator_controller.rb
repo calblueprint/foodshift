@@ -62,7 +62,8 @@ class CoordinatorController < ApplicationController
         donor_id = @donation.donor_id
         @donor_profile = DonorProfile.find_by(donor_id: donor_id)
         @recipient_profile = RecipientProfile.find_by(recipient_id: recipient_id)
-        UserMailer.coordinator_match(@donation, donor_id, recipient_id).deliver
+        UserMailer.coordinator_matched_donor(@donation, donor_id).deliver
+        UserMailer.coordinator_matched_recipient(@donation, recipient_id).deliver
         format.json { render json: {}, status: :created }
 
         rescue ActiveRecord::ActiveRecordError => err
