@@ -17,7 +17,6 @@ class RecipientForm < Form
     :vehicle,
     :refrigeration,
     :kitchen,
-    :contact_email
   )
 
   validate :email_is_unique
@@ -36,14 +35,14 @@ class RecipientForm < Form
   # PUT /recipient/profile
   def create_objects
     ActiveRecord::Base.transaction do
-      donation.save!
+      recipient_user.save!
+      recipient_profile(recipient_user).save!
     end
-    @profile = RecipientProfile.find_by(recipient_id: current_user.id)
-    @profile.update(
+    @recipient_profile.update(
       address: address,
-      contact_email: contact_email,
-      contact_person: contact_person,
-      contact_person_phone: contact_person_phone
+      contact_email: email,
+      contact_person: name_to_person,
+      contact_person_phone: phone
     )
     rescue ActiveRecord::RecordInvalid => err
       Rails.logger.error(err.to_s)
