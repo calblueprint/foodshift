@@ -137,6 +137,12 @@ var DonationItem = React.createClass({
         <div className="donation-item-fold"  key={_.join("-", this.props.donation.id, "open")}>
           <div className="row">
             <div className="small-9 columns">
+              <ul className="fa-ul">
+                <li><i className="fa-li fa fa-user"></i>{this.props.donation.donor.donor_profile.person}</li>
+                <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.donor.donor_profile.address}</li>
+                <li><i className="fa-li fa fa-phone"></i>{this.props.donation.donor.donor_profile.phone}</li>
+                <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.donor.donor_profile.email}</li>
+              </ul>
               <img className="donation-picture" src={this.props.donation.picture.url}/>
             </div>
           </div>
@@ -154,6 +160,7 @@ var DonationItem = React.createClass({
           <div className="row">
             <div className="small-9 columns">
               <h4>{this.props.donation.description}</h4>
+              <p><strong>Donor:</strong> {this.props.donation.donor.donor_profile.organization}</p>
             </div>
             <div className="small-3 columns">
               <div className="donation-modify">
@@ -245,6 +252,7 @@ var DonationItem = React.createClass({
           <div className="row">
             <div className="small-9 columns">
               <h4>{this.props.donation.description}</h4>
+              <p><strong>Donor:</strong> {this.props.donation.donor.donor_profile.organization}</p>
             </div>
             <div className="small-3 columns">
               <div className="donation-modify">
