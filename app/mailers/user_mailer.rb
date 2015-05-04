@@ -21,7 +21,7 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def coordinator_matched_donor(donation, donor_id, recipient_id)
+  def coordinator_matched_donor(donation, donor_id)
     @donation = donation
     @donor_profile = DonorProfile.find_by donor_id: donor_id
     @donor = Donor.find donor_id
