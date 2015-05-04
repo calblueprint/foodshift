@@ -215,7 +215,6 @@
                                                                     <center><img src="http://foodshift.net/wp-content/uploads/2013/01/cropped-cropped-Food-Shift_Main-Menu_Logo-01.png"></center> <br> <br>
 
                                                                     <h2 style="text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#37a536;line-height:135%;">Match Made</h2>
-                                                                    <div style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#28602b;line-height:135%;">We've paired together a donor and a recipient!</div>
                                                                   </td>
                                                                 </tr>
                                                               </table>
@@ -252,9 +251,7 @@
                                                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                                       <tr>
                                                                         <td valign="top" class="textContent">
-                                                                          <h3 style="color:#f9f8f5;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:10px;text-align:left;">Hi,</h3>
-                                                                          <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#f9f8f5;line-height:135%;">
-                                                                            A new food donation has been posted.</div>
+                                                                          <h3 style="color:#f9f8f5;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:0;text-align:left;">We've paired together a donor and a recipient!</h3>
                                                                           </td>
                                                                         </tr>
                                                                       </table>
@@ -302,8 +299,8 @@
                                                             <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
                                                               <%= image_tag(@donation.picture) %> <br>
                                                               <b>Food Description:</b> <%= @donation.description %> <br>
-                                                              <b>Available starting:</b><br><%= @donation.window_start.to_formatted_s(:long_ordinal) %> <br>
-                                                              <b>Available until:</b><br><%= @donation.window_end.to_formatted_s(:long_ordinal) %> <br>
+                                                              <b>Available starting:</b><br><%= @donation.format_startdate %> <br>
+                                                              <b>Available until:</b><br><%= @donation.format_enddate %> <br>
                                                               <b>Donor Contact</b>
                                                               <ul style="list-style-type:none;margin-top:0;padding:0">
                                                                 <li>Name: <%= @donor_profile.person %></li>
@@ -436,8 +433,8 @@
                                                   <td valign="top" bgcolor="#fff">
 
                                                     <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#828282;text-align:center;line-height:120%;">
-                                                      <div>Copyright &#169; 2014 <a href="http://www.charlesmudy.com/respmail/" target="_blank" style="text-decoration:none;color:#828282;"><span style="color:#828282;">Foodshift</span></a>. All&nbsp;rights&nbsp;reserved.</div>
-                                                      <div>If you no longer wish to recieve emails from us, you can <a href="#" target="_blank" style="text-decoration:none;color:#828282;"><span style="color:#828282;">unsubscribe</span></a>.</div>
+                                                      <div>Copyright &#169; 2014 <a href="http://foodshift.net" target="_blank" style="text-decoration:none;color:#828282;"><span style="color:#828282;">Food Shift</span></a>. All&nbsp;rights&nbsp;reserved.</div>
+                                                      <div>If you no longer wish to recieve emails from us, you can <a href="http://foodshift-dev.herokuapp.com/unsubscribe/<%= @donor.secret_token %>" target="_blank" style="text-decoration:none;color:#828282;"><span style="color:#828282;">unsubscribe</span></a>.</div>
                                                     </div>
 
                                                   </td>

@@ -23,8 +23,8 @@ class DonationsController < ApplicationController
         @donation = donation_form.donation
         @recipient_ids = Recipient.where(subscribed: true).pluck(:id)
         UserMailer.donation_available(@recipient_ids, @donation).deliver
-        @coordinators = Coordinator.pluck(:email)
-        UserMailer.coordinator_email(@coordinators, @donation).deliver
+        @coordinator_ids = Coordinator.pluck(:id)
+        UserMailer.coordinator_email(@coordinator_ids, @donation).deliver
         format.html { redirect_to root_path, notice: "Donation was successfully created." }
         format.json { render json: {}, status: :created }
       else
