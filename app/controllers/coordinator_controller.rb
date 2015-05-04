@@ -53,7 +53,7 @@ class CoordinatorController < ApplicationController
 
       begin
         ActiveRecord::Base.transaction do
-          Interest.destroy_all(id: interest_id)
+          Interest.destroy(interest_id)
           Transaction.create(donation_id: donation_id,
                              recipient_id: recipient_id)
         end
