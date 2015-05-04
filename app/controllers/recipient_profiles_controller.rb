@@ -36,9 +36,11 @@ class RecipientProfilesController < ApplicationController
     donation = Donation.find_by id: params[:format]
     donation.update_attributes status: Donation.type_pending # should be type_new but it doesn't exist yet 
     transaction = Transaction.find_by(donation_id: donation.id, recipient_id: current_user.id)
+    @coordinator_id = transaction.coordinator_id
     Transaction.destroy(transaction.id)
     @recipient_ids= Recipient.where(subscribed: true).pluck(:id)
     UserMailer.donation_available(@recipient_ids, donation).deliver
+    UserMailer.match_canceled(donation, current_user.id, ).deliver
     redirect_to recipient_profile_path
   end
 
