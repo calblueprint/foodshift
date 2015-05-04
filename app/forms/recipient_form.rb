@@ -17,6 +17,7 @@ class RecipientForm < Form
     :vehicle,
     :refrigeration,
     :kitchen,
+    :contact_email
   )
 
   validate :email_is_unique
@@ -38,7 +39,7 @@ class RecipientForm < Form
       recipient_user.save!
       recipient_profile(recipient_user).save!
     end
-    @recipient_profile.update(
+    @profile.update(
       address: address,
       contact_email: email,
       contact_person: name_to_person,
@@ -59,7 +60,7 @@ class RecipientForm < Form
 
   def recipient_profile(recipient_user)
     # TODO: Add more of the fields listed in the client doc
-    @recipient_profile ||= RecipientProfile.new(
+    @profile ||= RecipientProfile.new(
       recipient: recipient_user,
       organization: organization_name,
       address: address,
