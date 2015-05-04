@@ -5,15 +5,27 @@ class CreateInterestController < ApplicationController
     # check to see if it the id's are valid
 
     if not (Recipient.exists?(@recipient_id) && Donation.exists?(@donation_id))
-      @result = "Invalid recipient/donation ID"
+      @result = "Invalid recipient/donation ID."
       return
     end
     if params[:authentication] != Recipient.find(@recipient_id).encrypted_password.tr('/.', '')
-      @result = "Unauthorized User"
+      @result = "Unauthorized user."
       return
     end
     if Interest.exists?(recipient_id: @recipient_id) && Interest.exists?(donation_id: @donation_id)
-      @result = "This recipient/donation pair already exists"
+      @result = "This recipient/donation pair already exists!"
+      return
+    end
+    if Donation.find(donation_id).status == Donation.type_in_progress
+      @result = "This donation has already been matched with another recipient."
+      return
+    end
+    if Donation.find(donation_id).status == Donation.type_canceled
+      @result = "This donation has been canceled."
+      return
+    end
+    if Donation.find(donation_id).status == Donation.type_completed
+      @result = "This donation has already been completed."
       return
     end
 
