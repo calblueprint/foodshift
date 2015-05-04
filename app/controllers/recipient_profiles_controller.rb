@@ -57,6 +57,16 @@ class RecipientProfilesController < ApplicationController
     @received_donations = Transaction.where(recipient_id: current_user.id)
     @requested_donations = Interest.where(recipient_id: current_user.id)
     @total_count = @received_donations.count + @requested_donations.count
+    @transactions = Transaction.where(recipient_id: current_user.id).includes(
+      donation: { donor: :donor_profile }
+    )
+    gon.transactions = @transactions.as_json(
+      include: [{ donation: {
+        include: [{ donor: {
+          include: [:donor_profile]
+        } }]
+      } }]
+    )
   end
 
   def find_requested_donation(donation_id)

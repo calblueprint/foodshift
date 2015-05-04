@@ -110,15 +110,17 @@ Does your nonprofit need extra food? Fill in information about your organization
                     <input type="hidden" id="recipient-address-lng" name="recipient[longitude]"/>
                 </div>
             </div>
-            <div class="row collapse">
-                <div class="small-3 columns">
-                    <span class="prefix">501(c)(3) Number</span>
+                <div class="row collapse">
+                    <div class="small-3 columns">
+                        <span class="prefix">501(c)(3) Number</span>
+                    </div>
+                    <span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="For liability reasons, only 501(c)(3) organizations are legally permitted to receive food donations. For more information, see http://tinyurl.com/foodliability">
+                        <div class="small-9 columns">
+                            <input type="text" required name="recipient[organization_number]"/>
+                            <small class="error">501(c)(3) number is required.</small>
+                        </div>
+                    </span>
                 </div>
-                <div class="small-9 columns">
-                    <input type="text" required name="recipient[organization_number]"/>
-                    <small class="error">501(c)(3) number is required.</small>
-                </div>
-            </div>
             <div class="row">
                 <div class="small-12 medium-6 columns">
                     <input id="checkbox-refrigeration" type="checkbox" name="recipient[refrigeration]"/><label for="checkbox-refrigeration">Do you have refrigeration?</label>

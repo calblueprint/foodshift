@@ -4,9 +4,13 @@ class DonationsController < ApplicationController
   # GET /donate
   def new
     gon.isSignedInOnLoad = !current_user.nil?
-    @user = current_user
-    if !@user.nil?
-      @profile = DonorProfile.find_by(donor_id: current_user.id)
+    if !current_user.nil? && current_user.type != User.type_donor
+      redirect_to root_path, notice: "Set up a donor account in order to make a donation."
+    else
+      @user = current_user
+      if !@user.nil?
+        @profile = DonorProfile.find_by(donor_id: current_user.id)
+      end
     end
   end
 

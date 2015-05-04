@@ -62,7 +62,7 @@ class DonationForm < Form
       latitude:  latitude,
       longitude: longitude,
       can_dropoff: can_dropoff,
-      status: "Pending"
+      status: "New"
     )
   end
 
