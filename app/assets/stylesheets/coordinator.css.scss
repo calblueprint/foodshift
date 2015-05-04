@@ -160,7 +160,7 @@
                 border-bottom: 1px solid $dark-grey;
                 color: $charcoal;
                 .donation-info {
-                    @extend text-center;
+                    @extend .text-center;
 
                     h1.donation-info-title {
                         color: $charcoal;
