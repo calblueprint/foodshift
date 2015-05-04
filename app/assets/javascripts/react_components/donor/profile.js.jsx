@@ -2,6 +2,7 @@
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
+var STATUS_NEW = "New";
 var STATUS_IN_PROGRESS ="In Progress";
 var STATUS_PENDING ="Pending";
 var STATUS_COMPLETED ="Completed";
@@ -70,6 +71,8 @@ var DonationItem = React.createClass({
     },
     render: function() {
         switch (this.props.donation.status) {
+            case STATUS_NEW:
+                return this.renderDonationNew();
             case STATUS_IN_PROGRESS:
                 return this.renderDonationInProgress();
             case STATUS_PENDING:
@@ -80,21 +83,13 @@ var DonationItem = React.createClass({
                 return this.renderDonationCanceled();
         }
     },
-    renderDonationInProgress: function() {
+    renderDonationNew: function() {
         if (this.props.isOpen) {
           fold_content = (
             <div className="donation-item-fold"  key={_.join("-", this.props.donation.id, "open")}>
               <div className="row">
-                <div className="small-12 medium-4 columns">
-                  <ul className="fa-ul">
-                    <li><i className="fa-li fa fa-user"></i>{this.props.donation.food_transaction.recipient.recipient_profile.contact_person}</li>
-                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.food_transaction.recipient.recipient_profile.address}</li>
-                    <li><i className="fa-li fa fa-phone"></i>{this.props.donation.food_transaction.recipient.recipient_profile.contact_person_phone}</li>
-                    <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.food_transaction.recipient.email}</li>
-                  </ul>
-                </div>
-                <div className="small-12 medium-6 medium-offset-1 end columns">
-                  <img className="donation-picture picture-inprogress" src={this.props.donation.picture.url}/>
+                <div className="small-9 columns">
+                  <img className="donation-picture" src={this.props.donation.picture.url}/>
                 </div>
               </div>
             </div>
@@ -106,19 +101,18 @@ var DonationItem = React.createClass({
           )
         }
         return (
-          <div key={this.props.donation.id} onClick={this.handleClick} className="donation-item-wrapper donation-item-inprogress">
+          <div key={this.props.donation.id} onClick={this.handleClick} className="donation-item-wrapper donation-item-new">
             <div className="donation-item">
               <div className="row">
                 <div className="small-9 columns">
                   <h4>{this.props.donation.description}</h4>
-                  <p><strong>Recipient:</strong> {this.props.donation.food_transaction.recipient.recipient_profile.organization}</p>
                 </div>
                 <div className="small-3 columns">
                   <div className="donation-modify">
                     <div className="donation-status">
                       <p><strong>{this.props.donation.status}</strong></p>
                     </div>
-                    <p>Cannot Cancel Donation</p>
+                    <a href={"/donation/cancel.".concat(this.props.donation.id)} className="donation-modify-link donation-cancel">Cancel Donation</a>
                   </div>
                 </div>
               </div>
@@ -159,6 +153,55 @@ var DonationItem = React.createClass({
                       <p><strong>{this.props.donation.status}</strong></p>
                     </div>
                     <a href={"/donation/cancel.".concat(this.props.donation.id)} className="donation-modify-link donation-cancel">Cancel Donation</a>
+                  </div>
+                </div>
+              </div>
+              <ReactCSSTransitionGroup transitionName="donation-item">
+                  {fold_content}
+              </ReactCSSTransitionGroup>
+            </div>
+          </div>
+        );
+    },
+    renderDonationInProgress: function() {
+        if (this.props.isOpen) {
+          fold_content = (
+            <div className="donation-item-fold"  key={_.join("-", this.props.donation.id, "open")}>
+              <div className="row">
+                <div className="small-12 medium-4 columns">
+                  <ul className="fa-ul">
+                    <li><i className="fa-li fa fa-user"></i>{this.props.donation.food_transaction.recipient.recipient_profile.contact_person}</li>
+                    <li><i className="fa-li fa fa-map-marker"></i>{this.props.donation.food_transaction.recipient.recipient_profile.address}</li>
+                    <li><i className="fa-li fa fa-phone"></i>{this.props.donation.food_transaction.recipient.recipient_profile.contact_person_phone}</li>
+                    <li><i className="fa-li fa fa-envelope-o"></i>{this.props.donation.food_transaction.recipient.email}</li>
+                  </ul>
+                </div>
+                <div className="small-12 medium-6 medium-offset-1 end columns">
+                  <img className="donation-picture picture-inprogress" src={this.props.donation.picture.url}/>
+                </div>
+              </div>
+            </div>
+          )
+        } else {
+          fold_content = (
+            <div key={_.join("-", this.props.donation.id, "closed")}>
+            </div>
+          )
+        }
+        return (
+          <div key={this.props.donation.id} onClick={this.handleClick} className="donation-item-wrapper donation-item-inprogress">
+            <div className="donation-item">
+              <div className="row">
+                <div className="small-9 columns">
+                  <h4>{this.props.donation.description}</h4>
+                  <p><strong>Recipient:</strong> {this.props.donation.food_transaction.recipient.recipient_profile.organization}</p>
+                </div>
+                <div className="small-3 columns">
+                  <div className="donation-modify">
+                    <div className="donation-status">
+                      <p><strong>{this.props.donation.status}</strong></p>
+                    </div>
+                    <p>Cannot Cancel Donation</p>
                   </div>
                 </div>
               </div>
