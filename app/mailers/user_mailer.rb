@@ -21,15 +21,17 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def coordinator_matched_donor(donation, donor_id)
+  def coordinator_matched_donor(donation, donor_id, recipient_id)
     @donation = donation
     @donor_profile = DonorProfile.find_by donor_id: donor_id
+    @recipient_profile = RecipientProfile.find_by recipient_id: recipient_id
     @donor = Donor.find donor_id
     mail(to: @donor_profile.email, subject: "(Donor) Match made!")
   end
 
-  def coordinator_matched_recipient(donation, recipient_id)
+  def coordinator_matched_recipient(donation, donor_id, recipient_id)
     @donation = donation
+    @donor_profile = DonorProfile.find_by donor_id: donor_id
     @recipient_profile = RecipientProfile.find_by recipient_id: recipient_id
     @recipient = Recipient.find recipient_id
     mail(to: @recipient_profile.contact_email, subject: "(Recipient) Match made!")
