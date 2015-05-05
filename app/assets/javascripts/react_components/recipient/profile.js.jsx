@@ -9,7 +9,6 @@ var STATUS_CANCELED ="Canceled";
 
 var RecipientHistory = React.createClass({
   getInitialState: function() {
-    console.log(gon.transactions);
     return {
       transactions: gon.transactions,
       interests: gon.interests,
@@ -26,7 +25,7 @@ var RecipientHistory = React.createClass({
     this.setState({openDonationId: donationId});
   },
 
-  renderTransaction(transaction) {
+  renderTransaction: function(transaction) {
     var isOpen = (transaction.donation.id === this.state.openDonationId);
     return (
       <DonationItem
