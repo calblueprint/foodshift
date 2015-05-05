@@ -22,6 +22,27 @@ class RecipientProfilesController < ApplicationController
     end
   end
 
+  # GET /donation/cancel_interest
+  def cancel_interest
+    donation = Donation.find_by id: params[:format]
+    interest = Interest.find_by(donation_id: donation.id, recipient_id: current_user.id)
+    Interest.destroy(interest.id)
+    redirect_to recipient_profile_path
+  end
+
+  # GET /donation/cancel_match
+  def cancel_match
+    donation = Donation.find_by id: params[:format]
+    donation.update_attributes status: Donation.type_pending # should be type_new but it doesn't exist yet 
+    transaction = Transaction.find_by(donation_id: donation.id, recipient_id: current_user.id)
+    @coordinator_id = transaction.coordinator_id
+    Transaction.destroy(transaction.id)
+    @recipient_ids= Recipient.where(subscribed: true).pluck(:id)
+    UserMailer.donation_available(@recipient_ids, donation).deliver
+    UserMailer.match_canceled(donation, current_user.id, @coordinator_id).deliver
+    redirect_to recipient_profile_path
+  end
+
   def show
     @user = current_user
     @profile = RecipientProfile.find_by(recipient_id: current_user.id)
@@ -32,6 +53,17 @@ class RecipientProfilesController < ApplicationController
       donation: { donor: :donor_profile }
     )
     gon.transactions = @transactions.as_json(
+      include: [{ donation: {
+        include: [{ donor: {
+          include: [:donor_profile]
+        } }]
+      } }]
+    )
+
+    @interests = Interest.where(recipient_id: current_user.id).includes(
+      donation: { donor: :donor_profile }
+    )
+    gon.interests = @interests.as_json(
       include: [{ donation: {
         include: [{ donor: {
           include: [:donor_profile]

@@ -36,4 +36,6 @@ class UserMailer < ActionMailer::Base
     @recipient = Recipient.find recipient_id
     mail(to: @recipient_profile.contact_email, subject: "(Recipient) Match made!")
   end
+
+  
 end
