@@ -6,7 +6,7 @@ class CoordinatorController < ApplicationController
       { recipient: [:recipient_profile] }, :donation).where(delivered_at: nil)
     gon.deliveries = current_deliveries.as_json(
       { include: [{ recipient: { include: [:recipient_profile] } },
-                  donation: { methods: [:format_startdate, :format_enddate] }] })
+                  donation: { methods: [:format_startdate, :format_enddate, :address] }] })
   end
 
   def confirm
