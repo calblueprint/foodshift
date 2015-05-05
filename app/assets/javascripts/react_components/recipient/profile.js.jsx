@@ -16,7 +16,6 @@ var RecipientHistory = React.createClass({
     };
   },
   handleDonationItemOpen: function(event) {
-    console.log(event);
     var donationId = event.donationId;
     if (this.state.openDonationId === event.donationId) {
       // If we click on an open recipient, we want to close it
@@ -39,7 +38,6 @@ var RecipientHistory = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.interests)
     var donation_items =  _.map(this.state.transactions, this.renderTransaction.bind(this));
     var interest_items = _.map(this.state.interests, this.renderTransaction.bind(this));
     return (
