@@ -28,38 +28,23 @@
       </div>
     </div>
     <div class="row">
-      <div class="small-12 text-center columns">
-        <span>Upload a picture of your donation!</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-offset-5 small-1 columns">
-        <label class="text-center donation_picture_button columns">
-            <%= f.file_field :picture, required: "", input_html: { onchange: "showFilePath()" } %>
-            <span>Upload</span>
+      <div class="small-12 medium-offset-2 medium-4 columns">
+        <div class="row">
+          <div class="small-6 columns">
+            <%= f.file_field :picture, required: "" %>
             <small class="error">Picture is required.</small>
-        </label>
+          </div>
+          <div class="small-6 columns">
+            <span>Upload a picture of your donation!</span>
+          </div>
+        </div>
       </div>
-      <div class="no-file-selected small-6 columns">
-        <span id="no-file-selected">No file selected</span>
-      </div>
-      <script>
-        function showFilePath() {
-          var fullPath=document.getElementById("donation_picture").value;
-          if (fullPath) {
-            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-            var filename = fullPath.substring(startIndex);
-            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-              filename = filename.substring(1);
-            }
-            document.getElementById('no-file-selected').innerHTML=filename;
-          }
-        }
-      </script>
-    </div>
-    <div class="row">
-      <div class="small-offset-4 small-5 columns">
-        <%= f.check_box :refrigeration %> <label for="donation_refrigeration">Does your donation require refrigeration?</label>
+      <div class="small-12 medium-6 end columns">
+        <div class="row">
+            <div class="small-12 end columns">
+                <%= f.check_box :refrigeration %> <label for="donation_refrigeration">Does your donation require refrigeration?</label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
