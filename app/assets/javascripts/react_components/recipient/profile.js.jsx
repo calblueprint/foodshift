@@ -12,6 +12,7 @@ var RecipientHistory = React.createClass({
     console.log(gon.transactions);
     return {
       transactions: gon.transactions,
+      interests: gon.interests,
       openDonationId: null
     };
   },
@@ -24,25 +25,30 @@ var RecipientHistory = React.createClass({
     }
     this.setState({openDonationId: donationId});
   },
+
+  renderTransaction(transaction) {
+    var isOpen = (transaction.donation.id === this.state.openDonationId);
+    return (
+      <DonationItem
+        key={transaction.donation.id}
+        isOpen={isOpen}
+        donation={transaction.donation}
+        transaction={transaction}
+        handleClick={this.handleDonationItemOpen}
+      />
+    );
+  },
+
   render: function() {
-    var donation_items =  _.map(this.state.transactions, function(transaction) {
-      var isOpen = (transaction.donation.id === this.state.openDonationId);
-      return (
-        <DonationItem
-          key={transaction.donation.id}
-          isOpen={isOpen}
-          donation={transaction.donation}
-          transaction={transaction}
-          handleClick={this.handleDonationItemOpen}
-        />
-      );
-    }.bind(this));
+    console.log(this.state.interests)
+    var donation_items =  _.map(this.state.transactions, this.renderTransaction.bind(this));
+    var interest_items = _.map(this.state.interests, this.renderTransaction.bind(this));
     return (
       <div className="card-history">
         <div className="row">
           <div className="small-12 columns">
             <div className="history-title">
-              Recipient History ({this.state.transactions.length})
+              Recipient History ({this.state.transactions.length + this.state.interests.length})
             </div>
             <div className="donation-container">
               <div className="donation-key-container">
@@ -57,6 +63,7 @@ var RecipientHistory = React.createClass({
                   </div>
                 </div>
               </div>
+              {interest_items}
               {donation_items}
             </div>
           </div>
@@ -120,7 +127,7 @@ var DonationItem = React.createClass({
                 <div className="donation-status">
                   <p><strong>{this.props.donation.status}</strong></p>
                 </div>
-                <p>Cannot Cancel Donation</p>
+                <a href={"/donation/cancel_match.".concat(this.props.donation.id)} className="donation-modify-link donation-cancel">Cancel</a>
               </div>
             </div>
           </div>
@@ -167,7 +174,7 @@ var DonationItem = React.createClass({
                 <div className="donation-status">
                   <p><strong>{this.props.donation.status}</strong></p>
                 </div>
-                <a href={"/donation/cancel.".concat(this.props.donation.id)} className="donation-modify-link donation-cancel">Cancel Donation</a>
+                <a href={"/donation/cancel_interest.".concat(this.props.donation.id)} className="donation-modify-link donation-cancel">Cancel Request</a>
               </div>
             </div>
           </div>
