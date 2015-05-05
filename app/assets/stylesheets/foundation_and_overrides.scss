@@ -1458,8 +1458,9 @@ $topbar-divider-border-top: solid 1px scale-color($medium-grey, $lightness: 50%)
 
 // Donor Profile Colors
 $donation-completed-key: #3ca532;
-$donation-inprogress-key: #d0edcd;
-$donation-pending-key: #eaeaea;
+$donation-inprogress-key: scale-color($donation-completed-key, $saturation: -20%, $lightness: 20%);
+$donation-pending-key: #d0edcd;
+$donation-new-key: #eaeaea;
 $donation-canceled-key: $light-red;
 $donor-profile-border-grey: #aaa;
 $donor-profile-donation-summary: #f8f8f8;

@@ -13,6 +13,7 @@ class DonorController < ApplicationController
       food_transaction: [{ recipient: :recipient_profile }, :coordinator]
     )
 
+    @new_donations = @donations.where(status: Donation.type_new)
     @pending_donations = @donations.where(status: Donation.type_pending)
     @inprogress_donations = @donations.where(status: Donation.type_in_progress)
     @completed_donations = @donations.where(status: Donation.type_completed)
