@@ -35,8 +35,8 @@ class RecipientProfilesController < ApplicationController
             :org501c3
           )
         )
-        if !params[:recipient_profile][:email].nil?
-          current_user.update(email: params[:recipient_profile][:email])
+        if !params[:recipient_profile][:contact_email].nil?
+          current_user.update(email: params[:recipient_profile][:contact_email])
         end
         format.json { respond_with_bip(profile) }
       end
