@@ -16,9 +16,14 @@
                 <div class="profile-info">
                   <div class="row">
                     <div class="medium-4 columns">
-                      <ul class="profile-img-wrap">
-                        <li class="profile-img-item"><%= image_tag "profile_img.png", class: "profile-img" %></li>
-                      </ul>
+                      <div class="profile-img-wrap">
+                        <div class="profile-img-trigger"><%= image_tag @profile.logo.thumb, class: "profile-img" %></div>
+                        <div class="profile-img-target">
+                          <%= simple_form_for @profile, :html => { :id => "profile-img-submit" } do |f| %>
+                            <%= f.file_field :logo, class: "profile-img-uploader" %>
+                          <% end %>
+                        </div>
+                      </div>
                     </div>
                     <div class="medium-8 columns">
                       <div class="row">
@@ -38,17 +43,92 @@
                           </ul>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="medium-11 columns">
+                          <dl class="accordion" data-accordion>
+                            <dd class="accordion-navigation">
+                              <a href="#panel1a">Additional Information</a>
+                              <div id="panel1a" class="content">
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Subscribed?</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @user, :subscribed, :as => :checkbox, :class => "additional-info-value", :url => recipient_profile_change_path %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">501(c)(3) number:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :org501c3, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Average number of people served:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :num_people_served, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Hours of operation:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :hrs_of_operation, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Population description:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :population_description, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Refrigeration:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :refrigeration, :as => :checkbox, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Vehicle:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :vehicle, :as => :checkbox, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Kitchen:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :kitchen, :as => :checkbox, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                              </div>
+                            </dd>
+                          </dl>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-        <div id="recipient-history"></div>
-
+          <div id="recipient-history"></div>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
 <%= javascript_include_tag "react_components/recipient/profile" %>
