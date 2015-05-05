@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "Food Shift" <" + ENV["EMAIL_USERNAME"] + ">""
+  default from: "Food Shift <" + ENV["EMAIL_USERNAME"] + ">"
 
   def donation_available(recipient_ids, donation)
     @donation = donation
@@ -37,12 +37,20 @@ class UserMailer < ActionMailer::Base
     mail(to: @recipient_profile.contact_email, subject: "(Recipient) Match made!")
   end
 
-  def match_canceled(donation, recipient_id)
+  def match_canceled_donor(donation)
     @donation = donation
-    @donor_id = donation.donor_id
-    @donor_profile = DonorProfile.find_by donor_id: @donor_id
-    @recipient_profile = RecipientProfile.find_by recipient_id: recipient_id
-    mail(to: @recipient_profile.contact_email, subject: "(Recipient) Donation Request Canceled")
-    mail(to: @donor_profile.email, subject: "(Donor) Donation Request Canceled")
+    donor_id = donation.donor_id
+    @profile = DonorProfile.find_by donor_id: donor_id
+    @donor = Donor.find donor_id
+    mail(to: @profile.email, subject: "(Donor) Donation Request Canceled")
+  end
+
+  def match_canceled_recipient(donation, recipient_id)
+    @donation = donation
+    donor_id = donation.donor_id
+    @profile = DonorProfile.find_by donor_id: donor_id
+    @recipient = Recipient.find recipient_id
+    recipient_profile = RecipientProfile.find_by recipient_id: recipient_id
+    mail(to: recipient_profile.contact_email, subject: "(Recipient) Donation Request Canceled")
   end
 end
