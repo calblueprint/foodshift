@@ -33,7 +33,7 @@ class CreateInterestController < ApplicationController
     new_interest.donation_id = @donation_id
     new_interest.recipient_id = @recipient_id
     if new_interest.save
-      Donation.find(donation_id).update_attributes(status: Donation.type_pending)
+      Donation.find(@donation_id).update_attributes(status: Donation.type_pending)
       @result = "Succesfully created Interest Object with recipient_id #{@recipient_id} and donation_id #{@donation_id}!"
     end
   end
