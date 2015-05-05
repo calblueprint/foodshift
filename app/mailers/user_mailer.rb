@@ -36,8 +36,8 @@ class UserMailer < ActionMailer::Base
     @recipient = Recipient.find recipient_id
     mail(to: @recipient_profile.contact_email, subject: "(Recipient) Match made!")
   end
-  
-  def match_canceled(donation, recipient_id, coordinator_id)
+
+  def match_canceled(donation, recipient_id)
     @donation = donation
     @donor_id = donation.donor_id
     @donor_profile = DonorProfile.find_by donor_id: @donor_id
