@@ -67,6 +67,22 @@
                                 </div>
                                 <div class="row additional-info">
                                   <div class="small-6 columns">
+                                    <span class="additional-info-key">Hours of operation:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :hrs_of_operation, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Days of operation:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :days_of_operation, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
                                     <span class="additional-info-key">Average number of people served:</span>
                                   </div>
                                   <div class="small-6 columns">
@@ -75,10 +91,26 @@
                                 </div>
                                 <div class="row additional-info">
                                   <div class="small-6 columns">
-                                    <span class="additional-info-key">Hours of operation:</span>
+                                    <span class="additional-info-key">Food types wanted:</span>
                                   </div>
                                   <div class="small-6 columns">
-                                    <%= best_in_place @profile, :hrs_of_operation, as: :input, :class => "additional-info-value" %>
+                                    <%= best_in_place @profile, :food_types_wanted, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Food types unwanted:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :food_types_unwanted, as: :input, :class => "additional-info-value" %>
+                                  </div>
+                                </div>
+                                <div class="row additional-info">
+                                  <div class="small-6 columns">
+                                    <span class="additional-info-key">Challenges faced:</span>
+                                  </div>
+                                  <div class="small-6 columns">
+                                    <%= best_in_place @profile, :challenges, as: :input, :class => "additional-info-value" %>
                                   </div>
                                 </div>
                                 <div class="row additional-info">
