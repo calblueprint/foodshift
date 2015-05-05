@@ -24,6 +24,7 @@
                           <% end %>
                         </div>
                       </div>
+                      <h1 class="profile-info-title"><%= best_in_place @profile, :organization, as: :input %></h1>
                     </div>
                     <div class="medium-8 columns">
                       <div class="row">
@@ -156,7 +157,7 @@
               </div>
             </div>
           </div>
-          <div id="recipient-history"></div>
+          <div id="recipient-history" class="history"></div>
         </div>
       </div>
     </div>
