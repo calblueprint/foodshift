@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<%= simple_form_for :donation, :html => { :id => "donor-form-fields", :"data-abide" => "ajax", :multipart => true } do |f| %>
+<%= form_for :donation, :html => { :id => "donor-form-fields", :"data-abide" => "ajax", :multipart => true } do |f| %>
   <div id="donor-form-food-block">
     <div class="row">
       <div class="small-12 columns">
@@ -41,8 +41,8 @@
       </div>
       <div class="small-12 medium-6 end columns">
         <div class="row">
-            <div class="small-12 end columns">
-                <%= f.check_box :refrigeration %> <label for="donation_refrigeration">Does your donation require refrigeration?</label>
+          <div class="small-12 end columns">
+            <%= f.check_box :refrigeration %> <label for="donation_refrigeration">Does your donation require refrigeration?</label>
           </div>
         </div>
       </div>
