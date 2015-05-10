@@ -78,6 +78,7 @@
   border-bottom: 1px solid $dark-grey;
   color: $charcoal;
   padding-top: 30px;
+  padding-bottom: 15px;
 }
 
 .profile-info {
@@ -129,8 +130,7 @@
   @extend .text-center;
   color: $charcoal;
   font-size: rem-calc(24);
-  padding: rem-calc(15px);
-  padding-top: 0;
+  padding: 0 rem-calc(15px);
 }
 
 .profile-summary-title {

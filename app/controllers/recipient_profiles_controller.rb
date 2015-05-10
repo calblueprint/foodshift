@@ -35,8 +35,8 @@ class RecipientProfilesController < ApplicationController
             :org501c3
           )
         )
-        if !params[:recipient_profile][:email].nil?
-          current_user.update(email: params[:recipient_profile][:email])
+        if !params[:recipient_profile][:contact_email].nil?
+          current_user.update(email: params[:recipient_profile][:contact_email])
         end
         format.json { respond_with_bip(profile) }
       end
@@ -58,9 +58,10 @@ class RecipientProfilesController < ApplicationController
     transaction = Transaction.find_by(donation_id: donation.id, recipient_id: current_user.id)
     @coordinator_id = transaction.coordinator_id
     Transaction.destroy(transaction.id)
-    @recipient_ids = Recipient.where(subscribed: true).pluck(:id)
+    @recipient_ids = Recipient.where(subscribed: true).pluck(:id).delete(current_user.id)
     UserMailer.donation_available(@recipient_ids, donation).deliver
-    UserMailer.match_canceled(donation, current_user.id).deliver
+    UserMailer.match_canceled_donor(donation).deliver
+    UserMailer.match_canceled_recipient(donation, current_user.id).deliver
     redirect_to recipient_profile_path
   end
 
