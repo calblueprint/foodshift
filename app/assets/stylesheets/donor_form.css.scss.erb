@@ -43,32 +43,6 @@ $donor-image-height: 500px;
     border-bottom: 2px solid $dark-grey;
     @include form-block-padding();
 
-    label.donation_picture_button input[type="file"] {
-      position: fixed;
-      top: -1000px;
-    }
-
-    .donation_picture_button {
-      height:31px;
-      width:80px;
-      background: $medium-green;
-      border: 1px solid $white;
-      border-radius: $global-radius;
-      padding: 2px 5px;
-      margin: 2px;
-    }
-
-    .donation_picture_button:hover {
-        background-color: scale-color($medium-green, $lightness: 10%);
-    }
-
-    .donation_picture_button :invalid + span {
-        color: $white;
-    }
-    .donation_picture_button :valid + span {
-        color: $white;
-    }
-
     .no-file-selected {
         font-size: 12px;
         line-height: 31px;

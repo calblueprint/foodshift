@@ -16,15 +16,15 @@ class CreateInterestController < ApplicationController
       @result = "This recipient/donation pair already exists!"
       return
     end
-    if Donation.find(donation_id).status == Donation.type_in_progress
+    if Donation.find(@donation_id).status == Donation.type_in_progress
       @result = "This donation has already been matched with another recipient."
       return
     end
-    if Donation.find(donation_id).status == Donation.type_canceled
+    if Donation.find(@donation_id).status == Donation.type_canceled
       @result = "This donation has been canceled."
       return
     end
-    if Donation.find(donation_id).status == Donation.type_completed
+    if Donation.find(@donation_id).status == Donation.type_completed
       @result = "This donation has already been completed."
       return
     end
@@ -33,7 +33,7 @@ class CreateInterestController < ApplicationController
     new_interest.donation_id = @donation_id
     new_interest.recipient_id = @recipient_id
     if new_interest.save
-      Donation.find(donation_id).update_attributes(status: Donation.type_pending)
+      Donation.find(@donation_id).update_attributes(status: Donation.type_pending)
       @result = "Succesfully created Interest Object with recipient_id #{@recipient_id} and donation_id #{@donation_id}!"
     end
   end

@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
   scope '/donation' do
     get '/cancel', to: 'donations#cancel', as: :donations_cancel
+    get '/cancel_interest', to: 'recipient_profiles#cancel_interest', as: :interes_cancel
+    get '/cancel_match', to: 'recipient_profiles#cancel_match', as: :match_cancel
   end
 
   get 'interest/create/:authentication/:recipient_id/:donation_id', to: 'create_interest#create'

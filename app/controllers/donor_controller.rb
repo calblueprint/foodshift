@@ -13,6 +13,7 @@ class DonorController < ApplicationController
       food_transaction: [{ recipient: :recipient_profile }, :coordinator]
     )
 
+    @new_donations = @donations.where(status: Donation.type_new)
     @pending_donations = @donations.where(status: Donation.type_pending)
     @inprogress_donations = @donations.where(status: Donation.type_in_progress)
     @completed_donations = @donations.where(status: Donation.type_completed)
@@ -41,7 +42,8 @@ class DonorController < ApplicationController
           :typical_food_types_served,
           :typical_quantity_of_donation,
           :pounds_per_week_donated,
-          :aware_of_good_samaritan_act
+          :aware_of_good_samaritan_act,
+          :logo
         )
       )
       if !params[:donor_profile][:email].nil?

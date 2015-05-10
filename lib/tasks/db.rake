@@ -128,11 +128,11 @@ end
 def create_donations_and_interests(num_rows)
   1.upto(num_rows) do |n|
     donation = Donation.create!(
-      status: ["In Progress", "Pending", "Completed"].sample,
+      status: ["New", "In Progress", "Pending", "Completed", "Canceled"].sample,
       donor_id: [1, 2, 3, 4, 5].sample,
       refrigeration: [true, false].sample,
       window_start: Faker::Date.between(2.days.ago, 1.days.ago),
-      window_end: Faker::Date.between(1.days.ago, Date.today),
+      window_end: Faker::Date.between(1.days.ago, 10.days.from_now),
       picture: Faker::Internet.url,
       description: Faker::Lorem.sentence(3),
       longitude: Faker::Address.longitude,

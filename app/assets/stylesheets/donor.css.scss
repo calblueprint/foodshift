@@ -78,6 +78,7 @@
   border-bottom: 1px solid $dark-grey;
   color: $charcoal;
   padding-top: 30px;
+  padding-bottom: 15px;
 }
 
 .profile-info {
@@ -129,8 +130,7 @@
   @extend .text-center;
   color: $charcoal;
   font-size: rem-calc(24);
-  padding: rem-calc(15px);
-  padding-top: 0;
+  padding: 0 rem-calc(15px);
 }
 
 .profile-summary-title {
@@ -156,6 +156,7 @@
 
 .donation-container {
   padding: 0 10px;
+  margin-bottom: 10px;
 }
 
 .donation-key-container {
@@ -183,6 +184,7 @@
 
   .donation-key-inprogress {
     background: $donation-inprogress-key;
+    color: $white;
   }
 
   .donation-key-pending {
@@ -218,16 +220,20 @@
   }
 }
 
-.donation-item-completed {
-  border-left: 10px solid $donation-completed-key;
+.donation-item-new {
+  border-left: 10px solid $donation-new-key;
+}
+
+.donation-item-pending {
+  border-left: 10px solid $donation-pending-key;
 }
 
 .donation-item-inprogress {
   border-left: 10px solid $donation-inprogress-key;
 }
 
-.donation-item-pending {
-  border-left: 10px solid $donation-pending-key;
+.donation-item-completed {
+  border-left: 10px solid $donation-completed-key;
 }
 
 .donation-item-canceled {
@@ -293,4 +299,3 @@
     max-height: 0;
   }
 }
-

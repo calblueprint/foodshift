@@ -6,20 +6,63 @@ class RecipientProfilesController < ApplicationController
   def change_profile
     request.format = :json
     profile = RecipientProfile.find_by(recipient_id: current_user.id)
+    recipient = Recipient.find(current_user.id)
     respond_to do |format|
-      profile.update_attributes(
-        params[:recipient_profile].permit(
-          :contact_person,
-          :contact_email,
-          :address,
-          :contact_person_phone
+      if !params[:user].nil?
+        recipient.update_attributes(
+          params[:user].permit(
+            :subscribed
+          )
         )
-      )
-      if !params[:recipient_profile][:email].nil?
-        current_user.update(email: params[:recipient_profile][:email])
+        format.json { respond_with_bip(recipient) }
       end
-      format.json { respond_with_bip(profile) }
+      if !params[:recipient_profile].nil?
+        profile.update_attributes(
+          params[:recipient_profile].permit(
+            :contact_person,
+            :contact_email,
+            :address,
+            :contact_person_phone,
+            :organization_number,
+            :vehicle,
+            :refrigeration,
+            :kitchen,
+            :population_description,
+            :days_of_operation,
+            :logo,
+            :hrs_of_operation,
+            :num_people_served,
+            :org501c3
+          )
+        )
+        if !params[:recipient_profile][:contact_email].nil?
+          current_user.update(email: params[:recipient_profile][:contact_email])
+        end
+        format.json { respond_with_bip(profile) }
+      end
     end
+  end
+
+  # GET /donation/cancel_interest
+  def cancel_interest
+    donation = Donation.find_by id: params[:format]
+    interest = Interest.find_by(donation_id: donation.id, recipient_id: current_user.id)
+    Interest.destroy(interest.id)
+    redirect_to recipient_profile_path
+  end
+
+  # GET /donation/cancel_match
+  def cancel_match
+    donation = Donation.find_by id: params[:format]
+    donation.update_attributes status: Donation.type_pending # should be type_new but it doesn't exist yet
+    transaction = Transaction.find_by(donation_id: donation.id, recipient_id: current_user.id)
+    @coordinator_id = transaction.coordinator_id
+    Transaction.destroy(transaction.id)
+    @recipient_ids = Recipient.where(subscribed: true).pluck(:id).delete(current_user.id)
+    UserMailer.donation_available(@recipient_ids, donation).deliver
+    UserMailer.match_canceled_donor(donation).deliver
+    UserMailer.match_canceled_recipient(donation, current_user.id).deliver
+    redirect_to recipient_profile_path
   end
 
   def show
@@ -32,6 +75,17 @@ class RecipientProfilesController < ApplicationController
       donation: { donor: :donor_profile }
     )
     gon.transactions = @transactions.as_json(
+      include: [{ donation: {
+        include: [{ donor: {
+          include: [:donor_profile]
+        } }]
+      } }]
+    )
+
+    @interests = Interest.where(recipient_id: current_user.id).includes(
+      donation: { donor: :donor_profile }
+    )
+    gon.interests = @interests.as_json(
       include: [{ donation: {
         include: [{ donor: {
           include: [:donor_profile]

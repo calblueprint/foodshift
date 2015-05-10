@@ -36,14 +36,14 @@ class RecipientForm < Form
   # PUT /recipient/profile
   def create_objects
     ActiveRecord::Base.transaction do
-      donation.save!
+      recipient_user.save!
+      recipient_profile(recipient_user).save!
     end
-    @profile = RecipientProfile.find_by(recipient_id: current_user.id)
     @profile.update(
       address: address,
-      contact_email: contact_email,
-      contact_person: contact_person,
-      contact_person_phone: contact_person_phone
+      contact_email: email,
+      contact_person: name_to_person,
+      contact_person_phone: phone
     )
     rescue ActiveRecord::RecordInvalid => err
       Rails.logger.error(err.to_s)
@@ -60,7 +60,7 @@ class RecipientForm < Form
 
   def recipient_profile(recipient_user)
     # TODO: Add more of the fields listed in the client doc
-    @recipient_profile ||= RecipientProfile.new(
+    @profile ||= RecipientProfile.new(
       recipient: recipient_user,
       organization: organization_name,
       address: address,
