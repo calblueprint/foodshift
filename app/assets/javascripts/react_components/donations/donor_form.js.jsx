@@ -80,7 +80,6 @@ var DonationModal = React.createClass({
     },
     handleDonation: function(beforeSend) {
         var data = new FormData($("#donor-form-fields"));
-        console.log(data);
         $.ajax({
             url: window.location.href,
             type: 'POST',
